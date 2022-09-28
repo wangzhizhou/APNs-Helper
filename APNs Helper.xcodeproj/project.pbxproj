@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B35F72D28DEAB17009EF9C9 /* APNs_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* APNs_HelperApp.swift */; };
+		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
 		2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72E28DEAB17009EF9C9 /* Persistence.swift */; };
 		2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */; };
 		2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73328DEAB17009EF9C9 /* ContentView.swift */; };
@@ -16,6 +16,12 @@
 		2B35F74428DEAB18009EF9C9 /* APNs_HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74328DEAB18009EF9C9 /* APNs_HelperTests.swift */; };
 		2B35F74E28DEAB18009EF9C9 /* APNs_HelperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74D28DEAB18009EF9C9 /* APNs_HelperUITests.swift */; };
 		2B35F75028DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */; };
+		2B35F76928DEADE6009EF9C9 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B35F76828DEADE6009EF9C9 /* APNSwift */; };
+		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
+		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
+		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
+		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
+		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		2B35F72928DEAB17009EF9C9 /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B35F72C28DEAB17009EF9C9 /* APNs_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperApp.swift; sourceTree = "<group>"; };
+		2B35F72C28DEAB17009EF9C9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		2B35F72E28DEAB17009EF9C9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		2B35F73128DEAB17009EF9C9 /* APNs_Helper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = APNs_Helper.xcdatamodel; sourceTree = "<group>"; };
 		2B35F73328DEAB17009EF9C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +55,11 @@
 		2B35F74928DEAB18009EF9C9 /* APNs HelperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APNs HelperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B35F74D28DEAB18009EF9C9 /* APNs_HelperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperUITests.swift; sourceTree = "<group>"; };
 		2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		2B35F76A28DEAF56009EF9C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		2BBDDE7628E494440052DC28 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
+		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B35F76928DEADE6009EF9C9 /* APNSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,13 +111,18 @@
 		2B35F72B28DEAB17009EF9C9 /* APNs Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2B35F72C28DEAB17009EF9C9 /* APNs_HelperApp.swift */,
+				2B35F72C28DEAB17009EF9C9 /* App.swift */,
+				2BBDDE7628E494440052DC28 /* AppContent.swift */,
+				2BBDDE7828E49A770052DC28 /* InputView.swift */,
+				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2B35F72E28DEAB17009EF9C9 /* Persistence.swift */,
 				2B35F73328DEAB17009EF9C9 /* ContentView.swift */,
+				2B35F76A28DEAF56009EF9C9 /* Config.swift */,
 				2B35F73528DEAB18009EF9C9 /* Assets.xcassets */,
 				2B35F73728DEAB18009EF9C9 /* APNs_Helper.entitlements */,
 				2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */,
 				2B35F73828DEAB18009EF9C9 /* Preview Content */,
+				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
 			);
 			path = "APNs Helper";
 			sourceTree = "<group>";
@@ -151,6 +168,9 @@
 			dependencies = (
 			);
 			name = "APNs Helper";
+			packageProductDependencies = (
+				2B35F76828DEADE6009EF9C9 /* APNSwift */,
+			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +243,9 @@
 				Base,
 			);
 			mainGroup = 2B35F72028DEAB17009EF9C9;
+			packageReferences = (
+				2B35F76728DEADE6009EF9C9 /* XCRemoteSwiftPackageReference "APNSwift" */,
+			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -265,8 +288,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B35F72D28DEAB17009EF9C9 /* APNs_HelperApp.swift in Sources */,
+				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
+				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
+				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
+				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
+				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
+				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */,
 				2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */,
 			);
@@ -620,6 +648,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2B35F76728DEADE6009EF9C9 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
+			requirement = {
+				kind = exactVersion;
+				version = "5.0.0-beta.1";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2B35F76828DEADE6009EF9C9 /* APNSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B35F76728DEADE6009EF9C9 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */ = {
