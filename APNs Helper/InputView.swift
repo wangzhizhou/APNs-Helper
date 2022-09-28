@@ -19,6 +19,7 @@ struct InputView: View {
         HStack {
             Text(title)
             TextField(placeholder ?? title, text: $inputValue)
+                .frame(width: 420)
         }
     }
 }

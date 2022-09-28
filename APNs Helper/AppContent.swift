@@ -55,9 +55,9 @@ struct AppContent: View {
             GroupBox {
                 VStack(alignment: .trailing) {
                     
-                    InputView(title: "TeamID", inputValue: $teamIdentifier)
-                    
                     InputView(title: "KeyID", inputValue: $keyIdentifier)
+                    
+                    InputView(title: "TeamID", inputValue: $teamIdentifier)
                     
                     InputView(title: "BundleID", inputValue: $appBundleID)
                     
