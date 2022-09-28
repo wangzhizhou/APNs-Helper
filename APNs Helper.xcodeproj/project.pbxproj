@@ -115,6 +115,7 @@
 				2BBDDE7628E494440052DC28 /* AppContent.swift */,
 				2BBDDE7828E49A770052DC28 /* InputView.swift */,
 				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
+				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
 				2B35F72E28DEAB17009EF9C9 /* Persistence.swift */,
 				2B35F73328DEAB17009EF9C9 /* ContentView.swift */,
 				2B35F76A28DEAF56009EF9C9 /* Config.swift */,
@@ -122,7 +123,6 @@
 				2B35F73728DEAB18009EF9C9 /* APNs_Helper.entitlements */,
 				2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */,
 				2B35F73828DEAB18009EF9C9 /* Preview Content */,
-				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
 			);
 			path = "APNs Helper";
 			sourceTree = "<group>";

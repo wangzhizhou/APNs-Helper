@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct AppContent: View {
     
@@ -24,7 +23,7 @@ struct AppContent: View {
     @State var apnsServerEnv: APNServerEnv = .sandbox
     
     @State var payload: String = ""
-    @State var log: String = "hello, world"
+    @State var log: String = ""
     
     @State var presetConfig: Config = .invalid
     
@@ -73,7 +72,13 @@ struct AppContent: View {
                             Text("Private Key")
                             Spacer()
                             Button {
-                                
+                                let (output, error) = APNsService.chooseP8AndDecrypt()
+                                if let output = output {
+                                    privateKey = output
+                                }
+                                if let error = error {
+                                    log.append(error)
+                                }
                             } label: {
                                 Text("import .p8 file")
                             }

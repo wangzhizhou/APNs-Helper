@@ -8,6 +8,7 @@
 import Foundation
 import APNSwift
 import Logging
+import AppKit
 
 enum APNServerEnv: String, CaseIterable {
     case sandbox
@@ -244,4 +245,43 @@ extension APNsService {
             logger: Self.logger
         )
     }
+}
+
+
+import UniformTypeIdentifiers
+@available(macOS 11.0, *)
+extension APNsService {
+    static func chooseP8AndDecrypt() -> (output: String?, error: String?) {
+        let openPanel = NSOpenPanel()
+        openPanel.prompt = "选择"
+        if let p8UTType = UTType(filenameExtension: "p8") {
+            openPanel.allowedContentTypes = [p8UTType]
+        }
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.runModal()
+        if let p8FileURL = openPanel.url {
+            let process = Process()
+            process.executableURL = URL(fileURLWithPath: "/usr/bin/openssl")
+            process.arguments = [
+                "pkcs8",
+                "-nocrypt",
+                "-in",
+                "\(p8FileURL.path)"
+            ]
+            let outputPipe = Pipe()
+            let errorPipe = Pipe()
+            process.standardOutput = outputPipe
+            process.standardError = errorPipe
+            try? process.run()
+            let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
+            let output = String(data: outputData, encoding: .utf8)
+            let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
+            let error = String(data: errorData, encoding: .utf8)
+            return (output: output, error: error)
+        }
+        return (nil, "无效文件路径")
+    }
+    
 }
