@@ -11,6 +11,7 @@ struct AppContent: View {
     
     @EnvironmentObject var appModel: AppModel
     
+    @State var presetConfig: Config = .invalid
     @State var teamIdentifier: String = ""
     @State var keyIdentifier: String = ""
     @State var appBundleID: String = ""
@@ -18,23 +19,17 @@ struct AppContent: View {
     @State var pushKitDeviceToken: String = ""
     @State var fileProviderDeviceToken: String = ""
     @State var privateKey: String = ""
-    
     @State var pushType: PushType = .alert
     @State var apnsServerEnv: APNServerEnv = .sandbox
-    
     @State var payload: String = ""
     @State var log: String = ""
-    
-    @State var presetConfig: Config = .invalid
-    
-    @State var disablePrivateKeyEditor: Bool = false
     
     var body: some View {
         
         VStack {
             
             Picker("预设配置", selection: $presetConfig) {
-                Text(Config.invalid.appBundleID).tag(Config.invalid)
+                Text("custom").tag(Config.invalid)
                 Text(Config.f100.appBundleID).tag(Config.f100)
                 Text(Config.f100InHouse.appBundleID).tag(Config.f100InHouse)
                 Text(Config.f101.appBundleID).tag(Config.f101)
@@ -42,7 +37,6 @@ struct AppContent: View {
             }
             .padding(.vertical)
             .onChange(of: presetConfig, perform: { tag in
-                disablePrivateKeyEditor = (tag != Config.invalid)
                 teamIdentifier = tag.teamIdentifier
                 keyIdentifier = tag.keyIdentifier
                 appBundleID = tag.appBundleID
@@ -83,8 +77,8 @@ struct AppContent: View {
                                 Text("import .p8 file")
                             }
                         }
-                        TextEditor(text: $privateKey)
-                            .disabled(disablePrivateKeyEditor)
+                        
+                        InputTextEditor(content: $privateKey)
                             .frame(height: 80)
                     }
                 }
@@ -109,11 +103,8 @@ struct AppContent: View {
             
             Divider()
             
-            VStack(alignment: .leading) {
-                Text("Payload")
-                TextEditor(text: $payload)
-                    .frame(height: 200)
-            }.padding(.top)
+            InputTextEditor(title: "Payload", content: $payload)
+                .frame(height: 200)
             
             Button {
                 let config = Config(
@@ -136,12 +127,9 @@ struct AppContent: View {
             
             Divider()
             
-            VStack(alignment: .leading) {
-                Text("Log")
-                TextEditor(text: $log)
-                    .disabled(true)
-                    .frame(height: 100)
-            }.padding(.vertical)
+            InputTextEditor(title: "Log", content: $log)
+                .disabled(true)
+                .frame(height: 100)
         }
         .frame(width: 600)
         .padding()
