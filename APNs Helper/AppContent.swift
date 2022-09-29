@@ -133,7 +133,7 @@ struct AppContent: View {
                         isLoading = false
                     }
                 } label: {
-                    Text("发送\(isLoading ? "中..." : "(⌘+⏎)")")
+                    Text("Send\(isLoading ? "ing..." : "(⌘+⏎)")")
                 }
                 .disabled(isLoading)
                 .keyboardShortcut(.return, modifiers: [.command])
