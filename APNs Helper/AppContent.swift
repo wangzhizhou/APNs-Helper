@@ -22,7 +22,7 @@ struct AppContent: View {
     @State var pushType: PushType = .alert
     @State var apnsServerEnv: APNServerEnv = .sandbox
     @State var payload: String = ""
-    
+    @State var isLoading: Bool = false
     var body: some View {
         
         VStack {
@@ -104,25 +104,31 @@ struct AppContent: View {
             }
             
             
-            InputTextEditor(title: "Payload", content: $payload)
+            InputTextEditor(title: "Payload \(payload.isEmpty ? "(no payload will send preset test data)" : "")", content: $payload)
                 .frame(height: 200)
             
-            Button("发送") {
-                let config = Config(
-                    deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-                    pushKitDeviceToken: pushKitDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-                    fileProviderDeviceToken: fileProviderDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-                    appBundleID: appBundleID.trimmingCharacters(in: .whitespacesAndNewlines),
-                    privateKey: privateKey,
-                    keyIdentifier: keyIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
-                    teamIdentifier: teamIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
-                    pushType:pushType,
-                    apnsServerEnv: apnsServerEnv)
-                Task {
-                    appModel.resetLog()
-                    let payload = APNsService.Payload(json: payload)
-                    try? await APNsService(config: config, payload: payload).send()
+            HStack {
+                Button("发送\(isLoading ? "中..." : "")") {
+                    let config = Config(
+                        deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
+                        pushKitDeviceToken: pushKitDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
+                        fileProviderDeviceToken: fileProviderDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
+                        appBundleID: appBundleID.trimmingCharacters(in: .whitespacesAndNewlines),
+                        privateKey: privateKey,
+                        keyIdentifier: keyIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
+                        teamIdentifier: teamIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
+                        pushType:pushType,
+                        apnsServerEnv: apnsServerEnv)
+                    
+                    Task {
+                        isLoading = true
+                        appModel.resetLog()
+                        let payloadData = !payload.isEmpty ? payload.data(using: .utf8) : nil
+                        try? await APNsService(config: config, payloadData: payloadData).send()
+                        isLoading = false
+                    }
                 }
+                .disabled(isLoading)
             }
             
             Divider()

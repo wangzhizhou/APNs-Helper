@@ -9,6 +9,7 @@ import Foundation
 import APNSwift
 import Logging
 import AppKit
+import NIO
 
 enum APNServerEnv: String, CaseIterable {
     case sandbox
@@ -25,25 +26,24 @@ enum APNServerEnv: String, CaseIterable {
 }
 
 enum PushType: String, CaseIterable {
-    case alert = "Alert"
-    case background = "Background"
-    case voip = "VoIP"
-    case fileProvider = "File Provider"
+    case alert
+    case background
+    case voip
+    case fileprovider
 }
 
 struct APNsService {
-    struct Payload: Codable {
-        let json: String
-    }
+    struct Payload: Codable {}
     static let logger: Logger = {
-        var logger = Logger(label: "APNs Helper") { _ in 
+        var logger = Logger(label: "APNs Helper") { _ in
             AppLogHandler()
         }
         return logger
     }()
-        
+    
     let config: Config
-    let payload: Payload
+    private let payload =  Payload()
+    var payloadData: Data? = nil
     func send() async throws {
         let client = APNSClient(
             configuration: .init(
@@ -65,22 +65,35 @@ struct APNsService {
                 Self.logger.error("Failed to shutdown APNSClient")
             }
         }
-
+        
         do {
-            switch config.pushType {
-            case .alert:
-                try await sendSimpleAlert(with: client)
-                try await sendLocalizedAlert(with: client)
-                try await sendThreadedAlert(with: client)
-                try await sendCustomCategoryAlert(with: client)
-                try await sendMutableContentAlert(with: client)
-            case .background:
-                try await sendBackground(with: client)
-            case .voip:
-                try await sendVoIP(with: client)
-            case .fileProvider:
-                try await sendFileProvider(with: client)
+            if let payloadData = payloadData {
+                var byteBuffer = ByteBufferAllocator().buffer(capacity: 0)
+                byteBuffer.writeData(payloadData)
+                _ = try JSONSerialization.jsonObject(with: byteBuffer, options: .mutableContainers)
+                try await client.send(
+                    payload: byteBuffer,
+                    deviceToken: config.deviceToken,
+                    pushType: config.pushType.rawValue,
+                    apnsID: UUID(),
+                    expiration: 0,
+                    priority: 10,
+                    topic: config.appBundleID,
+                    deadline: .distantFuture)
             }
+            else {
+                switch config.pushType {
+                case .alert:
+                    try await sendSimpleAlert(with: client)
+                case .background:
+                    try await sendBackground(with: client)
+                case .voip:
+                    try await sendVoIP(with: client)
+                case .fileprovider:
+                    try await sendFileProvider(with: client)
+                }
+            }
+            
         } catch {
             Self.logger.error("Failed sending push", metadata: ["error": "\(error)"])
         }
@@ -110,7 +123,7 @@ extension APNsService {
             logger: Self.logger
         )
     }
-
+    
     func sendLocalizedAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
             .init(
@@ -130,7 +143,7 @@ extension APNsService {
             logger: Self.logger
         )
     }
-
+    
     func sendThreadedAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
             .init(
@@ -151,7 +164,7 @@ extension APNsService {
             logger: Self.logger
         )
     }
-
+    
     func sendCustomCategoryAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
             .init(
@@ -172,7 +185,7 @@ extension APNsService {
             logger: Self.logger
         )
     }
-
+    
     func sendMutableContentAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
             .init(

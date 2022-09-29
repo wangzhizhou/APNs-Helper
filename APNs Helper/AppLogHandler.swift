@@ -29,11 +29,18 @@ struct AppLogHandler: LogHandler {
              file: String,
              function: String,
              line: UInt) {
+                
+        // 输出到控制台
         
+        let output = """
+[\(Date().ISO8601Format(.iso8601))] \(message.description) \(metadata?.description ?? "")
+
+"""
+        print(output)
         Task {
             await MainActor.run {
-                APNsHelperApp.model.appLog.append(message.description)
-                APNsHelperApp.model.appLog.append("\n")
+                // 输出到UI界面
+                APNsHelperApp.model.appLog.append(output)
             }
         }
     }
