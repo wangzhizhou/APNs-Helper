@@ -23,6 +23,7 @@ struct AppContent: View {
     @State var apnsServerEnv: APNServerEnv = .sandbox
     @State var payload: String = ""
     @State var isLoading: Bool = false
+    
     var body: some View {
         
         VStack {
@@ -108,7 +109,7 @@ struct AppContent: View {
                 .frame(height: 200)
             
             HStack {
-                Button("发送\(isLoading ? "中..." : "")") {
+                Button {
                     let config = Config(
                         deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
                         pushKitDeviceToken: pushKitDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -127,8 +128,11 @@ struct AppContent: View {
                         try? await APNsService(config: config, payloadData: payloadData).send()
                         isLoading = false
                     }
+                } label: {
+                    Text("发送\(isLoading ? "中..." : "(⌘+⏎)")")
                 }
                 .disabled(isLoading)
+                .keyboardShortcut(.return, modifiers: [.command])
             }
             
             Divider()

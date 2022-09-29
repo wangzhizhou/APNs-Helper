@@ -19,7 +19,7 @@ extension Config {
         teamIdentifier: "")
     
     static let f101 = Config(
-        deviceToken: "85acd4ca201adc6563263bf692032c4916e61d5f911d0fac1c0b52ab5c11bac8",
+        deviceToken: "",
         pushKitDeviceToken: "",
         fileProviderDeviceToken: "",
         appBundleID: "com.f101.client",
