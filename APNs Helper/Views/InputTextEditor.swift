@@ -19,6 +19,7 @@ struct InputTextEditor: View {
                 Text(title)
             }
             TextEditor(text: $content)
+                .font(.system(size: 8))
         }
     }
 }

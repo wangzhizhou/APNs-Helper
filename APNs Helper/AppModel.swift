@@ -8,4 +8,11 @@
 import Foundation
 
 class AppModel: ObservableObject {
+    
+    @Published var appLog: String = ""
+    
+    @MainActor
+    func resetLog() {
+        appLog = ""
+    }
 }

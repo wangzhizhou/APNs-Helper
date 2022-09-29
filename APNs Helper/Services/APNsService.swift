@@ -32,15 +32,18 @@ enum PushType: String, CaseIterable {
 }
 
 struct APNsService {
-    
-    struct Payload: Codable {}
+    struct Payload: Codable {
+        let json: String
+    }
     static let logger: Logger = {
-        var logger = Logger(label: "APNs Helper")
-        logger.logLevel = .trace
+        var logger = Logger(label: "APNs Helper") { _ in 
+            AppLogHandler()
+        }
         return logger
     }()
         
     let config: Config
+    let payload: Payload
     func send() async throws {
         let client = APNSClient(
             configuration: .init(
@@ -100,7 +103,7 @@ extension APNsService {
                 expiration: .immediately,
                 priority: .immediately,
                 topic: config.appBundleID,
-                payload: Payload()
+                payload: payload
             ),
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
@@ -120,7 +123,7 @@ extension APNsService {
                 expiration: .immediately,
                 priority: .immediately,
                 topic: config.appBundleID,
-                payload: Payload()
+                payload: payload
             ),
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
@@ -140,7 +143,7 @@ extension APNsService {
                 expiration: .immediately,
                 priority: .immediately,
                 topic: config.appBundleID,
-                payload: Payload(),
+                payload: payload,
                 threadID: "thread"
             ),
             deviceToken: config.deviceToken,
@@ -161,7 +164,7 @@ extension APNsService {
                 expiration: .immediately,
                 priority: .immediately,
                 topic: config.appBundleID,
-                payload: Payload(),
+                payload: payload,
                 category: "CUSTOM"
             ),
             deviceToken: config.deviceToken,
@@ -182,7 +185,7 @@ extension APNsService {
                 expiration: .immediately,
                 priority: .immediately,
                 topic: config.appBundleID,
-                payload: Payload(),
+                payload: payload,
                 mutableContent: 1
             ),
             deviceToken: config.deviceToken,
@@ -201,7 +204,7 @@ extension APNsService {
             .init(
                 expiration: .immediately,
                 topic: config.appBundleID,
-                payload: Payload()
+                payload: payload
             ),
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
@@ -220,7 +223,7 @@ extension APNsService {
                 expiration: .immediately,
                 priority: .immediately,
                 appID: config.appBundleID,
-                payload: Payload()
+                payload: payload
             ),
             deviceToken: config.pushKitDeviceToken,
             deadline: .distantFuture,
@@ -238,50 +241,11 @@ extension APNsService {
             .init(
                 expiration: .immediately,
                 appID: config.appBundleID,
-                payload: Payload()
+                payload: payload
             ),
             deviceToken: config.fileProviderDeviceToken,
             deadline: .distantFuture,
             logger: Self.logger
         )
     }
-}
-
-
-import UniformTypeIdentifiers
-@available(macOS 11.0, *)
-extension APNsService {
-    static func chooseP8AndDecrypt() -> (output: String?, error: String?) {
-        let openPanel = NSOpenPanel()
-        openPanel.prompt = "选择"
-        if let p8UTType = UTType(filenameExtension: "p8") {
-            openPanel.allowedContentTypes = [p8UTType]
-        }
-        openPanel.allowsMultipleSelection = false
-        openPanel.canChooseDirectories = false
-        openPanel.canChooseFiles = true
-        openPanel.runModal()
-        if let p8FileURL = openPanel.url {
-            let process = Process()
-            process.executableURL = URL(fileURLWithPath: "/usr/bin/openssl")
-            process.arguments = [
-                "pkcs8",
-                "-nocrypt",
-                "-in",
-                "\(p8FileURL.path)"
-            ]
-            let outputPipe = Pipe()
-            let errorPipe = Pipe()
-            process.standardOutput = outputPipe
-            process.standardError = errorPipe
-            try? process.run()
-            let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
-            let output = String(data: outputData, encoding: .utf8)
-            let errorData = errorPipe.fileHandleForReading.readDataToEndOfFile()
-            let error = String(data: errorData, encoding: .utf8)
-            return (output: output, error: error)
-        }
-        return (nil, "无效文件路径")
-    }
-    
 }

@@ -19,8 +19,10 @@
 		2B35F76928DEADE6009EF9C9 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B35F76828DEADE6009EF9C9 /* APNSwift */; };
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
+		2B616DD328E5C86600807F8B /* Finder+P8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B616DD228E5C86600807F8B /* Finder+P8.swift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */; };
+		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
@@ -59,8 +61,10 @@
 		2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2B35F76A28DEAF56009EF9C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		2B616DD228E5C86600807F8B /* Finder+P8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Finder+P8.swift"; sourceTree = "<group>"; };
 		2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextEditor.swift; sourceTree = "<group>"; };
 		2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Preset.swift"; sourceTree = "<group>"; };
+		2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogHandler.swift; sourceTree = "<group>"; };
 		2BBDDE7628E494440052DC28 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
 		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsService.swift; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				2B35F72C28DEAB17009EF9C9 /* App.swift */,
 				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2BBDDE7628E494440052DC28 /* AppContent.swift */,
+				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
 				2BA3DB6728E5415D006DBCCC /* Views */,
 				2BA3E0AE28E54E4A006DBCCC /* Services */,
 				2BA3E0AF28E54E55006DBCCC /* Database */,
@@ -167,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
+				2B616DD228E5C86600807F8B /* Finder+P8.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -339,8 +345,10 @@
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
+				2B616DD328E5C86600807F8B /* Finder+P8.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
+				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */,
 				2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */,

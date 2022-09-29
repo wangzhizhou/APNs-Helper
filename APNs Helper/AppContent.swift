@@ -22,13 +22,12 @@ struct AppContent: View {
     @State var pushType: PushType = .alert
     @State var apnsServerEnv: APNServerEnv = .sandbox
     @State var payload: String = ""
-    @State var log: String = ""
     
     var body: some View {
         
         VStack {
             
-            Picker("预设配置", selection: $presetConfig) {
+            Picker("Preset", selection: $presetConfig) {
                 Text("custom").tag(Config.invalid)
                 Text(Config.f100.appBundleID).tag(Config.f100)
                 Text(Config.f100InHouse.appBundleID).tag(Config.f100InHouse)
@@ -46,44 +45,6 @@ struct AppContent: View {
                 privateKey = tag.privateKey
             })
             
-            GroupBox {
-                VStack(alignment: .trailing) {
-                    
-                    InputView(title: "KeyID", inputValue: $keyIdentifier)
-                    
-                    InputView(title: "TeamID", inputValue: $teamIdentifier)
-                    
-                    InputView(title: "BundleID", inputValue: $appBundleID)
-                    
-                    InputView(title: "Device Token", inputValue: $deviceToken)
-                    
-                    InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
-                    
-                    InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
-                    
-                    VStack(alignment: .leading) {
-                        HStack{
-                            Text("Private Key")
-                            Spacer()
-                            Button {
-                                let (output, error) = APNsService.chooseP8AndDecrypt()
-                                if let output = output {
-                                    privateKey = output
-                                }
-                                if let error = error {
-                                    log.append(error)
-                                }
-                            } label: {
-                                Text("import .p8 file")
-                            }
-                        }
-                        
-                        InputTextEditor(content: $privateKey)
-                            .frame(height: 80)
-                    }
-                }
-            }
-            
             HStack {
                 Picker("Push Type", selection: $pushType) {
                     ForEach(PushType.allCases, id: \.self) {
@@ -100,13 +61,53 @@ struct AppContent: View {
                 }
                 .pickerStyle(.segmented)
             }
+            .padding(.bottom)
             
-            Divider()
+            GroupBox {
+                VStack(alignment: .trailing) {
+                    
+                    InputView(title: "KeyID", inputValue: $keyIdentifier)
+                    
+                    InputView(title: "TeamID", inputValue: $teamIdentifier)
+                    
+                    InputView(title: "BundleID", inputValue: $appBundleID)
+                    
+                    InputView(title: "Device Token", inputValue: $deviceToken)
+                    
+                    InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
+                    
+                    InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
+                    
+                    Divider()
+                    
+                    VStack(alignment: .leading) {
+                        HStack{
+                            Text("Private Key")
+                            Spacer()
+                            Button {
+                                let (output, error) = Finder.chooseP8AndDecrypt()
+                                if let output = output {
+                                    privateKey = output
+                                }
+                                if let error = error {
+                                    appModel.appLog.append(error)
+                                }
+                            } label: {
+                                Text("import .p8 file")
+                            }
+                        }
+                        
+                        InputTextEditor(content: $privateKey)
+                            .frame(height: 50)
+                    }
+                }
+            }
+            
             
             InputTextEditor(title: "Payload", content: $payload)
                 .frame(height: 200)
             
-            Button {
+            Button("发送") {
                 let config = Config(
                     deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
                     pushKitDeviceToken: pushKitDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -117,21 +118,19 @@ struct AppContent: View {
                     teamIdentifier: teamIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
                     pushType:pushType,
                     apnsServerEnv: apnsServerEnv)
-                
                 Task {
-                    try? await APNsService(config: config).send()
+                    appModel.resetLog()
+                    let payload = APNsService.Payload(json: payload)
+                    try? await APNsService(config: config, payload: payload).send()
                 }
-            } label: {
-                Text("发送")
             }
             
             Divider()
             
-            InputTextEditor(title: "Log", content: $log)
-                .disabled(true)
+            InputTextEditor(title: "Log", content: $appModel.appLog)
                 .frame(height: 100)
         }
-        .frame(width: 600)
+        .frame(width: 700)
         .padding()
     }
 }
