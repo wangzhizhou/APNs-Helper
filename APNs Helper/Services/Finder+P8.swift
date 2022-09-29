@@ -6,11 +6,15 @@
 //
 
 import Foundation
-import AppKit
 import UniformTypeIdentifiers
+
+#if os(macOS)
+import AppKit
+#endif
 
 struct Finder {
     static func chooseP8AndDecrypt() -> (output: String?, error: String?) {
+#if os(macOS)
         let openPanel = NSOpenPanel()
         openPanel.prompt = "选择"
         if let p8UTType = UTType(filenameExtension: "p8") {
@@ -41,5 +45,9 @@ struct Finder {
             return (output: output, error: error)
         }
         return (nil, "无效文件路径")
+#else
+        return (nil, nil)
+#endif
+        
     }
 }

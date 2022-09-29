@@ -28,23 +28,27 @@ struct AppContent: View {
         
         VStack {
             
-            Picker("Preset", selection: $presetConfig) {
-                Text("custom").tag(Config.invalid)
-                Text(Config.f100.appBundleID).tag(Config.f100)
-                Text(Config.f100InHouse.appBundleID).tag(Config.f100InHouse)
-                Text(Config.f101.appBundleID).tag(Config.f101)
-                Text(Config.f101InHouse.appBundleID).tag(Config.f101InHouse)
+            if !appModel.presets.isEmpty {
+                Picker("Preset", selection: $presetConfig) {
+                    ForEach(appModel.presets) {
+                        if $0 == .invalid {
+                            Text("custom").tag($0)
+                        } else {
+                            Text($0.appBundleID).tag($0)
+                        }
+                    }
+                }
+                .padding(.vertical)
+                .onChange(of: presetConfig, perform: { tag in
+                    teamIdentifier = tag.teamIdentifier
+                    keyIdentifier = tag.keyIdentifier
+                    appBundleID = tag.appBundleID
+                    deviceToken = tag.deviceToken
+                    pushKitDeviceToken = tag.pushKitDeviceToken
+                    fileProviderDeviceToken = tag.fileProviderDeviceToken
+                    privateKey = tag.privateKey
+                })
             }
-            .padding(.vertical)
-            .onChange(of: presetConfig, perform: { tag in
-                teamIdentifier = tag.teamIdentifier
-                keyIdentifier = tag.keyIdentifier
-                appBundleID = tag.appBundleID
-                deviceToken = tag.deviceToken
-                pushKitDeviceToken = tag.pushKitDeviceToken
-                fileProviderDeviceToken = tag.fileProviderDeviceToken
-                privateKey = tag.privateKey
-            })
             
             HStack {
                 Picker("Push Type", selection: $pushType) {

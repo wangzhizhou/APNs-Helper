@@ -8,10 +8,9 @@
 import Foundation
 import APNSwift
 import Logging
-import AppKit
 import NIO
 
-enum APNServerEnv: String, CaseIterable {
+enum APNServerEnv: String, CaseIterable, Codable {
     case sandbox
     case production
     
@@ -25,7 +24,7 @@ enum APNServerEnv: String, CaseIterable {
     }
 }
 
-enum PushType: String, CaseIterable {
+enum PushType: String, CaseIterable, Codable {
     case alert
     case background
     case voip

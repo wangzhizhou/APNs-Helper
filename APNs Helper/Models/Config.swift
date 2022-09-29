@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Config: Hashable {
+struct Config: Hashable, Identifiable, Codable {
+    var id: String {
+        appBundleID
+    }
     let deviceToken: String
     let pushKitDeviceToken: String
     let fileProviderDeviceToken: String
