@@ -105,18 +105,7 @@ struct APNsService {
 extension APNsService {
     func sendSimpleAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
-            .init(
-                alert: .init(
-                    title: .raw("Simple Alert"),
-                    subtitle: .raw("Subtitle"),
-                    body: .raw("Body"),
-                    launchImage: nil
-                ),
-                expiration: .immediately,
-                priority: .immediately,
-                topic: config.appBundleID,
-                payload: payload
-            ),
+            self.simpleAlertTemplate,
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
             logger: Self.logger
@@ -125,18 +114,7 @@ extension APNsService {
     
     func sendLocalizedAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
-            .init(
-                alert: .init(
-                    title: .localized(key: "title", arguments: ["Localized"]),
-                    subtitle: .localized(key: "subtitle", arguments: ["APNS"]),
-                    body: .localized(key: "body", arguments: ["APNS"]),
-                    launchImage: nil
-                ),
-                expiration: .immediately,
-                priority: .immediately,
-                topic: config.appBundleID,
-                payload: payload
-            ),
+            self.localizedAlertTemplate,
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
             logger: Self.logger
@@ -145,19 +123,7 @@ extension APNsService {
     
     func sendThreadedAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
-            .init(
-                alert: .init(
-                    title: .raw("Threaded Alert"),
-                    subtitle: .raw("Subtitle"),
-                    body: .raw("Body"),
-                    launchImage: nil
-                ),
-                expiration: .immediately,
-                priority: .immediately,
-                topic: config.appBundleID,
-                payload: payload,
-                threadID: "thread"
-            ),
+            self.threadAlertTemplate,
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
             logger: Self.logger
@@ -166,19 +132,7 @@ extension APNsService {
     
     func sendCustomCategoryAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
-            .init(
-                alert: .init(
-                    title: .raw("Custom Category Alert"),
-                    subtitle: .raw("Subtitle"),
-                    body: .raw("Body"),
-                    launchImage: nil
-                ),
-                expiration: .immediately,
-                priority: .immediately,
-                topic: config.appBundleID,
-                payload: payload,
-                category: "CUSTOM"
-            ),
+            self.customCategoryAlertTemplate,
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
             logger: Self.logger
@@ -187,19 +141,7 @@ extension APNsService {
     
     func sendMutableContentAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendAlertNotification(
-            .init(
-                alert: .init(
-                    title: .raw("Mutable Alert"),
-                    subtitle: .raw("Subtitle"),
-                    body: .raw("Body"),
-                    launchImage: nil
-                ),
-                expiration: .immediately,
-                priority: .immediately,
-                topic: config.appBundleID,
-                payload: payload,
-                mutableContent: 1
-            ),
+            self.mutableContentAlertTemplate,
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
             logger: Self.logger
@@ -213,11 +155,7 @@ extension APNsService {
 extension APNsService {
     func sendBackground(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendBackgroundNotification(
-            .init(
-                expiration: .immediately,
-                topic: config.appBundleID,
-                payload: payload
-            ),
+            self.backgroundTemplate,
             deviceToken: config.deviceToken,
             deadline: .distantFuture,
             logger: Self.logger
@@ -231,12 +169,7 @@ extension APNsService {
 extension APNsService {
     func sendVoIP(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendVoIPNotification(
-            .init(
-                expiration: .immediately,
-                priority: .immediately,
-                appID: config.appBundleID,
-                payload: payload
-            ),
+            self.voipTemplate,
             deviceToken: config.pushKitDeviceToken,
             deadline: .distantFuture,
             logger: Self.logger
@@ -250,14 +183,132 @@ extension APNsService {
 extension APNsService {
     func sendFileProvider(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
         try await client.sendFileProviderNotification(
-            .init(
-                expiration: .immediately,
-                appID: config.appBundleID,
-                payload: payload
-            ),
+            self.fileproviderTemplate,
             deviceToken: config.fileProviderDeviceToken,
             deadline: .distantFuture,
             logger: Self.logger
         )
+    }
+}
+
+@available(macOS 11.0, *)
+extension APNsService {
+    var simpleAlertTemplate: APNSAlertNotification<Payload> {
+        .init(
+            alert: .init(
+                title: .raw("Simple Alert"),
+                subtitle: .raw("Subtitle"),
+                body: .raw("Body"),
+                launchImage: nil
+            ),
+            expiration: .immediately,
+            priority: .immediately,
+            topic: config.appBundleID,
+            payload: payload
+        )
+    }
+    
+    var localizedAlertTemplate: APNSAlertNotification<Payload> {
+        .init(
+            alert: .init(
+                title: .localized(key: "title", arguments: ["Localized"]),
+                subtitle: .localized(key: "subtitle", arguments: ["APNS"]),
+                body: .localized(key: "body", arguments: ["APNS"]),
+                launchImage: nil
+            ),
+            expiration: .immediately,
+            priority: .immediately,
+            topic: config.appBundleID,
+            payload: payload
+        )
+    }
+    
+    var threadAlertTemplate: APNSAlertNotification<Payload> {
+        .init(
+            alert: .init(
+                title: .raw("Threaded Alert"),
+                subtitle: .raw("Subtitle"),
+                body: .raw("Body"),
+                launchImage: nil
+            ),
+            expiration: .immediately,
+            priority: .immediately,
+            topic: config.appBundleID,
+            payload: payload,
+            threadID: "thread"
+        )
+    }
+    
+    var customCategoryAlertTemplate: APNSAlertNotification<Payload> {
+        .init(
+            alert: .init(
+                title: .raw("Mutable Alert"),
+                subtitle: .raw("Subtitle"),
+                body: .raw("Body"),
+                launchImage: nil
+            ),
+            expiration: .immediately,
+            priority: .immediately,
+            topic: config.appBundleID,
+            payload: payload,
+            mutableContent: 1
+        )
+    }
+    
+    var mutableContentAlertTemplate: APNSAlertNotification<Payload> {
+        .init(
+            alert: .init(
+                title: .raw("Mutable Alert"),
+                subtitle: .raw("Subtitle"),
+                body: .raw("Body"),
+                launchImage: nil
+            ),
+            expiration: .immediately,
+            priority: .immediately,
+            topic: config.appBundleID,
+            payload: payload,
+            mutableContent: 1
+        )
+    }
+    
+    var backgroundTemplate: APNSBackgroundNotification<Payload> {
+        .init(
+            expiration: .immediately,
+            topic: config.appBundleID,
+            payload: payload
+        )
+    }
+    
+    
+    var voipTemplate: APNSVoIPNotification<Payload> {
+        .init(
+            expiration: .immediately,
+            priority: .immediately,
+            appID: config.appBundleID,
+            payload: payload
+        )
+    }
+    
+    var fileproviderTemplate: APNSFileProviderNotification<Payload> {
+        .init(
+            expiration: .immediately,
+            appID: config.appBundleID,
+            payload: payload
+        )
+    }
+    
+    func toJSONString<T: Encodable>(with template: T) -> String? {
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = [
+            .prettyPrinted,
+            .sortedKeys,
+            .withoutEscapingSlashes
+        ]
+        if let data = try? jsonEncoder.encode(template) {
+            return String(data: data, encoding:.utf8)
+        }
+        else {
+            return nil
+        }
     }
 }

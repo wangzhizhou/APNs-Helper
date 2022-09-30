@@ -24,6 +24,19 @@ struct AppContent: View {
     @State var payload: String = ""
     @State var isLoading: Bool = false
     
+    var config: Config {
+        .init(
+            deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
+            pushKitDeviceToken: pushKitDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
+            fileProviderDeviceToken: fileProviderDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
+            appBundleID: appBundleID.trimmingCharacters(in: .whitespacesAndNewlines),
+            privateKey: privateKey,
+            keyIdentifier: keyIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
+            teamIdentifier: teamIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
+            pushType:pushType,
+            apnsServerEnv: apnsServerEnv)
+    }
+    
     var body: some View {
         
         VStack {
@@ -39,7 +52,7 @@ struct AppContent: View {
                     }
                 }
                 .padding(.vertical)
-                .onChange(of: presetConfig, perform: { tag in
+                .onChange(of: presetConfig) { tag in
                     teamIdentifier = tag.teamIdentifier
                     keyIdentifier = tag.keyIdentifier
                     appBundleID = tag.appBundleID
@@ -47,7 +60,7 @@ struct AppContent: View {
                     pushKitDeviceToken = tag.pushKitDeviceToken
                     fileProviderDeviceToken = tag.fileProviderDeviceToken
                     privateKey = tag.privateKey
-                })
+                }
             }
             
             HStack {
@@ -56,6 +69,9 @@ struct AppContent: View {
                         Text($0.rawValue).tag($0)
                     }
                 }
+                .onChange(of: pushType, perform: { _ in
+                    loadPayloadTemplate()
+                })
                 
                 Spacer(minLength: 50)
                 Picker("APN Server", selection: $apnsServerEnv) {
@@ -109,22 +125,21 @@ struct AppContent: View {
             }
             
             
-            InputTextEditor(title: "Payload \(payload.isEmpty ? "(no payload will send preset test data)" : "")", content: $payload)
+            InputTextEditor(title: "Payload", content: $payload, textEditorFont: .body)
                 .frame(height: 200)
             
             HStack {
+                
+                if payload.isEmpty {
+                    Button("Load Template (⌘+T)") {
+                        loadPayloadTemplate()
+                    }
+                    .disabled(isLoading)
+                    .keyboardShortcut(.init(unicodeScalarLiteral: "T"), modifiers: [.command])
+                }
+                
                 Button {
-                    let config = Config(
-                        deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-                        pushKitDeviceToken: pushKitDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-                        fileProviderDeviceToken: fileProviderDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-                        appBundleID: appBundleID.trimmingCharacters(in: .whitespacesAndNewlines),
-                        privateKey: privateKey,
-                        keyIdentifier: keyIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
-                        teamIdentifier: teamIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
-                        pushType:pushType,
-                        apnsServerEnv: apnsServerEnv)
-                    
+                    let config = config
                     Task {
                         isLoading = true
                         appModel.resetLog()
@@ -133,7 +148,7 @@ struct AppContent: View {
                         isLoading = false
                     }
                 } label: {
-                    Text("Send\(isLoading ? "ing..." : "(⌘+⏎)")")
+                    Text("Send\(isLoading ? "ing..." : " (⌘+⏎)")")
                 }
                 .disabled(isLoading)
                 .keyboardShortcut(.return, modifiers: [.command])
@@ -146,6 +161,28 @@ struct AppContent: View {
         }
         .frame(width: 700)
         .padding()
+        .onAppear {
+            loadPayloadTemplate()
+        }
+    }
+    
+    
+    func loadPayloadTemplate() {
+        let service = APNsService(config: config)
+        var template: String?
+        switch pushType {
+        case .alert:
+            template = service.toJSONString(with: service.simpleAlertTemplate)
+        case .background:
+            template = service.toJSONString(with: service.backgroundTemplate)
+        case .voip:
+            template = service.toJSONString(with: service.voipTemplate.payload)
+        case .fileprovider:
+            template = service.toJSONString(with: service.fileproviderTemplate.payload)
+        }
+        if let template = template {
+            payload = template
+        }
     }
 }
 

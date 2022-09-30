@@ -13,13 +13,15 @@ struct InputTextEditor: View {
     
     @Binding var content: String
     
+    var textEditorFont: Font? = nil
+    
     var body: some View {
         VStack(alignment: .leading) {
             if let title = title {
                 Text(title)
             }
             TextEditor(text: $content)
-                .font(.system(size: 8))
+                .font(textEditorFont ?? .system(size: 8))
         }
     }
 }
