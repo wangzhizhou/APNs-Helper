@@ -20,7 +20,6 @@ struct InputView: View {
             Text(title)
             TextField(placeholder ?? title, text: $inputValue)
                 .lineLimit(1)
-                .frame(width: 520)
         }
     }
 }

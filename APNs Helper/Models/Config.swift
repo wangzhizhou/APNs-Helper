@@ -18,6 +18,8 @@ struct Config: Hashable, Identifiable, Codable {
     let privateKey: String
     let keyIdentifier: String
     let teamIdentifier: String
+    
     var pushType: PushType = .alert
     var apnsServerEnv: APNServerEnv = .sandbox
+    var sendToSimulator: Bool = false
 }

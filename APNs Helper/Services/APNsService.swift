@@ -42,273 +42,87 @@ struct APNsService {
     
     let config: Config
     private let payload =  Payload()
-    var payloadData: Data? = nil
+    var payloadData: Data
     func send() async throws {
-        let client = APNSClient(
-            configuration: .init(
-                authenticationMethod: .jwt(
-                    privateKey: try .init(pemRepresentation: config.privateKey),
-                    keyIdentifier: config.keyIdentifier,
-                    teamIdentifier: config.teamIdentifier
-                ),
-                environment: config.apnsServerEnv.env
-            ),
-            eventLoopGroupProvider: .createNew,
-            responseDecoder: JSONDecoder(),
-            requestEncoder: JSONEncoder(),
-            byteBufferAllocator: .init(),
-            backgroundActivityLogger: Self.logger
-        )
-        defer {
-            client.shutdown { _ in
-                Self.logger.error("Failed to shutdown APNSClient")
-            }
-        }
-        
         do {
-            if let payloadData = payloadData {
-                var byteBuffer = ByteBufferAllocator().buffer(capacity: 0)
-                byteBuffer.writeData(payloadData)
-                _ = try JSONSerialization.jsonObject(with: byteBuffer, options: .mutableContainers)
-                try await client.send(
-                    payload: byteBuffer,
-                    deviceToken: config.deviceToken,
-                    pushType: config.pushType.rawValue,
-                    apnsID: UUID(),
-                    expiration: 0,
-                    priority: 10,
-                    topic: config.appBundleID,
-                    deadline: .distantFuture)
+            guard !config.sendToSimulator else {
+                // 发往模拟器
+                try sendToSimulator(with: payloadData)
+                return
             }
-            else {
-                switch config.pushType {
-                case .alert:
-                    try await sendSimpleAlert(with: client)
-                case .background:
-                    try await sendBackground(with: client)
-                case .voip:
-                    try await sendVoIP(with: client)
-                case .fileprovider:
-                    try await sendFileProvider(with: client)
+            
+            let client = APNSClient(
+                configuration: .init(
+                    authenticationMethod: .jwt(
+                        privateKey: try .init(pemRepresentation: config.privateKey),
+                        keyIdentifier: config.keyIdentifier,
+                        teamIdentifier: config.teamIdentifier
+                    ),
+                    environment: config.apnsServerEnv.env
+                ),
+                eventLoopGroupProvider: .createNew,
+                responseDecoder: JSONDecoder(),
+                requestEncoder: JSONEncoder(),
+                byteBufferAllocator: .init(),
+                backgroundActivityLogger: Self.logger
+            )
+            defer {
+                client.shutdown { _ in
+                    Self.logger.error("Failed to shutdown APNSClient")
                 }
             }
+            
+            
+            var byteBuffer = ByteBufferAllocator().buffer(capacity: 0)
+            byteBuffer.writeData(payloadData)
+            _ = try JSONSerialization.jsonObject(with: byteBuffer, options: .mutableContainers)
+            var token = config.deviceToken
+            switch config.pushType {
+            case .alert:
+                fallthrough
+            case .background:
+                token = config.deviceToken
+            case .voip:
+                token = config.pushKitDeviceToken
+            case .fileprovider:
+                token = config.fileProviderDeviceToken
+                
+            }
+            try await client.send(
+                payload: byteBuffer,
+                deviceToken: token,
+                pushType: config.pushType.rawValue,
+                apnsID: UUID(),
+                expiration: 0,
+                priority: 10,
+                topic: config.appBundleID,
+                deadline: .distantFuture)
             
         } catch {
             Self.logger.error("Failed sending push", metadata: ["error": "\(error)"])
         }
     }
-}
-
-// MARK: Alerts
-
-@available(macOS 11.0, *)
-extension APNsService {
-    func sendSimpleAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
-        try await client.sendAlertNotification(
-            self.simpleAlertTemplate,
-            deviceToken: config.deviceToken,
-            deadline: .distantFuture,
-            logger: Self.logger
-        )
-    }
     
-    func sendLocalizedAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
-        try await client.sendAlertNotification(
-            self.localizedAlertTemplate,
-            deviceToken: config.deviceToken,
-            deadline: .distantFuture,
-            logger: Self.logger
-        )
-    }
-    
-    func sendThreadedAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
-        try await client.sendAlertNotification(
-            self.threadAlertTemplate,
-            deviceToken: config.deviceToken,
-            deadline: .distantFuture,
-            logger: Self.logger
-        )
-    }
-    
-    func sendCustomCategoryAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
-        try await client.sendAlertNotification(
-            self.customCategoryAlertTemplate,
-            deviceToken: config.deviceToken,
-            deadline: .distantFuture,
-            logger: Self.logger
-        )
-    }
-    
-    func sendMutableContentAlert(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
-        try await client.sendAlertNotification(
-            self.mutableContentAlertTemplate,
-            deviceToken: config.deviceToken,
-            deadline: .distantFuture,
-            logger: Self.logger
-        )
-    }
-}
-
-// MARK: Background
-
-@available(macOS 11.0, *)
-extension APNsService {
-    func sendBackground(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
-        try await client.sendBackgroundNotification(
-            self.backgroundTemplate,
-            deviceToken: config.deviceToken,
-            deadline: .distantFuture,
-            logger: Self.logger
-        )
-    }
-}
-
-// MARK: VoIP
-
-@available(macOS 11.0, *)
-extension APNsService {
-    func sendVoIP(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
-        try await client.sendVoIPNotification(
-            self.voipTemplate,
-            deviceToken: config.pushKitDeviceToken,
-            deadline: .distantFuture,
-            logger: Self.logger
-        )
-    }
-}
-
-// MARK: FileProvider
-
-@available(macOS 11.0, *)
-extension APNsService {
-    func sendFileProvider(with client: APNSClient<JSONDecoder, JSONEncoder>) async throws {
-        try await client.sendFileProviderNotification(
-            self.fileproviderTemplate,
-            deviceToken: config.fileProviderDeviceToken,
-            deadline: .distantFuture,
-            logger: Self.logger
-        )
-    }
-}
-
-@available(macOS 11.0, *)
-extension APNsService {
-    var simpleAlertTemplate: APNSAlertNotification<Payload> {
-        .init(
-            alert: .init(
-                title: .raw("Simple Alert"),
-                subtitle: .raw("Subtitle"),
-                body: .raw("Body"),
-                launchImage: nil
-            ),
-            expiration: .immediately,
-            priority: .immediately,
-            topic: config.appBundleID,
-            payload: payload
-        )
-    }
-    
-    var localizedAlertTemplate: APNSAlertNotification<Payload> {
-        .init(
-            alert: .init(
-                title: .localized(key: "title", arguments: ["Localized"]),
-                subtitle: .localized(key: "subtitle", arguments: ["APNS"]),
-                body: .localized(key: "body", arguments: ["APNS"]),
-                launchImage: nil
-            ),
-            expiration: .immediately,
-            priority: .immediately,
-            topic: config.appBundleID,
-            payload: payload
-        )
-    }
-    
-    var threadAlertTemplate: APNSAlertNotification<Payload> {
-        .init(
-            alert: .init(
-                title: .raw("Threaded Alert"),
-                subtitle: .raw("Subtitle"),
-                body: .raw("Body"),
-                launchImage: nil
-            ),
-            expiration: .immediately,
-            priority: .immediately,
-            topic: config.appBundleID,
-            payload: payload,
-            threadID: "thread"
-        )
-    }
-    
-    var customCategoryAlertTemplate: APNSAlertNotification<Payload> {
-        .init(
-            alert: .init(
-                title: .raw("Mutable Alert"),
-                subtitle: .raw("Subtitle"),
-                body: .raw("Body"),
-                launchImage: nil
-            ),
-            expiration: .immediately,
-            priority: .immediately,
-            topic: config.appBundleID,
-            payload: payload,
-            mutableContent: 1
-        )
-    }
-    
-    var mutableContentAlertTemplate: APNSAlertNotification<Payload> {
-        .init(
-            alert: .init(
-                title: .raw("Mutable Alert"),
-                subtitle: .raw("Subtitle"),
-                body: .raw("Body"),
-                launchImage: nil
-            ),
-            expiration: .immediately,
-            priority: .immediately,
-            topic: config.appBundleID,
-            payload: payload,
-            mutableContent: 1
-        )
-    }
-    
-    var backgroundTemplate: APNSBackgroundNotification<Payload> {
-        .init(
-            expiration: .immediately,
-            topic: config.appBundleID,
-            payload: payload
-        )
-    }
-    
-    
-    var voipTemplate: APNSVoIPNotification<Payload> {
-        .init(
-            expiration: .immediately,
-            priority: .immediately,
-            appID: config.appBundleID,
-            payload: payload
-        )
-    }
-    
-    var fileproviderTemplate: APNSFileProviderNotification<Payload> {
-        .init(
-            expiration: .immediately,
-            appID: config.appBundleID,
-            payload: payload
-        )
-    }
-    
-    func toJSONString<T: Encodable>(with template: T) -> String? {
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = [
-            .prettyPrinted,
-            .sortedKeys,
-            .withoutEscapingSlashes
+    func sendToSimulator(with data: Data) throws {
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/xcrun")
+        process.arguments = [
+            "simctl",
+            "push",
+            "booted",
+            "\(config.appBundleID)",
+            "-"
         ]
-        if let data = try? jsonEncoder.encode(template) {
-            return String(data: data, encoding:.utf8)
-        }
-        else {
-            return nil
+        let inputPipe = Pipe()
+        let outputAndErrorPipe = Pipe()
+        process.standardInput = inputPipe
+        process.standardError = outputAndErrorPipe
+        process.standardOutput = outputAndErrorPipe
+        try process.run()
+        inputPipe.fileHandleForWriting.write(data)
+        process.waitUntilExit()
+        if let log = String(data: outputAndErrorPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) {
+            Self.logger.trace(.init(stringLiteral: log))
         }
     }
 }

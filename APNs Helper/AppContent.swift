@@ -24,6 +24,8 @@ struct AppContent: View {
     @State var payload: String = ""
     @State var isLoading: Bool = false
     
+    @State var simulator: Bool = false
+    
     var config: Config {
         .init(
             deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -34,99 +36,119 @@ struct AppContent: View {
             keyIdentifier: keyIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
             teamIdentifier: teamIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
             pushType:pushType,
-            apnsServerEnv: apnsServerEnv)
+            apnsServerEnv: apnsServerEnv,
+            sendToSimulator: simulator
+        )
     }
     
     var body: some View {
         
         VStack {
             
-            if !appModel.presets.isEmpty {
-                Picker("Preset", selection: $presetConfig) {
-                    ForEach(appModel.presets) {
-                        if $0 == .invalid {
-                            Text("custom").tag($0)
-                        } else {
-                            Text($0.appBundleID).tag($0)
+            if !simulator {
+                
+                if !appModel.presets.isEmpty {
+                    Picker("Preset", selection: $presetConfig) {
+                        ForEach(appModel.presets) {
+                            if $0 == .invalid {
+                                Text("custom").tag($0)
+                            } else {
+                                Text($0.appBundleID).tag($0)
+                            }
                         }
                     }
-                }
-                .padding(.vertical)
-                .onChange(of: presetConfig) { tag in
-                    teamIdentifier = tag.teamIdentifier
-                    keyIdentifier = tag.keyIdentifier
-                    appBundleID = tag.appBundleID
-                    deviceToken = tag.deviceToken
-                    pushKitDeviceToken = tag.pushKitDeviceToken
-                    fileProviderDeviceToken = tag.fileProviderDeviceToken
-                    privateKey = tag.privateKey
-                }
-            }
-            
-            HStack {
-                Picker("Push Type", selection: $pushType) {
-                    ForEach(PushType.allCases, id: \.self) {
-                        Text($0.rawValue).tag($0)
+                    .padding(.vertical)
+                    .onChange(of: presetConfig) { tag in
+                        teamIdentifier = tag.teamIdentifier
+                        keyIdentifier = tag.keyIdentifier
+                        appBundleID = tag.appBundleID
+                        deviceToken = tag.deviceToken
+                        pushKitDeviceToken = tag.pushKitDeviceToken
+                        fileProviderDeviceToken = tag.fileProviderDeviceToken
+                        privateKey = tag.privateKey
                     }
                 }
-                .onChange(of: pushType, perform: { _ in
-                    loadPayloadTemplate()
-                })
                 
-                Spacer(minLength: 50)
-                Picker("APN Server", selection: $apnsServerEnv) {
-                    ForEach(APNServerEnv.allCases, id: \.self) {
-                        Text($0.rawValue)
-                            .tag($0)
+                
+                
+                HStack {
+                    Picker("Push Type", selection: $pushType) {
+                        ForEach(PushType.allCases, id: \.self) {
+                            Text($0.rawValue).tag($0)
+                        }
                     }
+                    .onChange(of: pushType, perform: { _ in
+                        loadPayloadTemplate()
+                    })
+                    
+                    Spacer(minLength: 50)
+                    Picker("APN Server", selection: $apnsServerEnv) {
+                        ForEach(APNServerEnv.allCases, id: \.self) {
+                            Text($0.rawValue)
+                                .tag($0)
+                        }
+                    }
+                    .pickerStyle(.segmented)
                 }
-                .pickerStyle(.segmented)
+                .padding(.bottom)
             }
-            .padding(.bottom)
             
             GroupBox {
                 VStack(alignment: .trailing) {
                     
-                    InputView(title: "KeyID", inputValue: $keyIdentifier)
-                    
-                    InputView(title: "TeamID", inputValue: $teamIdentifier)
-                    
-                    InputView(title: "BundleID", inputValue: $appBundleID)
-                    
-                    InputView(title: "Device Token", inputValue: $deviceToken)
-                    
-                    InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
-                    
-                    InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
-                    
-                    Divider()
-                    
-                    VStack(alignment: .leading) {
-                        HStack{
-                            Text("Private Key")
-                            Spacer()
-                            Button {
-                                let (output, error) = Finder.chooseP8AndDecrypt()
-                                if let output = output {
-                                    privateKey = output
-                                }
-                                if let error = error {
-                                    appModel.appLog.append(error)
-                                }
-                            } label: {
-                                Text("import .p8 file")
-                            }
+                    if simulator {
+                        
+                        InputView(title: "BundleID", inputValue: $appBundleID)
+                        
+                    } else {
+                        
+                        InputView(title: "KeyID", inputValue: $keyIdentifier)
+                        
+                        InputView(title: "TeamID", inputValue: $teamIdentifier)
+                        
+                        InputView(title: "BundleID", inputValue: $appBundleID)
+                        
+                        if pushType == .alert || pushType == .background {
+                            InputView(title: "Device Token", inputValue: $deviceToken)
                         }
                         
-                        InputTextEditor(content: $privateKey)
-                            .frame(height: 50)
+                        if pushType == .voip {
+                            InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
+                        }
+                        
+                        if pushType == .fileprovider {
+                            InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
+                        }
+                        
+                        Divider()
+                        
+                        VStack(alignment: .leading) {
+                            HStack{
+                                Text("Private Key")
+                                Spacer()
+                                Button {
+                                    let (output, error) = Finder.chooseP8AndDecrypt()
+                                    if let output = output {
+                                        privateKey = output
+                                    }
+                                    if let error = error {
+                                        appModel.appLog.append(error)
+                                    }
+                                } label: {
+                                    Text("import .p8 file")
+                                }
+                            }
+                            
+                            InputTextEditor(content: $privateKey)
+                                .frame(height: 50)
+                        }
                     }
                 }
             }
             
             
             InputTextEditor(title: "Payload", content: $payload, textEditorFont: .body)
-                .frame(height: 200)
+                .frame(minHeight: 200)
             
             HStack {
                 
@@ -143,8 +165,12 @@ struct AppContent: View {
                     Task {
                         isLoading = true
                         appModel.resetLog()
-                        let payloadData = !payload.isEmpty ? payload.data(using: .utf8) : nil
-                        try? await APNsService(config: config, payloadData: payloadData).send()
+                        if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
+                            try? await APNsService(config: config, payloadData: payloadData).send()
+                        }
+                        else if let payloadData = payload.data(using: .utf8) {
+                            try? await APNsService(config: config, payloadData: payloadData).send()
+                        }
                         isLoading = false
                     }
                 } label: {
@@ -152,14 +178,19 @@ struct AppContent: View {
                 }
                 .disabled(isLoading)
                 .keyboardShortcut(.return, modifiers: [.command])
+                
+                Toggle(isOn: $simulator) {
+                    Text("发送到模拟器")
+                }
             }
             
             Divider()
             
             InputTextEditor(title: "Log", content: $appModel.appLog)
-                .frame(height: 100)
+                .frame(minHeight: 100, maxHeight: 200)
+            
         }
-        .frame(width: 700)
+        .frame(minWidth: 600)
         .padding()
         .onAppear {
             loadPayloadTemplate()
@@ -168,19 +199,7 @@ struct AppContent: View {
     
     
     func loadPayloadTemplate() {
-        let service = APNsService(config: config)
-        var template: String?
-        switch pushType {
-        case .alert:
-            template = service.toJSONString(with: service.simpleAlertTemplate)
-        case .background:
-            template = service.toJSONString(with: service.backgroundTemplate)
-        case .voip:
-            template = service.toJSONString(with: service.voipTemplate.payload)
-        case .fileprovider:
-            template = service.toJSONString(with: service.fileproviderTemplate.payload)
-        }
-        if let template = template {
+        if let template = APNsService.templatePayload(for: config) {
             payload = template
         }
     }
@@ -189,5 +208,6 @@ struct AppContent: View {
 struct AppContent_Previews: PreviewProvider {
     static var previews: some View {
         AppContent()
+            .environmentObject(AppModel())
     }
 }

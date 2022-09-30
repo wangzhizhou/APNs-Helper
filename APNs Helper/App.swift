@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct APNsHelperApp: App {
-//    let persistenceController = PersistenceController.shared
+    //    let persistenceController = PersistenceController.shared
     
     static let model = AppModel()
     
@@ -17,8 +17,8 @@ struct APNsHelperApp: App {
         WindowGroup {
             AppContent()
                 .environmentObject(Self.model)
-//                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                
+            //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            
         }
     }
 }
