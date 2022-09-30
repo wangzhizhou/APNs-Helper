@@ -44,7 +44,7 @@ struct Finder {
             let error = String(data: errorData, encoding: .utf8)
             return (output: output, error: error)
         }
-        return (nil, "无效文件路径")
+        return (nil, "no p8 file be selected!\n")
 #else
         return (nil, nil)
 #endif

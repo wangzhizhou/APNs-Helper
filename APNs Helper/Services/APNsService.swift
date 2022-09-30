@@ -118,9 +118,10 @@ struct APNsService {
         process.standardInput = inputPipe
         process.standardError = outputAndErrorPipe
         process.standardOutput = outputAndErrorPipe
+        let inputHandler = inputPipe.fileHandleForWriting
+        inputHandler.write(data)
+        inputHandler.closeFile()
         try process.run()
-        inputPipe.fileHandleForWriting.write(data)
-        process.waitUntilExit()
         if let log = String(data: outputAndErrorPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) {
             Self.logger.trace(.init(stringLiteral: log))
         }
