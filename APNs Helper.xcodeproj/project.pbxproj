@@ -19,6 +19,7 @@
 		2B35F76928DEADE6009EF9C9 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B35F76828DEADE6009EF9C9 /* APNSwift */; };
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
+		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
 		2B616DD328E5C86600807F8B /* Finder+P8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B616DD228E5C86600807F8B /* Finder+P8.swift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */; };
@@ -62,6 +63,7 @@
 		2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2B35F76A28DEAF56009EF9C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		2B586C5A28EAD4660067705A /* AppSandBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSandBox.swift; sourceTree = "<group>"; };
 		2B616DD228E5C86600807F8B /* Finder+P8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Finder+P8.swift"; sourceTree = "<group>"; };
 		2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextEditor.swift; sourceTree = "<group>"; };
 		2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Preset.swift"; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
 				2B616DD228E5C86600807F8B /* Finder+P8.swift */,
 				2BD3323E28E7221200E27D2D /* APNsService+Template.swift */,
+				2B586C5A28EAD4660067705A /* AppSandBox.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 			files = (
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
+				2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */,
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,

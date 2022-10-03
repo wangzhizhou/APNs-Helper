@@ -179,9 +179,12 @@ struct AppContent: View {
                 .disabled(isLoading)
                 .keyboardShortcut(.return, modifiers: [.command])
                 
-//                Toggle(isOn: $simulator) {
-//                    Text("发送到模拟器")
-//                }
+                
+                if AppSandbox.isSandbox() {
+                    Toggle(isOn: $simulator) {
+                        Text("发送到模拟器")
+                    }
+                }
             }
             
             Divider()
