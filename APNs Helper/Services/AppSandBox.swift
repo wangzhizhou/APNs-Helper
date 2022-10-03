@@ -9,6 +9,10 @@ import Foundation
 
 struct AppSandbox {
     static func isSandbox() -> Bool {
+#if os(macOS)
         return NSHomeDirectory().contains("Containers")
+#else
+        return false
+#endif
     }
 }

@@ -180,7 +180,7 @@ struct AppContent: View {
                 .keyboardShortcut(.return, modifiers: [.command])
                 
                 
-                if AppSandbox.isSandbox() {
+                if !AppSandbox.isSandbox() {
                     Toggle(isOn: $simulator) {
                         Text("发送到模拟器")
                     }
