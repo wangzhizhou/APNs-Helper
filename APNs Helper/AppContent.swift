@@ -69,8 +69,6 @@ struct AppContent: View {
                     }
                 }
                 
-                
-                
                 HStack {
                     Picker("Push Type", selection: $pushType) {
                         ForEach(PushType.allCases, id: \.self) {
@@ -190,7 +188,7 @@ struct AppContent: View {
             Divider()
             
             InputTextEditor(title: "Log", content: $appModel.appLog)
-                .frame(minHeight: 100, maxHeight: 200)
+                .frame(minHeight: 100)
             
         }
         .frame(minWidth: 600)
