@@ -77,6 +77,7 @@ struct APNsService {
             byteBuffer.writeData(payloadData)
             _ = try JSONSerialization.jsonObject(with: byteBuffer, options: .mutableContainers)
             var token = config.deviceToken
+            var topic = config.appBundleID
             switch config.pushType {
             case .alert:
                 fallthrough
@@ -84,6 +85,7 @@ struct APNsService {
                 token = config.deviceToken
             case .voip:
                 token = config.pushKitDeviceToken
+                topic += ".voip"
             case .fileprovider:
                 token = config.fileProviderDeviceToken
                 
@@ -95,7 +97,7 @@ struct APNsService {
                 apnsID: UUID(),
                 expiration: 0,
                 priority: 10,
-                topic: config.appBundleID,
+                topic: topic,
                 deadline: .distantFuture)
             
         } catch {
