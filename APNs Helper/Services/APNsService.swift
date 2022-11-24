@@ -66,13 +66,7 @@ struct APNsService {
                 byteBufferAllocator: .init(),
                 backgroundActivityLogger: Self.logger
             )
-            defer {
-                client.shutdown { _ in
-                    Self.logger.error("Failed to shutdown APNSClient")
-                }
-            }
-            
-            
+
             var byteBuffer = ByteBufferAllocator().buffer(capacity: 0)
             byteBuffer.writeData(payloadData)
             _ = try JSONSerialization.jsonObject(with: byteBuffer, options: .mutableContainers)
@@ -100,6 +94,12 @@ struct APNsService {
                 topic: topic,
                 deadline: .distantFuture)
             
+            client.shutdown(queue: .main, callback: { error in
+                if let error = error {
+                    let errorMessage = Logger.Message(stringLiteral: error.localizedDescription)
+                    Self.logger.error(errorMessage)
+                }
+            })
         } catch {
             Self.logger.error("Failed sending push", metadata: ["error": "\(error)"])
         }
