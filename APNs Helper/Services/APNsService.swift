@@ -94,12 +94,6 @@ struct APNsService {
                 topic: topic,
                 deadline: .distantFuture)
             
-            client.shutdown(queue: .main, callback: { error in
-                if let error = error {
-                    let errorMessage = Logger.Message(stringLiteral: error.localizedDescription)
-                    Self.logger.error(errorMessage)
-                }
-            })
         } catch {
             Self.logger.error("Failed sending push", metadata: ["error": "\(error)"])
         }

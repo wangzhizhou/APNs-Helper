@@ -16,7 +16,6 @@
 		2B35F74428DEAB18009EF9C9 /* APNs_HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74328DEAB18009EF9C9 /* APNs_HelperTests.swift */; };
 		2B35F74E28DEAB18009EF9C9 /* APNs_HelperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74D28DEAB18009EF9C9 /* APNs_HelperUITests.swift */; };
 		2B35F75028DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */; };
-		2B35F76928DEADE6009EF9C9 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B35F76828DEADE6009EF9C9 /* APNSwift */; };
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
 		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
@@ -28,6 +27,7 @@
 		2B86137C29374A0B00D0A685 /* TesterAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86137B29374A0B00D0A685 /* TesterAppDelegate.swift */; };
 		2B8613802937501E00D0A685 /* TesterAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86137F2937501E00D0A685 /* TesterAppModel.swift */; };
 		2B861B4B2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B861B4A2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist */; };
+		2B861B502937CCD700D0A685 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B861B4F2937CCD700D0A685 /* APNSwift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B35F76928DEADE6009EF9C9 /* APNSwift in Frameworks */,
+				2B861B502937CCD700D0A685 /* APNSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +275,7 @@
 			);
 			name = "APNs Helper";
 			packageProductDependencies = (
-				2B35F76828DEADE6009EF9C9 /* APNSwift */,
+				2B861B4F2937CCD700D0A685 /* APNSwift */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -370,7 +370,7 @@
 			);
 			mainGroup = 2B35F72028DEAB17009EF9C9;
 			packageReferences = (
-				2B35F76728DEADE6009EF9C9 /* XCRemoteSwiftPackageReference "APNSwift" */,
+				2B861B4E2937CCD700D0A685 /* XCRemoteSwiftPackageReference "APNSwift" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -902,20 +902,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2B35F76728DEADE6009EF9C9 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
+		2B861B4E2937CCD700D0A685 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
+			repositoryURL = "https://github.com/wangzhizhou/APNSwift.git";
 			requirement = {
-				kind = exactVersion;
-				version = "5.0.0-beta.2";
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2B35F76828DEADE6009EF9C9 /* APNSwift */ = {
+		2B861B4F2937CCD700D0A685 /* APNSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2B35F76728DEADE6009EF9C9 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			package = 2B861B4E2937CCD700D0A685 /* XCRemoteSwiftPackageReference "APNSwift" */;
 			productName = APNSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

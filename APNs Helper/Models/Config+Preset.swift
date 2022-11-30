@@ -83,8 +83,8 @@ extension Config {
         teamIdentifier: "X46375UBYG")
     
     static let jokerhub =  Config(
-        deviceToken: "b2c15562ec416fb67dab752ad9dbf053d4663d623b3f1afddd140a4af93d2a27",
-        pushKitDeviceToken: "fe78ecadd36e918b71558b9d25e4a0796858c4937b8d14136ee8f1e63fb0b8bc",
+        deviceToken: "e47daa36d3ad313a56877dab2c55340b2d1a1163f0e04a35850255ccc75a871e",
+        pushKitDeviceToken: "033541d58e8b1553aded76acb19c3e808f0ab748dc1a99e3611e03736adf53f6",
         fileProviderDeviceToken: "",
         appBundleID: "com.joker.APNsHelper.tester",
         privateKey: """

@@ -3,10 +3,10 @@
     {
       "identity" : "apnswift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/swift-server-community/APNSwift.git",
+      "location" : "https://github.com/wangzhizhou/APNSwift.git",
       "state" : {
-        "revision" : "4626afb4057e0c35aae25febf6baee95e0ced0ef",
-        "version" : "5.0.0-beta.2"
+        "branch" : "main",
+        "revision" : "54a37e5a3012b141a780e133fd190cb530507229"
       }
     },
     {
