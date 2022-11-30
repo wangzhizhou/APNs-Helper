@@ -28,7 +28,7 @@ enum PushType: String, CaseIterable, Codable {
     case alert
     case background
     case voip
-    case fileprovider
+//    case fileprovider
 }
 
 struct APNsService {
@@ -80,8 +80,8 @@ struct APNsService {
             case .voip:
                 token = config.pushKitDeviceToken
                 topic += ".voip"
-            case .fileprovider:
-                token = config.fileProviderDeviceToken
+//            case .fileprovider:
+//                token = config.fileProviderDeviceToken
                 
             }
             try await client.send(

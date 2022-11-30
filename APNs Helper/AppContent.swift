@@ -114,9 +114,9 @@ struct AppContent: View {
                             InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
                         }
                         
-                        if pushType == .fileprovider {
-                            InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
-                        }
+//                        if pushType == .fileprovider {
+//                            InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
+//                        }
                         
                         Divider()
                         

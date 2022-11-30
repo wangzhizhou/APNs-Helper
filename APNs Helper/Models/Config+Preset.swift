@@ -8,7 +8,7 @@
 import Foundation
 
 extension Config {
-    
+        
     static let invalid = Config(
         deviceToken: "",
         pushKitDeviceToken: "",
@@ -17,6 +17,8 @@ extension Config {
         privateKey: "",
         keyIdentifier: "",
         teamIdentifier: "")
+    
+#if DEBUG
     
     static let f101 = Config(
         deviceToken: "",
@@ -80,4 +82,19 @@ extension Config {
         keyIdentifier: "Y9ZXMM22L8",
         teamIdentifier: "X46375UBYG")
     
+    static let jokerhub =  Config(
+        deviceToken: "b2c15562ec416fb67dab752ad9dbf053d4663d623b3f1afddd140a4af93d2a27",
+        pushKitDeviceToken: "fe78ecadd36e918b71558b9d25e4a0796858c4937b8d14136ee8f1e63fb0b8bc",
+        fileProviderDeviceToken: "",
+        appBundleID: "com.joker.APNsHelper.tester",
+        privateKey: """
+-----BEGIN PRIVATE KEY-----
+MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
+iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
+n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
+-----END PRIVATE KEY-----
+""",
+        keyIdentifier: "7S6SUT5L43",
+        teamIdentifier: "2N62934Y28")
+#endif
 }
