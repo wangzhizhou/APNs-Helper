@@ -27,7 +27,6 @@
 		2B86137C29374A0B00D0A685 /* TesterAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86137B29374A0B00D0A685 /* TesterAppDelegate.swift */; };
 		2B8613802937501E00D0A685 /* TesterAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86137F2937501E00D0A685 /* TesterAppModel.swift */; };
 		2B861B4B2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B861B4A2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist */; };
-		2B861B502937CCD700D0A685 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2B861B4F2937CCD700D0A685 /* APNSwift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
@@ -35,6 +34,7 @@
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
 		2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3323E28E7221200E27D2D /* APNsService+Template.swift */; };
+		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B861B502937CCD700D0A685 /* APNSwift in Frameworks */,
+				2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,7 +275,7 @@
 			);
 			name = "APNs Helper";
 			packageProductDependencies = (
-				2B861B4F2937CCD700D0A685 /* APNSwift */,
+				2BDB538A29384BCE00E38E77 /* APNSwift */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -370,7 +370,7 @@
 			);
 			mainGroup = 2B35F72028DEAB17009EF9C9;
 			packageReferences = (
-				2B861B4E2937CCD700D0A685 /* XCRemoteSwiftPackageReference "APNSwift" */,
+				2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -902,20 +902,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2B861B4E2937CCD700D0A685 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
+		2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/wangzhizhou/APNSwift.git";
+			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = exactVersion;
+				version = "5.0.0-beta.2";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2B861B4F2937CCD700D0A685 /* APNSwift */ = {
+		2BDB538A29384BCE00E38E77 /* APNSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2B861B4E2937CCD700D0A685 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			package = 2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */;
 			productName = APNSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

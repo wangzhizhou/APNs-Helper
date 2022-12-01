@@ -44,6 +44,9 @@ struct APNsService {
     private let payload =  Payload()
     var payloadData: Data
     func send() async throws {
+        
+        var client: APNSClient<JSONDecoder, JSONEncoder>?
+        
         do {
             guard !config.sendToSimulator else {
                 // 发往模拟器
@@ -51,7 +54,7 @@ struct APNsService {
                 return
             }
             
-            let client = APNSClient(
+            client = APNSClient(
                 configuration: .init(
                     authenticationMethod: .jwt(
                         privateKey: try .init(pemRepresentation: config.privateKey),
@@ -84,7 +87,7 @@ struct APNsService {
 //                token = config.fileProviderDeviceToken
                 
             }
-            try await client.send(
+            try await client?.send(
                 payload: byteBuffer,
                 deviceToken: token,
                 pushType: config.pushType.rawValue,
@@ -93,10 +96,12 @@ struct APNsService {
                 priority: 10,
                 topic: topic,
                 deadline: .distantFuture)
-            
-        } catch {
+        }
+        catch {
             Self.logger.error("Failed sending push", metadata: ["error": "\(error)"])
         }
+        
+        try client?.syncShutdown()
     }
     
     func sendToSimulator(with data: Data) throws {
