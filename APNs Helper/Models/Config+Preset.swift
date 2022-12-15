@@ -43,13 +43,14 @@ extension Config {
         appBundleID: "com.bytedance.fpb",
         privateKey: """
     -----BEGIN PRIVATE KEY-----
-    MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgiSVQEsgDQbJwN199
-    igNEMRBe7OhNqF3mSSubOaoLbhqhRANCAASWD1oZ9psqe0gM+V9OZ40idgtWfpgx
-    mfY7ps8dM71zVPFQD0mERAnueq83h2YWh8yixBnpfN5q2Yc1a0OHTlQX
+    MIGTAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBHkwdwIBAQQge9JUtzn8Y0PqsO05
+    GhlDQi/GCyCsEITdlrFB6hwF526gCgYIKoZIzj0DAQehRANCAATmaxjb0T/h3mTJ
+    KQAyS6KyXdi8IO3usfGA3f1n3rXKJLRgjuRnJfgf5/uFKHL92xhxjH64ZgD/42PS
+    AeBlZ2xT
     -----END PRIVATE KEY-----
     """,
-        keyIdentifier: "Y9ZXMM22L8",
-        teamIdentifier: "X46375UBYG")
+        keyIdentifier: "49QFA9J55V",
+        teamIdentifier: "53URFX25J4")
     
     static let f100 = Config(
         deviceToken: "",
