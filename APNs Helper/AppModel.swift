@@ -11,7 +11,6 @@ class AppModel: ObservableObject {
     
     @Published var appLog: String = ""
     
-#if DEBUG
     @Published var presets: [Config] = [
 //        .invalid,
 //        .f100,
@@ -20,9 +19,6 @@ class AppModel: ObservableObject {
 //        .f101InHouse,
 //        .jokerhub
     ]
-#else
-    @Published var presets = [Config]()
-#endif
 
     @MainActor
     func resetLog() {

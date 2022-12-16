@@ -18,8 +18,6 @@ extension Config {
         keyIdentifier: "",
         teamIdentifier: "")
     
-#if DEBUG
-    
     static let f101 = Config(
         deviceToken: "",
         pushKitDeviceToken: "",
@@ -97,5 +95,4 @@ n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
 """,
         keyIdentifier: "7S6SUT5L43",
         teamIdentifier: "2N62934Y28")
-#endif
 }
