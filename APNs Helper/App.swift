@@ -9,16 +9,13 @@ import SwiftUI
 
 @main
 struct APNsHelperApp: App {
-    //    let persistenceController = PersistenceController.shared
-    
+    let persistenceController = PersistenceController.preview
     static let model = AppModel()
-    
     var body: some Scene {
         WindowGroup {
             AppContent()
                 .environmentObject(Self.model)
-            //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-            
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

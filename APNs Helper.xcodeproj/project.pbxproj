@@ -18,6 +18,7 @@
 		2B35F75028DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */; };
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
+		2B5036EF29DAA8600010F62D /* APNsService+MacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */; };
 		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
 		2B616DD328E5C86600807F8B /* Finder+P8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B616DD228E5C86600807F8B /* Finder+P8.swift */; };
 		2B861370293749AE00D0A685 /* TesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86136F293749AE00D0A685 /* TesterApp.swift */; };
@@ -26,7 +27,6 @@
 		2B861377293749AF00D0A685 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B861376293749AF00D0A685 /* Preview Assets.xcassets */; };
 		2B86137C29374A0B00D0A685 /* TesterAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86137B29374A0B00D0A685 /* TesterAppDelegate.swift */; };
 		2B8613802937501E00D0A685 /* TesterAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86137F2937501E00D0A685 /* TesterAppModel.swift */; };
-		2B861B4B2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B861B4A2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
@@ -70,6 +70,7 @@
 		2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2B35F76A28DEAF56009EF9C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+MacOS.swift"; sourceTree = "<group>"; };
 		2B586C5A28EAD4660067705A /* AppSandBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSandBox.swift; sourceTree = "<group>"; };
 		2B616DD228E5C86600807F8B /* Finder+P8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Finder+P8.swift"; sourceTree = "<group>"; };
 		2B86136D293749AE00D0A685 /* APNs Helper Tester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper Tester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
+				2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */,
 				2B616DD228E5C86600807F8B /* Finder+P8.swift */,
 				2BD3323E28E7221200E27D2D /* APNsService+Template.swift */,
 				2B586C5A28EAD4660067705A /* AppSandBox.swift */,
@@ -342,7 +344,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					2B35F72828DEAB17009EF9C9 = {
 						CreatedOnToolsVersion = 14.0.1;
@@ -414,7 +416,6 @@
 			files = (
 				2B861377293749AF00D0A685 /* Preview Assets.xcassets in Resources */,
 				2B861374293749AF00D0A685 /* Assets.xcassets in Resources */,
-				2B861B4B2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +429,7 @@
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
 				2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */,
+				2B5036EF29DAA8600010F62D /* APNsService+MacOS.swift in Sources */,
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
@@ -632,11 +634,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -674,11 +677,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

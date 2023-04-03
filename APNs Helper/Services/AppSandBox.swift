@@ -11,6 +11,8 @@ struct AppSandbox {
     static func isSandbox() -> Bool {
 #if os(macOS)
         return NSHomeDirectory().contains("Containers")
+#elseif os(iOS)
+        return true
 #else
         return false
 #endif

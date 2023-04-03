@@ -103,28 +103,4 @@ struct APNsService {
         
         try client?.syncShutdown()
     }
-    
-    func sendToSimulator(with data: Data) throws {
-        let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/xcrun")
-        process.arguments = [
-            "simctl",
-            "push",
-            "booted",
-            "\(config.appBundleID)",
-            "-"
-        ]
-        let inputPipe = Pipe()
-        let outputAndErrorPipe = Pipe()
-        process.standardInput = inputPipe
-        process.standardError = outputAndErrorPipe
-        process.standardOutput = outputAndErrorPipe
-        let inputHandler = inputPipe.fileHandleForWriting
-        inputHandler.write(data)
-        inputHandler.closeFile()
-        try process.run()
-        if let log = String(data: outputAndErrorPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) {
-            Self.logger.trace(.init(stringLiteral: log))
-        }
-    }
 }
