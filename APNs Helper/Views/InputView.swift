@@ -11,7 +11,9 @@ struct InputView: View {
     
     let title: String
     
-    var placeholder: String? = nil
+    var hideTitle: Bool = true
+    
+    var placeholder: String?
     
     @Binding var inputValue: String
     
@@ -19,7 +21,9 @@ struct InputView: View {
     
     var body: some View {
         HStack {
-            Text(title)
+            if !hideTitle {
+                Text(title)
+            }
             TextField(placeholder ?? title, text: $inputValue)
                 .lineLimit(1)
 #if os(iOS)
