@@ -25,6 +25,7 @@ struct AppContent: View {
     @State var isLoading: Bool = false
     
     @State var simulator: Bool = false
+    @State var isPresented: Bool = false
     
     var config: Config {
         .init(
@@ -45,6 +46,18 @@ struct AppContent: View {
         if let template = APNsService.templatePayload(for: config) {
             payload = template
         }
+    }
+    
+    func saveAsPreset() {
+        appModel.saveConfigAsPreset(self.config)
+    }
+    
+    func clearPreset() {
+        appModel.clearPresets()
+    }
+    
+    func clearCurrentConfigPresetIfExist() {
+        appModel.clearPresetIfExist(self.config)
     }
 }
 

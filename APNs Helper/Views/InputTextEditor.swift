@@ -22,6 +22,8 @@ struct InputTextEditor: View {
             }
             TextEditor(text: $content)
                 .font(textEditorFont ?? .system(size: 8))
+                .border(.orange, width: 2)
+                .keyboardType(.asciiCapable)
         }
     }
 }

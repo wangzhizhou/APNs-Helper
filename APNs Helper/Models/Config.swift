@@ -23,3 +23,17 @@ struct Config: Hashable, Identifiable, Codable {
     var apnsServerEnv: APNServerEnv = .sandbox
     var sendToSimulator: Bool = false
 }
+
+extension Array where Element == Config {
+    var data: Data? { try? JSONEncoder().encode(self) }
+}
+
+extension Data {
+    var toPresetConfigs: [Config] {
+        if let configs = try? JSONDecoder().decode([Config].self, from: self) {
+            return configs
+        } else {
+            return []
+        }
+    }
+}

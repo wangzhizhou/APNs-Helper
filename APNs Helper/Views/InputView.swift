@@ -15,11 +15,32 @@ struct InputView: View {
     
     @Binding var inputValue: String
     
+    @FocusState private var focusState: Bool
+    
     var body: some View {
         HStack {
             Text(title)
             TextField(placeholder ?? title, text: $inputValue)
                 .lineLimit(1)
+                .keyboardType(.asciiCapable)
+                .focused($focusState)
+                .onSubmit {
+                    focusState = false
+                }
+                .onChange(of: inputValue) { newValue in
+                    let trimmedValue = newValue.replacingOccurrences(of: " ", with: "")
+                    guard trimmedValue == newValue else {
+                        inputValue = trimmedValue
+                        return
+                    }
+                }
+            if !inputValue.isEmpty {
+                Button {
+                    inputValue = ""
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                }
+            }
         }
     }
 }
