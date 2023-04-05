@@ -17,5 +17,9 @@ struct APNsHelperApp: App {
                 .environmentObject(Self.model)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
+#if os(macOS)
+        .windowResizability(.contentSize)
+        .windowStyle(.hiddenTitleBar)
+#endif
     }
 }

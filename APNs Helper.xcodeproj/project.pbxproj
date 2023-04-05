@@ -19,6 +19,8 @@
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
 		2B5036EF29DAA8600010F62D /* APNsService+MacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */; };
+		2B505E2829DD25B50010F62D /* AppContent+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2729DD25B50010F62D /* AppContent+iOS.swift */; platformFilter = ios; };
+		2B505E2A29DD26230010F62D /* AppContent+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2929DD26230010F62D /* AppContent+macOS.swift */; platformFilters = (macos, ); };
 		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
 		2B616DD328E5C86600807F8B /* Finder+P8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B616DD228E5C86600807F8B /* Finder+P8.swift */; };
 		2B861370293749AE00D0A685 /* TesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86136F293749AE00D0A685 /* TesterApp.swift */; };
@@ -71,6 +73,8 @@
 		2B35F76A28DEAF56009EF9C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+MacOS.swift"; sourceTree = "<group>"; };
+		2B505E2729DD25B50010F62D /* AppContent+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+iOS.swift"; sourceTree = "<group>"; };
+		2B505E2929DD26230010F62D /* AppContent+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+macOS.swift"; sourceTree = "<group>"; };
 		2B586C5A28EAD4660067705A /* AppSandBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSandBox.swift; sourceTree = "<group>"; };
 		2B616DD228E5C86600807F8B /* Finder+P8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Finder+P8.swift"; sourceTree = "<group>"; };
 		2B86136D293749AE00D0A685 /* APNs Helper Tester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper Tester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +156,8 @@
 				2B35F72C28DEAB17009EF9C9 /* App.swift */,
 				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2BBDDE7628E494440052DC28 /* AppContent.swift */,
+				2B505E2929DD26230010F62D /* AppContent+macOS.swift */,
+				2B505E2729DD25B50010F62D /* AppContent+iOS.swift */,
 				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
 				2BA3DB6728E5415D006DBCCC /* Views */,
 				2BA3E0AE28E54E4A006DBCCC /* Services */,
@@ -439,9 +445,11 @@
 				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */,
+				2B505E2A29DD26230010F62D /* AppContent+macOS.swift in Sources */,
 				2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */,
 				2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */,
 				2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */,
+				2B505E2829DD25B50010F62D /* AppContent+iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +548,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -593,6 +603,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -629,7 +641,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -672,7 +684,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
