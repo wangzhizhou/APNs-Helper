@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 extension AppContent {
 
@@ -81,7 +82,15 @@ extension AppContent {
                     //                            InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
                     //                        }
                     VStack(alignment: .leading) {
-                        Text("Private Key")
+                        HStack {
+                            Text("Private Key")
+                            Spacer()
+                            Button {
+                                showFileImporter = true
+                            } label: {
+                                Text("import .p8 file")
+                            }
+                        }
                         InputTextEditor(content: $privateKey)
                             .frame(height: 80)
                         HStack {
@@ -93,8 +102,8 @@ extension AppContent {
                                 saveAsPreset()
                             }
                         }
-                        .buttonStyle(BorderedButtonStyle())
                     }
+                    .buttonStyle(BorderedButtonStyle())
                 }
                 
                 Section("Payload") {
@@ -156,6 +165,16 @@ extension AppContent {
         }
         .alert(isPresented: $appModel.showAlert) {
             Alert(title: Text(appModel.alertMessage ?? ""))
+        }
+        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType(filenameExtension: "p8")!]) { result in
+            switch result {
+            case .success(let url):
+                if let output = url.p8FileContent {
+                    privateKey = output
+                }
+            case .failure(let error):
+                appModel.appLog.append(error.localizedDescription)
+            }
         }
     }
 }

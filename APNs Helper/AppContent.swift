@@ -27,6 +27,8 @@ struct AppContent: View {
     @State var simulator: Bool = false
     @State var isPresented: Bool = false
     
+    @State var showFileImporter: Bool = false
+
     var config: Config {
         .init(
             deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),

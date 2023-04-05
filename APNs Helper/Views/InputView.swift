@@ -22,7 +22,9 @@ struct InputView: View {
             Text(title)
             TextField(placeholder ?? title, text: $inputValue)
                 .lineLimit(1)
+#if os(iOS)
                 .keyboardType(.asciiCapable)
+#endif
                 .focused($focusState)
                 .onSubmit {
                     focusState = false

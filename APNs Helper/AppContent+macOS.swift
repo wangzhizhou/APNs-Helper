@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UniformTypeIdentifiers
 
 extension AppContent {
     
@@ -93,13 +94,7 @@ extension AppContent {
                                 Text("Private Key")
                                 Spacer()
                                 Button {
-                                    let (output, error) = Finder.chooseP8AndDecrypt()
-                                    if let output = output {
-                                        privateKey = output
-                                    }
-                                    if let error = error {
-                                        appModel.appLog.append(error)
-                                    }
+                                    showFileImporter = true
                                 } label: {
                                     Text("import .p8 file")
                                 }
@@ -163,6 +158,16 @@ extension AppContent {
         .padding()
         .onAppear {
             loadPayloadTemplate()
+        }
+        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType(filenameExtension: "p8")!]) { result in
+            switch result {
+            case .success(let url):
+                if let output = url.p8FileContent {
+                    privateKey = output
+                }
+            case .failure(let error):
+                appModel.appLog.append(error.localizedDescription)
+            }
         }
     }
 }

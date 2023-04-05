@@ -22,7 +22,6 @@
 		2B505E2829DD25B50010F62D /* AppContent+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2729DD25B50010F62D /* AppContent+iOS.swift */; platformFilter = ios; };
 		2B505E2A29DD26230010F62D /* AppContent+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2929DD26230010F62D /* AppContent+macOS.swift */; platformFilters = (macos, ); };
 		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
-		2B616DD328E5C86600807F8B /* Finder+P8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B616DD228E5C86600807F8B /* Finder+P8.swift */; };
 		2B861370293749AE00D0A685 /* TesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86136F293749AE00D0A685 /* TesterApp.swift */; };
 		2B861372293749AE00D0A685 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B861371293749AE00D0A685 /* ContentView.swift */; };
 		2B861374293749AF00D0A685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B861373293749AF00D0A685 /* Assets.xcassets */; };
@@ -37,6 +36,9 @@
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
 		2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3323E28E7221200E27D2D /* APNsService+Template.swift */; };
 		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
+		F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
+		F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */; };
+		F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,7 +78,6 @@
 		2B505E2729DD25B50010F62D /* AppContent+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+iOS.swift"; sourceTree = "<group>"; };
 		2B505E2929DD26230010F62D /* AppContent+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+macOS.swift"; sourceTree = "<group>"; };
 		2B586C5A28EAD4660067705A /* AppSandBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSandBox.swift; sourceTree = "<group>"; };
-		2B616DD228E5C86600807F8B /* Finder+P8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Finder+P8.swift"; sourceTree = "<group>"; };
 		2B86136D293749AE00D0A685 /* APNs Helper Tester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper Tester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B86136F293749AE00D0A685 /* TesterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterApp.swift; sourceTree = "<group>"; };
 		2B861371293749AE00D0A685 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +94,9 @@
 		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsService.swift; sourceTree = "<group>"; };
 		2BD3323E28E7221200E27D2D /* APNsService+Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+Template.swift"; sourceTree = "<group>"; };
+		F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Utils.swift"; sourceTree = "<group>"; };
+		F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
+		F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +167,7 @@
 				2BA3E0AE28E54E4A006DBCCC /* Services */,
 				2BA3E0AF28E54E55006DBCCC /* Database */,
 				2BA3E0B028E54E82006DBCCC /* Models */,
+				F3A46DEA29DDAA26004D4AD1 /* Utils */,
 				2BA3E0B128E54E9D006DBCCC /* Resources */,
 				2B35F73828DEAB18009EF9C9 /* Preview Content */,
 			);
@@ -232,7 +237,6 @@
 			children = (
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
 				2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */,
-				2B616DD228E5C86600807F8B /* Finder+P8.swift */,
 				2BD3323E28E7221200E27D2D /* APNsService+Template.swift */,
 				2B586C5A28EAD4660067705A /* AppSandBox.swift */,
 			);
@@ -264,6 +268,16 @@
 				2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F3A46DEA29DDAA26004D4AD1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */,
+				F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */,
+				F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -439,10 +453,11 @@
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
-				2B616DD328E5C86600807F8B /* Finder+P8.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
 				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
+				F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */,
+				F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */,
 				2B505E2A29DD26230010F62D /* AppContent+macOS.swift in Sources */,
@@ -450,6 +465,7 @@
 				2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */,
 				2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */,
 				2B505E2829DD25B50010F62D /* AppContent+iOS.swift in Sources */,
+				F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
