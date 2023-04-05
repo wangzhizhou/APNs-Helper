@@ -17,24 +17,30 @@ extension AppContent {
             if !simulator {
                 
                 if !appModel.presets.isEmpty {
-                    Picker("Preset", selection: $presetConfig) {
-                        ForEach(appModel.presets) {
-                            if $0 == .invalid {
-                                Text("none").tag($0)
-                            } else {
-                                Text($0.appBundleID).tag($0)
+                    HStack {
+                        Picker("Preset", selection: $presetConfig) {
+                            ForEach(appModel.presets) {
+                                if $0 == .invalid {
+                                    Text("none").tag($0)
+                                } else {
+                                    Text($0.appBundleID).tag($0)
+                                }
                             }
                         }
-                    }
-                    .padding(.vertical)
-                    .onChange(of: presetConfig) { tag in
-                        teamIdentifier = tag.teamIdentifier
-                        keyIdentifier = tag.keyIdentifier
-                        appBundleID = tag.appBundleID
-                        deviceToken = tag.deviceToken
-                        pushKitDeviceToken = tag.pushKitDeviceToken
-                        fileProviderDeviceToken = tag.fileProviderDeviceToken
-                        privateKey = tag.privateKey
+                        .padding(.vertical)
+                        .onChange(of: presetConfig) { tag in
+                            teamIdentifier = tag.teamIdentifier
+                            keyIdentifier = tag.keyIdentifier
+                            appBundleID = tag.appBundleID
+                            deviceToken = tag.deviceToken
+                            pushKitDeviceToken = tag.pushKitDeviceToken
+                            fileProviderDeviceToken = tag.fileProviderDeviceToken
+                            privateKey = tag.privateKey
+                        }
+                        Button("Clear All Preset") {
+                            clearAllPreset()
+                        }
+                        .buttonStyle(BorderedButtonStyle())
                     }
                 }
                 
@@ -102,6 +108,16 @@ extension AppContent {
                             
                             InputTextEditor(content: $privateKey)
                                 .frame(height: 50)
+                            
+                            HStack {
+                                Button("Clear If Exist") {
+                                    clearCurrentConfigPresetIfExist()
+                                }
+                                Spacer()
+                                Button("Save As Preset") {
+                                    saveAsPreset()
+                                }
+                            }
                         }
                     }
                 }
@@ -158,6 +174,9 @@ extension AppContent {
         .padding()
         .onAppear {
             loadPayloadTemplate()
+        }
+        .alert(isPresented: $appModel.showAlert) {
+            Alert(title: Text(appModel.alertMessage ?? ""))
         }
         .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType(filenameExtension: "p8")!]) { result in
             switch result {

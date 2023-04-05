@@ -36,7 +36,7 @@ extension AppContent {
                             }
                             HStack {
                                 Button("Clear All Preset") {
-                                    clearPreset()
+                                    clearAllPreset()
                                 }
                                 .buttonStyle(BorderedButtonStyle())
                                 Spacer()

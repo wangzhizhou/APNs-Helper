@@ -54,8 +54,8 @@ struct AppContent: View {
         appModel.saveConfigAsPreset(self.config)
     }
     
-    func clearPreset() {
-        appModel.clearPresets()
+    func clearAllPreset() {
+        appModel.clearAllPresets()
     }
     
     func clearCurrentConfigPresetIfExist() {

@@ -72,7 +72,7 @@ class AppModel: ObservableObject {
         alertMessage = "Save Preset Successfully!"
     }
     
-    func clearPresets() {
+    func clearAllPresets() {
         presets = [Config]()
         alertMessage = "Clear Preset Successfully!"
     }

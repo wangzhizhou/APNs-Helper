@@ -11,8 +11,6 @@ struct InputView: View {
     
     let title: String
     
-    var hideTitle: Bool = true
-    
     var placeholder: String?
     
     @Binding var inputValue: String
@@ -21,9 +19,7 @@ struct InputView: View {
     
     var body: some View {
         HStack {
-            if !hideTitle {
-                Text(title)
-            }
+            Text(title)
             TextField(placeholder ?? title, text: $inputValue)
                 .lineLimit(1)
 #if os(iOS)
@@ -40,6 +36,8 @@ struct InputView: View {
                         return
                     }
                 }
+            
+#if os(iOS)
             if !inputValue.isEmpty {
                 Button {
                     inputValue = ""
@@ -47,6 +45,7 @@ struct InputView: View {
                     Image(systemName: "xmark.circle.fill")
                 }
             }
+#endif
         }
     }
 }
