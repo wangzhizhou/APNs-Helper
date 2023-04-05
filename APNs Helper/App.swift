@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct APNsHelperApp: App {
     let persistenceController = PersistenceController.preview
-    static var model = AppModel()
+    static let model = AppModel()
     var body: some Scene {
         WindowGroup {
             AppContent()
