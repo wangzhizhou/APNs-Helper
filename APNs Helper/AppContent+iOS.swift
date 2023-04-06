@@ -81,10 +81,9 @@ extension AppContent {
 //                    if pushType == .fileprovider {
 //                        InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
 //                    }
-                    
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("Private Key")
+                            Text("P8 Key")
                             Spacer()
                             Button {
                                 showFileImporter = true

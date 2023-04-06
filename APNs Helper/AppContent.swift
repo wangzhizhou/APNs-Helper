@@ -31,13 +31,13 @@ struct AppContent: View {
 
     var config: Config {
         .init(
-            deviceToken: deviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-            pushKitDeviceToken: pushKitDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-            fileProviderDeviceToken: fileProviderDeviceToken.trimmingCharacters(in: .whitespacesAndNewlines),
-            appBundleID: appBundleID.trimmingCharacters(in: .whitespacesAndNewlines),
+            deviceToken: deviceToken.trimmed,
+            pushKitDeviceToken: pushKitDeviceToken.trimmed,
+            fileProviderDeviceToken: fileProviderDeviceToken.trimmed,
+            appBundleID: appBundleID.trimmed,
             privateKey: privateKey,
-            keyIdentifier: keyIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
-            teamIdentifier: teamIdentifier.trimmingCharacters(in: .whitespacesAndNewlines),
+            keyIdentifier: keyIdentifier.trimmed,
+            teamIdentifier: teamIdentifier.trimmed,
             pushType:pushType,
             apnsServerEnv: apnsServerEnv,
             sendToSimulator: simulator
