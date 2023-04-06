@@ -94,12 +94,16 @@ extension AppContent {
                         InputTextEditor(content: $privateKey)
                             .frame(height: 80)
                         HStack {
-                            Button("Clear If Exist") {
-                                clearCurrentConfigPresetIfExist()
+                            if !appBundleID.isEmpty {
+                                Button("Clear If Exist") {
+                                    clearCurrentConfigPresetIfExist()
+                                }
                             }
-                            Spacer()
-                            Button("Save As Preset") {
-                                saveAsPreset()
+                            if config.isValidForSave.valid {
+                                Spacer()
+                                Button("Save As Preset") {
+                                    saveAsPreset()
+                                }
                             }
                         }
                     }

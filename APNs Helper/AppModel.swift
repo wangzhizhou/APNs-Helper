@@ -44,22 +44,13 @@ class AppModel: ObservableObject {
     }
 
     func saveConfigAsPreset(_ config: Config) {
-        guard !config.keyIdentifier.isEmpty else {
-            alertMessage = "KeyID is Empty"
+        
+        let (valid, message) = config.isValidForSave
+        guard valid else {
+            alertMessage = message
             return
         }
-        guard !config.teamIdentifier.isEmpty else {
-            alertMessage = "TeamID is Empty"
-            return
-        }
-        guard !config.appBundleID.isEmpty else {
-            alertMessage = "BundleID is Empty"
-            return
-        }
-        guard !config.privateKey.isEmpty else {
-            alertMessage = "Private Key is Empty"
-            return
-        }
+        
         var newPresets = presets
         let containEmptyConfig = newPresets.contains(where: { config in
             return config.appBundleID.isEmpty;
@@ -92,6 +83,32 @@ class AppModel: ObservableObject {
         }
         else {
             alertMessage = "No Preset Exist"
+        }
+    }
+}
+
+extension Config {
+    var isValidForSave: (valid: Bool, message: String?) {
+        
+        var message = [String]()
+        
+        if keyIdentifier.isEmpty {
+            message.append("KeyID")
+        }
+        if teamIdentifier.isEmpty {
+            message.append("TeamID")
+        }
+        if appBundleID.isEmpty {
+            message.append("BundleID")
+        }
+        if privateKey.isEmpty {
+            message.append("P8Key")
+        }
+        
+        if message.isEmpty {
+            return (valid: true, message: nil)
+        } else {
+            return (valid: false, message: "\(message.joined(separator: "\n"))\nis Empty")
         }
     }
 }
