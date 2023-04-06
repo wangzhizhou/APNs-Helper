@@ -28,6 +28,7 @@ struct AppContent: View {
     @State var isPresented: Bool = false
     
     @State var showFileImporter: Bool = false
+    @State var isInTestMode: Bool = false
 
     var config: Config {
         .init(
@@ -60,6 +61,26 @@ struct AppContent: View {
     
     func clearCurrentConfigPresetIfExist() {
         appModel.clearPresetIfExist(self.config)
+    }
+    
+    func clearAppInfo() {
+        keyIdentifier = ""
+        teamIdentifier = ""
+        appBundleID = ""
+        privateKey = ""
+        deviceToken = ""
+        pushKitDeviceToken = ""
+        fileProviderDeviceToken = ""
+    }
+    
+    func configThisAppInfo() {
+        keyIdentifier = appModel.thisAppConfig.keyIdentifier
+        teamIdentifier = appModel.thisAppConfig.teamIdentifier
+        appBundleID = appModel.thisAppConfig.appBundleID
+        privateKey = appModel.thisAppConfig.privateKey
+        deviceToken = appModel.thisAppConfig.deviceToken
+        pushKitDeviceToken = appModel.thisAppConfig.pushKitDeviceToken
+        fileProviderDeviceToken = appModel.thisAppConfig.fileProviderDeviceToken
     }
 }
 

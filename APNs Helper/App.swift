@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct APNsHelperApp: App {
+#if os(iOS)
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+#endif
     let persistenceController = PersistenceController.preview
     static let model = AppModel()
     var body: some Scene {

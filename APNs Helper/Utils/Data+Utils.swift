@@ -8,6 +8,7 @@
 import Foundation
 
 extension Data {
+    
     var toPresetConfigs: [Config] {
         if let configs = try? JSONDecoder().decode([Config].self, from: self) {
             return configs
@@ -15,4 +16,6 @@ extension Data {
             return []
         }
     }
+    
+    var hexString: String { reduce("") { $0 + String(format: "%02x", $1) } }
 }

@@ -9,6 +9,8 @@ import SwiftUI
 
 struct InputView: View {
     
+    @EnvironmentObject var appModel: AppModel
+    
     let title: String
     
     var placeholder: String?
@@ -21,7 +23,7 @@ struct InputView: View {
         HStack {
             Text(title)
             TextField(placeholder ?? title, text: $inputValue)
-                .lineLimit(1)
+                .lineLimit(nil)
 #if os(iOS)
                 .keyboardType(.asciiCapable)
 #endif
@@ -39,11 +41,19 @@ struct InputView: View {
             
 #if os(iOS)
             if !inputValue.isEmpty {
-                Button {
-                    inputValue = ""
-                } label: {
-                    Image(systemName: "xmark.circle.fill")
+                HStack {
+                    Button {
+                        inputValue = ""
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                    }
+                    Button {
+                        inputValue.copyToPasteboard()
+                    } label: {
+                        Image(systemName: "doc.on.doc.fill")
+                    }
                 }
+                .buttonStyle(BorderlessButtonStyle())
             }
 #endif
         }

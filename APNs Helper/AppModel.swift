@@ -12,7 +12,7 @@ class AppModel: ObservableObject {
     
     // MARK: Log
     @Published var appLog: String = ""
-
+    
     @MainActor
     func resetLog() {
         appLog = ""
@@ -25,6 +25,16 @@ class AppModel: ObservableObject {
         didSet {
             if let message = alertMessage, !message.isEmpty {
                 showAlert = true
+            }
+        }
+    }
+    
+    // MARK: Toast
+    @Published var showToast: Bool = false
+    var toastMessage: String? {
+        didSet {
+            if let toast = toastMessage, !toast.isEmpty {
+                showToast = true
             }
         }
     }
@@ -42,7 +52,7 @@ class AppModel: ObservableObject {
             }
         }
     }
-
+    
     func saveConfigAsPreset(_ config: Config) {
         
         let (valid, message) = config.isValidForSave
@@ -51,21 +61,23 @@ class AppModel: ObservableObject {
             return
         }
         
-        var newPresets = presets
-        let containEmptyConfig = newPresets.contains(where: { config in
+        var newPresets = presets.filter { preset in
+            return preset.appBundleID != config.appBundleID
+        }
+        let containEmptyConfig = newPresets.contains { config in
             return config.appBundleID.isEmpty;
-        })
+        }
         if !containEmptyConfig {
             newPresets.insert(.invalid, at: 0)
         }
         newPresets.append(config)
         presets = newPresets
-        alertMessage = "Save Preset Successfully!"
+        toastMessage = "Save Preset!"
     }
     
     func clearAllPresets() {
         presets = [Config]()
-        alertMessage = "Clear Preset Successfully!"
+        toastMessage = "Clear All Preset!"
     }
     
     func clearPresetIfExist(_ config: Config) {
@@ -79,36 +91,27 @@ class AppModel: ObservableObject {
         }
         if presets.count != newPresets.count {
             presets = newPresets
-            alertMessage = "Clear Exist Preset"
+            toastMessage = "Clear Exist Preset"
         }
         else {
-            alertMessage = "No Preset Exist"
+            toastMessage = "No Preset Exist"
         }
     }
-}
-
-extension Config {
-    var isValidForSave: (valid: Bool, message: String?) {
-        
-        var message = [String]()
-        
-        if keyIdentifier.isEmpty {
-            message.append("KeyID")
-        }
-        if teamIdentifier.isEmpty {
-            message.append("TeamID")
-        }
-        if appBundleID.isEmpty {
-            message.append("BundleID")
-        }
-        if privateKey.isEmpty {
-            message.append("P8Key")
-        }
-        
-        if message.isEmpty {
-            return (valid: true, message: nil)
-        } else {
-            return (valid: false, message: "\(message.joined(separator: "\n"))\nis Empty")
-        }
-    }
+    
+    // MARK: Test Mode Config
+    
+    @Published var thisAppConfig = Config(
+        deviceToken: "",
+        pushKitDeviceToken: "",
+        fileProviderDeviceToken: "",
+        appBundleID: Bundle.main.bundleIdentifier ?? "",
+        privateKey: """
+        -----BEGIN PRIVATE KEY-----
+        MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
+        iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
+        n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
+        -----END PRIVATE KEY-----
+        """,
+        keyIdentifier: "7S6SUT5L43",
+        teamIdentifier: "2N62934Y28")
 }

@@ -7,9 +7,10 @@
 
 import SwiftUI
 import UniformTypeIdentifiers
+import AlertToast
 
 extension AppContent {
-
+    
     var body: some View {
         VStack {
             Form {
@@ -78,9 +79,9 @@ extension AppContent {
                         InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
                     }
                     
-//                    if pushType == .fileprovider {
-//                        InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
-//                    }
+                    //                    if pushType == .fileprovider {
+                    //                        InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
+                    //                    }
                     VStack(alignment: .leading) {
                         HStack {
                             Text("P8 Key")
@@ -108,6 +109,23 @@ extension AppContent {
                         }
                     }
                     .buttonStyle(BorderedButtonStyle())
+                    
+                    Toggle(isOn: $isInTestMode) {
+                        Text("Test This App ")
+                    }
+                    .onChange(of: isInTestMode) { mode in
+                        if mode {
+                            configThisAppInfo()
+                        } else {
+                            clearAppInfo()
+                        }
+                    }
+                    .onChange(of: appModel.thisAppConfig) { _ in
+                        guard isInTestMode else {
+                            return
+                        }
+                        configThisAppInfo()
+                    }
                 }
                 
                 Section("Payload") {
@@ -127,48 +145,51 @@ extension AppContent {
                             .frame(minHeight: 200)
                     }
                 }
+                
+                Section("User Actions") {
+                    VStack {
+                        
+                        InputTextEditor(content: $appModel.appLog)
+                            .frame(height: 200)
+                            .padding(.vertical, 5)
+                        
+                        Button {
+                            let config = config
+                            Task {
+                                isLoading = true
+                                appModel.resetLog()
+                                if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
+                                    try? await APNsService(config: config, payloadData: payloadData).send()
+                                }
+                                else if let payloadData = payload.data(using: .utf8) {
+                                    try? await APNsService(config: config, payloadData: payloadData).send()
+                                }
+                                isLoading = false
+                            }
+                        } label: {
+                            GeometryReader { geometry in
+                                Text("Send\(isLoading ? "ing..." : " Push")")
+                                    .bold()
+                                    .font(.title3)
+                                    .frame(width: geometry.size.width, height: geometry.size.height)
+                            }
+                        }
+                        .frame(height: 60)
+                        .buttonStyle(BorderedProminentButtonStyle())
+                        .disabled(isLoading)
+                    }
+                }
             }
             .scrollDismissesKeyboard(.immediately)
-            
-            Button {
-                isPresented = true
-                let config = config
-                Task {
-                    isLoading = true
-                    appModel.resetLog()
-                    if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
-                        try? await APNsService(config: config, payloadData: payloadData).send()
-                    }
-                    else if let payloadData = payload.data(using: .utf8) {
-                        try? await APNsService(config: config, payloadData: payloadData).send()
-                    }
-                    isLoading = false
-                }
-            } label: {
-                GeometryReader { geometry in
-                    Text("Send\(isLoading ? "ing..." : "")")
-                        .bold()
-                        .font(.title2)
-                        .frame(width: geometry.size.width, height: geometry.size
-                            .height)
-                }.frame(height: 44)
-            }
-            .padding(.horizontal)
-            .padding([.bottom], 8)
-            .disabled(isLoading)
-            .buttonStyle(BorderedButtonStyle())
         }
         .onAppear {
             loadPayloadTemplate()
         }
-        .sheet(isPresented: $isPresented) {
-            VStack {
-                InputTextEditor(title: "Log", content: $appModel.appLog)
-            }
-            .padding()
-        }
         .alert(isPresented: $appModel.showAlert) {
             Alert(title: Text(appModel.alertMessage ?? ""))
+        }
+        .toast(isPresenting: $appModel.showToast) {
+            AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage)
         }
         .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType(filenameExtension: "p8")!]) { result in
             switch result {

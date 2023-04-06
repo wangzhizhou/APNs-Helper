@@ -19,16 +19,16 @@
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
 		2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
+		2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8A529DEE00E00E484FB /* Config+Utils.swift */; };
+		2B40F8AB29DEE25F00E484FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */; platformFilter = ios; };
+		2B40F8AD29DEE27600E484FB /* AppDelegate+CXProviderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AC29DEE27600E484FB /* AppDelegate+CXProviderDelegate.swift */; platformFilter = ios; };
+		2B40F8AF29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AE29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift */; platformFilter = ios; };
+		2B40F8B129DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift */; platformFilter = ios; };
+		2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2B40F8B429DEEC1000E484FB /* AlertToast */; };
 		2B5036EF29DAA8600010F62D /* APNsService+MacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */; };
 		2B505E2829DD25B50010F62D /* AppContent+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2729DD25B50010F62D /* AppContent+iOS.swift */; platformFilter = ios; };
 		2B505E2A29DD26230010F62D /* AppContent+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2929DD26230010F62D /* AppContent+macOS.swift */; platformFilters = (macos, ); };
 		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
-		2B861370293749AE00D0A685 /* TesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86136F293749AE00D0A685 /* TesterApp.swift */; };
-		2B861372293749AE00D0A685 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B861371293749AE00D0A685 /* ContentView.swift */; };
-		2B861374293749AF00D0A685 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B861373293749AF00D0A685 /* Assets.xcassets */; };
-		2B861377293749AF00D0A685 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B861376293749AF00D0A685 /* Preview Assets.xcassets */; };
-		2B86137C29374A0B00D0A685 /* TesterAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86137B29374A0B00D0A685 /* TesterAppDelegate.swift */; };
-		2B8613802937501E00D0A685 /* TesterAppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B86137F2937501E00D0A685 /* TesterAppModel.swift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
@@ -76,19 +76,16 @@
 		2B35F76A28DEAF56009EF9C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		2B40E2AB29DE756500E484FB /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		2B40F8A529DEE00E00E484FB /* Config+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Utils.swift"; sourceTree = "<group>"; };
+		2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2B40F8AC29DEE27600E484FB /* AppDelegate+CXProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+CXProviderDelegate.swift"; sourceTree = "<group>"; };
+		2B40F8AE29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PKPushRegistryDelegate.swift"; sourceTree = "<group>"; };
+		2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UNUserNotificationCenterDelegate.swift"; sourceTree = "<group>"; };
+		2B40F8B229DEE6E100E484FB /* APNs-Helper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "APNs-Helper-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+MacOS.swift"; sourceTree = "<group>"; };
 		2B505E2729DD25B50010F62D /* AppContent+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+iOS.swift"; sourceTree = "<group>"; };
 		2B505E2929DD26230010F62D /* AppContent+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+macOS.swift"; sourceTree = "<group>"; };
 		2B586C5A28EAD4660067705A /* AppSandBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSandBox.swift; sourceTree = "<group>"; };
-		2B86136D293749AE00D0A685 /* APNs Helper Tester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper Tester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B86136F293749AE00D0A685 /* TesterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterApp.swift; sourceTree = "<group>"; };
-		2B861371293749AE00D0A685 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2B861373293749AF00D0A685 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2B861376293749AF00D0A685 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2B86137B29374A0B00D0A685 /* TesterAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterAppDelegate.swift; sourceTree = "<group>"; };
-		2B86137D29374A3300D0A685 /* APNs Helper Tester.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "APNs Helper Tester.entitlements"; sourceTree = "<group>"; };
-		2B86137F2937501E00D0A685 /* TesterAppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesterAppModel.swift; sourceTree = "<group>"; };
-		2B861B4A2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
 		2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextEditor.swift; sourceTree = "<group>"; };
 		2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Preset.swift"; sourceTree = "<group>"; };
 		2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogHandler.swift; sourceTree = "<group>"; };
@@ -107,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */,
+				2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,13 +122,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B86136A293749AE00D0A685 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -140,7 +131,6 @@
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
 				2B35F74228DEAB18009EF9C9 /* APNs HelperTests */,
 				2B35F74C28DEAB18009EF9C9 /* APNs HelperUITests */,
-				2B86136E293749AE00D0A685 /* APNs Helper Tester */,
 				2B35F72A28DEAB17009EF9C9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,7 +141,6 @@
 				2B35F72928DEAB17009EF9C9 /* APNs Helper.app */,
 				2B35F73F28DEAB18009EF9C9 /* APNs HelperTests.xctest */,
 				2B35F74928DEAB18009EF9C9 /* APNs HelperUITests.xctest */,
-				2B86136D293749AE00D0A685 /* APNs Helper Tester.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,19 +148,21 @@
 		2B35F72B28DEAB17009EF9C9 /* APNs Helper */ = {
 			isa = PBXGroup;
 			children = (
+				2B40F8B229DEE6E100E484FB /* APNs-Helper-Info.plist */,
 				2B35F72C28DEAB17009EF9C9 /* App.swift */,
-				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2BBDDE7628E494440052DC28 /* AppContent.swift */,
-				2B505E2929DD26230010F62D /* AppContent+macOS.swift */,
 				2B505E2729DD25B50010F62D /* AppContent+iOS.swift */,
+				2B505E2929DD26230010F62D /* AppContent+macOS.swift */,
+				2B40F8A929DEE24700E484FB /* AppDelegate */,
 				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
-				2BA3DB6728E5415D006DBCCC /* Views */,
-				2BA3E0AE28E54E4A006DBCCC /* Services */,
+				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2BA3E0AF28E54E55006DBCCC /* Database */,
 				2BA3E0B028E54E82006DBCCC /* Models */,
-				F3A46DEA29DDAA26004D4AD1 /* Utils */,
-				2BA3E0B128E54E9D006DBCCC /* Resources */,
 				2B35F73828DEAB18009EF9C9 /* Preview Content */,
+				2BA3E0B128E54E9D006DBCCC /* Resources */,
+				2BA3E0AE28E54E4A006DBCCC /* Services */,
+				F3A46DEA29DDAA26004D4AD1 /* Utils */,
+				2BA3DB6728E5415D006DBCCC /* Views */,
 			);
 			path = "APNs Helper";
 			sourceTree = "<group>";
@@ -201,27 +192,15 @@
 			path = "APNs HelperUITests";
 			sourceTree = "<group>";
 		};
-		2B86136E293749AE00D0A685 /* APNs Helper Tester */ = {
+		2B40F8A929DEE24700E484FB /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				2B861B4A2937AB0000D0A685 /* APNs-Helper-Tester-Info.plist */,
-				2B86137D29374A3300D0A685 /* APNs Helper Tester.entitlements */,
-				2B86136F293749AE00D0A685 /* TesterApp.swift */,
-				2B861371293749AE00D0A685 /* ContentView.swift */,
-				2B86137F2937501E00D0A685 /* TesterAppModel.swift */,
-				2B86137B29374A0B00D0A685 /* TesterAppDelegate.swift */,
-				2B861373293749AF00D0A685 /* Assets.xcassets */,
-				2B861375293749AF00D0A685 /* Preview Content */,
+				2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */,
+				2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift */,
+				2B40F8AE29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift */,
+				2B40F8AC29DEE27600E484FB /* AppDelegate+CXProviderDelegate.swift */,
 			);
-			path = "APNs Helper Tester";
-			sourceTree = "<group>";
-		};
-		2B861375293749AF00D0A685 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				2B861376293749AF00D0A685 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		2BA3DB6728E5415D006DBCCC /* Views */ = {
@@ -258,6 +237,7 @@
 			children = (
 				2B35F76A28DEAF56009EF9C9 /* Config.swift */,
 				2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */,
+				2B40F8A529DEE00E00E484FB /* Config+Utils.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -301,6 +281,7 @@
 			name = "APNs Helper";
 			packageProductDependencies = (
 				2BDB538A29384BCE00E38E77 /* APNSwift */,
+				2B40F8B429DEEC1000E484FB /* AlertToast */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -342,23 +323,6 @@
 			productReference = 2B35F74928DEAB18009EF9C9 /* APNs HelperUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		2B86136C293749AE00D0A685 /* APNs Helper Tester */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2B86137A293749AF00D0A685 /* Build configuration list for PBXNativeTarget "APNs Helper Tester" */;
-			buildPhases = (
-				2B861369293749AE00D0A685 /* Sources */,
-				2B86136A293749AE00D0A685 /* Frameworks */,
-				2B86136B293749AE00D0A685 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "APNs Helper Tester";
-			productName = "APNs Helper Tester";
-			productReference = 2B86136D293749AE00D0A685 /* APNs Helper Tester.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -380,9 +344,6 @@
 						CreatedOnToolsVersion = 14.0.1;
 						TestTargetID = 2B35F72828DEAB17009EF9C9;
 					};
-					2B86136C293749AE00D0A685 = {
-						CreatedOnToolsVersion = 14.1;
-					};
 				};
 			};
 			buildConfigurationList = 2B35F72428DEAB17009EF9C9 /* Build configuration list for PBXProject "APNs Helper" */;
@@ -396,6 +357,7 @@
 			mainGroup = 2B35F72028DEAB17009EF9C9;
 			packageReferences = (
 				2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */,
+				2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -404,7 +366,6 @@
 				2B35F72828DEAB17009EF9C9 /* APNs Helper */,
 				2B35F73E28DEAB18009EF9C9 /* APNs HelperTests */,
 				2B35F74828DEAB18009EF9C9 /* APNs HelperUITests */,
-				2B86136C293749AE00D0A685 /* APNs Helper Tester */,
 			);
 		};
 /* End PBXProject section */
@@ -433,15 +394,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B86136B293749AE00D0A685 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2B861377293749AF00D0A685 /* Preview Assets.xcassets in Resources */,
-				2B861374293749AF00D0A685 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -456,11 +408,15 @@
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
+				2B40F8AD29DEE27600E484FB /* AppDelegate+CXProviderDelegate.swift in Sources */,
+				2B40F8AF29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
 				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
+				2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */,
 				F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */,
+				2B40F8B129DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift in Sources */,
 				F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */,
@@ -470,6 +426,7 @@
 				2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */,
 				2B505E2829DD25B50010F62D /* AppContent+iOS.swift in Sources */,
 				F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */,
+				2B40F8AB29DEE25F00E484FB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,17 +444,6 @@
 			files = (
 				2B35F75028DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift in Sources */,
 				2B35F74E28DEAB18009EF9C9 /* APNs_HelperUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B861369293749AE00D0A685 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2B8613802937501E00D0A685 /* TesterAppModel.swift in Sources */,
-				2B861372293749AE00D0A685 /* ContentView.swift in Sources */,
-				2B861370293749AE00D0A685 /* TesterApp.swift in Sources */,
-				2B86137C29374A0B00D0A685 /* TesterAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +586,7 @@
 				CODE_SIGN_ENTITLEMENTS = "APNs Helper/Resources/APNs_Helper.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -648,6 +595,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "APNs-Helper-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -684,6 +632,7 @@
 				CODE_SIGN_ENTITLEMENTS = "APNs Helper/Resources/APNs_Helper.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
@@ -692,6 +641,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "APNs-Helper-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -814,81 +764,6 @@
 			};
 			name = Release;
 		};
-		2B861378293749AF00D0A685 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "APNs Helper Tester/APNs Helper Tester.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"APNs Helper Tester/Preview Content\"";
-				DEVELOPMENT_TEAM = 2N62934Y28;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "APNs Helper Tester/APNs-Helper-Tester-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = TesterApp;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper.tester;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		2B861379293749AF00D0A685 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "APNs Helper Tester/APNs Helper Tester.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"APNs Helper Tester/Preview Content\"";
-				DEVELOPMENT_TEAM = 2N62934Y28;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "APNs Helper Tester/APNs-Helper-Tester-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = TesterApp;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper.tester;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -928,18 +803,17 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B86137A293749AF00D0A685 /* Build configuration list for PBXNativeTarget "APNs Helper Tester" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2B861378293749AF00D0A685 /* Debug */,
-				2B861379293749AF00D0A685 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
@@ -951,6 +825,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B40F8B429DEEC1000E484FB /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
 		2BDB538A29384BCE00E38E77 /* APNSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */;

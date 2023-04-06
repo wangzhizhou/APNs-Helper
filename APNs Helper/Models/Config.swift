@@ -8,18 +8,25 @@
 import Foundation
 
 struct Config: Hashable, Identifiable, Codable {
+    
+    // Identifiable
     var id: String {
         appBundleID
     }
-    let deviceToken: String
-    let pushKitDeviceToken: String
-    let fileProviderDeviceToken: String
-    let appBundleID: String
-    let privateKey: String
-    let keyIdentifier: String
-    let teamIdentifier: String
     
+    // App Info
+    var deviceToken: String
+    var pushKitDeviceToken: String
+    var fileProviderDeviceToken: String
+    var appBundleID: String
+    var privateKey: String
+    var keyIdentifier: String
+    var teamIdentifier: String
+    
+    // Server Info
     var pushType: PushType = .alert
     var apnsServerEnv: APNServerEnv = .sandbox
+    
+    // Utils
     var sendToSimulator: Bool = false
 }
