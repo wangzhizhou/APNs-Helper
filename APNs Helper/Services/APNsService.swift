@@ -107,11 +107,11 @@ struct APNsService {
             }
             
             if let apnsID = response?.apnsID {
-                Self.logger.notice("Successfully! apnsID: \(apnsID)")
+                Self.logger.notice("\(apnsID)")
             }
         }
-        catch {
-            Self.logger.error("Failed!", metadata: ["error": "\(error)"])
+        catch  {
+            Self.logger.error("\(error)")
         }
         
         try client?.syncShutdown()

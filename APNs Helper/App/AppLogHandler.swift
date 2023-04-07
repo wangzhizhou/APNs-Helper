@@ -32,10 +32,7 @@ struct AppLogHandler: LogHandler {
                 
         // 输出到控制台
         
-        let output = """
-[\(Date().ISO8601Format(.iso8601))] \(message.description) \(metadata?.description ?? "")
-
-"""
+        let output = message.description
         print(output)
         Task {
             await MainActor.run {
