@@ -18,6 +18,8 @@
 		2B35F75028DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */; };
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
+		2B40237629E030E600E484FB /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = 2B40237529E030E600E484FB /* APNS */; };
+		2B40237829E030E600E484FB /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B40237729E030E600E484FB /* APNSCore */; };
 		2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
 		2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8A529DEE00E00E484FB /* Config+Utils.swift */; };
 		2B40F8AB29DEE25F00E484FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */; platformFilter = ios; };
@@ -36,7 +38,6 @@
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
 		2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3323E28E7221200E27D2D /* APNsService+Template.swift */; };
-		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
 		F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
 		F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */; };
 		F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */; };
@@ -103,7 +104,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */,
+				2B40237629E030E600E484FB /* APNS in Frameworks */,
+				2B40237829E030E600E484FB /* APNSCore in Frameworks */,
 				2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +134,7 @@
 				2B35F74228DEAB18009EF9C9 /* APNs HelperTests */,
 				2B35F74C28DEAB18009EF9C9 /* APNs HelperUITests */,
 				2B35F72A28DEAB17009EF9C9 /* Products */,
+				2B40237429E030E600E484FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +187,13 @@
 				2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */,
 			);
 			path = "APNs HelperUITests";
+			sourceTree = "<group>";
+		};
+		2B40237429E030E600E484FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		2B40F8A929DEE24700E484FB /* AppDelegate */ = {
@@ -288,8 +298,9 @@
 			);
 			name = "APNs Helper";
 			packageProductDependencies = (
-				2BDB538A29384BCE00E38E77 /* APNSwift */,
 				2B40F8B429DEEC1000E484FB /* AlertToast */,
+				2B40237529E030E600E484FB /* APNS */,
+				2B40237729E030E600E484FB /* APNSCore */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -826,22 +837,27 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
 			requirement = {
-				kind = exactVersion;
-				version = "5.0.0-beta.2";
+				kind = upToNextMajorVersion;
+				minimumVersion = "5.0.0-beta.2";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B40237529E030E600E484FB /* APNS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNS;
+		};
+		2B40237729E030E600E484FB /* APNSCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNSCore;
+		};
 		2B40F8B429DEEC1000E484FB /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
-		};
-		2BDB538A29384BCE00E38E77 /* APNSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */;
-			productName = APNSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

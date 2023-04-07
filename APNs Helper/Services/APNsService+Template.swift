@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import APNSwift
+import APNS
+import APNSCore
 
 @available(macOS 11.0, *)
 extension APNsService {

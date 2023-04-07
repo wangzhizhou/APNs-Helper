@@ -6,15 +6,16 @@
 //
 
 import Foundation
-import APNSwift
 import Logging
 import NIO
+import APNS
+import APNSCore
 
 enum APNServerEnv: String, CaseIterable, Codable {
     case sandbox
     case production
     
-    var env: APNSClientConfiguration.Environment {
+    var env: APNSEnvironment {
         switch self {
         case .sandbox:
             return .sandbox
@@ -28,7 +29,17 @@ enum PushType: String, CaseIterable, Codable {
     case alert
     case background
     case voip
-//    case fileprovider
+    
+    var type: APNSPushType {
+        switch self {
+        case .alert:
+            return .alert
+        case .background:
+            return .background
+        case .voip:
+            return .voip
+        }
+    }
 }
 
 struct APNsService {
@@ -65,40 +76,42 @@ struct APNsService {
                 ),
                 eventLoopGroupProvider: .createNew,
                 responseDecoder: JSONDecoder(),
-                requestEncoder: JSONEncoder(),
-                byteBufferAllocator: .init(),
-                backgroundActivityLogger: Self.logger
+                requestEncoder: JSONEncoder()
             )
-
-            var byteBuffer = ByteBufferAllocator().buffer(capacity: 0)
-            byteBuffer.writeData(payloadData)
-            _ = try JSONSerialization.jsonObject(with: byteBuffer, options: .mutableContainers)
-            var token = config.deviceToken
-            var topic = config.appBundleID
+            
+            var response: APNSResponse?
             switch config.pushType {
             case .alert:
-                fallthrough
+                response = try await client?.sendAlertNotification(
+                    .init(
+                        alert: .init(
+                            title: .raw("Simple Alert"),
+                            subtitle: .raw("Subtitle"),
+                            body: .raw("Body")),
+                        expiration: .immediately,
+                        priority: .immediately,
+                        topic: config.appBundleID),
+                    deviceToken: config.deviceToken)
             case .background:
-                token = config.deviceToken
+                response = try await client?.sendBackgroundNotification(
+                    .init(
+                        expiration: .immediately,
+                        topic: config.appBundleID),
+                    deviceToken: config.deviceToken)
             case .voip:
-                token = config.pushKitDeviceToken
-                topic += ".voip"
-//            case .fileprovider:
-//                token = config.fileProviderDeviceToken
-                
+                response = try await client?.sendVoIPNotification(
+                    .init(
+                        priority: .immediately,
+                        appID: config.appBundleID),
+                    deviceToken: config.pushKitDeviceToken)
             }
-            try await client?.send(
-                payload: byteBuffer,
-                deviceToken: token,
-                pushType: config.pushType.rawValue,
-                apnsID: UUID(),
-                expiration: 0,
-                priority: 10,
-                topic: topic,
-                deadline: .distantFuture)
+            
+            if let apnsID = response?.apnsID {
+                Self.logger.notice("Successfully! apnsID: \(apnsID)")
+            }
         }
         catch {
-            Self.logger.error("Failed sending push", metadata: ["error": "\(error)"])
+            Self.logger.error("Failed!", metadata: ["error": "\(error)"])
         }
         
         try client?.syncShutdown()
