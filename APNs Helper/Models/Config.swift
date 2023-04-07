@@ -7,17 +7,14 @@
 
 import Foundation
 
-struct Config: Hashable, Identifiable, Codable {
+struct Config {
     
-    // Identifiable
-    var id: String {
-        appBundleID
-    }
-    
-    // App Info
+    // Token Info
     var deviceToken: String
     var pushKitDeviceToken: String
     var fileProviderDeviceToken: String
+    
+    // App Info
     var appBundleID: String
     var privateKey: String
     var keyIdentifier: String
@@ -30,3 +27,14 @@ struct Config: Hashable, Identifiable, Codable {
     // Utils
     var sendToSimulator: Bool = false
 }
+
+extension Config: Identifiable {
+    
+    var id: String {
+        appBundleID
+    }
+}
+
+extension Config: Codable {}
+
+extension Config: Hashable {}
