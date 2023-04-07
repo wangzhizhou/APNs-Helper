@@ -81,7 +81,7 @@
 		2B40F8AC29DEE27600E484FB /* AppDelegate+CXProviderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+CXProviderDelegate.swift"; sourceTree = "<group>"; };
 		2B40F8AE29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PKPushRegistryDelegate.swift"; sourceTree = "<group>"; };
 		2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UNUserNotificationCenterDelegate.swift"; sourceTree = "<group>"; };
-		2B40F8B229DEE6E100E484FB /* APNs-Helper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "APNs-Helper-Info.plist"; sourceTree = SOURCE_ROOT; };
+		2B40F8B229DEE6E100E484FB /* APNs-Helper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APNs-Helper-Info.plist"; path = "APNs Helper/Resources/APNs-Helper-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+MacOS.swift"; sourceTree = "<group>"; };
 		2B505E2729DD25B50010F62D /* AppContent+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+iOS.swift"; sourceTree = "<group>"; };
 		2B505E2929DD26230010F62D /* AppContent+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+macOS.swift"; sourceTree = "<group>"; };
@@ -148,14 +148,8 @@
 		2B35F72B28DEAB17009EF9C9 /* APNs Helper */ = {
 			isa = PBXGroup;
 			children = (
-				2B40F8B229DEE6E100E484FB /* APNs-Helper-Info.plist */,
-				2B35F72C28DEAB17009EF9C9 /* App.swift */,
-				2BBDDE7628E494440052DC28 /* AppContent.swift */,
-				2B505E2729DD25B50010F62D /* AppContent+iOS.swift */,
-				2B505E2929DD26230010F62D /* AppContent+macOS.swift */,
+				2B40FB3C29DFDABC00E484FB /* App */,
 				2B40F8A929DEE24700E484FB /* AppDelegate */,
-				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
-				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2BA3E0AF28E54E55006DBCCC /* Database */,
 				2BA3E0B028E54E82006DBCCC /* Models */,
 				2B35F73828DEAB18009EF9C9 /* Preview Content */,
@@ -203,6 +197,19 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		2B40FB3C29DFDABC00E484FB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2B35F72C28DEAB17009EF9C9 /* App.swift */,
+				2BBDDE7628E494440052DC28 /* AppContent.swift */,
+				2B505E2729DD25B50010F62D /* AppContent+iOS.swift */,
+				2B505E2929DD26230010F62D /* AppContent+macOS.swift */,
+				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
+				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		2BA3DB6728E5415D006DBCCC /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,9 +252,10 @@
 		2BA3E0B128E54E9D006DBCCC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2B35F73528DEAB18009EF9C9 /* Assets.xcassets */,
 				2B35F73728DEAB18009EF9C9 /* APNs_Helper.entitlements */,
 				2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */,
+				2B40F8B229DEE6E100E484FB /* APNs-Helper-Info.plist */,
+				2B35F73528DEAB18009EF9C9 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -595,7 +603,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "APNs-Helper-Info.plist";
+				INFOPLIST_FILE = "APNs Helper/Resources/APNs-Helper-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -641,7 +649,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "APNs-Helper-Info.plist";
+				INFOPLIST_FILE = "APNs Helper/Resources/APNs-Helper-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;

@@ -23,7 +23,6 @@ struct InputView: View {
         HStack {
             Text(title)
             TextField(placeholder ?? title, text: $inputValue)
-                .lineLimit(nil)
 #if os(iOS)
                 .keyboardType(.asciiCapable)
 #endif
