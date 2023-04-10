@@ -163,7 +163,7 @@ extension AppContent {
                         
                         Button {
                             guard config.isReadyForSend else {
-                                appModel.alertMessage = "The App Info is not ready for sending push!"
+                                appModel.alertMessage = "The App Info is not ready for send push!"
                                 return
                             }
                             let config = config
