@@ -44,7 +44,7 @@ struct APNsService {
     private let payload =  Payload()
     var payloadData: Data
     func send() async throws {
-        
+                
         var client: APNSClient<JSONDecoder, JSONEncoder>?
         
         do {
@@ -86,7 +86,7 @@ struct APNsService {
                 token = config.pushKitDeviceToken
                 topic += ".voip"
             }
-            try await client?.send(
+            let response = try await client!.send(
                 payload: byteBuffer,
                 deviceToken: token,
                 pushType: config.pushType.rawValue,
@@ -95,11 +95,22 @@ struct APNsService {
                 priority: priority,
                 topic: topic,
                 deadline: .now() + .seconds(10))
+
+            Self.logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
+            await shutdownClient(client)
         }
         catch {
-            Self.logger.error("Failed sending push", metadata: ["error": "\(error)"])
+            Self.logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
+            await shutdownClient(client)
         }
-        
-        try client?.syncShutdown()
+    }
+    
+    func shutdownClient(_ client: APNSClient<JSONDecoder, JSONEncoder>?) async {
+        _ = await MainActor.run {
+            APNsHelperApp.model.isSendingPush = false
+        }
+        client?.shutdown(callback: { error in
+            print("shutdown client: \(error?.localizedDescription ?? "Success")")
+        })
     }
 }

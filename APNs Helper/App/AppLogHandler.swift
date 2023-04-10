@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import APNSwift
 import Logging
 
 struct AppLogHandler: LogHandler {
@@ -30,13 +31,31 @@ struct AppLogHandler: LogHandler {
              function: String,
              line: UInt) {
                 
+        print("\(message) \(metadata?.description ?? "")")
+        
         // 输出到控制台
+        let logDate = Date()
+        var logContent: String? = nil
+        
+        switch level {
+        case .error:
+            if let metadata = metadata {
+                logContent = "\(metadata)"
+            }
+        case .critical:
+            logContent = message.description
+        default:
+            break
+        }
+        
+        guard let logContent = logContent else {
+            return
+        }
         
         let output = """
-[\(Date().ISO8601Format(.iso8601))] \(message.description) \(metadata?.description ?? "")
-
-"""
-        print(output)
+        [\(logDate.ISO8601Format(.iso8601))] \(logContent))
+        """
+        
         Task {
             await MainActor.run {
                 // 输出到UI界面

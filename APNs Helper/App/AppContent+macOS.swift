@@ -133,14 +133,14 @@ extension AppContent {
                     Button("Load Template (⌘+T)") {
                         loadPayloadTemplate()
                     }
-                    .disabled(isSendingPush)
+                    .disabled(appModel.isSendingPush)
                     .keyboardShortcut(.init(unicodeScalarLiteral: "T"), modifiers: [.command])
                 }
                 
                 Button {
                     let config = config
                     Task {
-                        isSendingPush = true
+                        appModel.isSendingPush = true
                         appModel.resetLog()
                         if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
                             try? await APNsService(config: config, payloadData: payloadData).send()
@@ -148,12 +148,12 @@ extension AppContent {
                         else if let payloadData = payload.data(using: .utf8) {
                             try? await APNsService(config: config, payloadData: payloadData).send()
                         }
-                        isSendingPush = false
+                        appModel.isSendingPush = false
                     }
                 } label: {
-                    Text("Send\(isSendingPush ? "ing..." : " (⌘+⏎)")")
+                    Text("Send\(appModel.isSendingPush ? "ing..." : " (⌘+⏎)")")
                 }
-                .disabled(isSendingPush)
+                .disabled(appModel.isSendingPush)
                 .keyboardShortcut(.return, modifiers: [.command])
                 
                 

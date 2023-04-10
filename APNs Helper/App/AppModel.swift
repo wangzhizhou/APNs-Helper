@@ -116,4 +116,7 @@ class AppModel: ObservableObject {
         """,
         keyIdentifier: "7S6SUT5L43",
         teamIdentifier: "2N62934Y28")
+    
+    @MainActor
+    var isSendingPush: Bool = false
 }

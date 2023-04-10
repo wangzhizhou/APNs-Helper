@@ -148,8 +148,7 @@ extension AppContent {
                 
                 Section("App Log") {
                     VStack {
-                        
-                        InputTextEditor(content: $appModel.appLog)
+                        InputTextEditor(content: $appModel.appLog, textEditorFont: .system(size: 9))
                             .focused($logTextEditorFocusState)
                             .onChange(of: logTextEditorFocusState, perform: { focusState in
                                 guard focusState == false
@@ -158,7 +157,7 @@ extension AppContent {
                                     return
                                 }
                             })
-                            .frame(height: 200)
+                            .frame(height: 100)
                             .padding(.vertical, 5)
                         
                         Button {
@@ -168,7 +167,7 @@ extension AppContent {
                             }
                             let config = config
                             Task {
-                                isSendingPush = true
+                                appModel.isSendingPush = true
                                 appModel.resetLog()
                                 if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
                                     try? await APNsService(config: config, payloadData: payloadData).send()
@@ -176,19 +175,26 @@ extension AppContent {
                                 else if let payloadData = payload.data(using: .utf8) {
                                     try? await APNsService(config: config, payloadData: payloadData).send()
                                 }
-                                isSendingPush = false
+                                appModel.isSendingPush = false
                             }
                         } label: {
                             GeometryReader { geometry in
-                                Text("Send\(isSendingPush ? "ing..." : " Push")")
-                                    .bold()
-                                    .font(.title3)
-                                    .frame(width: geometry.size.width, height: geometry.size.height)
+                                HStack {
+                                    if appModel.isSendingPush {
+                                        ProgressView()
+                                            .tint(Color.orange)
+                                            .padding([.trailing], 1)
+                                    }
+                                    Text("Send\(appModel.isSendingPush ? "ing..." : " Push")")
+                                        .bold()
+                                        .font(.title3)
+                                }
+                                .frame(width: geometry.size.width, height: geometry.size.height)
                             }
                         }
                         .frame(height: 60)
                         .buttonStyle(BorderedProminentButtonStyle())
-                        .disabled(isSendingPush)
+                        .disabled(appModel.isSendingPush)
                     }
                 }
             }

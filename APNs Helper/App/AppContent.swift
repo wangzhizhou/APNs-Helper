@@ -22,7 +22,6 @@ struct AppContent: View {
     @State var pushType: PushType = .alert
     @State var apnsServerEnv: APNServerEnv = .sandbox
     @State var payload: String = ""
-    @State var isSendingPush: Bool = false
     
     @State var simulator: Bool = false
     @State var isPresented: Bool = false
