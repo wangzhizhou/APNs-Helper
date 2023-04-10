@@ -53,12 +53,12 @@ class AppModel: ObservableObject {
         }
     }
     
-    func saveConfigAsPreset(_ config: Config) {
+    func saveConfigAsPreset(_ config: Config) -> Bool {
         
         let (valid, message) = config.isValidForSave
         guard valid else {
             alertMessage = message
-            return
+            return false
         }
         
         var newPresets = presets.filter { preset in
@@ -72,7 +72,9 @@ class AppModel: ObservableObject {
         }
         newPresets.append(config)
         presets = newPresets
-        toastMessage = "Save Preset!"
+        toastMessage = "Saved Preset!"
+        
+        return true
     }
     
     func clearAllPresets() {
@@ -91,7 +93,7 @@ class AppModel: ObservableObject {
         }
         if presets.count != newPresets.count {
             presets = newPresets
-            toastMessage = "Clear Exist Preset"
+            toastMessage = "Remove Exist Preset"
         }
         else {
             toastMessage = "No Preset Exist"

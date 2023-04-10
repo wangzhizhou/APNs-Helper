@@ -15,36 +15,32 @@ extension AppContent {
         VStack {
             Form {
                 if !appModel.presets.isEmpty {
-                    Section("Preset Config") {
-                        VStack {
-                            Picker("Preset", selection: $presetConfig) {
-                                ForEach(appModel.presets) {
-                                    if $0 == .invalid {
-                                        Text("none").tag($0)
-                                    } else {
-                                        Text($0.appBundleID).tag($0)
-                                    }
-                                }
-                            }
-                            .onChange(of: presetConfig) { tag in
-                                teamIdentifier = tag.teamIdentifier
-                                keyIdentifier = tag.keyIdentifier
-                                appBundleID = tag.appBundleID
-                                deviceToken = tag.deviceToken
-                                pushKitDeviceToken = tag.pushKitDeviceToken
-                                fileProviderDeviceToken = tag.fileProviderDeviceToken
-                                privateKey = tag.privateKey
-                            }
-                            HStack {
-                                Button("Clear All Preset") {
-                                    clearAllPreset()
-                                }
-                                .buttonStyle(BorderedButtonStyle())
-                                Spacer()
+                    Picker("Preset Config", selection: $presetConfig) {
+                        ForEach(appModel.presets) {
+                            if $0 == .invalid {
+                                Text("none").tag($0)
+                            } else {
+                                Text($0.appBundleID)
+                                    .lineLimit(1)
+                                    .tag($0)
                             }
                         }
                     }
+                    .pickerStyle(.inline)
+                    .onChange(of: presetConfig) { tag in
+                        teamIdentifier = tag.teamIdentifier
+                        keyIdentifier = tag.keyIdentifier
+                        appBundleID = tag.appBundleID
+                        deviceToken = tag.deviceToken
+                        pushKitDeviceToken = tag.pushKitDeviceToken
+                        fileProviderDeviceToken = tag.fileProviderDeviceToken
+                        privateKey = tag.privateKey
+                    }
+                    Button("Clear All Preset Config") {
+                        clearAllPreset()
+                    }
                 }
+                
                 Section("APNs Server Config") {
                     Picker("Push Type", selection: $pushType) {
                         ForEach(PushType.allCases, id: \.self) {
@@ -66,22 +62,20 @@ extension AppContent {
                 Section("App Info") {
                     
                     InputView(title: "KeyID", inputValue: $keyIdentifier)
+                        .onChange(of: keyIdentifier) { _ in
+                            refreshTestMode()
+                        }
                     
                     InputView(title: "TeamID", inputValue: $teamIdentifier)
+                        .onChange(of: teamIdentifier) { _ in
+                            refreshTestMode()
+                        }
                     
                     InputView(title: "BundleID", inputValue: $appBundleID)
+                        .onChange(of: appBundleID) { _ in
+                            refreshTestMode()
+                        }
                     
-                    if pushType == .alert || pushType == .background {
-                        InputView(title: "Device Token", inputValue: $deviceToken)
-                    }
-                    
-                    if pushType == .voip {
-                        InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
-                    }
-                    
-                    //                    if pushType == .fileprovider {
-                    //                        InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
-                    //                    }
                     VStack(alignment: .leading) {
                         HStack {
                             Text("P8 Key")
@@ -94,55 +88,61 @@ extension AppContent {
                         }
                         InputTextEditor(content: $privateKey)
                             .frame(height: 80)
-                        HStack {
-                            if !appBundleID.isEmpty {
-                                Button("Clear If Exist") {
-                                    clearCurrentConfigPresetIfExist()
-                                }
+                            .onChange(of: privateKey) { _ in
+                                refreshTestMode()
                             }
-                            if config.isValidForSave.valid {
-                                Spacer()
-                                Button("Save As Preset") {
-                                    saveAsPreset()
-                                }
-                            }
-                        }
                     }
-                    .buttonStyle(BorderedButtonStyle())
                     
-                    Toggle(isOn: $isInTestMode) {
-                        Text("Test This App ")
+                    if pushType == .alert || pushType == .background {
+                        InputView(title: "Device Token", inputValue: $deviceToken)
+                    } else if pushType == .voip {
+                        InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
                     }
-                    .onChange(of: isInTestMode) { mode in
-                        if mode {
-                            configThisAppInfo()
-                        } else {
-                            clearAppInfo()
-                        }
-                    }
-                    .onChange(of: appModel.thisAppConfig) { _ in
-                        guard isInTestMode else {
-                            return
-                        }
+                }
+                
+                Toggle(isOn: $isInTestMode) {
+                    Text("Test This App ")
+                }
+                .onChange(of: isInTestMode) { mode in
+                    if mode {
                         configThisAppInfo()
+                    }
+                }
+                .onChange(of: appModel.thisAppConfig) { _ in
+                    guard isInTestMode else {
+                        return
+                    }
+                    configThisAppInfo()
+                }
+                if !config.isEmpty {
+                    Button("Clear Current App Info") {
+                        clearAppInfo()
+                    }
+                }
+                if !appBundleID.isEmpty {
+                    Button("Remove App Info From Preset Config") {
+                        clearCurrentConfigPresetIfExist()
+                    }
+                }
+                if config.isValidForSave.valid {
+                    Button("Save App Info As Preset Config") {
+                        saveAsPreset()
                     }
                 }
                 
                 Section("Payload") {
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Button("Load Template") {
-                                loadPayloadTemplate()
-                            }
-                            Button("Clear Payload") {
-                                payload = ""
-                            }
-                            
-                        }
-                        .buttonStyle(BorderedButtonStyle())
-                        InputTextEditor(content: $payload, textEditorFont: .body)
-                            .frame(minHeight: 200)
+                    InputTextEditor(content: $payload, textEditorFont: .body)
+                        .frame(minHeight: 200)
+                        .padding(.vertical)
+                }
+                
+                Group {
+                    Button("Load Template Payload") {
+                        loadPayloadTemplate()
+                    }
+                    
+                    Button("Clear Payload") {
+                        payload = ""
                     }
                 }
                 
@@ -154,9 +154,13 @@ extension AppContent {
                             .padding(.vertical, 5)
                         
                         Button {
+                            guard config.isReadyForSend else {
+                                appModel.alertMessage = "The App Info is not ready for sending push!"
+                                return
+                            }
                             let config = config
                             Task {
-                                isLoading = true
+                                isSendingPush = true
                                 appModel.resetLog()
                                 if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
                                     try? await APNsService(config: config, payloadData: payloadData).send()
@@ -164,11 +168,11 @@ extension AppContent {
                                 else if let payloadData = payload.data(using: .utf8) {
                                     try? await APNsService(config: config, payloadData: payloadData).send()
                                 }
-                                isLoading = false
+                                isSendingPush = false
                             }
                         } label: {
                             GeometryReader { geometry in
-                                Text("Send\(isLoading ? "ing..." : " Push")")
+                                Text("Send\(isSendingPush ? "ing..." : " Push")")
                                     .bold()
                                     .font(.title3)
                                     .frame(width: geometry.size.width, height: geometry.size.height)
@@ -176,7 +180,7 @@ extension AppContent {
                         }
                         .frame(height: 60)
                         .buttonStyle(BorderedProminentButtonStyle())
-                        .disabled(isLoading)
+                        .disabled(isSendingPush)
                     }
                 }
             }

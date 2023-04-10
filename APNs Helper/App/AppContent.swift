@@ -22,7 +22,7 @@ struct AppContent: View {
     @State var pushType: PushType = .alert
     @State var apnsServerEnv: APNServerEnv = .sandbox
     @State var payload: String = ""
-    @State var isLoading: Bool = false
+    @State var isSendingPush: Bool = false
     
     @State var simulator: Bool = false
     @State var isPresented: Bool = false
@@ -52,7 +52,9 @@ struct AppContent: View {
     }
     
     func saveAsPreset() {
-        appModel.saveConfigAsPreset(self.config)
+        if appModel.saveConfigAsPreset(self.config) {
+            presetConfig = self.config
+        }
     }
     
     func clearAllPreset() {
@@ -81,6 +83,12 @@ struct AppContent: View {
         deviceToken = appModel.thisAppConfig.deviceToken
         pushKitDeviceToken = appModel.thisAppConfig.pushKitDeviceToken
         fileProviderDeviceToken = appModel.thisAppConfig.fileProviderDeviceToken
+    }
+    
+    func refreshTestMode() {
+        guard appModel.thisAppConfig.isValidForSave.valid
+        else { return }
+        isInTestMode = (config == appModel.thisAppConfig)
     }
 }
 

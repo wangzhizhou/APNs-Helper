@@ -35,6 +35,18 @@ extension Config: Identifiable {
     }
 }
 
+extension Config: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.id == rhs.id
+        && lhs.keyIdentifier == rhs.keyIdentifier
+        && lhs.teamIdentifier == rhs.teamIdentifier
+        && lhs.appBundleID == rhs.appBundleID
+        && lhs.privateKey == rhs.privateKey
+    }
+}
+
 extension Config: Codable {}
 
 extension Config: Hashable {}
+
+

@@ -32,4 +32,19 @@ extension Config {
             return (valid: false, message: "\(message.joined(separator: "\n"))\nis Empty")
         }
     }
+    
+    var isEmpty: Bool {
+        return keyIdentifier.isEmpty && teamIdentifier.isEmpty && appBundleID.isEmpty && privateKey.isEmpty
+    }
+    
+    var isReadyForSend: Bool {
+        var hasToken = false
+        switch self.pushType {
+        case .alert, .background:
+            hasToken = !deviceToken.isEmpty
+        case .voip:
+            hasToken = !pushKitDeviceToken.isEmpty
+        }
+        return !self.isEmpty && hasToken
+    }
 }
