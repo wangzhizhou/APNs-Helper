@@ -30,7 +30,6 @@
 		2B505E2A29DD26230010F62D /* AppContent+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2929DD26230010F62D /* AppContent+macOS.swift */; platformFilters = (macos, ); };
 		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
-		2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B428E565CE006DBCCC /* Config+Preset.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
@@ -427,7 +426,6 @@
 				2B40F8B129DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift in Sources */,
 				F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
-				2BA3E0B528E565CE006DBCCC /* Config+Preset.swift in Sources */,
 				2B505E2A29DD26230010F62D /* AppContent+macOS.swift in Sources */,
 				2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */,
 				2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */,

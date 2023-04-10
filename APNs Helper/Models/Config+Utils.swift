@@ -47,4 +47,13 @@ extension Config {
         }
         return !self.isEmpty && hasToken
     }
+    
+    static let none = Config(
+        deviceToken: "",
+        pushKitDeviceToken: "",
+        fileProviderDeviceToken: "",
+        appBundleID: "",
+        privateKey: "",
+        keyIdentifier: "",
+        teamIdentifier: "")
 }

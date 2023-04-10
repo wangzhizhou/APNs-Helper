@@ -8,16 +8,7 @@
 import Foundation
 
 extension Config {
-    
-    static let invalid = Config(
-        deviceToken: "",
-        pushKitDeviceToken: "",
-        fileProviderDeviceToken: "",
-        appBundleID: "",
-        privateKey: "",
-        keyIdentifier: "",
-        teamIdentifier: "")
-    
+        
     static let f101 = Config(
         deviceToken: "",
         pushKitDeviceToken: "",

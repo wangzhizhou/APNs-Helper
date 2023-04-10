@@ -20,7 +20,7 @@ extension AppContent {
                     HStack {
                         Picker("Preset", selection: $presetConfig) {
                             ForEach(appModel.presets) {
-                                if $0 == .invalid {
+                                if $0 == .none {
                                     Text("none").tag($0)
                                 } else {
                                     Text($0.appBundleID).tag($0)

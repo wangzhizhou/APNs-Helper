@@ -94,7 +94,7 @@ struct APNsService {
                 expiration: 0,
                 priority: priority,
                 topic: topic,
-                deadline: .distantFuture)
+                deadline: .now() + .seconds(10))
         }
         catch {
             Self.logger.error("Failed sending push", metadata: ["error": "\(error)"])

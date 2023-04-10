@@ -11,7 +11,7 @@ struct AppContent: View {
     
     @EnvironmentObject var appModel: AppModel
     
-    @State var presetConfig: Config = .invalid
+    @State var presetConfig: Config = .none
     @State var teamIdentifier: String = ""
     @State var keyIdentifier: String = ""
     @State var appBundleID: String = ""
@@ -29,6 +29,7 @@ struct AppContent: View {
     
     @State var showFileImporter: Bool = false
     @State var isInTestMode: Bool = false
+    @FocusState var logTextEditorFocusState: Bool
 
     var config: Config {
         .init(

@@ -17,7 +17,7 @@ extension AppContent {
                 if !appModel.presets.isEmpty {
                     Picker("Preset Config", selection: $presetConfig) {
                         ForEach(appModel.presets) {
-                            if $0 == .invalid {
+                            if $0 == .none {
                                 Text("none").tag($0)
                             } else {
                                 Text($0.appBundleID)
@@ -101,7 +101,7 @@ extension AppContent {
                 }
                 
                 Toggle(isOn: $isInTestMode) {
-                    Text("Test This App ")
+                    Text("Fill this App's Info ")
                 }
                 .onChange(of: isInTestMode) { mode in
                     if mode {
@@ -146,10 +146,18 @@ extension AppContent {
                     }
                 }
                 
-                Section("User Actions") {
+                Section("App Log") {
                     VStack {
                         
                         InputTextEditor(content: $appModel.appLog)
+                            .focused($logTextEditorFocusState)
+                            .onChange(of: logTextEditorFocusState, perform: { focusState in
+                                guard focusState == false
+                                else {
+                                    logTextEditorFocusState = false
+                                    return
+                                }
+                            })
                             .frame(height: 200)
                             .padding(.vertical, 5)
                         

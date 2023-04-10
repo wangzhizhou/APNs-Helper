@@ -68,7 +68,7 @@ class AppModel: ObservableObject {
             return config.appBundleID.isEmpty;
         }
         if !containEmptyConfig {
-            newPresets.insert(.invalid, at: 0)
+            newPresets.insert(.none, at: 0)
         }
         newPresets.append(config)
         presets = newPresets
@@ -88,7 +88,7 @@ class AppModel: ObservableObject {
             !preset.appBundleID.isEmpty && preset.appBundleID == config.appBundleID
         }
         if newPresets.count == 1, let onlyOneConfig = newPresets.last,
-           onlyOneConfig.appBundleID == Config.invalid.appBundleID {
+           onlyOneConfig.appBundleID == Config.none.appBundleID {
             newPresets.removeAll()
         }
         if presets.count != newPresets.count {
