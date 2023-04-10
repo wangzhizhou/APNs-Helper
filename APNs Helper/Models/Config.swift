@@ -25,7 +25,7 @@ struct Config {
     var apnsServerEnv: APNServerEnv = .sandbox
     
     // Utils
-    var sendToSimulator: Bool = false
+    var sendToSimulator = false
 }
 
 extension Config: Identifiable {

@@ -23,7 +23,6 @@ struct AppContent: View {
     @State var apnsServerEnv: APNServerEnv = .sandbox
     @State var payload: String = ""
     
-    @State var simulator: Bool = false
     @State var isPresented: Bool = false
     
     @State var showFileImporter: Bool = false
@@ -40,8 +39,7 @@ struct AppContent: View {
             keyIdentifier: keyIdentifier.trimmed,
             teamIdentifier: teamIdentifier.trimmed,
             pushType:pushType,
-            apnsServerEnv: apnsServerEnv,
-            sendToSimulator: simulator
+            apnsServerEnv: apnsServerEnv
         )
     }
     

@@ -25,7 +25,7 @@
 		2B40F8AF29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AE29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift */; platformFilter = ios; };
 		2B40F8B129DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift */; platformFilter = ios; };
 		2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2B40F8B429DEEC1000E484FB /* AlertToast */; };
-		2B5036EF29DAA8600010F62D /* APNsService+MacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */; };
+		2B5036EF29DAA8600010F62D /* APNsService+Simulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5036EE29DAA8600010F62D /* APNsService+Simulator.swift */; };
 		2B505E2829DD25B50010F62D /* AppContent+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2729DD25B50010F62D /* AppContent+iOS.swift */; platformFilter = ios; };
 		2B505E2A29DD26230010F62D /* AppContent+macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2929DD26230010F62D /* AppContent+macOS.swift */; platformFilters = (macos, ); };
 		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
@@ -81,7 +81,7 @@
 		2B40F8AE29DEE2A700E484FB /* AppDelegate+PKPushRegistryDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PKPushRegistryDelegate.swift"; sourceTree = "<group>"; };
 		2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UNUserNotificationCenterDelegate.swift"; sourceTree = "<group>"; };
 		2B40F8B229DEE6E100E484FB /* APNs-Helper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "APNs-Helper-Info.plist"; path = "APNs Helper/Resources/APNs-Helper-Info.plist"; sourceTree = SOURCE_ROOT; };
-		2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+MacOS.swift"; sourceTree = "<group>"; };
+		2B5036EE29DAA8600010F62D /* APNsService+Simulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+Simulator.swift"; sourceTree = "<group>"; };
 		2B505E2729DD25B50010F62D /* AppContent+iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+iOS.swift"; sourceTree = "<group>"; };
 		2B505E2929DD26230010F62D /* AppContent+macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppContent+macOS.swift"; sourceTree = "<group>"; };
 		2B586C5A28EAD4660067705A /* AppSandBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSandBox.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
-				2B5036EE29DAA8600010F62D /* APNsService+MacOS.swift */,
+				2B5036EE29DAA8600010F62D /* APNsService+Simulator.swift */,
 				2BD3323E28E7221200E27D2D /* APNsService+Template.swift */,
 				2B586C5A28EAD4660067705A /* AppSandBox.swift */,
 			);
@@ -411,7 +411,7 @@
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
 				2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */,
-				2B5036EF29DAA8600010F62D /* APNsService+MacOS.swift in Sources */,
+				2B5036EF29DAA8600010F62D /* APNsService+Simulator.swift in Sources */,
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,

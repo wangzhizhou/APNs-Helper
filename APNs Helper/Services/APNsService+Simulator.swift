@@ -1,5 +1,5 @@
 //
-//  APNsService+MacOS.swift
+//  APNsService+Simulator.swift
 //  APNs Helper
 //
 //  Created by joker on 2023/4/3.
@@ -31,6 +31,16 @@ extension APNsService {
         if let log = String(data: outputAndErrorPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) {
             Self.logger.trace(.init(stringLiteral: log))
         }
+#endif
+    }
+}
+
+struct Platform {
+    static var isSimulator: Bool {
+#if targetEnvironment(simulator)
+        return true
+#else
+        return false
 #endif
     }
 }
