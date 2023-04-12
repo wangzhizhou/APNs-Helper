@@ -1,13 +1,41 @@
 //
-//  AppDelegate+CXProviderDelegate.swift
+//  CallKitManager.swift
 //  APNs Helper
 //
-//  Created by joker on 2023/4/6.
+//  Created by joker on 2023/4/12.
 //
 
 import CallKit
 
-extension AppDelegate: CXProviderDelegate {
+class CallKitManager: NSObject {
+    
+    // MARK: 单例实现
+    static let shared = CallKitManager()
+    private override init(){}
+    
+    // MARK: 功能实现
+    private(set) lazy var callProvider: CXProvider = {
+        var config = CXProviderConfiguration()
+        config.supportsVideo = false
+        config.supportedHandleTypes = [CXHandle.HandleType.generic]
+        config.maximumCallGroups = 1
+        config.maximumCallsPerCallGroup = 1
+        config.includesCallsInRecents = false
+        let provider = CXProvider(configuration: config)
+        return provider
+    }()
+    
+    func setupForVoip() {
+        callProvider.setDelegate(self, queue: .main)
+        let updateHandle = CXHandle(type: .generic, value: "VoIP Push")
+        let callUpdate = CXCallUpdate()
+        callUpdate.remoteHandle = updateHandle
+        callProvider.reportNewIncomingCall(with: UUID(), update: callUpdate) { _ in }
+    }
+}
+
+
+extension CallKitManager: CXProviderDelegate {
     
     func providerDidReset(_ provider: CXProvider) {
         
@@ -45,3 +73,4 @@ extension AppDelegate: CXProviderDelegate {
         action.fulfill()
     }
 }
+
