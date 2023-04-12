@@ -13,9 +13,6 @@
 		2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73328DEAB17009EF9C9 /* ContentView.swift */; };
 		2B35F73628DEAB18009EF9C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35F73528DEAB18009EF9C9 /* Assets.xcassets */; };
 		2B35F73A28DEAB18009EF9C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35F73928DEAB18009EF9C9 /* Preview Assets.xcassets */; };
-		2B35F74428DEAB18009EF9C9 /* APNs_HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74328DEAB18009EF9C9 /* APNs_HelperTests.swift */; };
-		2B35F74E28DEAB18009EF9C9 /* APNs_HelperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74D28DEAB18009EF9C9 /* APNs_HelperUITests.swift */; };
-		2B35F75028DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */; };
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
 		2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
@@ -42,23 +39,6 @@
 		F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2B35F74028DEAB18009EF9C9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2B35F72128DEAB17009EF9C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B35F72828DEAB17009EF9C9;
-			remoteInfo = "APNs Helper";
-		};
-		2B35F74A28DEAB18009EF9C9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2B35F72128DEAB17009EF9C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B35F72828DEAB17009EF9C9;
-			remoteInfo = "APNs Helper";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		2B35F72928DEAB17009EF9C9 /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B35F72C28DEAB17009EF9C9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -68,11 +48,6 @@
 		2B35F73528DEAB18009EF9C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B35F73728DEAB18009EF9C9 /* APNs_Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = APNs_Helper.entitlements; sourceTree = "<group>"; };
 		2B35F73928DEAB18009EF9C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		2B35F73F28DEAB18009EF9C9 /* APNs HelperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APNs HelperTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B35F74328DEAB18009EF9C9 /* APNs_HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperTests.swift; sourceTree = "<group>"; };
-		2B35F74928DEAB18009EF9C9 /* APNs HelperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "APNs HelperUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B35F74D28DEAB18009EF9C9 /* APNs_HelperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperUITests.swift; sourceTree = "<group>"; };
-		2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNs_HelperUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		2B35F76A28DEAF56009EF9C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		2B40E2AB29DE756500E484FB /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
@@ -109,20 +84,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B35F73C28DEAB18009EF9C9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B35F74628DEAB18009EF9C9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -130,8 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
-				2B35F74228DEAB18009EF9C9 /* APNs HelperTests */,
-				2B35F74C28DEAB18009EF9C9 /* APNs HelperUITests */,
 				2B35F72A28DEAB17009EF9C9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -140,8 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				2B35F72928DEAB17009EF9C9 /* APNs Helper.app */,
-				2B35F73F28DEAB18009EF9C9 /* APNs HelperTests.xctest */,
-				2B35F74928DEAB18009EF9C9 /* APNs HelperUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,23 +125,6 @@
 				2B35F73928DEAB18009EF9C9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		2B35F74228DEAB18009EF9C9 /* APNs HelperTests */ = {
-			isa = PBXGroup;
-			children = (
-				2B35F74328DEAB18009EF9C9 /* APNs_HelperTests.swift */,
-			);
-			path = "APNs HelperTests";
-			sourceTree = "<group>";
-		};
-		2B35F74C28DEAB18009EF9C9 /* APNs HelperUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2B35F74D28DEAB18009EF9C9 /* APNs_HelperUITests.swift */,
-				2B35F74F28DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift */,
-			);
-			path = "APNs HelperUITests";
 			sourceTree = "<group>";
 		};
 		2B40F8A929DEE24700E484FB /* AppDelegate */ = {
@@ -313,42 +253,6 @@
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2B35F73E28DEAB18009EF9C9 /* APNs HelperTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2B35F75628DEAB18009EF9C9 /* Build configuration list for PBXNativeTarget "APNs HelperTests" */;
-			buildPhases = (
-				2B35F73B28DEAB18009EF9C9 /* Sources */,
-				2B35F73C28DEAB18009EF9C9 /* Frameworks */,
-				2B35F73D28DEAB18009EF9C9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2B35F74128DEAB18009EF9C9 /* PBXTargetDependency */,
-			);
-			name = "APNs HelperTests";
-			productName = "APNs HelperTests";
-			productReference = 2B35F73F28DEAB18009EF9C9 /* APNs HelperTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		2B35F74828DEAB18009EF9C9 /* APNs HelperUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2B35F75928DEAB18009EF9C9 /* Build configuration list for PBXNativeTarget "APNs HelperUITests" */;
-			buildPhases = (
-				2B35F74528DEAB18009EF9C9 /* Sources */,
-				2B35F74628DEAB18009EF9C9 /* Frameworks */,
-				2B35F74728DEAB18009EF9C9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2B35F74B28DEAB18009EF9C9 /* PBXTargetDependency */,
-			);
-			name = "APNs HelperUITests";
-			productName = "APNs HelperUITests";
-			productReference = 2B35F74928DEAB18009EF9C9 /* APNs HelperUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -361,14 +265,6 @@
 				TargetAttributes = {
 					2B35F72828DEAB17009EF9C9 = {
 						CreatedOnToolsVersion = 14.0.1;
-					};
-					2B35F73E28DEAB18009EF9C9 = {
-						CreatedOnToolsVersion = 14.0.1;
-						TestTargetID = 2B35F72828DEAB17009EF9C9;
-					};
-					2B35F74828DEAB18009EF9C9 = {
-						CreatedOnToolsVersion = 14.0.1;
-						TestTargetID = 2B35F72828DEAB17009EF9C9;
 					};
 				};
 			};
@@ -390,8 +286,6 @@
 			projectRoot = "";
 			targets = (
 				2B35F72828DEAB17009EF9C9 /* APNs Helper */,
-				2B35F73E28DEAB18009EF9C9 /* APNs HelperTests */,
-				2B35F74828DEAB18009EF9C9 /* APNs HelperUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -403,20 +297,6 @@
 			files = (
 				2B35F73A28DEAB18009EF9C9 /* Preview Assets.xcassets in Resources */,
 				2B35F73628DEAB18009EF9C9 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B35F73D28DEAB18009EF9C9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B35F74728DEAB18009EF9C9 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,37 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B35F73B28DEAB18009EF9C9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2B35F74428DEAB18009EF9C9 /* APNs_HelperTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B35F74528DEAB18009EF9C9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2B35F75028DEAB18009EF9C9 /* APNs_HelperUITestsLaunchTests.swift in Sources */,
-				2B35F74E28DEAB18009EF9C9 /* APNs_HelperUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2B35F74128DEAB18009EF9C9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2B35F72828DEAB17009EF9C9 /* APNs Helper */;
-			targetProxy = 2B35F74028DEAB18009EF9C9 /* PBXContainerItemProxy */;
-		};
-		2B35F74B28DEAB18009EF9C9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2B35F72828DEAB17009EF9C9 /* APNs Helper */;
-			targetProxy = 2B35F74A28DEAB18009EF9C9 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		2B35F75128DEAB18009EF9C9 /* Debug */ = {
@@ -696,100 +546,6 @@
 			};
 			name = Release;
 		};
-		2B35F75728DEAB18009EF9C9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 6UF48V8A6H;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joker.APNs-HelperTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APNs Helper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/APNs Helper";
-			};
-			name = Debug;
-		};
-		2B35F75828DEAB18009EF9C9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 6UF48V8A6H;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joker.APNs-HelperTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APNs Helper.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/APNs Helper";
-			};
-			name = Release;
-		};
-		2B35F75A28DEAB18009EF9C9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 6UF48V8A6H;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joker.APNs-HelperUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "APNs Helper";
-			};
-			name = Debug;
-		};
-		2B35F75B28DEAB18009EF9C9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 6UF48V8A6H;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 12.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.joker.APNs-HelperUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "APNs Helper";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -807,24 +563,6 @@
 			buildConfigurations = (
 				2B35F75428DEAB18009EF9C9 /* Debug */,
 				2B35F75528DEAB18009EF9C9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2B35F75628DEAB18009EF9C9 /* Build configuration list for PBXNativeTarget "APNs HelperTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2B35F75728DEAB18009EF9C9 /* Debug */,
-				2B35F75828DEAB18009EF9C9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2B35F75928DEAB18009EF9C9 /* Build configuration list for PBXNativeTarget "APNs HelperUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2B35F75A28DEAB18009EF9C9 /* Debug */,
-				2B35F75B28DEAB18009EF9C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

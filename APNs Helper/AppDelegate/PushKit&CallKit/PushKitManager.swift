@@ -36,11 +36,7 @@ extension PushKitManager: PKPushRegistryDelegate {
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         
         if type == .voIP {
-#if DEBUG
             CallKitManager.shared.setupForVoip()
-#else
-            APNsHelperApp.model.toastMessage = "🎉 VoIP Push Notification Received"
-#endif
         }
         completion()
     }
