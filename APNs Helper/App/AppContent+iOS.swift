@@ -100,6 +100,7 @@ extension AppContent {
                     }
                 }
                 
+#if DEBUG
                 Toggle(isOn: $isInTestMode) {
                     Text("Fill this App's Info ")
                 }
@@ -114,6 +115,8 @@ extension AppContent {
                     }
                     configThisAppInfo()
                 }
+#endif
+                
                 if !config.isEmpty {
                     Button("Clear Current App Info") {
                         clearAppInfo()

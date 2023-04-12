@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct TesterApp: App {
     
-    @UIApplicationDelegateAdaptor(TesterAppDelegate.self) var appDelegate
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     static let model = TesterAppModel()
     

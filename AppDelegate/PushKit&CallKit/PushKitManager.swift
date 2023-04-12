@@ -6,6 +6,7 @@
 //
 
 import PushKit
+import Combine
 
 class PushKitManager: NSObject {
     
@@ -23,13 +24,16 @@ class PushKitManager: NSObject {
     func setup() {
         pushKitRegistry.delegate = self
     }
+    
+    let pushKitTokenSubject = PassthroughSubject<String, Never>()
 }
 
 extension PushKitManager: PKPushRegistryDelegate {
     
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
         let pushKitTokenHexString = pushCredentials.token.hexString
-        APNsHelperApp.model.thisAppConfig.pushKitDeviceToken = pushKitTokenHexString
+        pushKitTokenSubject.send(pushKitTokenHexString)
+        pushKitTokenSubject.send(completion: .finished)
         print("pushkit token: \(pushKitTokenHexString)")
     }
     

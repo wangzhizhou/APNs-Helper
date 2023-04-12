@@ -7,11 +7,12 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class AppModel: ObservableObject {
     
     // MARK: Log
-    @Published var appLog: String = ""
+    @Published var appLog: String
     
     @MainActor
     func resetLog() {
@@ -20,7 +21,7 @@ class AppModel: ObservableObject {
     
     // MARK: Alert
     
-    @Published var showAlert: Bool = false
+    @Published var showAlert: Bool
     var alertMessage: String? {
         didSet {
             if let message = alertMessage, !message.isEmpty {
@@ -30,7 +31,7 @@ class AppModel: ObservableObject {
     }
     
     // MARK: Toast
-    @Published var showToast: Bool = false
+    @Published var showToast: Bool
     var toastMessage: String? {
         didSet {
             if let toast = toastMessage, !toast.isEmpty {
@@ -118,5 +119,55 @@ class AppModel: ObservableObject {
         teamIdentifier: "2N62934Y28")
     
     @MainActor
-    var isSendingPush: Bool = false
+    var isSendingPush: Bool
+    
+    init(
+        appLog: String = "",
+        showAlert: Bool  = false,
+        alertMessage: String? = nil,
+        showToast: Bool = false,
+        toastMessage: String? = nil,
+        presetData: Data = Data(),
+        thisAppConfig: Config = Config(
+            deviceToken: "",
+            pushKitDeviceToken: "",
+            fileProviderDeviceToken: "",
+            appBundleID: Bundle.main.bundleIdentifier ?? "",
+            privateKey: """
+            -----BEGIN PRIVATE KEY-----
+            MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
+            iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
+            n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
+            -----END PRIVATE KEY-----
+            """,
+            keyIdentifier: "7S6SUT5L43",
+            teamIdentifier: "2N62934Y28"),
+        isSendingPush: Bool = false) {
+            self.appLog = appLog
+            self.showAlert = showAlert
+            self.alertMessage = alertMessage
+            self.showToast = showToast
+            self.toastMessage = toastMessage
+            self.presetData = presetData
+            self.thisAppConfig = thisAppConfig
+            self.isSendingPush = isSendingPush
+            
+            
+            let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitToken in
+                self.thisAppConfig.pushKitDeviceToken = pushKitToken
+            }
+            cancellables.append(pushkitCancellable)
+            
+            let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
+                self.thisAppConfig.deviceToken = deviceToken
+            }
+            cancellables.append(deviceTokenCancellable)
+            
+            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
+                self.toastMessage = message
+            }
+            cancellables.append(backgroundNotificationCancellable)
+        }
+    
+    private var cancellables = [AnyCancellable]()
 }
