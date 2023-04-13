@@ -120,11 +120,11 @@
 		2B35F72028DEAB17009EF9C9 = {
 			isa = PBXGroup;
 			children = (
-				F3A46DEA29DDAA26004D4AD1 /* Utils */,
-				2B40F8A929DEE24700E484FB /* AppDelegate */,
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
 				2B64E95729E6B36A0007B1D0 /* APNs Helper Tester */,
+				2B40F8A929DEE24700E484FB /* AppDelegate */,
 				2B35F72A28DEAB17009EF9C9 /* Products */,
+				F3A46DEA29DDAA26004D4AD1 /* Utils */,
 			);
 			sourceTree = "<group>";
 		};

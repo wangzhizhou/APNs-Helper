@@ -18,7 +18,7 @@ struct TesterApp: App {
         WindowGroup {
             NavigationView {
                 ContentView()
-                    .navigationTitle("Tester App")
+                    .navigationTitle("APNs Tester App")
                     .environmentObject(TesterApp.model)
             }
         }

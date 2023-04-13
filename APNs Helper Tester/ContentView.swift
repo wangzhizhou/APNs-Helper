@@ -12,38 +12,48 @@ struct ContentView: View {
     
     var body: some View {
         
-        VStack {
-            
-            Button {
-                model.copyToPasteboard(content: model.deviceToken)
-                model.alertMessage = "Device Token has be copyed into Pasteboard"
-            } label: {
-                HStack(alignment: .top) {
-                    Text("DeviceToken:")
-                    Text(model.deviceToken)
-                        .multilineTextAlignment(.leading)
+        let content = [
+            ("Key ID", model.keyId),
+            ("Team ID", model.teamID),
+            ("BundleID", model.bundleId),
+            ("Device Token", model.deviceToken),
+            ("PushKit Device Token", model.pushKitToken),
+            ("P8 Key", model.P8Key)
+        ]
+        
+        Form {
+            ForEach(content, id: \.self.0) { item in
+                Section(item.0) {
+                    ItemEntry(title: item.1, alertMessage: $model.alertMessage)
                 }
             }
-            .padding([.bottom], 20)
             
-            
-            Button {
-                model.copyToPasteboard(content: model.pushKitToken)
-                model.alertMessage = "PushKit Token has be copyed into Pasteboard"
-            } label: {
-                HStack(alignment: .top) {
-                    Text("PushKitToken:")
-                    Text(model.pushKitToken)
-                        .multilineTextAlignment(.leading)
-                }
-            }
-            .padding([.bottom], 20)
             
         }
         .alert(isPresented: $model.showAlert, content: {
             Alert(title: Text(model.alertMessage), message: Text(UIPasteboard.general.string ?? ""))
         })
-        .padding()
+    }
+}
+
+struct ItemEntry: View {
+    
+    let title: String
+    
+    @Binding var alertMessage: String
+    
+    var body: some View {
+        HStack {
+            Text(title)
+            Spacer()
+            Button {
+                UIPasteboard.general.string = title
+                alertMessage = "Copyed To Pasteboard!"
+            } label: {
+                Image(systemName: "doc.on.doc.fill")
+            }
+
+        }
     }
 }
 
