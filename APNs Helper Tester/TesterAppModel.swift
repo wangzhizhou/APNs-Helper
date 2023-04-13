@@ -52,5 +52,6 @@ class TesterAppModel: ObservableObject {
             self.alertMessage = message
         }
         cancellables.append(backgroundNotificationCancellable)
+        
     }
 }

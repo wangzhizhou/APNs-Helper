@@ -4,6 +4,7 @@
 //
 //  Created by joker on 2023/4/12.
 //
+#if ENABLE_VOIP
 
 import CallKit
 
@@ -74,3 +75,4 @@ extension CallKitManager: CXProviderDelegate {
     }
 }
 
+#endif
