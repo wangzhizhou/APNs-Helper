@@ -64,6 +64,7 @@ class TesterAppModel: ObservableObject {
         cancellables.append(deviceTokenCancellable)
         
         let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
+            UIPasteboard.general.string = nil
             self.alertMessage = message
         }
         cancellables.append(backgroundNotificationCancellable)
