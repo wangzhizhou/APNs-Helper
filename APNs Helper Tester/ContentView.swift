@@ -16,9 +16,9 @@ struct ContentView: View {
             ("Key ID", model.keyId),
             ("Team ID", model.teamID),
             ("BundleID", model.bundleId),
+            ("P8 Key", model.P8Key),
             ("Device Token", model.deviceToken),
             ("PushKit Device Token", model.pushKitToken),
-            ("P8 Key", model.P8Key)
         ]
         
         Form {
