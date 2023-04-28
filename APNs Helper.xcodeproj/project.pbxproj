@@ -43,8 +43,6 @@
 		2B64E98829E6CD690007B1D0 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
-		2BB3E88E29FBA30B00B90602 /* APNs-Helper-Info-debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BB3E88C29FBA30B00B90602 /* APNs-Helper-Info-debug.plist */; };
-		2BB3E88F29FBA30B00B90602 /* APNs-Helper-Info-release.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2BB3E88D29FBA30B00B90602 /* APNs-Helper-Info-release.plist */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
@@ -383,9 +381,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BB3E88E29FBA30B00B90602 /* APNs-Helper-Info-debug.plist in Resources */,
 				2B35F73A28DEAB18009EF9C9 /* Preview Assets.xcassets in Resources */,
-				2BB3E88F29FBA30B00B90602 /* APNs-Helper-Info-release.plist in Resources */,
 				2B35F73628DEAB18009EF9C9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
