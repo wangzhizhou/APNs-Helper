@@ -28,7 +28,9 @@ struct AppContent: View {
     @State var showFileImporter: Bool = false
     @State var isInTestMode: Bool = false
     @FocusState var logTextEditorFocusState: Bool
-
+    
+    @State var simulator: Bool = false
+    
     var config: Config {
         .init(
             deviceToken: deviceToken.trimmed,
