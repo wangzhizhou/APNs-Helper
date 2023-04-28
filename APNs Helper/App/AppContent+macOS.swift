@@ -18,10 +18,10 @@ extension AppContent {
                 
                 if !appModel.presets.isEmpty {
                     HStack {
-                        Picker("Preset", selection: $presetConfig) {
+                        Picker(Constants.preset.value, selection: $presetConfig) {
                             ForEach(appModel.presets) {
                                 if $0 == .none {
-                                    Text("none").tag($0)
+                                    Text(Constants.presetnone.value).tag($0)
                                 } else {
                                     Text($0.appBundleID).tag($0)
                                 }
@@ -37,7 +37,7 @@ extension AppContent {
                             fileProviderDeviceToken = tag.fileProviderDeviceToken
                             privateKey = tag.privateKey
                         }
-                        Button("Clear All Preset") {
+                        Button(Constants.clearallpreset.value) {
                             clearAllPreset()
                         }
                         .buttonStyle(BorderedButtonStyle())
@@ -45,7 +45,7 @@ extension AppContent {
                 }
                 
                 HStack {
-                    Picker("Push Type", selection: $pushType) {
+                    Picker(Constants.pushtype.value, selection: $pushType) {
                         ForEach(PushType.allCases, id: \.self) {
                             Text($0.rawValue).tag($0)
                         }
@@ -55,7 +55,7 @@ extension AppContent {
                     })
                     
                     Spacer(minLength: 50)
-                    Picker("APN Server", selection: $apnsServerEnv) {
+                    Picker(Constants.apnserver.value, selection: $apnsServerEnv) {
                         ForEach(APNServerEnv.allCases, id: \.self) {
                             Text($0.rawValue)
                                 .tag($0)
@@ -67,56 +67,56 @@ extension AppContent {
             }
             
             GroupBox {
+                
                 VStack(alignment: .trailing) {
                     
                     if simulator {
                         
-                        InputView(title: "BundleID", inputValue: $appBundleID)
+                        InputView(title: Constants.bundleid.value, inputValue: $appBundleID)
                         
                     } else {
                         
-                        InputView(title: "KeyID", inputValue: $keyIdentifier)
+                        InputView(title: Constants.keyid.value, inputValue: $keyIdentifier)
                         
-                        InputView(title: "TeamID", inputValue: $teamIdentifier)
+                        InputView(title: Constants.teamid.value, inputValue: $teamIdentifier)
                         
-                        InputView(title: "BundleID", inputValue: $appBundleID)
-                        
-                        if pushType == .alert || pushType == .background {
-                            InputView(title: "Device Token", inputValue: $deviceToken)
-                        }
-                        
-                        if pushType == .voip {
-                            InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
-                        }
-                        
-                        //                        if pushType == .fileprovider {
-                        //                            InputView(title: "File Provider Device Token", inputValue: $fileProviderDeviceToken)
-                        //                        }
-                        
-                        Divider()
+                        InputView(title: Constants.bundleid.value, inputValue: $appBundleID)
                         
                         VStack(alignment: .leading) {
                             HStack{
-                                Text("Private Key")
+                                Text(Constants.p8key.value)
                                 Spacer()
                                 Button {
                                     showFileImporter = true
                                 } label: {
-                                    Text("import .p8 file")
+                                    Text(Constants.importP8File.value)
                                 }
                             }
                             
                             InputTextEditor(content: $privateKey)
                                 .frame(height: 50)
                             
-                            HStack {
-                                Button("Clear If Exist") {
-                                    clearCurrentConfigPresetIfExist()
-                                }
-                                Spacer()
-                                Button("Save As Preset") {
-                                    saveAsPreset()
-                                }
+                        }
+                        
+                        Group {
+                            
+                            if pushType == .alert || pushType == .background {
+                                InputView(title: Constants.devicetoken.value, inputValue: $deviceToken)
+                            }
+                            
+                            if pushType == .voip {
+                                InputView(title: Constants.pushkittoken.value, inputValue: $pushKitDeviceToken)
+                            }
+                        }
+                        .padding(.vertical)
+                        
+                        HStack {
+                            Button(Constants.clearIfExist.value) {
+                                clearCurrentConfigPresetIfExist()
+                            }
+                            Spacer()
+                            Button(Constants.saveAsPreset.value) {
+                                saveAsPreset()
                             }
                         }
                     }
@@ -124,17 +124,17 @@ extension AppContent {
             }
             
             
-            InputTextEditor(title: "Payload", content: $payload, textEditorFont: .body)
+            InputTextEditor(title: Constants.payload.value, content: $payload, textEditorFont: .body)
                 .frame(minHeight: 200)
             
             HStack {
                 
                 if payload.isEmpty {
-                    Button("Load Template (⌘+T)") {
+                    Button(Constants.loadTemplate.value) {
                         loadPayloadTemplate()
                     }
                     .disabled(appModel.isSendingPush)
-                    .keyboardShortcut(.init(unicodeScalarLiteral: "T"), modifiers: [.command])
+                    .keyboardShortcut(.init(unicodeScalarLiteral: Constants.loadTemplateShortcutKey.firstChar), modifiers: [.command])
                 }
                 
                 Button {
@@ -151,7 +151,7 @@ extension AppContent {
                         appModel.isSendingPush = false
                     }
                 } label: {
-                    Text("Send\(appModel.isSendingPush ? "ing..." : " (⌘+⏎)")")
+                    Text(appModel.isSendingPush ? Constants.sending.value : Constants.send.value)
                 }
                 .disabled(appModel.isSendingPush)
                 .keyboardShortcut(.return, modifiers: [.command])
@@ -159,14 +159,14 @@ extension AppContent {
                 
                 if !AppSandbox.isSandbox() {
                     Toggle(isOn: $simulator) {
-                        Text("发送到模拟器")
+                        Text(Constants.sendToSimulator.value)
                     }
                 }
             }
             
             Divider()
             
-            InputTextEditor(title: "Log", content: $appModel.appLog)
+            InputTextEditor(title: Constants.log.value, content: $appModel.appLog)
                 .frame(minHeight: 100)
             
         }
@@ -178,7 +178,7 @@ extension AppContent {
         .alert(isPresented: $appModel.showAlert) {
             Alert(title: Text(appModel.alertMessage ?? ""))
         }
-        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType(filenameExtension: "p8")!]) { result in
+        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType(filenameExtension: Constants.p8FileExt.value)!]) { result in
             switch result {
             case .success(let url):
                 if let output = url.p8FileContent {

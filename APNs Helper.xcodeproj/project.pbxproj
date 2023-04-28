@@ -43,6 +43,7 @@
 		2B64E98829E6CD690007B1D0 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
+		2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3E89029FBB7BB00B90602 /* Constants.swift */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
@@ -86,6 +87,7 @@
 		2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogHandler.swift; sourceTree = "<group>"; };
 		2BB3E88C29FBA30B00B90602 /* APNs-Helper-Info-debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Info-debug.plist"; sourceTree = "<group>"; };
 		2BB3E88D29FBA30B00B90602 /* APNs-Helper-Info-release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Info-release.plist"; sourceTree = "<group>"; };
+		2BB3E89029FBB7BB00B90602 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2BBDDE7628E494440052DC28 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
 		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsService.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				2B505E2929DD26230010F62D /* AppContent+macOS.swift */,
 				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
 				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
+				2BB3E89029FBB7BB00B90602 /* Constants.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */,
 				2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */,
 				2B5036EF29DAA8600010F62D /* APNsService+Simulator.swift in Sources */,
+				2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */,
 				2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */,
