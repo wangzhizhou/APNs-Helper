@@ -168,6 +168,11 @@ class AppModel: ObservableObject {
                 self.toastMessage = message
             }
             cancellables.append(backgroundNotificationCancellable)
+            
+            let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
+                self.toastMessage = "Copyed to Pasteboard!"
+            }
+            cancellables.append(copyToPasteboardCancellable)
         }
     
     private var cancellables = [AnyCancellable]()

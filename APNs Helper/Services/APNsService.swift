@@ -33,19 +33,26 @@ enum PushType: String, CaseIterable, Codable {
 
 struct APNsService {
     struct Payload: Codable {}
-    static let logger: Logger = {
-        var logger = Logger(label: "APNs Helper") { _ in
-            AppLogHandler()
-        }
-        return logger
-    }()
     
     let config: Config
     private let payload =  Payload()
     var payloadData: Data
+    
+    let appModel: AppModel
+    
+    let logger: Logger
+    
+    init(config: Config, payloadData: Data, appModel: AppModel) {
+        self.config = config
+        self.payloadData = payloadData
+        self.appModel = appModel
+        self.logger = Logger(label: "APNs Helper") { _ in AppLogHandler(appModel: appModel) }
+    }
+    
     func send() async throws {
                 
         var client: APNSClient<JSONDecoder, JSONEncoder>?
+        
         
         do {
             guard !config.sendToSimulator else {
@@ -67,7 +74,7 @@ struct APNsService {
                 responseDecoder: JSONDecoder(),
                 requestEncoder: JSONEncoder(),
                 byteBufferAllocator: .init(),
-                backgroundActivityLogger: Self.logger
+                backgroundActivityLogger: logger
             )
 
             var byteBuffer = ByteBufferAllocator().buffer(capacity: 0)
@@ -96,18 +103,18 @@ struct APNsService {
                 topic: topic,
                 deadline: .now() + .seconds(10))
 
-            Self.logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
-            await shutdownClient(client)
+            logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
+            await shutdownClient(client, appModel: appModel)
         }
         catch {
-            Self.logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
-            await shutdownClient(client)
+            logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
+            await shutdownClient(client, appModel: appModel)
         }
     }
     
-    func shutdownClient(_ client: APNSClient<JSONDecoder, JSONEncoder>?) async {
+    func shutdownClient(_ client: APNSClient<JSONDecoder, JSONEncoder>?, appModel: AppModel) async {
         _ = await MainActor.run {
-            APNsHelperApp.model.isSendingPush = false
+            appModel.isSendingPush = false
         }
         client?.shutdown(callback: { error in
             print("shutdown client: \(error?.localizedDescription ?? "Success")")

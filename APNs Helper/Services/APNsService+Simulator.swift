@@ -29,7 +29,7 @@ extension APNsService {
         inputHandler.closeFile()
         try process.run()
         if let log = String(data: outputAndErrorPipe.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) {
-            Self.logger.trace(.init(stringLiteral: log))
+            logger.trace(.init(stringLiteral: log))
         }
 #endif
     }

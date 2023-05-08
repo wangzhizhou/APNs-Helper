@@ -10,6 +10,9 @@ import APNSwift
 import Logging
 
 struct AppLogHandler: LogHandler {
+    
+    let appModel: AppModel
+
     subscript(metadataKey key: String) -> Logging.Logger.Metadata.Value? {
         get {
             return metadata[key]
@@ -59,7 +62,7 @@ struct AppLogHandler: LogHandler {
         Task {
             await MainActor.run {
                 // 输出到UI界面
-                APNsHelperApp.model.appLog.append(output)
+                appModel.appLog.append(output)
             }
         }
     }

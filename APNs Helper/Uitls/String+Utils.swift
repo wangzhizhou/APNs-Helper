@@ -13,6 +13,7 @@ import AppKit
 #endif
 
 extension String {
+    
     var trimmed: String { self.trimmingCharacters(in: .whitespacesAndNewlines) }
     
     func copyToPasteboard() {
@@ -21,6 +22,10 @@ extension String {
 #elseif os(macOS)
         NSPasteboard.general.setString(self, forType: .string)
 #endif
-        APNsHelperApp.model.toastMessage = "Copyed to Pasteboard!"
+        NotificationCenter.default.post(name: .APNSHelperStringCopyedToPastedboard, object: self)
     }
+}
+
+extension Notification.Name {
+    static let APNSHelperStringCopyedToPastedboard = Notification.Name("APNSHelperStringCopyedToPastedboard")
 }
