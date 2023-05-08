@@ -49,4 +49,18 @@ extension Config: Codable {}
 
 extension Config: Hashable {}
 
-
+extension Config {
+    var trimmed: Config {
+        .init(
+            deviceToken: deviceToken.trimmed,
+            pushKitDeviceToken: pushKitDeviceToken.trimmed,
+            fileProviderDeviceToken: fileProviderDeviceToken.trimmed,
+            appBundleID: appBundleID.trimmed,
+            privateKey: privateKey,
+            keyIdentifier: keyIdentifier.trimmed,
+            teamIdentifier: teamIdentifier.trimmed,
+            pushType:pushType,
+            apnsServerEnv: apnsServerEnv
+        )
+    }
+}

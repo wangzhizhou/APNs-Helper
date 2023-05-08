@@ -1,5 +1,5 @@
 //
-//  AppContent+macOS.swift
+//  AppContentMacOS.swift
 //  APNs Helper
 //
 //  Created by joker on 2023/4/5.
@@ -8,17 +8,25 @@
 import SwiftUI
 import UniformTypeIdentifiers
 
-extension AppContent {
+struct AppContentMacOS: View {
+    
+    @EnvironmentObject var appModel: AppModel
+    @EnvironmentObject var contentModel: AppContentModel
+    
+    let loadPayloadTemplate: () -> Void
+    let saveAsPreset: () -> Void
+    let clearAllPreset: () -> Void
+    let clearCurrentConfigPresetIfExist: () -> Void
     
     var body: some View {
         
         VStack {
             
-            if !simulator {
+            if !contentModel.simulator {
                 
                 if !appModel.presets.isEmpty {
                     HStack {
-                        Picker(Constants.preset.value, selection: $presetConfig) {
+                        Picker(Constants.preset.value, selection: $contentModel.presetConfig) {
                             ForEach(appModel.presets) {
                                 if $0 == .none {
                                     Text(Constants.presetnone.value).tag($0)
@@ -28,14 +36,8 @@ extension AppContent {
                             }
                         }
                         .padding(.vertical)
-                        .onChange(of: presetConfig) { tag in
-                            teamIdentifier = tag.teamIdentifier
-                            keyIdentifier = tag.keyIdentifier
-                            appBundleID = tag.appBundleID
-                            deviceToken = tag.deviceToken
-                            pushKitDeviceToken = tag.pushKitDeviceToken
-                            fileProviderDeviceToken = tag.fileProviderDeviceToken
-                            privateKey = tag.privateKey
+                        .onChange(of: contentModel.presetConfig) { preset in
+                            contentModel.appInfo = preset
                         }
                         Button(Constants.clearallpreset.value) {
                             clearAllPreset()
@@ -45,17 +47,17 @@ extension AppContent {
                 }
                 
                 HStack {
-                    Picker(Constants.pushtype.value, selection: $pushType) {
+                    Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
                         ForEach(PushType.allCases, id: \.self) {
                             Text($0.rawValue).tag($0)
                         }
                     }
-                    .onChange(of: pushType, perform: { _ in
+                    .onChange(of: contentModel.appInfo.pushType, perform: { _ in
                         loadPayloadTemplate()
                     })
                     
                     Spacer(minLength: 50)
-                    Picker(Constants.apnserver.value, selection: $apnsServerEnv) {
+                    Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
                         ForEach(APNServerEnv.allCases, id: \.self) {
                             Text($0.rawValue)
                                 .tag($0)
@@ -70,42 +72,42 @@ extension AppContent {
                 
                 VStack(alignment: .trailing) {
                     
-                    if simulator {
+                    if contentModel.simulator {
                         
-                        InputView(title: Constants.bundleid.value, inputValue: $appBundleID)
+                        InputView(title: Constants.bundleid.value, inputValue: $contentModel.appInfo.appBundleID)
                         
                     } else {
                         
-                        InputView(title: Constants.keyid.value, inputValue: $keyIdentifier)
+                        InputView(title: Constants.keyid.value, inputValue: $contentModel.appInfo.keyIdentifier)
                         
-                        InputView(title: Constants.teamid.value, inputValue: $teamIdentifier)
+                        InputView(title: Constants.teamid.value, inputValue: $contentModel.appInfo.teamIdentifier)
                         
-                        InputView(title: Constants.bundleid.value, inputValue: $appBundleID)
+                        InputView(title: Constants.bundleid.value, inputValue: $contentModel.appInfo.appBundleID)
                         
                         VStack(alignment: .leading) {
                             HStack{
                                 Text(Constants.p8key.value)
                                 Spacer()
                                 Button {
-                                    showFileImporter = true
+                                    contentModel.showFileImporter = true
                                 } label: {
                                     Text(Constants.importP8File.value)
                                 }
                             }
                             
-                            InputTextEditor(content: $privateKey)
+                            InputTextEditor(content: $contentModel.appInfo.privateKey)
                                 .frame(height: 50)
                             
                         }
                         
                         Group {
                             
-                            if pushType == .alert || pushType == .background {
-                                InputView(title: Constants.devicetoken.value, inputValue: $deviceToken)
+                            if contentModel.appInfo.pushType == .alert || contentModel.appInfo.pushType == .background {
+                                InputView(title: Constants.devicetoken.value, inputValue: $contentModel.appInfo.deviceToken)
                             }
                             
-                            if pushType == .voip {
-                                InputView(title: Constants.pushkittoken.value, inputValue: $pushKitDeviceToken)
+                            if contentModel.appInfo.pushType == .voip {
+                                InputView(title: Constants.pushkittoken.value, inputValue: $contentModel.appInfo.pushKitDeviceToken)
                             }
                         }
                         .padding(.vertical)
@@ -124,12 +126,12 @@ extension AppContent {
             }
             
             
-            InputTextEditor(title: Constants.payload.value, content: $payload, textEditorFont: .body)
+            InputTextEditor(title: Constants.payload.value, content: $contentModel.payload, textEditorFont: .body)
                 .frame(minHeight: 200)
             
             HStack {
                 
-                if payload.isEmpty {
+                if contentModel.payload.isEmpty {
                     Button(Constants.loadTemplate.value) {
                         loadPayloadTemplate()
                     }
@@ -138,14 +140,14 @@ extension AppContent {
                 }
                 
                 Button {
-                    let config = config
+                    let config = contentModel.config
                     Task {
                         appModel.isSendingPush = true
                         appModel.resetLog()
-                        if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
+                        if contentModel.payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
                             try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                         }
-                        else if let payloadData = payload.data(using: .utf8) {
+                        else if let payloadData = contentModel.payload.data(using: .utf8) {
                             try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                         }
                         appModel.isSendingPush = false
@@ -158,7 +160,7 @@ extension AppContent {
                 
                 
                 if !AppSandbox.isSandbox() {
-                    Toggle(isOn: $simulator) {
+                    Toggle(isOn: $contentModel.simulator) {
                         Text(Constants.sendToSimulator.value)
                     }
                 }
@@ -172,21 +174,5 @@ extension AppContent {
         }
         .frame(minWidth: 600)
         .padding()
-        .onAppear {
-            loadPayloadTemplate()
-        }
-        .alert(isPresented: $appModel.showAlert) {
-            Alert(title: Text(appModel.alertMessage ?? ""))
-        }
-        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType(filenameExtension: Constants.p8FileExt.value)!]) { result in
-            switch result {
-            case .success(let url):
-                if let output = url.p8FileContent {
-                    privateKey = output
-                }
-            case .failure(let error):
-                appModel.appLog.append(error.localizedDescription)
-            }
-        }
     }
 }

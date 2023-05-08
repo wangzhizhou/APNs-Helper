@@ -1,5 +1,5 @@
 //
-//  AppContent+iOS.swift
+//  AppContentIOS.swift
 //  APNs Helper
 //
 //  Created by joker on 2023/4/5.
@@ -9,16 +9,28 @@ import SwiftUI
 import UniformTypeIdentifiers
 import AlertToast
 
-extension AppContent {
+struct AppContentIOS: View {
+    
+    @EnvironmentObject var appModel: AppModel
+    @EnvironmentObject var contentModel: AppContentModel
+    
+    let loadPayloadTemplate: () -> Void
+    let saveAsPreset: () -> Void
+    let clearAllPreset: () -> Void
+    let clearCurrentConfigPresetIfExist: () -> Void
+    let refreshTestMode: () -> Void
+    
+    @FocusState
+    private var logTextEditorFocusState: Bool
     
     var body: some View {
         VStack {
             Form {
                 if !appModel.presets.isEmpty {
-                    Picker("Preset Config", selection: $presetConfig) {
+                    Picker(Constants.preset.value, selection: $contentModel.presetConfig) {
                         ForEach(appModel.presets) {
                             if $0 == .none {
-                                Text("none").tag($0)
+                                Text(Constants.presetnone.value).tag($0)
                             } else {
                                 Text($0.appBundleID)
                                     .lineLimit(1)
@@ -27,129 +39,121 @@ extension AppContent {
                         }
                     }
                     .pickerStyle(.inline)
-                    .onChange(of: presetConfig) { tag in
-                        teamIdentifier = tag.teamIdentifier
-                        keyIdentifier = tag.keyIdentifier
-                        appBundleID = tag.appBundleID
-                        deviceToken = tag.deviceToken
-                        pushKitDeviceToken = tag.pushKitDeviceToken
-                        fileProviderDeviceToken = tag.fileProviderDeviceToken
-                        privateKey = tag.privateKey
+                    .onChange(of: contentModel.presetConfig) { preset in
+                        contentModel.appInfo = preset
                     }
-                    Button("Clear All Preset Config") {
+                    Button(Constants.clearallpreset.value) {
                         clearAllPreset()
                     }
                 }
                 
-                Section("APNs Server Config") {
-                    Picker("Push Type", selection: $pushType) {
+                Section(Constants.apnserver.value) {
+                    Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
                         ForEach(PushType.allCases, id: \.self) {
                             Text($0.rawValue).tag($0)
                         }
                     }
-                    .onChange(of: pushType, perform: { _ in
+                    .onChange(of: contentModel.appInfo.pushType, perform: { _ in
                         loadPayloadTemplate()
                     })
-                    
-                    Picker("APN Server", selection: $apnsServerEnv) {
+                    Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
                         ForEach(APNServerEnv.allCases, id: \.self) {
-                            Text($0.rawValue)
-                                .tag($0)
+                            Text($0.rawValue).tag($0)
                         }
                     }
                 }
                 
-                Section("App Info") {
+                Section(Constants.appInfo.value) {
                     
-                    InputView(title: "KeyID", inputValue: $keyIdentifier)
-                        .onChange(of: keyIdentifier) { _ in
+                    InputView(title: Constants.keyid.value, inputValue: $contentModel.appInfo.keyIdentifier)
+                        .onChange(of: contentModel.appInfo.keyIdentifier) { _ in
                             refreshTestMode()
                         }
                     
-                    InputView(title: "TeamID", inputValue: $teamIdentifier)
-                        .onChange(of: teamIdentifier) { _ in
+                    InputView(title: Constants.teamid.value, inputValue: $contentModel.appInfo.teamIdentifier)
+                        .onChange(of: contentModel.appInfo.teamIdentifier) { _ in
                             refreshTestMode()
                         }
                     
-                    InputView(title: "BundleID", inputValue: $appBundleID)
-                        .onChange(of: appBundleID) { _ in
+                    InputView(title: Constants.bundleid.value, inputValue: $contentModel.appInfo.appBundleID)
+                        .onChange(of: contentModel.appInfo.appBundleID) { _ in
                             refreshTestMode()
                         }
                     
                     VStack(alignment: .leading) {
                         HStack {
-                            Text("P8 Key")
+                            Text(Constants.p8key.value)
                             Spacer()
                             Button {
-                                showFileImporter = true
+                                contentModel.showFileImporter = true
                             } label: {
-                                Text("import .p8 file")
+                                Text(Constants.importP8File.value)
                             }
                         }
-                        InputTextEditor(content: $privateKey)
+                        InputTextEditor(content: $contentModel.appInfo.privateKey)
                             .frame(height: 80)
-                            .onChange(of: privateKey) { _ in
+                            .onChange(of: contentModel.appInfo.privateKey) { _ in
                                 refreshTestMode()
                             }
                     }
                     
-                    if pushType == .alert || pushType == .background {
-                        InputView(title: "Device Token", inputValue: $deviceToken)
-                    } else if pushType == .voip {
-                        InputView(title: "PushKit Device Token", inputValue: $pushKitDeviceToken)
+                    if contentModel.appInfo.pushType == .alert || contentModel.appInfo.pushType == .background {
+                        InputView(title: Constants.devicetoken.value, inputValue: $contentModel.appInfo.deviceToken)
+                    } else if contentModel.appInfo.pushType == .voip {
+                        InputView(title: Constants.pushkittoken.value, inputValue: $contentModel.appInfo.pushKitDeviceToken)
                     }
                 }
                 
 #if DEBUG
-                Toggle(isOn: $isInTestMode) {
-                    Text("Fill this App's Info ")
+                Toggle(isOn: $contentModel.isInTestMode) {
+                    Text(Constants.fillInAppInfo.value)
                 }
-                .onChange(of: isInTestMode) { mode in
+                .onChange(of: contentModel.isInTestMode) { mode in
                     if mode {
-                        configThisAppInfo()
+                        contentModel.appInfo = appModel.thisAppConfig
                     }
                 }
                 .onChange(of: appModel.thisAppConfig) { _ in
-                    guard isInTestMode else {
+                    guard contentModel.isInTestMode else {
                         return
                     }
-                    configThisAppInfo()
+                    contentModel.appInfo = appModel.thisAppConfig
                 }
 #endif
                 
-                if !config.isEmpty {
-                    Button("Clear Current App Info") {
-                        clearAppInfo()
+                if !contentModel.config.isEmpty {
+                    Button(Constants.clearCurrentAppInfo.value) {
+                        contentModel.clearAppInfo()
                     }
                 }
-                if !appBundleID.isEmpty {
-                    Button("Remove App Info From Preset Config") {
+                if !contentModel.appInfo.appBundleID.isEmpty {
+                    Button(Constants.removeAppInfoFromPreset.value) {
                         clearCurrentConfigPresetIfExist()
                     }
                 }
-                if config.isValidForSave.valid {
-                    Button("Save App Info As Preset Config") {
+                if contentModel.config.isValidForSave.valid {
+                    Button(Constants.saveAppInfoAsPreset.value) {
                         saveAsPreset()
                     }
                 }
                 
-                Section("Payload") {
-                    InputTextEditor(content: $payload, textEditorFont: .body)
+                Section(Constants.payload.value) {
+                    InputTextEditor(content: $contentModel.payload, textEditorFont: .body)
                         .frame(minHeight: 200)
                         .padding(.vertical)
                 }
                 
                 Group {
-                    Button("Load Template Payload") {
+                    Button( Constants.loadTemplatePayload.value) {
                         loadPayloadTemplate()
                     }
                     
-                    Button("Clear Payload") {
-                        payload = ""
+                    Button(Constants.clearPayload.value) {
+                        contentModel.payload = ""
                     }
                 }
                 
-                Section("App Log") {
+                Section(Constants.log.value) {
                     VStack {
                         InputTextEditor(content: $appModel.appLog, textEditorFont: .system(size: 9))
                             .focused($logTextEditorFocusState)
@@ -165,19 +169,19 @@ extension AppContent {
                         
                         Button {
                             
-                            guard config.isReadyForSend else {
-                                appModel.alertMessage = "The App Info is not ready for send push!"
+                            guard contentModel.config.isReadyForSend else {
+                                appModel.alertMessage = Constants.tipForNotReady.value
                                 return
                             }
                             
-                            let config = config
+                            let config = contentModel.config
                             Task {
                                 appModel.isSendingPush = true
                                 appModel.resetLog()
-                                if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
+                                if contentModel.payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
                                     try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                                 }
-                                else if let payloadData = payload.data(using: .utf8) {
+                                else if let payloadData = contentModel.payload.data(using: .utf8) {
                                     try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                                 }
                                 appModel.isSendingPush = false
@@ -190,7 +194,7 @@ extension AppContent {
                                             .tint(Color.orange)
                                             .padding([.trailing], 1)
                                     }
-                                    Text("Send\(appModel.isSendingPush ? "ing..." : " Push")")
+                                    Text(appModel.isSendingPush ? Constants.sending.value : Constants.sendPush.value)
                                         .bold()
                                         .font(.title3)
                                 }
@@ -205,24 +209,8 @@ extension AppContent {
             }
             .scrollDismissesKeyboard(.immediately)
         }
-        .onAppear {
-            loadPayloadTemplate()
-        }
-        .alert(isPresented: $appModel.showAlert) {
-            Alert(title: Text(appModel.alertMessage ?? ""))
-        }
         .toast(isPresenting: $appModel.showToast) {
             AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage)
-        }
-        .fileImporter(isPresented: $showFileImporter, allowedContentTypes: [UTType(filenameExtension: "p8")!]) { result in
-            switch result {
-            case .success(let url):
-                if let output = url.p8FileContent {
-                    privateKey = output
-                }
-            case .failure(let error):
-                appModel.appLog.append(error.localizedDescription)
-            }
         }
     }
 }

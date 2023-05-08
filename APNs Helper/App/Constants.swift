@@ -10,6 +10,7 @@ import Foundation
 
 /// 定义应用中所有的字符串相关的常量
 enum Constants: String {
+    case empty = ""
     case preset = "Preset"
     case presetnone = "none"
     case clearallpreset = "Clear All Preset"
@@ -30,8 +31,18 @@ enum Constants: String {
     case loadTemplateShortcutKey = "T"
     case sending = "Sending..."
     case send = "Send (⌘+⏎)"
+    case sendPush = "Send Push"
     case sendToSimulator = "发送到模拟器"
     case log = "Log"
+    
+    case appInfo = "App Info"
+    case fillInAppInfo = "Fill this App's Info"
+    case clearCurrentAppInfo = "Clear Current App Info"
+    case removeAppInfoFromPreset = "Remove App Info From Preset Config"
+    case saveAppInfoAsPreset = "Save App Info As Preset Config"
+    case loadTemplatePayload = "Load Template Payload"
+    case clearPayload = "Clear Payload"
+    case tipForNotReady = "The App Info is not ready for send push!"
     
     var value: String {
         self.rawValue
