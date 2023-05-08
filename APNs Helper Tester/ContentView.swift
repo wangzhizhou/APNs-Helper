@@ -8,31 +8,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @EnvironmentObject var model: TesterAppModel
     
     var body: some View {
-        
-        let content = [
-            ("Key ID", model.keyId),
-            ("Team ID", model.teamID),
-            ("BundleID", model.bundleId),
-            ("P8 Key", model.P8Key),
-            ("Device Token", model.deviceToken),
-            ("PushKit Device Token", model.pushKitToken),
-        ]
-        
-        Form {
-            ForEach(content, id: \.self.0) { item in
-                Section(item.0) {
-                    ItemEntry(title: item.1, alertMessage: $model.alertMessage)
+        NavigationView {
+            Form {
+                ForEach(model.content, id: \.self.0) { item in
+                    Section(item.0) {
+                        ItemEntry(title: item.1, alertMessage: $model.alertMessage)
+                    }
                 }
+                
             }
-            
-            
+            .toolbar(content: {
+                Button {
+                    model.copyAllInfo()
+                } label: {
+                    Text("Copy All")
+                }
+                .buttonStyle(.bordered)
+            })
+            .navigationTitle("APNs Tester App")
+            .alert(isPresented: $model.showAlert, content: {
+                Alert(title: Text(model.alertMessage), message: Text(UIPasteboard.general.string ?? ""))
+            })
         }
-        .alert(isPresented: $model.showAlert, content: {
-            Alert(title: Text(model.alertMessage), message: Text(UIPasteboard.general.string ?? ""))
-        })
     }
 }
 
@@ -47,12 +48,11 @@ struct ItemEntry: View {
             Text(title)
             Spacer()
             Button {
-                UIPasteboard.general.string = title
-                alertMessage = "Copyed To Pasteboard!"
+                title.copyToPasteboard()
             } label: {
                 Image(systemName: "doc.on.doc.fill")
             }
-
+            
         }
     }
 }
@@ -60,6 +60,6 @@ struct ItemEntry: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(TesterApp.model)
+            .environmentObject(TesterAppModel())
     }
 }

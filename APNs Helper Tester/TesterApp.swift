@@ -9,18 +9,12 @@ import SwiftUI
 
 @main
 struct TesterApp: App {
-    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
-    static let model = TesterAppModel()
-    
+    @StateObject var model = TesterAppModel()
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ContentView()
-                    .navigationTitle("APNs Tester App")
-                    .environmentObject(TesterApp.model)
-            }
+            ContentView()
+                .environmentObject(model)
         }
     }
 }

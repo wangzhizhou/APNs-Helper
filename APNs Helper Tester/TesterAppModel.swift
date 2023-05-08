@@ -10,20 +10,19 @@ import Combine
 
 class TesterAppModel: ObservableObject {
     
+    private let keyId = "7S6SUT5L43"
     
-    let keyId = "7S6SUT5L43"
+    private let teamID = "2N62934Y28"
     
-    let teamID = "2N62934Y28"
-    
-    let bundleId = Bundle.main.bundleIdentifier!
-    
-    @Published
-    var deviceToken: String
+    private let bundleId = Bundle.main.bundleIdentifier!
     
     @Published
-    var pushKitToken: String
+    private var deviceToken: String
     
-    let P8Key = """
+    @Published
+    private var pushKitToken: String
+    
+    private let P8Key = """
     -----BEGIN PRIVATE KEY-----
     MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
     iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
@@ -40,10 +39,18 @@ class TesterAppModel: ObservableObject {
         }
     }
     
+    var content: [(String, String)] {[
+        ("Key ID", keyId),
+        ("Team ID", teamID),
+        ("BundleID",bundleId),
+        ("P8 Key", P8Key),
+        ("Device Token", deviceToken),
+        ("PushKit Device Token", pushKitToken),
+    ]}
+    
     func copyToPasteboard(content: String) {
         UIPasteboard.general.string = content
     }
-    
     
     private var cancellables = [AnyCancellable]()
     
@@ -69,5 +76,18 @@ class TesterAppModel: ObservableObject {
         }
         cancellables.append(backgroundNotificationCancellable)
         
+        let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
+            self.alertMessage = "Copyed To Pasteboard!"
+        }
+        cancellables.append(copyToPasteboardCancellable)
+    }
+    
+    func copyAllInfo() {
+        content.reduce("") { partialResult, element in
+            "\(partialResult)\(element.0):\n\(element.1)\n"
+        }
+        .trimmed
+        .copyToPasteboard()
+        alertMessage = "All Info Copyed!"
     }
 }

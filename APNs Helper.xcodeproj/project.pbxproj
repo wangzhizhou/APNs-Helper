@@ -48,6 +48,7 @@
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
 		2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3323E28E7221200E27D2D /* APNsService+Template.swift */; };
+		2BD801852A092E4300DDD17E /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
 		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
 		F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
 		F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */; };
@@ -215,7 +216,6 @@
 				F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */,
 				F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */,
 				F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */,
-				2B40E2AB29DE756500E484FB /* String+Utils.swift */,
 			);
 			path = Uitls;
 			sourceTree = "<group>";
@@ -292,6 +292,7 @@
 		F3A46DEA29DDAA26004D4AD1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2B40E2AB29DE756500E484FB /* String+Utils.swift */,
 				2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */,
 			);
 			path = Utils;
@@ -441,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BD801852A092E4300DDD17E /* String+Utils.swift in Sources */,
 				2B64E98129E6C8180007B1D0 /* UNUserNotificationManager.swift in Sources */,
 				2B64E96A29E6BA590007B1D0 /* AppDelegate.swift in Sources */,
 				2B64E98829E6CD690007B1D0 /* Data+Hex.swift in Sources */,
