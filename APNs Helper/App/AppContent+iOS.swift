@@ -175,10 +175,10 @@ extension AppContent {
                                 appModel.isSendingPush = true
                                 appModel.resetLog()
                                 if payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
-                                    try? await APNsService(config: config, payloadData: payloadData).send()
+                                    try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                                 }
                                 else if let payloadData = payload.data(using: .utf8) {
-                                    try? await APNsService(config: config, payloadData: payloadData).send()
+                                    try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                                 }
                                 appModel.isSendingPush = false
                             }
