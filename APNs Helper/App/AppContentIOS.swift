@@ -25,28 +25,17 @@ struct AppContentIOS: View {
     
     var body: some View {
         VStack {
+            
             Form {
+                // Preset
                 if !appModel.presets.isEmpty {
-                    Picker(Constants.preset.value, selection: $contentModel.presetConfig) {
-                        ForEach(appModel.presets) {
-                            if $0 == .none {
-                                Text(Constants.presetnone.value).tag($0)
-                            } else {
-                                Text($0.appBundleID)
-                                    .lineLimit(1)
-                                    .tag($0)
-                            }
-                        }
-                    }
-                    .pickerStyle(.inline)
-                    .onChange(of: contentModel.presetConfig) { preset in
+                    PresetPicker(presets: appModel.presets, selectedPreset: $contentModel.presetConfig) { preset in
                         contentModel.appInfo = preset
                     }
-                    Button(Constants.clearallpreset.value) {
-                        clearAllPreset()
-                    }
+                    Button(Constants.clearallpreset.value, action: clearAllPreset)
                 }
                 
+                // Push Type & APN Server
                 Section(Constants.apnserver.value) {
                     Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
                         ForEach(PushType.allCases, id: \.self) {
@@ -63,6 +52,7 @@ struct AppContentIOS: View {
                     }
                 }
                 
+                // App Info
                 Section(Constants.appInfo.value) {
                     
                     InputView(title: Constants.keyid.value, inputValue: $contentModel.appInfo.keyIdentifier)
@@ -80,22 +70,13 @@ struct AppContentIOS: View {
                             refreshTestMode()
                         }
                     
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(Constants.p8key.value)
-                            Spacer()
-                            Button {
-                                contentModel.showFileImporter = true
-                            } label: {
-                                Text(Constants.importP8File.value)
-                            }
+                    P8KeyView(
+                        showFileImporter: $contentModel.showFileImporter,
+                        privateKey: $contentModel.appInfo.privateKey) { _ in
+                            refreshTestMode()
+                        } onFileImporterError: { error in
+                            appModel.appLog.append(error.localizedDescription)
                         }
-                        InputTextEditor(content: $contentModel.appInfo.privateKey)
-                            .frame(height: 80)
-                            .onChange(of: contentModel.appInfo.privateKey) { _ in
-                                refreshTestMode()
-                            }
-                    }
                     
                     if contentModel.appInfo.pushType == .alert || contentModel.appInfo.pushType == .background {
                         InputView(title: Constants.devicetoken.value, inputValue: $contentModel.appInfo.deviceToken)

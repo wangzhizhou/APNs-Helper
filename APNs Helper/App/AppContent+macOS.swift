@@ -24,28 +24,17 @@ struct AppContentMacOS: View {
             
             if !contentModel.simulator {
                 
+                // Preset
                 if !appModel.presets.isEmpty {
                     HStack {
-                        Picker(Constants.preset.value, selection: $contentModel.presetConfig) {
-                            ForEach(appModel.presets) {
-                                if $0 == .none {
-                                    Text(Constants.presetnone.value).tag($0)
-                                } else {
-                                    Text($0.appBundleID).tag($0)
-                                }
-                            }
-                        }
-                        .padding(.vertical)
-                        .onChange(of: contentModel.presetConfig) { preset in
+                        PresetPicker(presets: appModel.presets, selectedPreset: $contentModel.presetConfig) { preset in
                             contentModel.appInfo = preset
                         }
-                        Button(Constants.clearallpreset.value) {
-                            clearAllPreset()
-                        }
-                        .buttonStyle(BorderedButtonStyle())
+                        Button(Constants.clearallpreset.value, action: clearAllPreset).buttonStyle(BorderedButtonStyle())
                     }
                 }
                 
+                // Push Type & APN Server
                 HStack {
                     Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
                         ForEach(PushType.allCases, id: \.self) {
@@ -55,12 +44,10 @@ struct AppContentMacOS: View {
                     .onChange(of: contentModel.appInfo.pushType, perform: { _ in
                         loadPayloadTemplate()
                     })
-                    
                     Spacer(minLength: 50)
                     Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
                         ForEach(APNServerEnv.allCases, id: \.self) {
-                            Text($0.rawValue)
-                                .tag($0)
+                            Text($0.rawValue).tag($0)
                         }
                     }
                     .pickerStyle(.segmented)
@@ -68,6 +55,7 @@ struct AppContentMacOS: View {
                 .padding(.bottom)
             }
             
+            // App Info
             GroupBox {
                 
                 VStack(alignment: .trailing) {
@@ -84,21 +72,13 @@ struct AppContentMacOS: View {
                         
                         InputView(title: Constants.bundleid.value, inputValue: $contentModel.appInfo.appBundleID)
                         
-                        VStack(alignment: .leading) {
-                            HStack{
-                                Text(Constants.p8key.value)
-                                Spacer()
-                                Button {
-                                    contentModel.showFileImporter = true
-                                } label: {
-                                    Text(Constants.importP8File.value)
-                                }
-                            }
-                            
-                            InputTextEditor(content: $contentModel.appInfo.privateKey)
-                                .frame(height: 50)
-                            
-                        }
+                        P8KeyView(
+                            showFileImporter: $contentModel.showFileImporter,
+                            privateKey: $contentModel.appInfo.privateKey,
+                            onPrivateKeyChange: nil,
+                            onFileImporterError: { error in
+                                appModel.appLog.append(error.localizedDescription)
+                            })
                         
                         Group {
                             

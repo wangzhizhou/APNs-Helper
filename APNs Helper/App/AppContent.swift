@@ -39,16 +39,6 @@ struct AppContent: View {
         .alert(isPresented: $appModel.showAlert) {
             Alert(title: Text(appModel.alertMessage ?? ""))
         }
-        .fileImporter(isPresented: $contentModel.showFileImporter, allowedContentTypes: [UTType(filenameExtension: Constants.p8FileExt.value)!]) { result in
-            switch result {
-            case .success(let url):
-                if let output = url.p8FileContent {
-                    contentModel.appInfo.privateKey = output
-                }
-            case .failure(let error):
-                appModel.appLog.append(error.localizedDescription)
-            }
-        }
     }
 }
 
