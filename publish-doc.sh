@@ -12,7 +12,7 @@ fi
 # Save the current commit we've just built documentation from in a variable
 CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
 
-git submodule init && git pull --recurse-submodules
+git submodule init && git pull --recurse-submodules --ff-only
 git fetch && git checkout main && git pull
 
 if [ -d docs ]; then
