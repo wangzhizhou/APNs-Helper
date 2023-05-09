@@ -4,18 +4,20 @@
 
 set -eu
 
+if [ -z "$(git status --porcelain)" ];then
+    git submodule init && git submodule update && git pull --recurse-submodules --ff-only
+fi
+
+CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
+
 if [ ! -d website ]; then
     echo No website submodule
     exit -1
 fi
 
-# Save the current commit we've just built documentation from in a variable
-CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
-
-git submodule init && git submodule update && git pull --recurse-submodules --ff-only
-git fetch && git checkout main && git pull
-
 cd website
+
+git reset --hard HEAD && git fetch && git checkout main && git pull
 
 if [ -d docs ]; then
     rm -rf docs
@@ -25,14 +27,14 @@ if [ -d derivedData ]; then
     rm -rf derivedData
 fi
 
-xcodebuild docbuild -project '../APNs Helper.xcodeproj' \
+xcodebuild docbuild \
+    -project '../APNs Helper.xcodeproj' \
     -scheme 'APNs Helper Doc' \
     -sdk macosx \
     -destination=generic/platform=macOS \
     -derivedDataPath ./derivedData
 
 PATH_TO_ARCHIVE_FILE=$(find ./derivedData -type d -name 'APNs Helper.doccarchive')
-echo archive file: "$PATH_TO_ARCHIVE_FILE"
 
 if [ -z "$PATH_TO_ARCHIVE_FILE" ]; then
     echo no archive file found
