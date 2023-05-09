@@ -56,6 +56,8 @@
 		2BD8018F2A0A5CD000DDD17E /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8018E2A0A5CD000DDD17E /* TokenView.swift */; };
 		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
 		F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD122A096B0B0061DF8A /* AppContentModel.swift */; };
+		F369DD1B2A0A9E890061DF8A /* EmptyFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD1A2A0A9E890061DF8A /* EmptyFile.swift */; };
+		F369DD282A0A9EF20061DF8A /* docs.docc in Sources */ = {isa = PBXBuildFile; fileRef = F369DD272A0A9EF20061DF8A /* docs.docc */; };
 		F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
 		F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */; };
 		F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */; };
@@ -109,6 +111,9 @@
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
 		F369DD122A096B0B0061DF8A /* AppContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentModel.swift; sourceTree = "<group>"; };
+		F369DD182A0A9E890061DF8A /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F369DD1A2A0A9E890061DF8A /* EmptyFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyFile.swift; sourceTree = "<group>"; };
+		F369DD272A0A9EF20061DF8A /* docs.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = docs.docc; sourceTree = "<group>"; };
 		F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Utils.swift"; sourceTree = "<group>"; };
 		F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Utils.swift"; sourceTree = "<group>"; };
@@ -131,17 +136,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F369DD152A0A9E890061DF8A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2B35F72028DEAB17009EF9C9 = {
 			isa = PBXGroup;
 			children = (
-				2BD801912A0A6B0100DDD17E /* README.md */,
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
+				F369DD192A0A9E890061DF8A /* APNs Helper Doc */,
 				2B64E95729E6B36A0007B1D0 /* APNs Helper Tester */,
 				2B40F8A929DEE24700E484FB /* AppDelegate */,
 				2B35F72A28DEAB17009EF9C9 /* Products */,
+				2BD801912A0A6B0100DDD17E /* README.md */,
 				F3A46DEA29DDAA26004D4AD1 /* Utils */,
 			);
 			sourceTree = "<group>";
@@ -151,6 +164,7 @@
 			children = (
 				2B35F72928DEAB17009EF9C9 /* APNs Helper.app */,
 				2B64E94829E6B3160007B1D0 /* APNs Helper Tester.app */,
+				F369DD182A0A9E890061DF8A /* APNs Helper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -309,6 +323,15 @@
 			path = UNUserNotification;
 			sourceTree = "<group>";
 		};
+		F369DD192A0A9E890061DF8A /* APNs Helper Doc */ = {
+			isa = PBXGroup;
+			children = (
+				F369DD1A2A0A9E890061DF8A /* EmptyFile.swift */,
+				F369DD272A0A9EF20061DF8A /* docs.docc */,
+			);
+			path = "APNs Helper Doc";
+			sourceTree = "<group>";
+		};
 		F3A46DEA29DDAA26004D4AD1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +382,23 @@
 			productReference = 2B64E94829E6B3160007B1D0 /* APNs Helper Tester.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F369DD172A0A9E890061DF8A /* APNs Helper Doc */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F369DD262A0A9E8B0061DF8A /* Build configuration list for PBXNativeTarget "APNs Helper Doc" */;
+			buildPhases = (
+				F369DD142A0A9E890061DF8A /* Sources */,
+				F369DD152A0A9E890061DF8A /* Frameworks */,
+				F369DD162A0A9E890061DF8A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "APNs Helper Doc";
+			productName = "APNs Helper Doc";
+			productReference = F369DD182A0A9E890061DF8A /* APNs Helper.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -373,6 +413,9 @@
 						CreatedOnToolsVersion = 14.0.1;
 					};
 					2B64E94729E6B3160007B1D0 = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					F369DD172A0A9E890061DF8A = {
 						CreatedOnToolsVersion = 14.3;
 					};
 				};
@@ -395,6 +438,7 @@
 			projectRoot = "";
 			targets = (
 				2B35F72828DEAB17009EF9C9 /* APNs Helper */,
+				F369DD172A0A9E890061DF8A /* APNs Helper Doc */,
 				2B64E94729E6B3160007B1D0 /* APNs Helper Tester */,
 			);
 		};
@@ -416,6 +460,13 @@
 			files = (
 				2B64E96229E6B36A0007B1D0 /* Assets.xcassets in Resources */,
 				2B64E96329E6B36A0007B1D0 /* Preview Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F369DD162A0A9E890061DF8A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +530,15 @@
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,
 				2B64E96629E6B36A0007B1D0 /* ContentView.swift in Sources */,
 				2B64E96929E6B9B10007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F369DD142A0A9E890061DF8A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F369DD1B2A0A9E890061DF8A /* EmptyFile.swift in Sources */,
+				F369DD282A0A9EF20061DF8A /* docs.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -781,6 +841,62 @@
 			};
 			name = Release;
 		};
+		F369DD242A0A9E8B0061DF8A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "APNs Helper";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.joker.APNs-Helper-Doc";
+				PRODUCT_NAME = "APNs Helper";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		F369DD252A0A9E8B0061DF8A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "APNs Helper";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.joker.APNs-Helper-Doc";
+				PRODUCT_NAME = "APNs Helper";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -807,6 +923,15 @@
 			buildConfigurations = (
 				2B64E95429E6B3170007B1D0 /* Debug */,
 				2B64E95529E6B3170007B1D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F369DD262A0A9E8B0061DF8A /* Build configuration list for PBXNativeTarget "APNs Helper Doc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F369DD242A0A9E8B0061DF8A /* Debug */,
+				F369DD252A0A9E8B0061DF8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
