@@ -1,0 +1,113 @@
+//
+//  SendButtonArea.swift
+//  APNs Helper
+//
+//  Created by joker on 2023/5/9.
+//
+
+import SwiftUI
+
+struct SendButtonArea: View {
+    
+    @EnvironmentObject var appModel: AppModel
+    
+    @EnvironmentObject var contentModel: AppContentModel
+    
+    let loadPayloadTemplate: () -> Void
+    
+    private var myLayout: AnyLayout {
+#if os(iOS)
+        AnyLayout(VStackLayout())
+#elseif os(macOS)
+        AnyLayout(HStackLayout())
+#endif
+    }
+    
+    var body: some View {
+        myLayout {
+            
+#if os(macOS)
+            if contentModel.payload.isEmpty {
+                Button(Constants.loadTemplate.value, action: loadPayloadTemplate)
+                    .disabled(appModel.isSendingPush)
+                    .keyboardShortcut(.init(unicodeScalarLiteral: Constants.loadTemplateShortcutKey.firstChar), modifiers: [.command])
+            }
+#endif
+            
+            Button {
+                guard contentModel.config.isReadyForSend else {
+                    appModel.alertMessage = Constants.tipForNotReady.value
+                    return
+                }
+                
+                let config = contentModel.config
+                Task {
+                    appModel.isSendingPush = true
+                    appModel.resetLog()
+                    if contentModel.payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
+                        try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
+                    }
+                    else if let payloadData = contentModel.payload.data(using: .utf8) {
+                        try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
+                    }
+                    appModel.isSendingPush = false
+                }
+            } label: {
+#if os(iOS)
+                GeometryReader { geometry in
+                    HStack {
+                        if appModel.isSendingPush {
+                            ProgressView()
+                                .tint(Color.orange)
+                                .padding([.trailing], 1)
+                        }
+                        Text(appModel.isSendingPush ? Constants.sending.value : Constants.sendPush.value)
+                            .bold()
+                            .font(.title3)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                }
+#elseif os(macOS)
+                Text(appModel.isSendingPush ? Constants.sending.value : Constants.send.value)
+#endif
+            }
+        }
+        .disabled(appModel.isSendingPush)
+#if os(iOS)
+        .frame(height: 60)
+        .buttonStyle(BorderedProminentButtonStyle())
+#elseif os(macOS)
+        .keyboardShortcut(.return, modifiers: [.command])
+#endif
+        
+#if os(macOS)
+        if !AppSandbox.isSandbox() {
+            Toggle(isOn: $contentModel.simulator) {
+                Text(Constants.sendToSimulator.value)
+            }
+        }
+#endif
+    }
+}
+
+struct SendButtonArea_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            
+            SendButtonArea(loadPayloadTemplate: {
+                
+            })
+            .previewDevice("My Mac")
+            .previewDisplayName("MacOS")
+            
+            SendButtonArea(loadPayloadTemplate: {
+                
+            })
+            .previewDevice("iPhone 14 Pro Max")
+            .previewDisplayName("iOS")
+        }
+        .padding()
+        .environmentObject(AppModel())
+        .environmentObject(AppContentModel())
+    }
+}

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import UniformTypeIdentifiers
+import AlertToast
 
 struct AppContent: View {
     
@@ -38,6 +38,9 @@ struct AppContent: View {
         }
         .alert(isPresented: $appModel.showAlert) {
             Alert(title: Text(appModel.alertMessage ?? ""))
+        }
+        .toast(isPresenting: $appModel.showToast) {
+            AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage)
         }
     }
 }
@@ -72,7 +75,15 @@ extension AppContent {
 
 struct AppContent_Previews: PreviewProvider {
     static var previews: some View {
-        AppContent()
-            .environmentObject(AppModel())
+        Group {
+            AppContent()
+                .previewDevice("My Mac")
+                .previewDisplayName("MacOS")
+            
+            AppContent()
+                .previewDevice("iPhone 14 Pro Max")
+                .previewDisplayName("iOS")
+        }
+        .environmentObject(AppModel())
     }
 }
