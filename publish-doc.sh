@@ -24,12 +24,14 @@ if [ -d derivedData ]; then
 fi
 
 xcodebuild docbuild -project '../APNs Helper.xcodeproj' \
-    -scheme 'APNs Helper' \
+    -scheme 'APNs Helper Doc' \
     -sdk macosx \
     -destination=generic/platform=macOS \
     -derivedDataPath ./derivedData
 
 PATH_TO_ARCHIVE_FILE=$(find ./derivedData -type d -name 'APNs Helper.doccarchive')
+echo archive file: "$PATH_TO_ARCHIVE_FILE"
+
 if [ -z "$PATH_TO_ARCHIVE_FILE" ]; then
     echo no archive file found
     exit -1
