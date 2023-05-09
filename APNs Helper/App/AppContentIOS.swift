@@ -133,7 +133,7 @@ struct AppContentIOS: View {
                 }
                 
                 Button(Constants.clearPayload.value) {
-                    contentModel.payload = ""
+                    contentModel.payload = .empty
                 }
             }
             

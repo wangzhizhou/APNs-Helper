@@ -14,6 +14,8 @@ import AppKit
 
 extension String {
     
+    static let empty = ""
+    
     var trimmed: String { self.trimmingCharacters(in: .whitespacesAndNewlines) }
     
     func copyToPasteboard() {

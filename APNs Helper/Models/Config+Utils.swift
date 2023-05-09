@@ -49,11 +49,11 @@ extension Config {
     }
     
     static let none = Config(
-        deviceToken: "",
-        pushKitDeviceToken: "",
-        fileProviderDeviceToken: "",
-        appBundleID: "",
-        privateKey: "",
-        keyIdentifier: "",
-        teamIdentifier: "")
+        deviceToken: .empty,
+        pushKitDeviceToken: .empty,
+        fileProviderDeviceToken: .empty,
+        appBundleID: .empty,
+        privateKey: .empty,
+        keyIdentifier: .empty,
+        teamIdentifier: .empty)
 }

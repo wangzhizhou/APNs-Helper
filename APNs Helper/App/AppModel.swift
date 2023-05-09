@@ -16,7 +16,7 @@ class AppModel: ObservableObject {
     
     @MainActor
     func resetLog() {
-        appLog = ""
+        appLog = .empty
     }
     
     // MARK: Alert
@@ -104,10 +104,10 @@ class AppModel: ObservableObject {
     // MARK: Test Mode Config
     
     @Published var thisAppConfig = Config(
-        deviceToken: "",
-        pushKitDeviceToken: "",
-        fileProviderDeviceToken: "",
-        appBundleID: Bundle.main.bundleIdentifier ?? "",
+        deviceToken: .empty,
+        pushKitDeviceToken: .empty,
+        fileProviderDeviceToken: .empty,
+        appBundleID: Bundle.main.bundleIdentifier ?? .empty,
         privateKey: """
         -----BEGIN PRIVATE KEY-----
         MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
@@ -122,17 +122,17 @@ class AppModel: ObservableObject {
     var isSendingPush: Bool
     
     init(
-        appLog: String = "",
+        appLog: String = .empty,
         showAlert: Bool  = false,
         alertMessage: String? = nil,
         showToast: Bool = false,
         toastMessage: String? = nil,
         presetData: Data = Data(),
         thisAppConfig: Config = Config(
-            deviceToken: "",
-            pushKitDeviceToken: "",
-            fileProviderDeviceToken: "",
-            appBundleID: Bundle.main.bundleIdentifier ?? "",
+            deviceToken: .empty,
+            pushKitDeviceToken: .empty,
+            fileProviderDeviceToken: .empty,
+            appBundleID: Bundle.main.bundleIdentifier ?? .empty,
             privateKey: """
             -----BEGIN PRIVATE KEY-----
             MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH

@@ -37,7 +37,7 @@ struct AppContent: View {
             loadPayloadTemplate()
         }
         .alert(isPresented: $appModel.showAlert) {
-            Alert(title: Text(appModel.alertMessage ?? ""))
+            Alert(title: Text(appModel.alertMessage ?? .empty))
         }
         .toast(isPresenting: $appModel.showToast) {
             AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage)
@@ -46,6 +46,7 @@ struct AppContent: View {
 }
 
 extension AppContent {
+    
     func loadPayloadTemplate() {
         if let template = APNsService.templatePayload(for: contentModel.config) {
             contentModel.payload = template

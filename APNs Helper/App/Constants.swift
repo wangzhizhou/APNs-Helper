@@ -10,7 +10,6 @@ import Foundation
 
 /// 定义应用中所有的字符串相关的常量
 enum Constants: String {
-    case empty = ""
     case preset = "Preset"
     case presetnone = "none"
     case clearallpreset = "Clear All Preset"
