@@ -104,6 +104,7 @@
 		2BD8018A2A0A3B0100DDD17E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		2BD8018C2A0A575600DDD17E /* SendButtonArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendButtonArea.swift; sourceTree = "<group>"; };
 		2BD8018E2A0A5CD000DDD17E /* TokenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
+		2BD801912A0A6B0100DDD17E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		2B35F72028DEAB17009EF9C9 = {
 			isa = PBXGroup;
 			children = (
+				2BD801912A0A6B0100DDD17E /* README.md */,
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
 				2B64E95729E6B36A0007B1D0 /* APNs Helper Tester */,
 				2B40F8A929DEE24700E484FB /* AppDelegate */,
