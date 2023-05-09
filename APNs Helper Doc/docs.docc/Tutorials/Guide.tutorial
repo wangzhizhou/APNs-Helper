@@ -1,6 +1,6 @@
 @Tutorials(name: "APNs Helper Guide") {    
     
-    @Intro(title: "APNs Helper") {
+    @Intro(title: "APNs Helper Home Page") {
         
         A tool that can run on MacOS/iOS device, you can use it to send APNs Notifications:
         **alert** / **background** / **voip**
@@ -8,6 +8,8 @@
         [![App Icon](appicon)](https://apps.apple.com/cn/app/apns-helper/id6443608175)
         
         This app can be installed by clicking the app icon above.
+        
+        <doc:Features>
     }
 }
 

@@ -1,4 +1,4 @@
-# Features Detail
+# App Features
 
 ## Overview
 
@@ -13,24 +13,6 @@
 - [x] display runtime log content
 - [x] save the app info as preset config(iOS only)
 
-## Demonstration 
+## Topics
 
-### MacOS Platform
-
-topic detail
-
-### iOS Platform
-
-#### iPhone
-
-detail
-
-#### iPad
-
-detail
-
-## Features in Future
-
-- [ ] feature 1
-- [ ] feature 2
-- [ ] feature 3
+- <doc:Guide>
