@@ -15,6 +15,8 @@ CURRENT_COMMIT_HASH=`git rev-parse --short HEAD`
 git submodule init && git submodule update && git pull --recurse-submodules --ff-only
 git fetch && git checkout main && git pull
 
+cd website
+
 if [ -d docs ]; then
     rm -rf docs
 fi
