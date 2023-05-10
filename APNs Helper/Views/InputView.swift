@@ -15,9 +15,7 @@ struct InputView: View {
     
     var placeholder: String?
     
-#if os(macOS)
     var titleWidth: CGFloat?
-#endif
     
     @Binding var inputValue: String
     
@@ -26,9 +24,7 @@ struct InputView: View {
     var body: some View {
         HStack {
             Text(title)
-#if os(macOS)
                 .frame(width: titleWidth, alignment: .leading)
-#endif
             TextField(placeholder ?? title, text: $inputValue)
                 .focused($focusState)
                 .onSubmit {
@@ -72,7 +68,6 @@ struct InputView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-#if os(macOS)
         let titleWidth: CGFloat = 60
         
         VStack {
@@ -92,15 +87,5 @@ struct InputView_Previews: PreviewProvider {
                 inputValue: $value)
         }
         .padding()
-        .previewDevice("My Mac")
-        .previewDisplayName("macOS")
-#elseif os(iOS)
-        
-        InputView(
-            title: Constants.keyid.value,
-            inputValue: $value)
-        
-#endif
-        
     }
 }

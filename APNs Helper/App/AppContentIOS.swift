@@ -49,8 +49,11 @@ struct AppContentIOS: View {
             // App Info
             Section(Constants.appInfo.value) {
                 
+                let titleWidth: CGFloat = 70
+                
                 InputView(
                     title: Constants.keyid.value,
+                    titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.keyIdentifier)
                 .onChange(of: contentModel.appInfo.keyIdentifier) { _ in
                     refreshTestMode()
@@ -58,6 +61,7 @@ struct AppContentIOS: View {
                 
                 InputView(
                     title: Constants.teamid.value,
+                    titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.teamIdentifier)
                 .onChange(of: contentModel.appInfo.teamIdentifier) { _ in
                     refreshTestMode()
@@ -65,6 +69,7 @@ struct AppContentIOS: View {
                 
                 InputView(
                     title: Constants.bundleid.value,
+                    titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.appBundleID)
                 .onChange(of: contentModel.appInfo.appBundleID) { _ in
                     refreshTestMode()
