@@ -24,7 +24,7 @@ struct InputTextEditor: View {
                 .font(textEditorFont ?? .system(size: 8))
                 .autocorrectionDisabled(true)
 #if os(iOS)
-                .border(.orange, width: 2)
+                .border(.orange)
                 .keyboardType(.asciiCapable)
 #endif
         }

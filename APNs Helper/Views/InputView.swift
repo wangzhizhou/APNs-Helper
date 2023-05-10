@@ -15,6 +15,10 @@ struct InputView: View {
     
     var placeholder: String?
     
+#if os(macOS)
+    var titleWidth: CGFloat?
+#endif
+    
     @Binding var inputValue: String
     
     @FocusState private var focusState: Bool
@@ -22,10 +26,10 @@ struct InputView: View {
     var body: some View {
         HStack {
             Text(title)
-            TextField(placeholder ?? title, text: $inputValue)
-#if os(iOS)
-                .keyboardType(.asciiCapable)
+#if os(macOS)
+                .frame(width: titleWidth, alignment: .leading)
 #endif
+            TextField(placeholder ?? title, text: $inputValue)
                 .focused($focusState)
                 .onSubmit {
                     focusState = false
@@ -37,6 +41,9 @@ struct InputView: View {
                         return
                     }
                 }
+#if os(iOS)
+                .keyboardType(.asciiCapable)
+#endif
             
 #if os(iOS)
             if !inputValue.isEmpty {
@@ -65,9 +72,35 @@ struct InputView_Previews: PreviewProvider {
     
     static var previews: some View {
         
+#if os(macOS)
+        let titleWidth: CGFloat = 60
+        
+        VStack {
+            InputView(
+                title: Constants.keyid.value,
+                titleWidth: titleWidth,
+                inputValue: $value)
+            
+            InputView(
+                title: Constants.teamid.value,
+                titleWidth: titleWidth,
+                inputValue: $value)
+            
+            InputView(
+                title: Constants.bundleid.value,
+                titleWidth: titleWidth,
+                inputValue: $value)
+        }
+        .padding()
+        .previewDevice("My Mac")
+        .previewDisplayName("macOS")
+#elseif os(iOS)
+        
         InputView(
-            title: "Title",
+            title: Constants.keyid.value,
             inputValue: $value)
+        
+#endif
         
     }
 }

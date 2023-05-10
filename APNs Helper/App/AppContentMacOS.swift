@@ -54,19 +54,24 @@ struct AppContentMacOS: View {
             
             // App Info
             GroupBox {
-                
-                VStack(alignment: .trailing) {
+            
+                VStack {
+                    
+                    let titleWidth: CGFloat = 60
                     
                     InputView(
                         title: Constants.keyid.value,
+                        titleWidth: titleWidth,
                         inputValue: $contentModel.appInfo.keyIdentifier)
                     
                     InputView(
                         title: Constants.teamid.value,
+                        titleWidth: titleWidth,
                         inputValue: $contentModel.appInfo.teamIdentifier)
                     
                     InputView(
                         title: Constants.bundleid.value,
+                        titleWidth: titleWidth,
                         inputValue: $contentModel.appInfo.appBundleID)
                     
                     P8KeyView(
@@ -78,13 +83,10 @@ struct AppContentMacOS: View {
                         })
                     
                     // Token
-                    Group {
-                        TokenView(
-                            pushType: contentModel.appInfo.pushType,
-                            deviceToken: $contentModel.appInfo.deviceToken,
-                            pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
-                    }
-                    .padding(.vertical)
+                    TokenView(
+                        pushType: contentModel.appInfo.pushType,
+                        deviceToken: $contentModel.appInfo.deviceToken,
+                        pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
                     
                     HStack {
                         Button(Constants.clearIfExist.value) {
