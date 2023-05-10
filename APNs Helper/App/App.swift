@@ -19,6 +19,9 @@ struct APNsHelperApp: App {
     var body: some Scene {
         WindowGroup {
             AppContent()
+#if os(macOS)
+                .frame(maxWidth: 632, maxHeight: 762)
+#endif
                 .environmentObject(model)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

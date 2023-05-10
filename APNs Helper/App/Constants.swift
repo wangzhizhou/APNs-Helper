@@ -31,7 +31,6 @@ enum Constants: String {
     case sending = "Sending..."
     case send = "Send (⌘+⏎)"
     case sendPush = "Send Push"
-    case sendToSimulator = "发送到模拟器"
     case log = "Log"
     
     case appInfo = "App Info"

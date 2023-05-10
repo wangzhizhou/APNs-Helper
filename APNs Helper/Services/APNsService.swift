@@ -54,13 +54,7 @@ struct APNsService {
         var client: APNSClient<JSONDecoder, JSONEncoder>?
         
         
-        do {
-            guard !config.sendToSimulator else {
-                // 发往模拟器
-                try sendToSimulator(with: payloadData)
-                return
-            }
-            
+        do {            
             client = APNSClient(
                 configuration: .init(
                     authenticationMethod: .jwt(

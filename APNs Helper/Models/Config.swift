@@ -23,9 +23,6 @@ struct Config {
     // Server Info
     var pushType: PushType = .alert
     var apnsServerEnv: APNServerEnv = .sandbox
-    
-    // Utils
-    var sendToSimulator = false
 }
 
 extension Config: Identifiable {

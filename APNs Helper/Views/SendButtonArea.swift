@@ -79,14 +79,6 @@ struct SendButtonArea: View {
 #elseif os(macOS)
         .keyboardShortcut(.return, modifiers: [.command])
 #endif
-        
-#if os(macOS)
-        if !AppSandbox.isSandbox() {
-            Toggle(isOn: $contentModel.simulator) {
-                Text(Constants.sendToSimulator.value)
-            }
-        }
-#endif
     }
 }
 

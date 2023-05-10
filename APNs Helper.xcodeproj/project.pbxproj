@@ -18,10 +18,8 @@
 		2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
 		2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8A529DEE00E00E484FB /* Config+Utils.swift */; };
 		2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2B40F8B429DEEC1000E484FB /* AlertToast */; };
-		2B5036EF29DAA8600010F62D /* APNsService+Simulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5036EE29DAA8600010F62D /* APNsService+Simulator.swift */; };
 		2B505E2829DD25B50010F62D /* AppContentIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2729DD25B50010F62D /* AppContentIOS.swift */; platformFilter = ios; };
 		2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2929DD26230010F62D /* AppContentMacOS.swift */; platformFilters = (macos, ); };
-		2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B586C5A28EAD4660067705A /* AppSandBox.swift */; };
 		2B64E96229E6B36A0007B1D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B64E95A29E6B36A0007B1D0 /* Assets.xcassets */; };
 		2B64E96329E6B36A0007B1D0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B64E95C29E6B36A0007B1D0 /* Preview Assets.xcassets */; };
 		2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E95D29E6B36A0007B1D0 /* TesterApp.swift */; };
@@ -78,10 +76,8 @@
 		2B40F8A529DEE00E00E484FB /* Config+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Utils.swift"; sourceTree = "<group>"; };
 		2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UNUserNotification.swift"; sourceTree = "<group>"; };
-		2B5036EE29DAA8600010F62D /* APNsService+Simulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+Simulator.swift"; sourceTree = "<group>"; };
 		2B505E2729DD25B50010F62D /* AppContentIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentIOS.swift; sourceTree = "<group>"; };
 		2B505E2929DD26230010F62D /* AppContentMacOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentMacOS.swift; sourceTree = "<group>"; };
-		2B586C5A28EAD4660067705A /* AppSandBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSandBox.swift; sourceTree = "<group>"; };
 		2B64E94829E6B3160007B1D0 /* APNs Helper Tester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper Tester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B64E95829E6B36A0007B1D0 /* APNs Helper Tester.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "APNs Helper Tester.entitlements"; sourceTree = "<group>"; };
 		2B64E95A29E6B36A0007B1D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -267,9 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
-				2B5036EE29DAA8600010F62D /* APNsService+Simulator.swift */,
 				2BD3323E28E7221200E27D2D /* APNsService+Template.swift */,
-				2B586C5A28EAD4660067705A /* AppSandBox.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -479,9 +473,7 @@
 			files = (
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
-				2B586C5B28EAD4660067705A /* AppSandBox.swift in Sources */,
 				2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */,
-				2B5036EF29DAA8600010F62D /* APNsService+Simulator.swift in Sources */,
 				2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */,
 				2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
