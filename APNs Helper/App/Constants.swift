@@ -60,7 +60,7 @@ extension Color {
     
     static let valid = Color("ValidColor")
     
-    static let border = Color("BorderColor")
+    static let border = Color("BorderColor").opacity(0.5)
     
 }
 
@@ -75,7 +75,7 @@ struct BorderModifier: ViewModifier {
             .overlay {
                 RoundedRectangle(cornerRadius: padding / 2.0, style: .continuous)
                     .stroke()
-                    .foregroundColor(Color.border.opacity(0.5))
+                    .foregroundColor(Color.border)
             }
     }
 }
