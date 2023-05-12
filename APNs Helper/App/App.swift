@@ -20,7 +20,7 @@ struct APNsHelperApp: App {
         WindowGroup {
             AppContent()
 #if os(macOS)
-                .frame(maxWidth: 632, maxHeight: 762)
+                .frame(maxWidth: 632, minHeight: 828, maxHeight: 828)
 #endif
                 .environmentObject(model)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)

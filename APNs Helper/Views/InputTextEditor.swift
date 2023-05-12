@@ -21,10 +21,11 @@ struct InputTextEditor: View {
                 Text(title)
             }
             TextEditor(text: $content)
+                .scrollContentBackground(.hidden)
                 .font(textEditorFont ?? .system(size: 8))
                 .autocorrectionDisabled(true)
+                .editorBorder()
 #if os(iOS)
-                .border(.orange)
                 .keyboardType(.asciiCapable)
 #endif
         }

@@ -26,6 +26,7 @@ struct InputView: View {
             Text(title)
                 .frame(width: titleWidth, alignment: .leading)
             TextField(placeholder ?? title, text: $inputValue)
+                .textFieldBorder()
                 .focused($focusState)
                 .onSubmit {
                     focusState = false

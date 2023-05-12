@@ -36,9 +36,6 @@ struct AppContent: View {
         .onAppear {
             loadPayloadTemplate()
         }
-        .alert(isPresented: $appModel.showAlert) {
-            Alert(title: Text(appModel.alertMessage ?? .empty))
-        }
         .toast(isPresenting: $appModel.showToast) {
             AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage)
         }
@@ -68,7 +65,7 @@ extension AppContent {
     }
     
     func refreshTestMode() {
-        guard appModel.thisAppConfig.isValidForSave.valid
+        guard appModel.thisAppConfig.isValid.valid
         else { return }
         contentModel.isInTestMode = (contentModel.config == appModel.thisAppConfig)
     }

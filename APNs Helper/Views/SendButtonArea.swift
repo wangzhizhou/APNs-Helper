@@ -35,8 +35,11 @@ struct SendButtonArea: View {
 #endif
             
             Button {
-                guard contentModel.config.isReadyForSend else {
-                    appModel.alertMessage = Constants.tipForNotReady.value
+                let (ready, message) = contentModel.config.isReadyForSend
+                guard ready else {
+                    if let message = message {
+                        appModel.toastMessage = "\(message) is not ready"
+                    }
                     return
                 }
                 

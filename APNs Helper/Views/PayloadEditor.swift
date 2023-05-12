@@ -29,6 +29,7 @@ struct PayloadEditor: View {
                     }
                 }
             }
+            .editorBorder()
         }
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 
 /// 定义应用中所有的字符串相关的常量
@@ -23,7 +24,7 @@ enum Constants: String {
     case p8key = "P8 Key"
     case p8FileExt = "p8"
     case importP8File = "Import P8"
-    case clearIfExist = "Clear If Exist"
+    case clearIfExist = "Remove From Preset"
     case saveAsPreset = "Save As Preset"
     case payload = "Payload"
     case loadTemplate = "Load Template (⌘+T)"
@@ -50,5 +51,44 @@ enum Constants: String {
         let i = self.value.index(self.value.startIndex, offsetBy: 0)
         let char = self.value[i]
         return char
+    }
+}
+
+extension Color {
+    
+    static let invalid = Color("InvalidColor")
+    
+    static let valid = Color("ValidColor")
+    
+    static let border = Color("BorderColor")
+    
+}
+
+struct BorderModifier: ViewModifier {
+    
+    let color: Color
+    var padding: CGFloat = 10
+    
+    func body(content: Content) -> some View {
+        return content
+            .padding(padding)
+            .overlay {
+                RoundedRectangle(cornerRadius: padding / 2.0, style: .continuous)
+                    .stroke()
+                    .foregroundColor(Color.border.opacity(0.5))
+            }
+    }
+}
+
+extension View {
+    
+    func editorBorder() -> some View {
+        return self.modifier(BorderModifier(color: Color.border, padding: 10))
+    }
+    
+    func textFieldBorder() -> some View {
+        return self
+            .textFieldStyle(.plain)
+            .modifier(BorderModifier(color: Color.border, padding: 6))
     }
 }

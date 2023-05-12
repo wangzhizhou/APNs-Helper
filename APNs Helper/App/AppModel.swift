@@ -18,18 +18,7 @@ class AppModel: ObservableObject {
     func resetLog() {
         appLog = .empty
     }
-    
-    // MARK: Alert
-    
-    @Published var showAlert: Bool
-    var alertMessage: String? {
-        didSet {
-            if let message = alertMessage, !message.isEmpty {
-                showAlert = true
-            }
-        }
-    }
-    
+        
     // MARK: Toast
     @Published var showToast: Bool
     var toastMessage: String? {
@@ -56,9 +45,11 @@ class AppModel: ObservableObject {
     
     func saveConfigAsPreset(_ config: Config) -> Bool {
         
-        let (valid, message) = config.isValidForSave
+        let (valid, message) = config.isValid
         guard valid else {
-            alertMessage = message
+            if let message = message {
+                toastMessage = "\(message) is invalid"
+            }
             return false
         }
         
@@ -73,14 +64,14 @@ class AppModel: ObservableObject {
         }
         newPresets.append(config)
         presets = newPresets
-        toastMessage = "Saved Preset!"
+        toastMessage = "Save Preset Successfully!"
         
         return true
     }
     
     func clearAllPresets() {
         presets = [Config]()
-        toastMessage = "Clear All Preset!"
+        toastMessage = "Clear All Preset Successfully!"
     }
     
     func clearPresetIfExist(_ config: Config) {
@@ -124,7 +115,6 @@ class AppModel: ObservableObject {
     init(
         appLog: String = .empty,
         showAlert: Bool  = false,
-        alertMessage: String? = nil,
         showToast: Bool = false,
         toastMessage: String? = nil,
         presetData: Data = Data(),
@@ -144,8 +134,6 @@ class AppModel: ObservableObject {
             teamIdentifier: "2N62934Y28"),
         isSendingPush: Bool = false) {
             self.appLog = appLog
-            self.showAlert = showAlert
-            self.alertMessage = alertMessage
             self.showToast = showToast
             self.toastMessage = toastMessage
             self.presetData = presetData

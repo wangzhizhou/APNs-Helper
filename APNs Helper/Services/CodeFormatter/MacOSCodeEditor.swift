@@ -29,7 +29,6 @@ struct MacOSCodeEditor: NSViewRepresentable {
         scrollView.hasHorizontalScroller = false
         scrollView.drawsBackground = false
         scrollView.horizontalScrollElasticity = .none
-        scrollView.borderType = .lineBorder
         
         let highlighter = CodeFomater.highlightTextContainer(language: language)
         let textView = NSTextView(frame: frame, textContainer: highlighter)

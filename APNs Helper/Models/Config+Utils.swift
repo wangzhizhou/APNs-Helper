@@ -9,35 +9,32 @@ import Foundation
 
 extension Config {
     
-    var isValidForSave: (valid: Bool, message: String?) {
+    var isValid: (valid: Bool, message: String?) {
         
-        var message = [String]()
-        
-        if keyIdentifier.isEmpty {
-            message.append("KeyID")
-        }
-        if teamIdentifier.isEmpty {
-            message.append("TeamID")
-        }
-        if appBundleID.isEmpty {
-            message.append("BundleID")
-        }
-        if privateKey.isEmpty {
-            message.append("P8Key")
+        guard !keyIdentifier.isEmpty
+        else {
+            return (valid: false, message: Constants.keyid.value)
         }
         
-        if message.isEmpty {
-            return (valid: true, message: nil)
-        } else {
-            return (valid: false, message: "\(message.joined(separator: "\n"))\nis Empty")
+        guard !teamIdentifier.isEmpty
+        else {
+            return (valid: false, message: Constants.teamid.value)
         }
+        
+        guard !appBundleID.isEmpty
+        else {
+            return (valid: false, message: Constants.bundleid.value)
+        }
+        
+        guard !privateKey.isEmpty
+        else {
+            return (valid: false, message: Constants.p8key.value)
+        }
+        
+        return (valid: true, message: nil)
     }
     
-    var isEmpty: Bool {
-        return keyIdentifier.isEmpty && teamIdentifier.isEmpty && appBundleID.isEmpty && privateKey.isEmpty
-    }
-    
-    var isReadyForSend: Bool {
+    var isReadyForSend: (ready: Bool, message: String?) {
         var hasToken = false
         switch self.pushType {
         case .alert, .background:
@@ -45,7 +42,16 @@ extension Config {
         case .voip:
             hasToken = !pushKitDeviceToken.isEmpty
         }
-        return !self.isEmpty && hasToken
+        let (isValid, message) = isValid
+        guard isValid
+        else {
+            return (ready: false, message: message)
+        }
+        guard hasToken
+        else {
+            return (ready: false, message: "Token")
+        }
+        return (ready: true, message: nil)
     }
     
     static let none = Config(

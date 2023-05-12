@@ -53,51 +53,50 @@ struct AppContentMacOS: View {
             .padding(.bottom)
             
             // App Info
-            GroupBox {
-            
-                VStack {
-                    
-                    let titleWidth: CGFloat = 60
-                    
-                    InputView(
-                        title: Constants.keyid.value,
-                        titleWidth: titleWidth,
-                        inputValue: $contentModel.appInfo.keyIdentifier)
-                    
-                    InputView(
-                        title: Constants.teamid.value,
-                        titleWidth: titleWidth,
-                        inputValue: $contentModel.appInfo.teamIdentifier)
-                    
-                    InputView(
-                        title: Constants.bundleid.value,
-                        titleWidth: titleWidth,
-                        inputValue: $contentModel.appInfo.appBundleID)
-                    
-                    P8KeyView(
-                        showFileImporter: $contentModel.showFileImporter,
-                        privateKey: $contentModel.appInfo.privateKey,
-                        onPrivateKeyChange: nil,
-                        onFileImporterError: { error in
-                            appModel.appLog.append(error.localizedDescription)
-                        })
-                    
-                    // Token
-                    TokenView(
-                        pushType: contentModel.appInfo.pushType,
-                        deviceToken: $contentModel.appInfo.deviceToken,
-                        pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
-                    
-                    HStack {
-                        Button(Constants.clearIfExist.value) {
-                            clearCurrentConfigPresetIfExist()
-                        }
-                        Spacer()
-                        Button(Constants.saveAsPreset.value) {
-                            saveAsPreset()
-                        }
+            VStack {
+                
+                let titleWidth: CGFloat = 60
+                
+                InputView(
+                    title: Constants.keyid.value,
+                    titleWidth: titleWidth,
+                    inputValue: $contentModel.appInfo.keyIdentifier)
+                
+                InputView(
+                    title: Constants.teamid.value,
+                    titleWidth: titleWidth,
+                    inputValue: $contentModel.appInfo.teamIdentifier)
+                
+                InputView(
+                    title: Constants.bundleid.value,
+                    titleWidth: titleWidth,
+                    inputValue: $contentModel.appInfo.appBundleID)
+                
+                P8KeyView(
+                    showFileImporter: $contentModel.showFileImporter,
+                    privateKey: $contentModel.appInfo.privateKey,
+                    onPrivateKeyChange: nil,
+                    onFileImporterError: { error in
+                        appModel.appLog.append(error.localizedDescription)
+                    })
+                
+                // Token
+                TokenView(
+                    pushType: contentModel.appInfo.pushType,
+                    deviceToken: $contentModel.appInfo.deviceToken,
+                    pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
+                .padding(.vertical, 10)
+                
+                HStack {
+                    Button(Constants.clearIfExist.value) {
+                        clearCurrentConfigPresetIfExist()
+                    }
+                    Spacer()
+                    Button(Constants.saveAsPreset.value) {
+                        saveAsPreset()
                     }
                 }
+                .padding(.bottom, 10)
             }
             
             // Payload
@@ -105,11 +104,10 @@ struct AppContentMacOS: View {
                 title: Constants.payload.value,
                 payload: $contentModel.payload
             )
+            .frame(height: 200)
             
             // Send Button Area
             SendButtonArea(loadPayloadTemplate: loadPayloadTemplate)
-            
-            Divider()
             
             // Log
             LogView()

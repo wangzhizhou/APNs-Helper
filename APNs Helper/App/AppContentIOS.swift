@@ -117,7 +117,7 @@ struct AppContentIOS: View {
                     clearCurrentConfigPresetIfExist()
                 }
             }
-            if contentModel.config.isValidForSave.valid {
+            if contentModel.config.isValid.valid {
                 Button(Constants.saveAppInfoAsPreset.value) {
                     saveAsPreset()
                 }
