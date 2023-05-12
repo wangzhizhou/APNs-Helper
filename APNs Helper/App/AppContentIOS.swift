@@ -77,7 +77,8 @@ struct AppContentIOS: View {
                 
                 P8KeyView(
                     showFileImporter: $contentModel.showFileImporter,
-                    privateKey: $contentModel.appInfo.privateKey) { _ in
+                    privateKey: $contentModel.appInfo.privateKey,
+                    editorHeight: 120) { _ in
                         refreshTestMode()
                     } onFileImporterError: { error in
                         appModel.appLog.append(error.localizedDescription)
@@ -89,6 +90,7 @@ struct AppContentIOS: View {
                     deviceToken: $contentModel.appInfo.deviceToken,
                     pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
             }
+            .listRowSeparator(.hidden)
             
 #if DEBUG
             Toggle(isOn: $contentModel.isInTestMode) {

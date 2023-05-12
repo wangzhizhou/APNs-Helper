@@ -25,24 +25,33 @@ struct InputView: View {
         HStack {
             Text(title)
                 .frame(width: titleWidth, alignment: .leading)
-            TextField(placeholder ?? title, text: $inputValue)
-                .textFieldBorder()
-                .focused($focusState)
-                .onSubmit {
-                    focusState = false
-                }
-                .onChange(of: inputValue) { newValue in
-                    let trimmedValue = newValue.replacingOccurrences(of: " ", with: "")
-                    guard trimmedValue == newValue else {
-                        inputValue = trimmedValue
-                        return
+            VStack {
+                TextField(placeholder ?? title, text: $inputValue)
+                    .focused($focusState)
+                    .onSubmit {
+                        focusState = false
                     }
-                }
+                    .onChange(of: inputValue) { newValue in
+                        let trimmedValue = newValue.replacingOccurrences(of: " ", with: "")
+                        guard trimmedValue == newValue else {
+                            inputValue = trimmedValue
+                            return
+                        }
+                    }
 #if os(iOS)
-                .keyboardType(.asciiCapable)
+                    .keyboardType(.asciiCapable)
+                    .overlay(alignment: .bottom) {
+                        Divider()
+                            .frame(height: 0.5)
+                            .background(Color.border)
+                            .offset(y: 4)
+                    }
+#elseif os(macOS)
+                    .textFieldBorder()
 #endif
-            
+            }
 #if os(iOS)
+            
             if !inputValue.isEmpty {
                 HStack {
                     Button {

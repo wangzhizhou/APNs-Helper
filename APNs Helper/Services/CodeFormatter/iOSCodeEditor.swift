@@ -27,6 +27,8 @@ struct iOSCodeEditor: UIViewRepresentable {
         let textView = UITextView(frame: frame, textContainer: CodeFomater.highlightTextContainer(language: language))
         textView.delegate = context.coordinator
         textView.autocorrectionType = .no
+        textView.smartQuotesType = .no
+        textView.backgroundColor = .clear
         return textView
     }
     
@@ -48,7 +50,7 @@ struct iOSCodeEditor: UIViewRepresentable {
     }
     
     func updateUIView(_ textView: UITextView, context: Context) {
-
+        format(textView)
     }
     
     

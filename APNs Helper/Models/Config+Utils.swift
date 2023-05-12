@@ -54,6 +54,13 @@ extension Config {
         return (ready: true, message: nil)
     }
     
+    var isEmpty: Bool {
+        self.keyIdentifier.isEmpty &&
+        self.teamIdentifier.isEmpty &&
+        self.appBundleID.isEmpty &&
+        self.privateKey.isEmpty
+    }
+    
     static let none = Config(
         deviceToken: .empty,
         pushKitDeviceToken: .empty,

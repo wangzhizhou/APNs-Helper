@@ -14,6 +14,8 @@ struct P8KeyView: View {
     
     @Binding var privateKey: String
     
+    var editorHeight: CGFloat = 80.0
+
     var onPrivateKeyChange: ((String) -> Void)?
     
     var onFileImporterError: ((Error) -> Void)?
@@ -31,7 +33,8 @@ struct P8KeyView: View {
             }
             
             InputTextEditor(content: $privateKey)
-                .frame(height: 80)
+                .scrollIndicators(.hidden)
+                .frame(height: editorHeight)
                 .onChange(of: privateKey) { newPrivateKey in
                     if let onPrivateKeyChange = onPrivateKeyChange {
                         onPrivateKeyChange(newPrivateKey)
