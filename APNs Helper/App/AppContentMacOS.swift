@@ -105,7 +105,6 @@ struct AppContentMacOS: View {
                 title: Constants.payload.value,
                 payload: $contentModel.payload
             )
-            .frame(minHeight: 200)
             
             // Send Button Area
             SendButtonArea(loadPayloadTemplate: loadPayloadTemplate)

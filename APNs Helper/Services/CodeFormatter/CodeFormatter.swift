@@ -27,8 +27,8 @@ struct CodeFomater {
     }
     
     static func highlightTextContainer(language: Language? = nil) -> NSTextContainer {
-        
-        let textStorage = CodeAttributedString()
+        let textStorage = CodeAttributedString(highlightr: highlighter)
+        textStorage.highlightr.ignoreIllegals = true
         textStorage.language = language?.rawValue
         let layoutManager = NSLayoutManager()
         textStorage.addLayoutManager(layoutManager)
@@ -39,6 +39,12 @@ struct CodeFomater {
         return textContainer
     }
     
+    static let highlighter: Highlightr = {
+        let highlighter = Highlightr()!
+        highlighter.ignoreIllegals = true
+        return highlighter
+    }()
+    
     static let jsonFormatter: PrettierFormatter = {
         let formatter = PrettierFormatter(plugins: [BabelPlugin()], parser: JSONParser())
         formatter.prepare()
@@ -46,6 +52,7 @@ struct CodeFomater {
     }()
     
     static func setup() {
+        _ = highlighter
         _ = jsonFormatter
     }
     

@@ -20,16 +20,54 @@ struct MacOSCodeEditor: NSViewRepresentable {
     
     var onError: ((Error?) -> Void)? = nil
     
-    func makeNSView(context: Context) -> NSTextView {
+    func makeNSView(context: Context) -> NSScrollView {
         let frame = CGRect(origin: .zero, size: size)
+        
+        let scrollView = NSTextView.scrollableTextView()
+        scrollView.frame = frame
+        scrollView.hasVerticalScroller = false
+        scrollView.hasHorizontalScroller = false
+        scrollView.drawsBackground = false
+        scrollView.horizontalScrollElasticity = .none
+        scrollView.borderType = .lineBorder
+        
         let highlighter = CodeFomater.highlightTextContainer(language: language)
         let textView = NSTextView(frame: frame, textContainer: highlighter)
+        textView.drawsBackground = false
+        textView.minSize = size
+        textView.maxSize = NSSize(width: size.width, height: CGFloat.infinity)
+        textView.isVerticallyResizable = true
+        textView.isHorizontallyResizable = false
+        textView.isAutomaticLinkDetectionEnabled = false
+        textView.usesFontPanel = false
+        textView.textContainer?.containerSize = textView.maxSize
+        textView.textContainer?.widthTracksTextView = true
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4.0
+        textView.defaultParagraphStyle = paragraphStyle
         textView.delegate = context.coordinator
         textView.allowsUndo = true
         textView.enabledTextCheckingTypes = 0
-        return textView
+        
+        scrollView.documentView = textView
+        return scrollView
     }
-    func format(_ textView: NSTextView) {
+    
+    func updateNSView(_ scrollView: NSScrollView, context: Context) {
+        format(scrollView)
+    }
+    func sizeThatFits(_ proposal: ProposedViewSize, nsView: NSScrollView, context: Context) -> CGSize? {
+        return size
+    }
+    
+    func format(_ scrollView: NSScrollView) {
+        
+        guard let textView = scrollView.textView
+        else {
+            return
+        }
+        
         do {
             let newString = try CodeFomater.format(content, language: language)
             if let onError = onError {
@@ -40,17 +78,11 @@ struct MacOSCodeEditor: NSViewRepresentable {
             }
             textView.string = newString
         } catch let error {
+            textView.layer?.borderColor = NSColor.red.cgColor
             if let onError = onError {
                 onError(error)
             }
         }
-    }
-    func updateNSView(_ textView: NSTextView, context: Context) {
-        format(textView)
-    }
-    
-    func sizeThatFits(_ proposal: ProposedViewSize, nsView: NSTextView, context: Context) -> CGSize? {
-        return size
     }
     
     func makeCoordinator() -> Coordinator {
@@ -65,10 +97,24 @@ struct MacOSCodeEditor: NSViewRepresentable {
             self.parent = parent
         }
         func textDidChange(_ notification: Notification) {
-            if let text = notification.object as? NSText, parent.content != text.string {
+            guard let text = notification.object as? NSText
+            else {
+                return
+            }
+            if parent.content != text.string {
                 parent.content = text.string
             }
         }
+    }
+}
+
+extension NSScrollView {
+    var textView: NSTextView? {
+        guard let textView = self.documentView as? NSTextView
+        else {
+            return nil
+        }
+        return textView
     }
 }
 
@@ -87,5 +133,4 @@ struct MacOSCodeEditor_Previews: PreviewProvider {
         }
     }
 }
-
 #endif
