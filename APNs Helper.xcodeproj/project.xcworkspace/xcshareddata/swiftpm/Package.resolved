@@ -28,6 +28,24 @@
       }
     },
     {
+      "identity" : "highlightr",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/raspu/Highlightr.git",
+      "state" : {
+        "revision" : "93199b9e434f04bda956a613af8f571933f9f037",
+        "version" : "2.1.2"
+      }
+    },
+    {
+      "identity" : "prettier",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/simonbs/Prettier.git",
+      "state" : {
+        "revision" : "266dac500bded844a56771bc1fb2abaa60f6e7b6",
+        "version" : "0.2.1"
+      }
+    },
+    {
       "identity" : "swift-atomics",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-atomics.git",

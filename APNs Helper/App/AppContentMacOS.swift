@@ -101,10 +101,10 @@ struct AppContentMacOS: View {
             }
             
             // Payload
-            InputTextEditor(
+            PayloadEditor(
                 title: Constants.payload.value,
-                content: $contentModel.payload,
-                textEditorFont: .body)
+                payload: $contentModel.payload
+            )
             .frame(minHeight: 200)
             
             // Send Button Area

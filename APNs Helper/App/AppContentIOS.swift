@@ -124,13 +124,11 @@ struct AppContentIOS: View {
             }
             
             // Payload
-            Section(Constants.payload.value) {
-                InputTextEditor(
-                    content: $contentModel.payload,
-                    textEditorFont: .body)
-                .frame(minHeight: 200)
-                .padding(.vertical)
-            }
+            PayloadEditor(
+                title: Constants.payload.value,
+                payload: $contentModel.payload
+            )
+            .frame(minHeight: 200)
             
             Group {
                 Button( Constants.loadTemplatePayload.value) {

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0031662A0DEAFF009BEACD /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0031652A0DEAFF009BEACD /* Highlightr */; };
+		2B0031682A0DEBEB009BEACD /* PayloadEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */; };
+		2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */ = {isa = PBXBuildFile; productRef = 2B00316A2A0DFF6F009BEACD /* PrettierBabel */; };
+		2B00316F2A0E0221009BEACD /* CodeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00316E2A0E0221009BEACD /* CodeFormatter.swift */; };
+		2B0031722A0E02DC009BEACD /* MacOSCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */; platformFilters = (macos, ); };
+		2B0031742A0E0306009BEACD /* iOSCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */; platformFilter = ios; };
+		2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031752A0E0369009BEACD /* CodeEditor.swift */; };
 		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
 		2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72E28DEAB17009EF9C9 /* Persistence.swift */; };
 		2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */; };
@@ -62,6 +69,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadEditor.swift; sourceTree = "<group>"; };
+		2B00316E2A0E0221009BEACD /* CodeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFormatter.swift; sourceTree = "<group>"; };
+		2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSCodeEditor.swift; sourceTree = "<group>"; };
+		2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCodeEditor.swift; sourceTree = "<group>"; };
+		2B0031752A0E0369009BEACD /* CodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
 		2B35F72928DEAB17009EF9C9 /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B35F72C28DEAB17009EF9C9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		2B35F72E28DEAB17009EF9C9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -121,6 +133,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */,
+				2B0031662A0DEAFF009BEACD /* Highlightr in Frameworks */,
+				2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */,
 				2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +156,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B0031702A0E02B2009BEACD /* CodeFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				2B00316E2A0E0221009BEACD /* CodeFormatter.swift */,
+				2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */,
+				2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */,
+				2B0031752A0E0369009BEACD /* CodeEditor.swift */,
+			);
+			path = CodeFormatter;
+			sourceTree = "<group>";
+		};
 		2B35F72028DEAB17009EF9C9 = {
 			isa = PBXGroup;
 			children = (
@@ -255,6 +280,7 @@
 				2BD8018A2A0A3B0100DDD17E /* LogView.swift */,
 				2BD8018C2A0A575600DDD17E /* SendButtonArea.swift */,
 				2BD8018E2A0A5CD000DDD17E /* TokenView.swift */,
+				2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -264,6 +290,7 @@
 			children = (
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
 				2BD3323E28E7221200E27D2D /* APNsService+Template.swift */,
+				2B0031702A0E02B2009BEACD /* CodeFormatter */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -354,6 +381,8 @@
 			packageProductDependencies = (
 				2BDB538A29384BCE00E38E77 /* APNSwift */,
 				2B40F8B429DEEC1000E484FB /* AlertToast */,
+				2B0031652A0DEAFF009BEACD /* Highlightr */,
+				2B00316A2A0DFF6F009BEACD /* PrettierBabel */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -426,6 +455,8 @@
 			packageReferences = (
 				2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */,
 				2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */,
+				2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */,
+				2B0031692A0DFF6F009BEACD /* XCRemoteSwiftPackageReference "Prettier" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -479,11 +510,13 @@
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */,
 				2BD801872A09EDBD00DDD17E /* PresetPicker.swift in Sources */,
+				2B00316F2A0E0221009BEACD /* CodeFormatter.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
 				2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
+				2B0031742A0E0306009BEACD /* iOSCodeEditor.swift in Sources */,
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
 				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
 				2BD8018F2A0A5CD000DDD17E /* TokenView.swift in Sources */,
@@ -498,11 +531,14 @@
 				2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */,
 				2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */,
 				2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */,
+				2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */,
+				2B0031682A0DEBEB009BEACD /* PayloadEditor.swift in Sources */,
 				2BD8018D2A0A575600DDD17E /* SendButtonArea.swift in Sources */,
 				2B64E97629E6BAC80007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */,
 				2B505E2829DD25B50010F62D /* AppContentIOS.swift in Sources */,
 				F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */,
 				2BD8018B2A0A3B0100DDD17E /* LogView.swift in Sources */,
+				2B0031722A0E02DC009BEACD /* MacOSCodeEditor.swift in Sources */,
 				2B64E97529E6BAC80007B1D0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,6 +967,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/raspu/Highlightr.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		2B0031692A0DFF6F009BEACD /* XCRemoteSwiftPackageReference "Prettier" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simonbs/Prettier.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.1;
+			};
+		};
 		2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/elai950/AlertToast.git";
@@ -950,6 +1002,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2B0031652A0DEAFF009BEACD /* Highlightr */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */;
+			productName = Highlightr;
+		};
+		2B00316A2A0DFF6F009BEACD /* PrettierBabel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B0031692A0DFF6F009BEACD /* XCRemoteSwiftPackageReference "Prettier" */;
+			productName = PrettierBabel;
+		};
 		2B40F8B429DEEC1000E484FB /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */;

@@ -173,6 +173,8 @@ class AppModel: ObservableObject {
                 self.toastMessage = "Copyed to Pasteboard!"
             }
             cancellables.append(copyToPasteboardCancellable)
+            
+            CodeFomater.setup()
         }
     
     private var cancellables = [AnyCancellable]()
