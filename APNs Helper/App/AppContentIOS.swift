@@ -45,6 +45,7 @@ struct AppContentIOS: View {
                     }
                 }
             }
+            .listRowSeparator(.hidden)
             
             // App Info
             Section(Constants.appInfo.value) {
@@ -89,25 +90,26 @@ struct AppContentIOS: View {
                     pushType: contentModel.appInfo.pushType,
                     deviceToken: $contentModel.appInfo.deviceToken,
                     pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
+                
+#if DEBUG
+                Toggle(isOn: $contentModel.isInTestMode) {
+                    Text(Constants.fillInAppInfo.value)
+                }
+                .onChange(of: contentModel.isInTestMode) { mode in
+                    if mode {
+                        contentModel.appInfo = appModel.thisAppConfig
+                    }
+                }
+                .onChange(of: appModel.thisAppConfig) { _ in
+                    guard contentModel.isInTestMode else {
+                        return
+                    }
+                    contentModel.appInfo = appModel.thisAppConfig
+                }
+#endif
             }
             .listRowSeparator(.hidden)
             
-#if DEBUG
-            Toggle(isOn: $contentModel.isInTestMode) {
-                Text(Constants.fillInAppInfo.value)
-            }
-            .onChange(of: contentModel.isInTestMode) { mode in
-                if mode {
-                    contentModel.appInfo = appModel.thisAppConfig
-                }
-            }
-            .onChange(of: appModel.thisAppConfig) { _ in
-                guard contentModel.isInTestMode else {
-                    return
-                }
-                contentModel.appInfo = appModel.thisAppConfig
-            }
-#endif
             
             if !contentModel.config.isEmpty {
                 Button(Constants.clearCurrentAppInfo.value) {
@@ -126,11 +128,12 @@ struct AppContentIOS: View {
             }
             
             // Payload
-            PayloadEditor(
-                title: Constants.payload.value,
-                payload: $contentModel.payload
-            )
-            .frame(minHeight: 200)
+            Section(Constants.payload.value) {
+                PayloadEditor(payload: $contentModel.payload)
+                    .frame(minHeight: 200)
+                    .padding(.vertical, 12)
+            }
+            .listRowSeparator(.hidden)
             
             Group {
                 Button( Constants.loadTemplatePayload.value) {
@@ -141,6 +144,7 @@ struct AppContentIOS: View {
                     contentModel.payload = .empty
                 }
             }
+            .listRowSeparator(.hidden)
             
             
             Section(Constants.log.value) {
@@ -149,6 +153,7 @@ struct AppContentIOS: View {
                 // Send Button Area
                 SendButtonArea(loadPayloadTemplate: loadPayloadTemplate)
             }
+            .listRowSeparator(.hidden)
         }
         .scrollDismissesKeyboard(.immediately)
     }

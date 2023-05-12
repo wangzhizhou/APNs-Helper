@@ -37,6 +37,10 @@ struct iOSCodeEditor: UIViewRepresentable {
     
     func format(_ textView: UITextView) {
         do {
+            
+            guard !textView.isDragging, !textView.isTracking, !textView.isDecelerating else {
+                return
+            }
             let newText = try CodeFomater.format(content, language: language)
             if let onError = onError {
                 onError(nil)

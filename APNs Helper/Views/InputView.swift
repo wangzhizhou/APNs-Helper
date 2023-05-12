@@ -42,8 +42,8 @@ struct InputView: View {
                     .keyboardType(.asciiCapable)
                     .overlay(alignment: .bottom) {
                         Divider()
-                            .frame(height: 0.5)
                             .background(Color.border)
+                            .frame(height: 1)
                             .offset(y: 4)
                     }
 #elseif os(macOS)
