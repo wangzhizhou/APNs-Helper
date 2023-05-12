@@ -20,9 +20,12 @@ struct iOSCodeEditor: UIViewRepresentable {
     
     let size: CGSize
     
+    let colorScheme: ColorScheme
+    
     var onError: ((Error?) -> Void)? = nil
     
     func makeUIView(context: Context) -> UITextView {
+        CodeFomater.resetTheme(colorScheme: colorScheme)
         let frame = CGRect(origin: .zero, size: size)
         let textView = UITextView(frame: frame, textContainer: CodeFomater.highlightTextContainer(language: language))
         textView.delegate = context.coordinator
@@ -86,7 +89,8 @@ struct iOSCodeEditor_Previews: PreviewProvider {
                 }
                 """),
                 language: .json,
-                size: geometry.size
+                size: geometry.size,
+                colorScheme: .dark
             )
         }
     }

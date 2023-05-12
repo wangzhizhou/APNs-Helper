@@ -13,6 +13,8 @@ import AppKit
 import UIKit
 #endif
 
+import SwiftUI
+
 /// https://github.com/raspu/Highlightr
 import Highlightr
 
@@ -44,6 +46,11 @@ struct CodeFomater {
         highlighter.ignoreIllegals = true
         return highlighter
     }()
+    
+    static func resetTheme(colorScheme: ColorScheme) {
+        let themeName = colorScheme == .dark ? "dark" : "lightfair"
+        highlighter.setTheme(to: themeName)
+    }
     
     static let jsonFormatter: PrettierFormatter = {
         let formatter = PrettierFormatter(plugins: [BabelPlugin()], parser: JSONParser())

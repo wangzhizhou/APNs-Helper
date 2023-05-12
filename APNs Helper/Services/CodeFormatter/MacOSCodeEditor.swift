@@ -18,9 +18,12 @@ struct MacOSCodeEditor: NSViewRepresentable {
     
     let size: CGSize
     
+    let colorScheme: ColorScheme
+    
     var onError: ((Error?) -> Void)? = nil
     
     func makeNSView(context: Context) -> NSScrollView {
+        CodeFomater.resetTheme(colorScheme: colorScheme)
         let frame = CGRect(origin: .zero, size: size)
         
         let scrollView = NSTextView.scrollableTextView()
@@ -127,7 +130,8 @@ struct MacOSCodeEditor_Previews: PreviewProvider {
                 }
                 """),
                 language: .json,
-                size: geometry.size
+                size: geometry.size,
+                colorScheme: .light
             )
         }
     }

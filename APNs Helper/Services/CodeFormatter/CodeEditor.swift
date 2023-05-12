@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CodeEditor: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @Binding var content: String
     
     var language: CodeFomater.Language? = .json
@@ -23,6 +25,7 @@ struct CodeEditor: View {
                     content: $content,
                     language: language,
                     size: geometry.size,
+                    colorScheme: colorScheme,
                     onError: onError
                 )
 #elseif os(iOS)
@@ -30,10 +33,14 @@ struct CodeEditor: View {
                     content: $content,
                     language: language,
                     size: geometry.size,
+                    colorScheme: colorScheme,
                     onError: onError
                 )
 #endif
             }
+        }
+        .onChange(of: colorScheme) { scheme in
+            CodeFomater.resetTheme(colorScheme: scheme)
         }
     }
 }
