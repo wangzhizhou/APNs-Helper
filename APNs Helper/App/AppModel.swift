@@ -24,7 +24,11 @@ class AppModel: ObservableObject {
     var toastMessage: String? {
         didSet {
             if let toast = toastMessage, !toast.isEmpty {
-                showToast = true
+                Task {
+                    await MainActor.run {
+                        showToast = true
+                    }                    
+                }
             }
         }
     }

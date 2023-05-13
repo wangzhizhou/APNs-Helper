@@ -8,6 +8,7 @@
 import Foundation
 import APNSwift
 import Logging
+import SystemConfiguration
 import NIO
 
 enum APNServerEnv: String, CaseIterable, Codable {
@@ -21,6 +22,28 @@ enum APNServerEnv: String, CaseIterable, Codable {
         case .production:
             return .production
         }
+    }
+    
+    var reachable: Bool  {
+        var reachable = false
+        
+        var hostname: String?
+        switch self {
+        case .sandbox:
+            hostname = "api.development.push.apple.com"
+        case .production:
+            hostname = "api.push.apple.com"
+        }
+        if let hostname = hostname {
+            do {
+                let reachability = try Reachability(hostname: hostname)
+                reachable = reachability.connection != .unavailable
+            } catch {
+                reachable = false
+            }
+        }
+        
+        return reachable
     }
 }
 
@@ -50,9 +73,14 @@ struct APNsService {
     }
     
     func send() async throws {
+        
+        guard config.apnsServerEnv.reachable
+        else {
+            appModel.toastMessage = "APN Server Not Reachable"
+            return
+        }
                 
         var client: APNSClient<JSONDecoder, JSONEncoder>?
-        
         
         do {            
             client = APNSClient(
