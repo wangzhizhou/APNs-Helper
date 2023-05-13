@@ -60,7 +60,7 @@ extension Color {
     
     static let valid = Color("ValidColor")
     
-    static let border = Color("BorderColor").opacity(0.5)
+    static let border = Color("BorderColor")
     
 }
 
@@ -80,6 +80,19 @@ struct BorderModifier: ViewModifier {
     }
 }
 
+struct UnderLineModifier: ViewModifier {
+    
+    func body(content: Content) -> some View {
+        return content
+            .overlay(alignment: .bottom) {
+                Divider()
+                    .frame(height: 1)
+                    .background(Color.border)
+                    .offset(y: 4)
+            }
+    }
+}
+
 extension View {
     
     func editorBorder() -> some View {
@@ -90,5 +103,10 @@ extension View {
         return self
             .textFieldStyle(.plain)
             .modifier(BorderModifier(color: Color.border, padding: 6))
+    }
+    
+    func textFieldUnderLine() -> some View {
+        return self
+            .modifier(UnderLineModifier())
     }
 }

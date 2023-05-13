@@ -40,12 +40,7 @@ struct InputView: View {
                     }
 #if os(iOS)
                     .keyboardType(.asciiCapable)
-                    .overlay(alignment: .bottom) {
-                        Divider()
-                            .background(Color.border)
-                            .frame(height: 1)
-                            .offset(y: 4)
-                    }
+                    .textFieldUnderLine()
 #elseif os(macOS)
                     .textFieldBorder()
 #endif

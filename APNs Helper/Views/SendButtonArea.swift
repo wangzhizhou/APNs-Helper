@@ -77,7 +77,7 @@ struct SendButtonArea: View {
         }
         .disabled(appModel.isSendingPush)
 #if os(iOS)
-        .frame(height: 60)
+        .frame(height: 50)
         .buttonStyle(BorderedProminentButtonStyle())
 #elseif os(macOS)
         .keyboardShortcut(.return, modifiers: [.command])
