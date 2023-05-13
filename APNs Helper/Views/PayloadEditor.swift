@@ -16,6 +16,8 @@ struct PayloadEditor: View {
     
     @Binding var payload: String
     
+    @State var hasError: Bool = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             if let title = title {
@@ -23,9 +25,12 @@ struct PayloadEditor: View {
             }
             CodeEditor(content: $payload) { error in
                 DispatchQueue.main.async {
-                    appModel.resetLog()
                     if let error = error {
-                        appModel.appLog.append(error.localizedDescription)
+                        hasError = true
+                        appModel.appLog = error.localizedDescription
+                    } else if hasError {
+                        hasError = false
+                        appModel.resetLog()
                     }
                 }
             }

@@ -35,7 +35,8 @@ extension PushKitManager: PKPushRegistryDelegate {
         let pushKitTokenHexString = pushCredentials.token.hexString
         pushKitTokenSubject.send(pushKitTokenHexString)
         pushKitTokenSubject.send(completion: .finished)
-        print("pushkit token: \(pushKitTokenHexString)")
+        
+        "pushkit token: \(pushKitTokenHexString)".printDebugInfo()
     }
     
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {

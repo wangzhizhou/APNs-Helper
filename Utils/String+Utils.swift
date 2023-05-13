@@ -26,6 +26,12 @@ extension String {
 #endif
         NotificationCenter.default.post(name: .APNSHelperStringCopyedToPastedboard, object: self)
     }
+    
+    func printDebugInfo() {
+#if DEBUG
+        print("[DEBUG_INFO]: \(self)")
+#endif
+    }
 }
 
 extension Notification.Name {

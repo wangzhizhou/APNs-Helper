@@ -11,6 +11,7 @@ This app can be installed by clicking the app icon bellow.
 ## Features
 
 - [x] custom payload for notification
+- [x] payload json can be formatted and highlighted
 - [x] import **`*.p8`** or input private key manually
 - [x] supported push type: 
     - **alert**
@@ -19,6 +20,6 @@ This app can be installed by clicking the app icon bellow.
 
 - [x] **`⌘+⏎`** keyboard shortcut to trigger send button
 - [x] display runtime log content
-- [x] save the app info as preset config(iOS only)
+- [x] save the app info as preset config
 
 

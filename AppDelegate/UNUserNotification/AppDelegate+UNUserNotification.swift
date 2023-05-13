@@ -24,11 +24,12 @@ extension AppDelegate {
         let deviceTokenHexString = deviceToken.hexString
         UNUserNotificationManager.shared.deviceTokenSubject.send(deviceTokenHexString)
         UNUserNotificationManager.shared.deviceTokenSubject.send(completion: .finished)
-        print("device token: \(deviceTokenHexString)")
+        
+        "device token: \(deviceTokenHexString)".printDebugInfo()
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("register device token failed. \(error.localizedDescription)")
+        "register device token failed. \(error.localizedDescription)".printDebugInfo()
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {

@@ -34,7 +34,7 @@ struct AppLogHandler: LogHandler {
              function: String,
              line: UInt) {
                 
-        print("\(message) \(metadata?.description ?? .empty)")
+        "\(message) \(metadata?.description ?? .empty)".printDebugInfo()
         
         // 输出到控制台
         let logDate = Date()

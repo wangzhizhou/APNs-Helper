@@ -139,7 +139,7 @@ struct APNsService {
             appModel.isSendingPush = false
         }
         client?.shutdown(callback: { error in
-            print("shutdown client: \(error?.localizedDescription ?? "Success")")
+            "shutdown client: \(error?.localizedDescription ?? "Success")".printDebugInfo()
         })
     }
 }
