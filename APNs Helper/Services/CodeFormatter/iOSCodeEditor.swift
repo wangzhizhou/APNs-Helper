@@ -49,6 +49,9 @@ struct iOSCodeEditor: UIViewRepresentable {
             }
             guard !content.isEmpty
             else {
+                if !textView.text.isEmpty {
+                    textView.text = content
+                }
                 return
             }
             let newText = try CodeFomater.format(content, language: language)

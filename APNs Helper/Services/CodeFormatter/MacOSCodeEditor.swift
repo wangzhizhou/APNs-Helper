@@ -71,6 +71,9 @@ struct MacOSCodeEditor: NSViewRepresentable {
         do {
             guard !content.isEmpty
             else {
+                if !textView.string.isEmpty {
+                    textView.string = content
+                }
                 return
             }
             let newString = try CodeFomater.format(content, language: language)
