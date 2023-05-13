@@ -48,7 +48,7 @@ struct CodeFomater {
     }()
     
     static func resetTheme(colorScheme: ColorScheme) {
-        let themeName = colorScheme == .dark ? "dark" : "lightfair"
+        let themeName = colorScheme == .dark ? "vs2015" : "github"
         highlighter.setTheme(to: themeName)
     }
     
