@@ -36,7 +36,8 @@ struct AppContentMacOS: View {
             HStack {
                 Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
                     ForEach(PushType.allCases, id: \.self) {
-                        Text($0.rawValue).tag($0)
+                        Text($0.rawValue)
+                            .tag($0)
                     }
                 }
                 .onChange(of: contentModel.appInfo.pushType, perform: { _ in
@@ -45,7 +46,8 @@ struct AppContentMacOS: View {
                 Spacer(minLength: 50)
                 Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
                     ForEach(APNServerEnv.allCases, id: \.self) {
-                        Text($0.rawValue).tag($0)
+                        Text($0.rawValue)
+                            .tag($0)
                     }
                 }
                 .pickerStyle(.segmented)

@@ -32,6 +32,7 @@ struct AppContent: View {
                 clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist)
 #endif
         }
+        .background(.background)
         .environmentObject(contentModel)
         .onAppear {
             loadPayloadTemplate()

@@ -61,7 +61,6 @@ extension Color {
     static let valid = Color("ValidColor")
     
     static let border = Color("BorderColor")
-    
 }
 
 struct BorderModifier: ViewModifier {
