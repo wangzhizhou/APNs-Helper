@@ -61,6 +61,7 @@
 		2BD8018F2A0A5CD000DDD17E /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8018E2A0A5CD000DDD17E /* TokenView.swift */; };
 		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
+		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
 		F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD122A096B0B0061DF8A /* AppContentModel.swift */; };
 		F369DD1B2A0A9E890061DF8A /* EmptyFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD1A2A0A9E890061DF8A /* EmptyFile.swift */; };
 		F369DD282A0A9EF20061DF8A /* docs.docc in Sources */ = {isa = PBXBuildFile; fileRef = F369DD272A0A9EF20061DF8A /* docs.docc */; };
@@ -145,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +181,7 @@
 				2B40F8A929DEE24700E484FB /* AppDelegate */,
 				2B35F72A28DEAB17009EF9C9 /* Products */,
 				F3A46DEA29DDAA26004D4AD1 /* Utils */,
+				F360B9752A0FDC8C00CDD8BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -347,6 +350,13 @@
 			path = UNUserNotification;
 			sourceTree = "<group>";
 		};
+		F360B9752A0FDC8C00CDD8BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F369DD192A0A9E890061DF8A /* APNs Helper Doc */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +414,9 @@
 			dependencies = (
 			);
 			name = "APNs Helper Tester";
+			packageProductDependencies = (
+				F360B9762A0FDC8C00CDD8BD /* AlertToast */,
+			);
 			productName = "APNs Helper Tester";
 			productReference = 2B64E94829E6B3160007B1D0 /* APNs Helper Tester.app */;
 			productType = "com.apple.product-type.application";
@@ -1027,6 +1040,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */;
 			productName = APNSwift;
+		};
+		F360B9762A0FDC8C00CDD8BD /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 

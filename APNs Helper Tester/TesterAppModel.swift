@@ -39,6 +39,14 @@ class TesterAppModel: ObservableObject {
         }
     }
     
+    @Published
+    var showToast: Bool
+    var toastMessage: String {
+        didSet {
+            showToast = true
+        }
+    }
+    
     var content: [(String, String)] {[
         ("Key ID", keyId),
         ("Team ID", teamID),
@@ -54,11 +62,13 @@ class TesterAppModel: ObservableObject {
     
     private var cancellables = [AnyCancellable]()
     
-    init(deviceToken: String = "", pushKitToken: String = "", showAlert: Bool = false, alertMessage: String = "") {
+    init(deviceToken: String = "", pushKitToken: String = "", showAlert: Bool = false, alertMessage: String = "", showToast: Bool = false, toastMessage: String = "") {
         self.deviceToken = deviceToken
         self.pushKitToken = pushKitToken
         self.showAlert = showAlert
         self.alertMessage = alertMessage
+        self.showToast = showToast
+        self.toastMessage = toastMessage
         
         let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitToken in
             self.pushKitToken = pushKitToken
@@ -77,7 +87,7 @@ class TesterAppModel: ObservableObject {
         cancellables.append(backgroundNotificationCancellable)
         
         let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
-            self.alertMessage = "Copyed To Pasteboard!"
+            self.toastMessage = "Copyed in Pasteboard!"
         }
         cancellables.append(copyToPasteboardCancellable)
     }
@@ -88,6 +98,5 @@ class TesterAppModel: ObservableObject {
         }
         .trimmed
         .copyToPasteboard()
-        alertMessage = "All Info Copyed!"
     }
 }

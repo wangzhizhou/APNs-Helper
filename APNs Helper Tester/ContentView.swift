@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct ContentView: View {
     
@@ -16,11 +17,11 @@ struct ContentView: View {
             Form {
                 ForEach(model.content, id: \.self.0) { item in
                     Section(item.0) {
-                        ItemEntry(title: item.1, alertMessage: $model.alertMessage)
+                        ItemEntry(title: item.1)
                     }
                 }
-                
             }
+            .scrollIndicators(.hidden)
             .toolbar(content: {
                 Button {
                     model.copyAllInfo()
@@ -34,15 +35,16 @@ struct ContentView: View {
                 Alert(title: Text(model.alertMessage), message: Text(UIPasteboard.general.string ?? ""))
             })
         }
+        .toast(isPresenting: $model.showToast) {
+            AlertToast(displayMode: .alert, type: .complete(.green),title:UIPasteboard.general.string, subTitle: model.toastMessage)
+        }
     }
 }
 
 struct ItemEntry: View {
     
     let title: String
-    
-    @Binding var alertMessage: String
-    
+
     var body: some View {
         HStack {
             Text(title)
