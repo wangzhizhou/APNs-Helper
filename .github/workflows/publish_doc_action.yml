@@ -15,4 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: build and push to github repo
-      run: ./publish-doc.sh
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        ./publish-doc.sh
