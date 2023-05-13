@@ -38,7 +38,7 @@ struct AppContent: View {
             loadPayloadTemplate()
         }
         .toast(isPresenting: $appModel.showToast) {
-            AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage)
+            AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage, style: .style(backgroundColor: .orange))
         }
     }
 }

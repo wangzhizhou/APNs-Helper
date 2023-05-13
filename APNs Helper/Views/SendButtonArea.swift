@@ -45,12 +45,14 @@ struct SendButtonArea: View {
                 
                 let config = contentModel.config
                 Task {
+                    guard !contentModel.payload.isEmpty
+                    else {
+                        appModel.toastMessage = "\(Constants.payload.value) is Empty"
+                        return
+                    }
                     appModel.isSendingPush = true
                     appModel.resetLog()
-                    if contentModel.payload.isEmpty,  let payloadData = APNsService.templatePayload(for: config)?.data(using: .utf8){
-                        try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
-                    }
-                    else if let payloadData = contentModel.payload.data(using: .utf8) {
+                    if let payloadData = contentModel.payload.data(using: .utf8) {
                         try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                     }
                     appModel.isSendingPush = false
