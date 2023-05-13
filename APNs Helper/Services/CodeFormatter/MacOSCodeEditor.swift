@@ -64,13 +64,15 @@ struct MacOSCodeEditor: NSViewRepresentable {
     }
     
     func format(_ scrollView: NSScrollView) {
-        
         guard let textView = scrollView.textView
         else {
             return
         }
-        
         do {
+            guard !content.isEmpty
+            else {
+                return
+            }
             let newString = try CodeFomater.format(content, language: language)
             if let onError = onError {
                 onError(nil)

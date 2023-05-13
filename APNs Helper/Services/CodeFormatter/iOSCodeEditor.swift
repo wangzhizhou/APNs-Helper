@@ -37,8 +37,18 @@ struct iOSCodeEditor: UIViewRepresentable {
     
     func format(_ textView: UITextView) {
         do {
-            
-            guard !textView.isDragging, !textView.isTracking, !textView.isDecelerating else {
+            if !textView.text.isEmpty {
+                guard let runloopMode = RunLoop.main.currentMode, runloopMode != .tracking
+                else {
+                    return
+                }
+            }
+            guard !textView.isDragging, !textView.isTracking, !textView.isDecelerating
+            else {
+                return
+            }
+            guard !content.isEmpty
+            else {
                 return
             }
             let newText = try CodeFomater.format(content, language: language)
