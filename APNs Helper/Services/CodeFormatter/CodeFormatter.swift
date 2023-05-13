@@ -18,7 +18,7 @@ import SwiftUI
 /// https://github.com/raspu/Highlightr
 import Highlightr
 
-///
+/// https://github.com/simonbs/Prettier
 import Prettier
 import PrettierBabel
 
