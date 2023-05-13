@@ -14,6 +14,8 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: true
     - name: build and push to github repo
       run: |
         git config user.name github-actions
