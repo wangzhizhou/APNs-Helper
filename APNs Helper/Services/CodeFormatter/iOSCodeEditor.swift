@@ -9,6 +9,7 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 struct iOSCodeEditor: UIViewRepresentable {
     
@@ -32,10 +33,12 @@ struct iOSCodeEditor: UIViewRepresentable {
         textView.autocorrectionType = .no
         textView.smartQuotesType = .no
         textView.backgroundColor = .clear
+        
+        context.coordinator.textView = textView
         return textView
     }
     
-    func format(_ textView: UITextView) {
+    func format(_ textView: UITextView, force: Bool = false) {
         do {
             if !textView.text.isEmpty {
                 guard let runloopMode = RunLoop.main.currentMode, runloopMode != .tracking
@@ -54,14 +57,24 @@ struct iOSCodeEditor: UIViewRepresentable {
                 }
                 return
             }
-            let newText = try CodeFomater.format(content, language: language)
+            let newResult = try CodeFomater.format(
+                content,
+                cursorPosition: textView.selectedRange.location,
+                language: language)
+            guard let newText = newResult?.formattedString, let cursorPosition = newResult?.cursorOffset
+            else {
+                return
+            }
             if let onError = onError {
                 onError(nil)
             }
-            guard textView.text != newText else {
-                return
+            if !force {
+                guard textView.text != newText else {
+                    return
+                }
             }
             textView.text = newText
+            textView.selectedRange = NSRange(location: cursorPosition, length: 0)
         } catch let error {
             if let onError = onError {
                 onError(error)
@@ -73,7 +86,6 @@ struct iOSCodeEditor: UIViewRepresentable {
         format(textView)
     }
     
-    
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
@@ -82,8 +94,21 @@ struct iOSCodeEditor: UIViewRepresentable {
         
         let parent: iOSCodeEditor
         
+        var textView: UITextView? = nil
+        
+        let textDidChangeSubject = PassthroughSubject<Void, Never>()
+        
+        var cancellables = [AnyCancellable]()
+        
         init(parent: iOSCodeEditor) {
             self.parent = parent
+            super.init()
+            let cancellable = textDidChangeSubject.debounce(for: 0.3, scheduler: RunLoop.main).sink {[weak self] _ in
+                if let textView = self?.textView {
+                    parent.format(textView, force: true)
+                }
+            }
+            cancellables.append(cancellable)
         }
         
         func textViewDidChange(_ textView: UITextView) {
@@ -91,6 +116,7 @@ struct iOSCodeEditor: UIViewRepresentable {
                 return
             }
             parent.content = textView.text
+            textDidChangeSubject.send()
         }
     }
 }
