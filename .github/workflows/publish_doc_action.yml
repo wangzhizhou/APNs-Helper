@@ -16,6 +16,7 @@ jobs:
     - uses: actions/checkout@v3
       with:
         submodules: true
+        github-token: ${{ secrets.GITHUB_TOKEN }}
     - name: build and push to github repo
       run: |
         git config user.name github-actions
