@@ -21,5 +21,3 @@ This app can be installed by clicking the app icon bellow.
 - [x] **`⌘+⏎`** keyboard shortcut to trigger send button
 - [x] display runtime log content
 - [x] save the app info as preset config
-
-
