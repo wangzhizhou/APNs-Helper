@@ -9,6 +9,7 @@
 
 import AppKit
 import SwiftUI
+import Combine
 
 struct MacOSCodeEditor: NSViewRepresentable {
     
@@ -53,6 +54,7 @@ struct MacOSCodeEditor: NSViewRepresentable {
         textView.enabledTextCheckingTypes = 0
         
         scrollView.documentView = textView
+        context.coordinator.scrollView = scrollView
         return scrollView
     }
     
@@ -63,7 +65,7 @@ struct MacOSCodeEditor: NSViewRepresentable {
         return size
     }
     
-    func format(_ scrollView: NSScrollView) {
+    func format(_ scrollView: NSScrollView, force: Bool = false) {
         guard let textView = scrollView.textView
         else {
             return
@@ -76,14 +78,24 @@ struct MacOSCodeEditor: NSViewRepresentable {
                 }
                 return
             }
-            let newString = try CodeFomater.format(content, language: language)
+            let newResult = try CodeFomater.format(
+                content,
+                cursorPosition: textView.selectedRange().location,
+                language: language)
+            guard let newString = newResult?.formattedString, let cursorPosition = newResult?.cursorOffset
+            else {
+                return
+            }
             if let onError = onError {
                 onError(nil)
             }
-            guard textView.string != newString else {
-                return
+            if !force {
+                guard textView.string != newString else {
+                    return
+                }
             }
             textView.string = newString
+            textView.setSelectedRange(NSRange(location: cursorPosition, length: 0))
         } catch let error {
             textView.layer?.borderColor = NSColor.red.cgColor
             if let onError = onError {
@@ -100,8 +112,21 @@ struct MacOSCodeEditor: NSViewRepresentable {
         
         let parent: MacOSCodeEditor
         
+        var scrollView: NSScrollView? = nil
+        
+        let textDidChangeSubject = PassthroughSubject<Void, Never>()
+        
+        var cancellables = [AnyCancellable]()
+        
         init(parent: MacOSCodeEditor) {
             self.parent = parent
+            super.init()
+            let cancellable = textDidChangeSubject.debounce(for: 0.3, scheduler: RunLoop.main).sink {[weak self] _ in
+                if let scrollView = self?.scrollView {
+                    parent.format(scrollView, force: true)
+                }
+            }
+            cancellables.append(cancellable)
         }
         func textDidChange(_ notification: Notification) {
             guard let text = notification.object as? NSText
@@ -110,6 +135,7 @@ struct MacOSCodeEditor: NSViewRepresentable {
             }
             if parent.content != text.string {
                 parent.content = text.string
+                textDidChangeSubject.send()
             }
         }
     }

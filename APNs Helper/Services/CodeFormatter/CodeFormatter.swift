@@ -63,10 +63,10 @@ struct CodeFomater {
         _ = jsonFormatter
     }
     
-    static func format(_ code: String, language: Language? = nil) throws -> String {
-        
+    static func format(_ code: String, cursorPosition: Int = 0, language: Language? = nil) throws -> FormatWithCursorResult? {
+                
         guard let language = language else {
-            return code
+            return nil
         }
         
         var formatter: PrettierFormatter?
@@ -76,13 +76,13 @@ struct CodeFomater {
         }
         
         guard let formatter = formatter else {
-            return code
+            return nil
         }
         
-        let ret = formatter.format(code)
+        let ret = formatter.format(code, withCursorAtLocation: cursorPosition)
         switch ret {
-        case .success(let formattedCode):
-            return formattedCode
+        case .success(let result):
+            return result
         case .failure(let error):
             throw error
         }
