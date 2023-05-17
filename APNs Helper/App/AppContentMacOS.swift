@@ -101,6 +101,8 @@ struct AppContentMacOS: View {
                     .onChange(of: contentModel.isInTestMode) { mode in
                         if mode {
                             contentModel.appInfo = appModel.thisAppConfig
+                        } else {
+                            contentModel.clearAppInfo()
                         }
                     }
                     .onChange(of: appModel.thisAppConfig) { _ in
