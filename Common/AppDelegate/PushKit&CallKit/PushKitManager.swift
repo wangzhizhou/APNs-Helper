@@ -18,7 +18,11 @@ class PushKitManager: NSObject {
     // MARK: 功能
     private lazy var pushKitRegistry: PKPushRegistry = {
         let registry = PKPushRegistry(queue: .main)
+#if os(iOS)
         registry.desiredPushTypes = [.voIP, .fileProvider]
+#elseif os(macOS)
+        registry.desiredPushTypes = [.fileProvider]
+#endif
         return registry
     }()
     
@@ -42,8 +46,10 @@ extension PushKitManager: PKPushRegistryDelegate {
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         
         switch type {
+#if os(iOS)
         case .voIP:
             CallKitManager.shared.setupForVoip()
+#endif
         case .fileProvider:
             break
         default:

@@ -94,6 +94,22 @@ struct AppContentMacOS: View {
                         clearCurrentConfigPresetIfExist()
                     }
                     Spacer()
+#if DEBUG
+                    Toggle(isOn: $contentModel.isInTestMode) {
+                        Text(Constants.fillInAppInfo.value)
+                    }
+                    .onChange(of: contentModel.isInTestMode) { mode in
+                        if mode {
+                            contentModel.appInfo = appModel.thisAppConfig
+                        }
+                    }
+                    .onChange(of: appModel.thisAppConfig) { _ in
+                        guard contentModel.isInTestMode else {
+                            return
+                        }
+                        contentModel.appInfo = appModel.thisAppConfig
+                    }
+#endif
                     Button(Constants.saveAsPreset.value) {
                         saveAsPreset()
                     }

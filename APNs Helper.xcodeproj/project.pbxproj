@@ -37,10 +37,10 @@
 		2B64E96B29E6BA5E0007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */; };
 		2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FED29E6A4AC0013237F /* PushKitManager.swift */; };
 		2B64E96D29E6BA5E0007B1D0 /* CallKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FEF29E6A4B30013237F /* CallKitManager.swift */; };
-		2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FED29E6A4AC0013237F /* PushKitManager.swift */; platformFilter = ios; };
-		2B64E97529E6BAC80007B1D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */; platformFilter = ios; };
-		2B64E97629E6BAC80007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */; platformFilter = ios; };
-		2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotification.swift */; platformFilter = ios; };
+		2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FED29E6A4AC0013237F /* PushKitManager.swift */; };
+		2B64E97529E6BAC80007B1D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */; };
+		2B64E97629E6BAC80007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */; };
+		2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotification.swift */; };
 		2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FEF29E6A4B30013237F /* CallKitManager.swift */; platformFilter = ios; };
 		2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */; };
 		2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */; };

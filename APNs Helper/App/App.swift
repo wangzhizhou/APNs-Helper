@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct APNsHelperApp: App {
+#if os(macOS) && DEBUG
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+#endif
 #if os(iOS) && DEBUG
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
+    
+    
     
     let persistenceController = PersistenceController.preview
     
