@@ -90,7 +90,9 @@ struct AppContentIOS: View {
                     TokenView(
                         pushType: contentModel.appInfo.pushType,
                         deviceToken: $contentModel.appInfo.deviceToken,
-                        pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
+                        pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken,
+                        fileProviderDeviceToken: $contentModel.appInfo.fileProviderDeviceToken
+                    )
                     
 #if DEBUG
                     Toggle(isOn: $contentModel.isInTestMode) {

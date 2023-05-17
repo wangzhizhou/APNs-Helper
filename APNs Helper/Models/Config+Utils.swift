@@ -41,6 +41,8 @@ extension Config {
             hasToken = !deviceToken.isEmpty
         case .voip:
             hasToken = !pushKitDeviceToken.isEmpty
+        case .fileprovider:
+            hasToken = !fileProviderDeviceToken.isEmpty
         }
         let (isValid, message) = isValid
         guard isValid

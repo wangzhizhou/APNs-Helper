@@ -86,7 +86,9 @@ struct AppContentMacOS: View {
                 TokenView(
                     pushType: contentModel.appInfo.pushType,
                     deviceToken: $contentModel.appInfo.deviceToken,
-                    pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
+                    pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken,
+                    fileProviderDeviceToken: $contentModel.appInfo.fileProviderDeviceToken
+                )
                 .padding(.vertical, 10)
                 
                 HStack {

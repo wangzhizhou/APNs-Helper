@@ -37,10 +37,9 @@ extension APNsService {
             ))
         case .voip:
             jsonString = toJSONString(with: Payload())
-//        case .fileprovider:
-//            jsonString = toJSONString(with: Payload())
+        case .fileprovider:
+            jsonString = toJSONString(with: Payload())
         }
-        
         return jsonString
     }
     
