@@ -20,7 +20,7 @@ enum Constants: String {
     case teamid = "TeamID"
     case bundleid = "BundleID"
     case devicetoken = "Device Token"
-    case pushkittoken = "PushKit Token"
+    case pushkittoken = "VoIP Token"
     case fileprovidertoken = "File Provider Token"
     case p8key = "P8 Key"
     case p8FileExt = "p8"

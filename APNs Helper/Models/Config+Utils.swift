@@ -40,9 +40,9 @@ extension Config {
         case .alert, .background:
             hasToken = !deviceToken.isEmpty
         case .voip:
-            hasToken = !pushKitDeviceToken.isEmpty
+            hasToken = !pushKitVoIPToken.isEmpty
         case .fileprovider:
-            hasToken = !fileProviderDeviceToken.isEmpty
+            hasToken = !pushKitFileProviderToken.isEmpty
         }
         let (isValid, message) = isValid
         guard isValid
@@ -65,8 +65,8 @@ extension Config {
     
     static let none = Config(
         deviceToken: .empty,
-        pushKitDeviceToken: .empty,
-        fileProviderDeviceToken: .empty,
+        pushKitVoIPToken: .empty,
+        pushKitFileProviderToken: .empty,
         appBundleID: .empty,
         privateKey: .empty,
         keyIdentifier: .empty,

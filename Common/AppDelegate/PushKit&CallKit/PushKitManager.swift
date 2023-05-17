@@ -9,6 +9,12 @@
 import PushKit
 import Combine
 
+enum PushKitTokenType {
+    case unknown
+    case voip
+    case fileprovider
+}
+typealias PushKitTokenInfo = (token: String, type: PushKitTokenType)
 class PushKitManager: NSObject {
     
     // MARK: 单例实现
@@ -30,17 +36,37 @@ class PushKitManager: NSObject {
         pushKitRegistry.delegate = self
     }
     
-    let pushKitTokenSubject = PassthroughSubject<String, Never>()
+    let pushKitTokenSubject = PassthroughSubject<PushKitTokenInfo, Never>()
 }
 
 extension PushKitManager: PKPushRegistryDelegate {
     
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
-        let pushKitTokenHexString = pushCredentials.token.hexString
-        pushKitTokenSubject.send(pushKitTokenHexString)
-        pushKitTokenSubject.send(completion: .finished)
         
-        "pushkit token: \(pushKitTokenHexString)".printDebugInfo()
+        var pushKitTokenType: PushKitTokenType = .unknown
+        switch type {
+#if os(iOS)
+        case .voIP:
+            pushKitTokenType = .voip
+#endif
+        case .fileProvider:
+            pushKitTokenType = .fileprovider
+        default:
+            pushKitTokenType = .unknown
+        }
+        guard pushKitTokenType != .unknown
+        else {
+            return
+        }
+        
+        let pushKitTokenInfo: PushKitTokenInfo = (token: pushCredentials.token.hexString, type: pushKitTokenType)
+        pushKitTokenSubject.send(pushKitTokenInfo)
+        
+        "pushkit token: \(pushKitTokenInfo.token) for type: \(pushKitTokenInfo.type)".printDebugInfo()
+    }
+    
+    func pushRegistry(_ registry: PKPushRegistry, didInvalidatePushTokenFor type: PKPushType) {
+        "pushkit token invalidate for type: \(type)".printDebugInfo()
     }
     
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
@@ -51,6 +77,7 @@ extension PushKitManager: PKPushRegistryDelegate {
             CallKitManager.shared.setupForVoip()
 #endif
         case .fileProvider:
+            "pushkit file provider notification received".printDebugInfo()
             break
         default:
             break

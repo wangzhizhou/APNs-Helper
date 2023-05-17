@@ -20,7 +20,10 @@ class TesterAppModel: ObservableObject {
     private var deviceToken: String
     
     @Published
-    private var pushKitToken: String
+    private var pushKitVoIPToken: String
+    
+    @Published
+    private var pushKitFileProviderToken: String
     
     private let P8Key = """
     -----BEGIN PRIVATE KEY-----
@@ -53,7 +56,8 @@ class TesterAppModel: ObservableObject {
         ("BundleID",bundleId),
         ("P8 Key", P8Key),
         ("Device Token", deviceToken),
-        ("PushKit Device Token", pushKitToken),
+        ("VoIP Token", pushKitVoIPToken),
+        ("File Provider Token", pushKitFileProviderToken),
     ]}
     
     func copyToPasteboard(content: String) {
@@ -62,35 +66,52 @@ class TesterAppModel: ObservableObject {
     
     private var cancellables = [AnyCancellable]()
     
-    init(deviceToken: String = "", pushKitToken: String = "", showAlert: Bool = false, alertMessage: String = "", showToast: Bool = false, toastMessage: String = "") {
-        self.deviceToken = deviceToken
-        self.pushKitToken = pushKitToken
-        self.showAlert = showAlert
-        self.alertMessage = alertMessage
-        self.showToast = showToast
-        self.toastMessage = toastMessage
-        
-        let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitToken in
-            self.pushKitToken = pushKitToken
-        }
-        cancellables.append(pushkitCancellable)
-        
-        let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
+    init(
+        deviceToken: String = "",
+        pushKitVoIPToken: String = "",
+        pushKitFileProviderToken: String = "",
+        showAlert: Bool = false,
+        alertMessage: String = "",
+        showToast: Bool = false,
+        toastMessage: String = "") {
             self.deviceToken = deviceToken
+            self.pushKitVoIPToken = pushKitVoIPToken
+            self.pushKitFileProviderToken = pushKitFileProviderToken
+            self.showAlert = showAlert
+            self.alertMessage = alertMessage
+            self.showToast = showToast
+            self.toastMessage = toastMessage
+            
+            let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitTokenInfo in
+                let (pushKitToken, type) = pushKitTokenInfo
+                switch type {
+                case .voip:
+                    self.pushKitVoIPToken = pushKitToken
+                case .fileprovider:
+                    self.pushKitFileProviderToken = pushKitToken
+                default:
+                    break
+                }
+                
+            }
+            cancellables.append(pushkitCancellable)
+            
+            let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
+                self.deviceToken = deviceToken
+            }
+            cancellables.append(deviceTokenCancellable)
+            
+            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
+                UIPasteboard.general.string = nil
+                self.alertMessage = message
+            }
+            cancellables.append(backgroundNotificationCancellable)
+            
+            let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
+                self.toastMessage = "Copyed in Pasteboard!"
+            }
+            cancellables.append(copyToPasteboardCancellable)
         }
-        cancellables.append(deviceTokenCancellable)
-        
-        let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
-            UIPasteboard.general.string = nil
-            self.alertMessage = message
-        }
-        cancellables.append(backgroundNotificationCancellable)
-        
-        let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
-            self.toastMessage = "Copyed in Pasteboard!"
-        }
-        cancellables.append(copyToPasteboardCancellable)
-    }
     
     func copyAllInfo() {
         content.reduce("") { partialResult, element in

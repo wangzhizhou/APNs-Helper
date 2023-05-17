@@ -11,8 +11,8 @@ struct Config {
     
     // Token Info
     var deviceToken: String
-    var pushKitDeviceToken: String
-    var fileProviderDeviceToken: String
+    var pushKitVoIPToken: String
+    var pushKitFileProviderToken: String
     
     // App Info
     var appBundleID: String
@@ -50,8 +50,8 @@ extension Config {
     var trimmed: Config {
         .init(
             deviceToken: deviceToken.trimmed,
-            pushKitDeviceToken: pushKitDeviceToken.trimmed,
-            fileProviderDeviceToken: fileProviderDeviceToken.trimmed,
+            pushKitVoIPToken: pushKitVoIPToken.trimmed,
+            pushKitFileProviderToken: pushKitFileProviderToken.trimmed,
             appBundleID: appBundleID.trimmed,
             privateKey: privateKey,
             keyIdentifier: keyIdentifier.trimmed,

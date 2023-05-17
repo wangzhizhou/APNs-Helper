@@ -33,13 +33,16 @@ struct AppContentIOS: View {
                 // Push Type & APN Server
                 Section(Constants.apnserver.value) {
                     Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
-                        ForEach(PushType.allCases, id: \.self) {
+                        ForEach(PushType.allCases.filter {
+                            !contentModel.isInTestMode || $0 != .fileprovider
+                        }, id: \.self) {
                             Text($0.rawValue).tag($0)
                         }
                     }
                     .onChange(of: contentModel.appInfo.pushType, perform: { _ in
                         loadPayloadTemplate()
                     })
+                    
                     Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
                         ForEach(APNServerEnv.allCases, id: \.self) {
                             Text($0.rawValue).tag($0)
@@ -90,8 +93,8 @@ struct AppContentIOS: View {
                     TokenView(
                         pushType: contentModel.appInfo.pushType,
                         deviceToken: $contentModel.appInfo.deviceToken,
-                        pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken,
-                        fileProviderDeviceToken: $contentModel.appInfo.fileProviderDeviceToken
+                        pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
+                        fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken
                     )
                     
 #if DEBUG

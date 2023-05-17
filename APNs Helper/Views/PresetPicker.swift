@@ -40,8 +40,8 @@ struct PresetView_Previews: PreviewProvider {
         .none,
         .init(
             deviceToken: "test device token",
-            pushKitDeviceToken: "test pushkit token",
-            fileProviderDeviceToken: "test file provider token",
+            pushKitVoIPToken: "test pushkit token",
+            pushKitFileProviderToken: "test file provider token",
             appBundleID: "test aid",
             privateKey: "test private key",
             keyIdentifier: "test key id",

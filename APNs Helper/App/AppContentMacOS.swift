@@ -36,7 +36,7 @@ struct AppContentMacOS: View {
             HStack {
                 Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
                     ForEach(PushType.allCases.filter {
-                        !contentModel.isInTestMode || $0 != .voip
+                        !contentModel.isInTestMode || ($0 != .voip && $0 != .fileprovider)
                     }, id: \.self) {
                         Text($0.rawValue)
                             .tag($0)
@@ -88,8 +88,8 @@ struct AppContentMacOS: View {
                 TokenView(
                     pushType: contentModel.appInfo.pushType,
                     deviceToken: $contentModel.appInfo.deviceToken,
-                    pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken,
-                    fileProviderDeviceToken: $contentModel.appInfo.fileProviderDeviceToken
+                    pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
+                    fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken
                 )
                 .padding(.vertical, 10)
                 

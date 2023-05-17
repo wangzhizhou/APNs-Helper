@@ -112,10 +112,12 @@ struct APNsService {
                 token = config.deviceToken
                 priority = 5
             case .voip:
-                token = config.pushKitDeviceToken
+                token = config.pushKitVoIPToken
                 topic += ".voip"
             case .fileprovider:
+                priority = 5
                 topic += ".pushkit.fileprovider"
+                token = config.pushKitFileProviderToken
             }
             let response = try await client!.send(
                 payload: byteBuffer,

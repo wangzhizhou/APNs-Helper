@@ -100,8 +100,8 @@ class AppModel: ObservableObject {
     
     @Published var thisAppConfig = Config(
         deviceToken: .empty,
-        pushKitDeviceToken: .empty,
-        fileProviderDeviceToken: .empty,
+        pushKitVoIPToken: .empty,
+        pushKitFileProviderToken: .empty,
         appBundleID: Bundle.main.bundleIdentifier ?? .empty,
         privateKey: """
         -----BEGIN PRIVATE KEY-----
@@ -124,8 +124,8 @@ class AppModel: ObservableObject {
         presetData: Data = Data(),
         thisAppConfig: Config = Config(
             deviceToken: .empty,
-            pushKitDeviceToken: .empty,
-            fileProviderDeviceToken: .empty,
+            pushKitVoIPToken: .empty,
+            pushKitFileProviderToken: .empty,
             appBundleID: Bundle.main.bundleIdentifier ?? .empty,
             privateKey: """
             -----BEGIN PRIVATE KEY-----
@@ -145,8 +145,16 @@ class AppModel: ObservableObject {
             self.isSendingPush = isSendingPush
             
 #if ENABLE_PUSHKIT
-            let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitToken in
-                self.thisAppConfig.pushKitDeviceToken = pushKitToken
+            let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitTokenInfo in
+                let (pushKitVoIPToken, type) = pushKitTokenInfo
+                switch type {
+                case .voip:
+                    self.thisAppConfig.pushKitVoIPToken = pushKitVoIPToken
+                case .fileprovider:
+                    self.thisAppConfig.pushKitFileProviderToken = pushKitVoIPToken
+                default:
+                    break
+                }
             }
             cancellables.append(pushkitCancellable)
 #endif

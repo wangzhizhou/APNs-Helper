@@ -37,7 +37,6 @@ extension AppDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceTokenHexString = deviceToken.hexString
         UNUserNotificationManager.shared.deviceTokenSubject.send(deviceTokenHexString)
-        UNUserNotificationManager.shared.deviceTokenSubject.send(completion: .finished)
         
         "device token: \(deviceTokenHexString)".printDebugInfo()
     }
