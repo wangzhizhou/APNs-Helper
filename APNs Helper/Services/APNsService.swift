@@ -72,12 +72,12 @@ struct APNsService {
         self.logger = Logger(label: "APNs Helper") { _ in AppLogHandler(appModel: appModel) }
     }
     
-    func send() async throws {
+    func send() async throws -> Bool {
         
         guard config.apnsServerEnv.reachable
         else {
             appModel.toastMessage = "APN Server Not Reachable"
-            return
+            return false
         }
                 
         var client: APNSClient<JSONDecoder, JSONEncoder>?
@@ -131,10 +131,12 @@ struct APNsService {
 
             logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
             await shutdownClient(client, appModel: appModel)
+            return true
         }
         catch {
             logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
             await shutdownClient(client, appModel: appModel)
+            return false
         }
     }
     
