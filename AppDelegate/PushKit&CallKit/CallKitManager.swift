@@ -4,7 +4,7 @@
 //
 //  Created by joker on 2023/4/12.
 //
-#if ENABLE_VOIP
+#if ENABLE_PUSHKIT
 
 import CallKit
 

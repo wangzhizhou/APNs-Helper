@@ -7,7 +7,7 @@
 
 extension AppDelegate {    
     func setupPushKitAndCallKit() {
-#if ENABLE_VOIP
+#if ENABLE_PUSHKIT
         PushKitManager.shared.setup()
 #endif
     }

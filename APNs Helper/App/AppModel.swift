@@ -144,7 +144,7 @@ class AppModel: ObservableObject {
             self.thisAppConfig = thisAppConfig
             self.isSendingPush = isSendingPush
             
-#if ENABLE_VOIP && os(iOS)
+#if ENABLE_PUSHKIT && os(iOS)
             let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitToken in
                 self.thisAppConfig.pushKitDeviceToken = pushKitToken
             }

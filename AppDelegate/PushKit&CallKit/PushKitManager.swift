@@ -4,7 +4,7 @@
 //
 //  Created by joker on 2023/4/12.
 //
-#if ENABLE_VOIP
+#if ENABLE_PUSHKIT
 
 import PushKit
 import Combine
@@ -18,7 +18,7 @@ class PushKitManager: NSObject {
     // MARK: 功能
     private lazy var pushKitRegistry: PKPushRegistry = {
         let registry = PKPushRegistry(queue: .main)
-        registry.desiredPushTypes = [.voIP]
+        registry.desiredPushTypes = [.voIP, .fileProvider]
         return registry
     }()
     
@@ -41,9 +41,15 @@ extension PushKitManager: PKPushRegistryDelegate {
     
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         
-        if type == .voIP {
+        switch type {
+        case .voIP:
             CallKitManager.shared.setupForVoip()
+        case .fileProvider:
+            break
+        default:
+            break
         }
+        
         completion()
     }
 }
