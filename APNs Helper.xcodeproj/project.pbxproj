@@ -302,14 +302,13 @@
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
 				F369DD192A0A9E890061DF8A /* APNs Helper Doc */,
 				2B64E95729E6B36A0007B1D0 /* APNs Helper Tester */,
-				2B40F8A929DEE24700E484FB /* AppDelegate */,
+				2BD846442A150209008D2A86 /* Common */,
 				2BD841FB2A14ECFC008D2A86 /* FileProviderExtension */,
 				2BD842092A14ECFC008D2A86 /* FileProviderExtensionUI */,
 				2BD842262A14ED38008D2A86 /* NotificationContentExtension */,
 				2BD842382A14ED47008D2A86 /* NotificationServiceExtension */,
-				2B35F72A28DEAB17009EF9C9 /* Products */,
-				F3A46DEA29DDAA26004D4AD1 /* Utils */,
 				F360B9752A0FDC8C00CDD8BD /* Frameworks */,
+				2B35F72A28DEAB17009EF9C9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -502,6 +501,15 @@
 				2BD8423B2A14ED47008D2A86 /* Info.plist */,
 			);
 			path = NotificationServiceExtension;
+			sourceTree = "<group>";
+		};
+		2BD846442A150209008D2A86 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2B40F8A929DEE24700E484FB /* AppDelegate */,
+				F3A46DEA29DDAA26004D4AD1 /* Utils */,
+			);
+			path = Common;
 			sourceTree = "<group>";
 		};
 		2BE68FEC29E6A4720013237F /* PushKit&CallKit */ = {
