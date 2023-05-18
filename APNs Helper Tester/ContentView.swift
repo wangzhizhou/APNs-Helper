@@ -13,15 +13,30 @@ struct ContentView: View {
     @EnvironmentObject var model: TesterAppModel
     
     var body: some View {
-        NavigationView {
-            Form {
-                ForEach(model.content.filter {
-                    !$0.1.isEmpty
-                }, id: \.self.0) { item in
-                    Section(item.0) {
-                        ItemEntry(title: item.1)
+        NavigationStack {
+            VStack {
+#if os(iOS)
+                Form {
+                    ForEach(model.content.filter {
+                        !$0.1.isEmpty
+                    }, id: \.self.0) { item in
+                        Section(item.0) {
+                            ItemEntry(title: item.1)
+                        }
                     }
                 }
+#endif
+                
+#if os(macOS)
+                ScrollView {
+                    ForEach(model.content.filter { !$0.1.isEmpty }, id: \.self.0) { item in
+                        GroupBox(item.0) {
+                            ItemEntry(title: item.1)
+                        }
+                    }
+                }
+                .padding()
+#endif
             }
             .scrollIndicators(.hidden)
             .toolbar(content: {
@@ -33,10 +48,10 @@ struct ContentView: View {
                 .buttonStyle(.bordered)
             })
             .navigationTitle("APNs Tester App")
-            .alert(isPresented: $model.showAlert, content: {
-                Alert(title: Text(model.alertMessage))
-            })
         }
+        .alert(isPresented: $model.showAlert, content: {
+            Alert(title: Text(model.alertMessage))
+        })
         .toast(isPresenting: $model.showToast) {
             AlertToast(
                 displayMode: model.toastModel.mode,
@@ -51,7 +66,7 @@ struct ContentView: View {
 struct ItemEntry: View {
     
     let title: String
-
+    
     var body: some View {
         HStack {
             Text(title)

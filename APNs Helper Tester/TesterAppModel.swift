@@ -4,8 +4,14 @@
 //
 //  Created by joker on 2022/11/30.
 //
-
+#if canImport(UIKit)
 import UIKit
+#endif
+
+#if canImport(AppKit)
+import AppKit
+#endif
+
 import Combine
 
 class TesterAppModel: ObservableObject {
@@ -53,10 +59,6 @@ class TesterAppModel: ObservableObject {
         (Constants.fileprovidertoken.value, appInfo.fileProviderToken),
     ]}
     
-    func copyToPasteboard(content: String) {
-        UIPasteboard.general.string = content
-    }
-    
     private var cancellables = [AnyCancellable]()
     
     init(
@@ -94,7 +96,7 @@ class TesterAppModel: ObservableObject {
             cancellables.append(backgroundNotificationCancellable)
             
             let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
-                self.toastModel = ToastModel.success().title("Copyed!")
+                self.toastModel = ToastModel.success().title("Copyed to Pasteboard!")
             }
             cancellables.append(copyToPasteboardCancellable)
         }
