@@ -10,14 +10,22 @@ This app can be installed by clicking the app icon bellow.
 
 ## Features
 
-- [x] custom payload for notification
-- [x] payload json can be formatted and highlighted
-- [x] import **`*.p8`** or input private key manually
-- [x] supported push type: 
+- [x] Supported push type: 
     - **alert**
     - **background**
     - **voip**
+    - **fileprovider**
+- [x] Custom json payload configuration
+- [x] Support json formatting and highlighting for payload 
+- [x] Import **`*.p8`** file from file system or input private key content manually 
+- [x] Display runtime log while sending push
+- [x] Save the filled app info as preset config
+- [x] **`⌘+⏎`** keyboard shortcut to trigger send button on macOS App
 
-- [x] **`⌘+⏎`** keyboard shortcut to trigger send button
-- [x] display runtime log content
-- [x] save the app info as preset config
+## Todos
+
+- [ ] Mutable Content Alert Push
+- [ ] Custom Category Alert Push
+- [ ] Threaded Alert Push
+- [ ] Localized Alert Push
+- [ ] File Provider Push
