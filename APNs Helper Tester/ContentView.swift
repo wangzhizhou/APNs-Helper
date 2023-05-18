@@ -39,10 +39,11 @@ struct ContentView: View {
         }
         .toast(isPresenting: $model.showToast) {
             AlertToast(
-                displayMode: .alert,
-                type: .complete(.green),
-                title: model.toastMessage
-            )
+                displayMode: model.toastModel.mode,
+                type: model.toastModel.type,
+                title: model.toastModel.title,
+                subTitle: model.toastModel.subtitle,
+                style: model.toastModel.style)
         }
     }
 }

@@ -77,6 +77,8 @@
 		2BD846482A15E450008D2A86 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3E89029FBB7BB00B90602 /* Constants.swift */; };
 		2BD8464A2A16142D008D2A86 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846492A16142D008D2A86 /* AppInfo.swift */; };
 		2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846492A16142D008D2A86 /* AppInfo.swift */; };
+		2BD8464D2A163F81008D2A86 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8464C2A163F81008D2A86 /* ToastModel.swift */; };
+		2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8464C2A163F81008D2A86 /* ToastModel.swift */; };
 		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
 		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
@@ -204,6 +206,7 @@
 		2BD842392A14ED47008D2A86 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2BD8423B2A14ED47008D2A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BD846492A16142D008D2A86 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		2BD8464C2A163F81008D2A86 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
@@ -361,7 +364,6 @@
 				2B505E2729DD25B50010F62D /* AppContentIOS.swift */,
 				2B505E2929DD26230010F62D /* AppContentMacOS.swift */,
 				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
-				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2BB3E89029FBB7BB00B90602 /* Constants.swift */,
 			);
 			path = App;
@@ -376,7 +378,6 @@
 				2B64E95B29E6B36A0007B1D0 /* Preview Content */,
 				2B64E95D29E6B36A0007B1D0 /* TesterApp.swift */,
 				2B64E95E29E6B36A0007B1D0 /* TesterAppModel.swift */,
-				2BD846492A16142D008D2A86 /* AppInfo.swift */,
 				2B64E95F29E6B36A0007B1D0 /* ContentView.swift */,
 			);
 			path = "APNs Helper Tester";
@@ -438,6 +439,7 @@
 		2BA3E0B028E54E82006DBCCC /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2B35F76A28DEAF56009EF9C9 /* Config.swift */,
 				2B40F8A529DEE00E00E484FB /* Config+Utils.swift */,
 				F369DD122A096B0B0061DF8A /* AppContentModel.swift */,
@@ -507,6 +509,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		2BD8464F2A164A87008D2A86 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2BD846492A16142D008D2A86 /* AppInfo.swift */,
+				2BD8464C2A163F81008D2A86 /* ToastModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2BE68FEC29E6A4720013237F /* PushKit&CallKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +559,7 @@
 		F3A46DEA29DDAA26004D4AD1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2BD8464F2A164A87008D2A86 /* Models */,
 				2B40E2AB29DE756500E484FB /* String+Utils.swift */,
 				2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */,
 			);
@@ -851,6 +863,7 @@
 				2BD8018D2A0A575600DDD17E /* SendButtonArea.swift in Sources */,
 				2B64E97629E6BAC80007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */,
 				2B505E2829DD25B50010F62D /* AppContentIOS.swift in Sources */,
+				2BD8464D2A163F81008D2A86 /* ToastModel.swift in Sources */,
 				F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */,
 				2BD8018B2A0A3B0100DDD17E /* LogView.swift in Sources */,
 				2B0031722A0E02DC009BEACD /* MacOSCodeEditor.swift in Sources */,
@@ -872,6 +885,7 @@
 				2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */,
 				2B64E96529E6B36A0007B1D0 /* TesterAppModel.swift in Sources */,
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,
+				2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */,
 				2B64E96629E6B36A0007B1D0 /* ContentView.swift in Sources */,
 				2B64E96929E6B9B10007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
 				2BD8464A2A16142D008D2A86 /* AppInfo.swift in Sources */,

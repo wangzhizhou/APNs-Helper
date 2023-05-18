@@ -40,7 +40,12 @@ struct AppContent: View {
             loadPayloadTemplate()
         }
         .toast(isPresenting: $appModel.showToast) {
-            AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage, style: .style(backgroundColor: .orange))
+            AlertToast(
+                displayMode: appModel.toastModel.mode,
+                type: appModel.toastModel.type,
+                title: appModel.toastModel.title,
+                subTitle: appModel.toastModel.subtitle,
+                style: appModel.toastModel.style)
         }
         .onChange(of: scenePhase) { scenePhase in
             switch scenePhase {

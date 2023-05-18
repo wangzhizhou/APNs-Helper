@@ -21,20 +21,17 @@ class AppModel: ObservableObject {
         
     // MARK: Toast
     @Published var showToast: Bool
-    var toastMessage: String? {
+    var toastModel: ToastModel {
         didSet {
-            if let toast = toastMessage, !toast.isEmpty {
-                Task {
-                    await MainActor.run {
-                        showToast = true
-                    }                    
+            Task {
+                await MainActor.run {
+                    showToast = toastModel.shouldShow
                 }
             }
         }
     }
-    
+
     // MARK: Preset Persistence
-    
     @AppStorage("presets")
     private var presetData: Data = Data()
     
@@ -52,7 +49,7 @@ class AppModel: ObservableObject {
         let (valid, message) = config.isValid
         guard valid else {
             if let message = message {
-                toastMessage = "\(message) is invalid"
+                toastModel = ToastModel.info().title("\(message) is invalid")
             }
             return false
         }
@@ -68,14 +65,14 @@ class AppModel: ObservableObject {
         }
         newPresets.append(config)
         presets = newPresets
-        toastMessage = "Save Preset Successfully!"
+        toastModel = ToastModel.info().title("Save Preset Successfully!")
         
         return true
     }
     
     func clearAllPresets() {
         presets = [Config]()
-        toastMessage = "Clear All Preset Successfully!"
+        toastModel = ToastModel.info().title("Clear All Preset Successfully!")
     }
     
     func clearPresetIfExist(_ config: Config) {
@@ -89,10 +86,10 @@ class AppModel: ObservableObject {
         }
         if presets.count != newPresets.count {
             presets = newPresets
-            toastMessage = "Remove Exist Preset"
+            toastModel = ToastModel.info().title("Remove Exist Preset")
         }
         else {
-            toastMessage = "No Preset Exist"
+            toastModel = ToastModel.info().title("No Preset Exist")
         }
     }
     
@@ -120,7 +117,7 @@ class AppModel: ObservableObject {
         appLog: String = .empty,
         showAlert: Bool  = false,
         showToast: Bool = false,
-        toastMessage: String? = nil,
+        toastModel: ToastModel = ToastModel.info(),
         presetData: Data = Data(),
         thisAppConfig: Config = Config(
             deviceToken: .empty,
@@ -139,7 +136,7 @@ class AppModel: ObservableObject {
         isSendingPush: Bool = false) {
             self.appLog = appLog
             self.showToast = showToast
-            self.toastMessage = toastMessage
+            self.toastModel = toastModel
             self.presetData = presetData
             self.thisAppConfig = thisAppConfig
             self.isSendingPush = isSendingPush
@@ -165,12 +162,12 @@ class AppModel: ObservableObject {
             cancellables.append(deviceTokenCancellable)
             
             let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
-                self.toastMessage = message
+                self.toastModel = ToastModel.info().title(message)
             }
             cancellables.append(backgroundNotificationCancellable)
             
             let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
-                self.toastMessage = "Copyed to Pasteboard!"
+                self.toastModel = ToastModel.info().title("Copyed to Pasteboard!")
             }
             cancellables.append(copyToPasteboardCancellable)
             

@@ -76,7 +76,7 @@ struct APNsService {
         
         guard config.apnsServerEnv.reachable
         else {
-            appModel.toastMessage = "APN Server Not Reachable"
+            appModel.toastModel = ToastModel.info().title("APN Server Not Reachable")
             return false
         }
                 

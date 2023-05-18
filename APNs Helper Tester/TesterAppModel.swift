@@ -32,11 +32,14 @@ class TesterAppModel: ObservableObject {
         }
     }
     
-    @Published
-    var showToast: Bool
-    var toastMessage: String {
+    @Published var showToast: Bool
+    var toastModel: ToastModel {
         didSet {
-            showToast = true
+            Task {
+                await MainActor.run {
+                    showToast = toastModel.shouldShow
+                }
+            }
         }
     }
     
@@ -60,11 +63,11 @@ class TesterAppModel: ObservableObject {
         showAlert: Bool = false,
         alertMessage: String = "",
         showToast: Bool = false,
-        toastMessage: String = "") {
+        toastModel: ToastModel = ToastModel.info()) {
             self.showAlert = showAlert
             self.alertMessage = alertMessage
             self.showToast = showToast
-            self.toastMessage = toastMessage
+            self.toastModel = toastModel
             
             let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitTokenInfo in
                 let (pushKitToken, type) = pushKitTokenInfo
@@ -91,7 +94,7 @@ class TesterAppModel: ObservableObject {
             cancellables.append(backgroundNotificationCancellable)
             
             let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
-                self.toastMessage = "Copyed!"
+                self.toastModel = ToastModel.success().title("Copyed!")
             }
             cancellables.append(copyToPasteboardCancellable)
         }
