@@ -24,6 +24,10 @@ import PrettierBabel
 
 struct CodeFomater {
     
+    static var lightColorSheme: String = "github"
+    
+    static var darkColorSheme: String = "vs2015"
+    
     enum Language: String {
         case json
     }
@@ -48,7 +52,7 @@ struct CodeFomater {
     }()
     
     static func resetTheme(colorScheme: ColorScheme) {
-        let themeName = colorScheme == .dark ? "vs2015" : "github"
+        let themeName = colorScheme == .dark ? darkColorSheme : lightColorSheme
         highlighter.setTheme(to: themeName)
     }
     
