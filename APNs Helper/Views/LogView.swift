@@ -15,22 +15,24 @@ struct LogView: View {
     private var logTextEditorFocusState: Bool
     
     var body: some View {
+        VStack {
 #if os(macOS)
-        InputTextEditor(title: Constants.log.value, content: $appModel.appLog)
-            .frame(minHeight: 100)
+            InputTextEditor(title: Constants.log.value, content: $appModel.appLog)
+                .frame(minHeight: 100)
 #elseif os(iOS)
-        InputTextEditor(content: $appModel.appLog, textEditorFont: .system(size: 9))
-            .focused($logTextEditorFocusState)
-            .onChange(of: logTextEditorFocusState, perform: { focusState in
-                guard focusState == false
-                else {
-                    logTextEditorFocusState = false
-                    return
-                }
-            })
-            .frame(height: 100)
-            .padding(.vertical, 5)
+            InputTextEditor(content: $appModel.appLog, textEditorFont: .system(size: 9))
+                .frame(height: 100)
+                .padding(.vertical, 5)
 #endif
+        }
+        .focused($logTextEditorFocusState)
+        .onChange(of: logTextEditorFocusState, perform: { focusState in
+            guard focusState == false
+            else {
+                logTextEditorFocusState = false
+                return
+            }
+        })
     }
 }
 
