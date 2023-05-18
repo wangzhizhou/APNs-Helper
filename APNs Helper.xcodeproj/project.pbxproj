@@ -79,6 +79,10 @@
 		2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846492A16142D008D2A86 /* AppInfo.swift */; };
 		2BD8464D2A163F81008D2A86 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8464C2A163F81008D2A86 /* ToastModel.swift */; };
 		2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8464C2A163F81008D2A86 /* ToastModel.swift */; };
+		2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846512A165BA0008D2A86 /* BorderModifier.swift */; };
+		2BD846542A165BBC008D2A86 /* UnderLineModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846532A165BBC008D2A86 /* UnderLineModifier.swift */; };
+		2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846552A165BDE008D2A86 /* View+Modifiers.swift */; };
+		2BD846582A165BFB008D2A86 /* Color+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846572A165BFB008D2A86 /* Color+Utils.swift */; };
 		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
 		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
@@ -207,6 +211,10 @@
 		2BD8423B2A14ED47008D2A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BD846492A16142D008D2A86 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		2BD8464C2A163F81008D2A86 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
+		2BD846512A165BA0008D2A86 /* BorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderModifier.swift; sourceTree = "<group>"; };
+		2BD846532A165BBC008D2A86 /* UnderLineModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineModifier.swift; sourceTree = "<group>"; };
+		2BD846552A165BDE008D2A86 /* View+Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Modifiers.swift"; sourceTree = "<group>"; };
+		2BD846572A165BFB008D2A86 /* Color+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Utils.swift"; sourceTree = "<group>"; };
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
@@ -364,7 +372,6 @@
 				2B505E2729DD25B50010F62D /* AppContentIOS.swift */,
 				2B505E2929DD26230010F62D /* AppContentMacOS.swift */,
 				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
-				2BB3E89029FBB7BB00B90602 /* Constants.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -397,6 +404,8 @@
 				F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */,
 				F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */,
 				F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */,
+				2BD846552A165BDE008D2A86 /* View+Modifiers.swift */,
+				2BD846572A165BFB008D2A86 /* Color+Utils.swift */,
 			);
 			path = Uitls;
 			sourceTree = "<group>";
@@ -404,6 +413,7 @@
 		2BA3DB6728E5415D006DBCCC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BD846502A165B8B008D2A86 /* Modifiers */,
 				2B35F73328DEAB17009EF9C9 /* ContentView.swift */,
 				2BBDDE7828E49A770052DC28 /* InputView.swift */,
 				2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */,
@@ -503,6 +513,7 @@
 		2BD846442A150209008D2A86 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				2BB3E89029FBB7BB00B90602 /* Constants.swift */,
 				2B40F8A929DEE24700E484FB /* AppDelegate */,
 				F3A46DEA29DDAA26004D4AD1 /* Utils */,
 			);
@@ -516,6 +527,15 @@
 				2BD8464C2A163F81008D2A86 /* ToastModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2BD846502A165B8B008D2A86 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				2BD846512A165BA0008D2A86 /* BorderModifier.swift */,
+				2BD846532A165BBC008D2A86 /* UnderLineModifier.swift */,
+			);
+			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		2BE68FEC29E6A4720013237F /* PushKit&CallKit */ = {
@@ -843,14 +863,18 @@
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
 				2B0031742A0E0306009BEACD /* iOSCodeEditor.swift in Sources */,
+				2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */,
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
+				2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */,
 				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
+				2BD846542A165BBC008D2A86 /* UnderLineModifier.swift in Sources */,
 				2BD8018F2A0A5CD000DDD17E /* TokenView.swift in Sources */,
 				2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */,
 				F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */,
 				F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */,
 				2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */,
 				F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */,
+				2BD846582A165BFB008D2A86 /* Color+Utils.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
 				2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */,
