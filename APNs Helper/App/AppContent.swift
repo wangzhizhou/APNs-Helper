@@ -10,6 +10,8 @@ import AlertToast
 
 struct AppContent: View {
     
+    @Environment(\.scenePhase) var scenePhase
+    
     @EnvironmentObject var appModel: AppModel
     
     @StateObject
@@ -40,10 +42,45 @@ struct AppContent: View {
         .toast(isPresenting: $appModel.showToast) {
             AlertToast(displayMode: .hud, type: .regular, title: appModel.toastMessage, style: .style(backgroundColor: .orange))
         }
+        .onChange(of: scenePhase) { scenePhase in
+            switch scenePhase {
+            case .active:
+                fillAppInfoFromPasteboard()
+            case .background:
+                break
+            case .inactive:
+                break
+            default:
+                break
+            }
+        }
     }
 }
 
+import RegexBuilder
+
 extension AppContent {
+    
+    func fillAppInfoFromPasteboard() {
+        
+        var pasteboardContent: String? = nil
+#if os(macOS)
+        pasteboardContent = NSPasteboard.general.string(forType: .string)
+#elseif os(iOS)
+        pasteboardContent = UIPasteboard.general.string
+#endif
+        guard let appInfoJson = pasteboardContent, let appInfo = AppInfo.decode(from: appInfoJson)
+        else {
+            return
+        }
+        contentModel.appInfo.keyIdentifier = appInfo.keyID
+        contentModel.appInfo.teamIdentifier = appInfo.teamID
+        contentModel.appInfo.appBundleID = appInfo.bundleID
+        contentModel.appInfo.privateKey = appInfo.p8Key
+        contentModel.appInfo.deviceToken = appInfo.deviceToken
+        contentModel.appInfo.pushKitVoIPToken = appInfo.voipToken
+        contentModel.appInfo.pushKitFileProviderToken = appInfo.fileProviderToken
+    }
     
     func loadPayloadTemplate() {
         if let template = APNsService.templatePayload(for: contentModel.config) {

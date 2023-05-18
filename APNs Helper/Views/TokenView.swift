@@ -22,7 +22,7 @@ struct TokenView: View {
                 inputValue: $deviceToken)
         } else if pushType == .voip {
             InputView(
-                title: Constants.pushkittoken.value,
+                title: Constants.voiptoken.value,
                 inputValue: $pushKitDeviceToken)
         } else if pushType == .fileprovider {
             InputView(

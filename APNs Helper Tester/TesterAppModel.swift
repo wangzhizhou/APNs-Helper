@@ -9,29 +9,19 @@ import UIKit
 import Combine
 
 class TesterAppModel: ObservableObject {
-    
-    private let keyId = "7S6SUT5L43"
-    
-    private let teamID = "2N62934Y28"
-    
-    private let bundleId = Bundle.main.bundleIdentifier!
-    
-    @Published
-    private var deviceToken: String
-    
-    @Published
-    private var pushKitVoIPToken: String
-    
-    @Published
-    private var pushKitFileProviderToken: String
-    
-    private let P8Key = """
-    -----BEGIN PRIVATE KEY-----
-    MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
-    iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
-    n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
-    -----END PRIVATE KEY-----
-    """
+        
+    @Published var appInfo = AppInfo(
+        keyID: "7S6SUT5L43",
+        teamID: "2N62934Y28",
+        bundleID: Bundle.main.bundleIdentifier!,
+        p8Key: """
+        -----BEGIN PRIVATE KEY-----
+        MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
+        iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
+        n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
+        -----END PRIVATE KEY-----
+        """
+    )
     
     @Published
     var showAlert: Bool
@@ -51,13 +41,13 @@ class TesterAppModel: ObservableObject {
     }
     
     var content: [(String, String)] {[
-        ("Key ID", keyId),
-        ("Team ID", teamID),
-        ("BundleID",bundleId),
-        ("P8 Key", P8Key),
-        ("Device Token", deviceToken),
-        ("VoIP Token", pushKitVoIPToken),
-        ("File Provider Token", pushKitFileProviderToken),
+        (Constants.keyid.value, appInfo.keyID),
+        (Constants.teamid.value, appInfo.teamID),
+        (Constants.bundleid.value,appInfo.bundleID),
+        (Constants.p8key.value, appInfo.p8Key),
+        (Constants.devicetoken.value, appInfo.deviceToken),
+        (Constants.voiptoken.value, appInfo.voipToken),
+        (Constants.fileprovidertoken.value, appInfo.fileProviderToken),
     ]}
     
     func copyToPasteboard(content: String) {
@@ -67,16 +57,10 @@ class TesterAppModel: ObservableObject {
     private var cancellables = [AnyCancellable]()
     
     init(
-        deviceToken: String = "",
-        pushKitVoIPToken: String = "",
-        pushKitFileProviderToken: String = "",
         showAlert: Bool = false,
         alertMessage: String = "",
         showToast: Bool = false,
         toastMessage: String = "") {
-            self.deviceToken = deviceToken
-            self.pushKitVoIPToken = pushKitVoIPToken
-            self.pushKitFileProviderToken = pushKitFileProviderToken
             self.showAlert = showAlert
             self.alertMessage = alertMessage
             self.showToast = showToast
@@ -86,9 +70,9 @@ class TesterAppModel: ObservableObject {
                 let (pushKitToken, type) = pushKitTokenInfo
                 switch type {
                 case .voip:
-                    self.pushKitVoIPToken = pushKitToken
+                    self.appInfo.voipToken = pushKitToken
                 case .fileprovider:
-                    self.pushKitFileProviderToken = pushKitToken
+                    self.appInfo.fileProviderToken = pushKitToken
                 default:
                     break
                 }
@@ -97,27 +81,22 @@ class TesterAppModel: ObservableObject {
             cancellables.append(pushkitCancellable)
             
             let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
-                self.deviceToken = deviceToken
+                self.appInfo.deviceToken = deviceToken
             }
             cancellables.append(deviceTokenCancellable)
             
             let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
-                UIPasteboard.general.string = nil
                 self.alertMessage = message
             }
             cancellables.append(backgroundNotificationCancellable)
             
             let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
-                self.toastMessage = "Copyed in Pasteboard!"
+                self.toastMessage = "Copyed!"
             }
             cancellables.append(copyToPasteboardCancellable)
         }
     
     func copyAllInfo() {
-        content.reduce("") { partialResult, element in
-            "\(partialResult)\(element.0):\n\(element.1)\n"
-        }
-        .trimmed
-        .copyToPasteboard()
+        appInfo.jsonString?.copyToPasteboard()
     }
 }

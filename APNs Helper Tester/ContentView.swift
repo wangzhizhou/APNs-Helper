@@ -32,11 +32,15 @@ struct ContentView: View {
             })
             .navigationTitle("APNs Tester App")
             .alert(isPresented: $model.showAlert, content: {
-                Alert(title: Text(model.alertMessage), message: Text(UIPasteboard.general.string ?? ""))
+                Alert(title: Text(model.alertMessage))
             })
         }
         .toast(isPresenting: $model.showToast) {
-            AlertToast(displayMode: .alert, type: .complete(.green),title:UIPasteboard.general.string, subTitle: model.toastMessage)
+            AlertToast(
+                displayMode: .alert,
+                type: .complete(.green),
+                title: model.toastMessage
+            )
         }
     }
 }

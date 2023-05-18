@@ -74,6 +74,9 @@
 		2BD8422F2A14ED38008D2A86 /* NotificationContentExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD842212A14ED38008D2A86 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BD8423A2A14ED47008D2A86 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD842392A14ED47008D2A86 /* NotificationService.swift */; };
 		2BD846452A15072C008D2A86 /* NotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD842372A14ED47008D2A86 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2BD846482A15E450008D2A86 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3E89029FBB7BB00B90602 /* Constants.swift */; };
+		2BD8464A2A16142D008D2A86 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846492A16142D008D2A86 /* AppInfo.swift */; };
+		2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846492A16142D008D2A86 /* AppInfo.swift */; };
 		2BDB538B29384BCE00E38E77 /* APNSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 2BDB538A29384BCE00E38E77 /* APNSwift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
 		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
@@ -200,6 +203,7 @@
 		2BD842372A14ED47008D2A86 /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD842392A14ED47008D2A86 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		2BD8423B2A14ED47008D2A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BD846492A16142D008D2A86 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
@@ -372,6 +376,7 @@
 				2B64E95B29E6B36A0007B1D0 /* Preview Content */,
 				2B64E95D29E6B36A0007B1D0 /* TesterApp.swift */,
 				2B64E95E29E6B36A0007B1D0 /* TesterAppModel.swift */,
+				2BD846492A16142D008D2A86 /* AppInfo.swift */,
 				2B64E95F29E6B36A0007B1D0 /* ContentView.swift */,
 			);
 			path = "APNs Helper Tester";
@@ -832,6 +837,7 @@
 				2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */,
 				F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */,
 				F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */,
+				2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */,
 				F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
@@ -868,6 +874,8 @@
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,
 				2B64E96629E6B36A0007B1D0 /* ContentView.swift in Sources */,
 				2B64E96929E6B9B10007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
+				2BD8464A2A16142D008D2A86 /* AppInfo.swift in Sources */,
+				2BD846482A15E450008D2A86 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
