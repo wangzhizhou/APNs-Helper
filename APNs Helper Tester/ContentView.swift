@@ -15,7 +15,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Form {
-                ForEach(model.content, id: \.self.0) { item in
+                ForEach(model.content.filter {
+                    !$0.1.isEmpty
+                }, id: \.self.0) { item in
                     Section(item.0) {
                         ItemEntry(title: item.1)
                     }
