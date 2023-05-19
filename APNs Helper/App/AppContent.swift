@@ -25,13 +25,18 @@ struct AppContent: View {
                 saveAsPreset: saveAsPreset,
                 clearAllPreset: clearAllPreset,
                 clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist,
-                refreshTestMode: refreshTestMode)
+                importAppInfoOnPasteboard: fillAppInfoFromPasteboard,
+                refreshTestMode: refreshTestMode
+            )
 #elseif os(macOS)
             AppContentMacOS(
                 loadPayloadTemplate: loadPayloadTemplate,
                 saveAsPreset: saveAsPreset,
                 clearAllPreset: clearAllPreset,
-                clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist)
+                clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist,
+                importAppInfoOnPasteboard: fillAppInfoFromPasteboard,
+                refreshTestMode: refreshTestMode
+            )
 #endif
         }
         .background(.background)
@@ -50,7 +55,7 @@ struct AppContent: View {
         .onChange(of: scenePhase) { scenePhase in
             switch scenePhase {
             case .active:
-                fillAppInfoFromPasteboard()
+                break
             case .background:
                 break
             case .inactive:
@@ -61,8 +66,6 @@ struct AppContent: View {
         }
     }
 }
-
-import RegexBuilder
 
 extension AppContent {
     
@@ -76,6 +79,7 @@ extension AppContent {
 #endif
         guard let appInfoJson = pasteboardContent, let appInfo = AppInfo.decode(from: appInfoJson)
         else {
+            appModel.toastModel = ToastModel.info().title("No App Info on pasteboard!")
             return
         }
         contentModel.appInfo.keyIdentifier = appInfo.keyID

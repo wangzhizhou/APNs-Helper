@@ -16,6 +16,8 @@ struct AppContentMacOS: View {
     let saveAsPreset: () -> Void
     let clearAllPreset: () -> Void
     let clearCurrentConfigPresetIfExist: () -> Void
+    let importAppInfoOnPasteboard: () -> Void
+    let refreshTestMode: () -> Void
     
     var body: some View {
         
@@ -65,21 +67,32 @@ struct AppContentMacOS: View {
                     title: Constants.keyid.value,
                     titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.keyIdentifier)
+                .onChange(of: contentModel.appInfo.keyIdentifier) { _ in
+                    refreshTestMode()
+                }
                 
                 InputView(
                     title: Constants.teamid.value,
                     titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.teamIdentifier)
+                .onChange(of: contentModel.appInfo.teamIdentifier) { _ in
+                    refreshTestMode()
+                }
                 
                 InputView(
                     title: Constants.bundleid.value,
                     titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.appBundleID)
+                .onChange(of: contentModel.appInfo.appBundleID) { _ in
+                    refreshTestMode()
+                }
                 
                 P8KeyView(
                     showFileImporter: $contentModel.showFileImporter,
                     privateKey: $contentModel.appInfo.privateKey,
-                    onPrivateKeyChange: nil,
+                    onPrivateKeyChange: { _ in
+                        refreshTestMode()
+                    },
                     onFileImporterError: { error in
                         appModel.appLog.append(error.localizedDescription)
                     })
@@ -99,6 +112,7 @@ struct AppContentMacOS: View {
                     }
                     Spacer()
 #if DEBUG
+                    Button(Constants.importAppInfoOnPasteboard.value, action: importAppInfoOnPasteboard)
                     Toggle(isOn: $contentModel.isInTestMode) {
                         Text(Constants.fillInAppInfo.value)
                     }

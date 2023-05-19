@@ -16,9 +16,9 @@ struct AppContentIOS: View {
     let saveAsPreset: () -> Void
     let clearAllPreset: () -> Void
     let clearCurrentConfigPresetIfExist: () -> Void
-    
+    let importAppInfoOnPasteboard: () -> Void
     let refreshTestMode: () -> Void
-        
+    
     var body: some View {
         VStack {
             ScrollViewReader { scrollView in
@@ -115,6 +115,7 @@ struct AppContentIOS: View {
                             }
                             contentModel.appInfo = appModel.thisAppConfig
                         }
+                        Button(Constants.importAppInfoOnPasteboard.value, action: importAppInfoOnPasteboard)
 #endif
                     }
                     .listRowSeparator(.hidden)

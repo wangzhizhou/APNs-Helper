@@ -43,7 +43,7 @@ struct ContentView: View {
                 Button {
                     model.copyAllInfo()
                 } label: {
-                    Text("Copy All")
+                    Text("Copy All as JSON")
                 }
                 .buttonStyle(.bordered)
             })
