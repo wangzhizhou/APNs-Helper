@@ -38,13 +38,13 @@ struct MacOSCodeEditor: NSViewRepresentable {
         let textView = NSTextView(frame: frame, textContainer: highlighter)
         textView.drawsBackground = false
         textView.minSize = size
-        textView.maxSize = NSSize(width: size.width, height: CGFloat.infinity)
+        textView.maxSize = NSSize(width: CGFloat.infinity, height: CGFloat.infinity)
         textView.isVerticallyResizable = true
-        textView.isHorizontallyResizable = false
+        textView.isHorizontallyResizable = true
         textView.isAutomaticLinkDetectionEnabled = false
         textView.usesFontPanel = false
         textView.textContainer?.containerSize = textView.maxSize
-        textView.textContainer?.widthTracksTextView = true
+        textView.textContainer?.widthTracksTextView = false
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4.0
