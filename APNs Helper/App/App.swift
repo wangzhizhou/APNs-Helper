@@ -16,8 +16,6 @@ struct APNsHelperApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
     
-    
-    
     let persistenceController = PersistenceController.preview
     
     @StateObject var model = AppModel()

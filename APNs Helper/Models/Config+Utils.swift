@@ -71,4 +71,19 @@ extension Config {
         privateKey: .empty,
         keyIdentifier: .empty,
         teamIdentifier: .empty)
+    
+    static let thisApp = Config(
+        deviceToken: .empty,
+        pushKitVoIPToken: .empty,
+        pushKitFileProviderToken: .empty,
+        appBundleID: Bundle.main.bundleIdentifier ?? .empty,
+        privateKey: """
+        -----BEGIN PRIVATE KEY-----
+        MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
+        iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
+        n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
+        -----END PRIVATE KEY-----
+        """,
+        keyIdentifier: "7S6SUT5L43",
+        teamIdentifier: "2N62934Y28")
 }

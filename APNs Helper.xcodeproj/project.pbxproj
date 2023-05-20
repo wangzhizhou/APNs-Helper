@@ -16,7 +16,7 @@
 		2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031752A0E0369009BEACD /* CodeEditor.swift */; };
 		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
 		2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72E28DEAB17009EF9C9 /* Persistence.swift */; };
-		2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */; };
+		2B35F73228DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */; };
 		2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73328DEAB17009EF9C9 /* ContentView.swift */; };
 		2B35F73628DEAB18009EF9C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35F73528DEAB18009EF9C9 /* Assets.xcassets */; };
 		2B35F73A28DEAB18009EF9C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35F73928DEAB18009EF9C9 /* Preview Assets.xcassets */; };
@@ -426,7 +426,6 @@
 			isa = PBXGroup;
 			children = (
 				2BD846502A165B8B008D2A86 /* Modifiers */,
-				2B35F73328DEAB17009EF9C9 /* ContentView.swift */,
 				2BBDDE7828E49A770052DC28 /* InputView.swift */,
 				2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */,
 				2BD801862A09EDBD00DDD17E /* PresetPicker.swift */,
@@ -455,6 +454,8 @@
 			isa = PBXGroup;
 			children = (
 				2B35F72E28DEAB17009EF9C9 /* Persistence.swift */,
+				2B35F73328DEAB17009EF9C9 /* ContentView.swift */,
+				2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -476,7 +477,6 @@
 				2BB3E88C29FBA30B00B90602 /* APNs-Helper-Info-debug.plist */,
 				2BB3E88D29FBA30B00B90602 /* APNs-Helper-Info-release.plist */,
 				2B35F73728DEAB18009EF9C9 /* APNs_Helper.entitlements */,
-				2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */,
 				2B35F73528DEAB18009EF9C9 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -911,7 +911,7 @@
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
 				2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */,
 				2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */,
-				2B35F73228DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld in Sources */,
+				2B35F73228DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld in Sources */,
 				2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */,
 				2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */,
 				2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */,
@@ -1770,13 +1770,13 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		2B35F73028DEAB17009EF9C9 /* APNs_Helper.xcdatamodeld */ = {
+		2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				2B35F73128DEAB17009EF9C9 /* APNs_Helper.xcdatamodel */,
 			);
 			currentVersion = 2B35F73128DEAB17009EF9C9 /* APNs_Helper.xcdatamodel */;
-			path = APNs_Helper.xcdatamodeld;
+			path = CoreDataStore.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

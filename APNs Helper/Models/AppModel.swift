@@ -94,21 +94,7 @@ class AppModel: ObservableObject {
     }
     
     // MARK: Test Mode Config
-    
-    @Published var thisAppConfig = Config(
-        deviceToken: .empty,
-        pushKitVoIPToken: .empty,
-        pushKitFileProviderToken: .empty,
-        appBundleID: Bundle.main.bundleIdentifier ?? .empty,
-        privateKey: """
-        -----BEGIN PRIVATE KEY-----
-        MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
-        iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
-        n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
-        -----END PRIVATE KEY-----
-        """,
-        keyIdentifier: "7S6SUT5L43",
-        teamIdentifier: "2N62934Y28")
+    @Published var thisAppConfig: Config
     
     @MainActor
     var isSendingPush: Bool
@@ -119,20 +105,7 @@ class AppModel: ObservableObject {
         showToast: Bool = false,
         toastModel: ToastModel = ToastModel.info(),
         presetData: Data = Data(),
-        thisAppConfig: Config = Config(
-            deviceToken: .empty,
-            pushKitVoIPToken: .empty,
-            pushKitFileProviderToken: .empty,
-            appBundleID: Bundle.main.bundleIdentifier ?? .empty,
-            privateKey: """
-            -----BEGIN PRIVATE KEY-----
-            MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
-            iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
-            n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
-            -----END PRIVATE KEY-----
-            """,
-            keyIdentifier: "7S6SUT5L43",
-            teamIdentifier: "2N62934Y28"),
+        thisAppConfig: Config = .thisApp,
         isSendingPush: Bool = false) {
             self.appLog = appLog
             self.showToast = showToast
