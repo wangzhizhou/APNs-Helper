@@ -15,7 +15,7 @@ import AppKit
 import Combine
 
 class TesterAppModel: ObservableObject {
-        
+
     @Published var appInfo = AppInfo(
         keyID: "7S6SUT5L43",
         teamID: "2N62934Y28",
@@ -28,16 +28,16 @@ class TesterAppModel: ObservableObject {
         -----END PRIVATE KEY-----
         """
     )
-    
+
     @Published
     var showAlert: Bool
-    
+
     var alertMessage: String {
         didSet {
             showAlert = true
         }
     }
-    
+
     @Published var showToast: Bool
     var toastModel: ToastModel {
         didSet {
@@ -48,19 +48,19 @@ class TesterAppModel: ObservableObject {
             }
         }
     }
-    
+
     var content: [(String, String)] {[
         (Constants.keyid.value, appInfo.keyID),
         (Constants.teamid.value, appInfo.teamID),
-        (Constants.bundleid.value,appInfo.bundleID),
+        (Constants.bundleid.value, appInfo.bundleID),
         (Constants.p8key.value, appInfo.p8Key),
         (Constants.devicetoken.value, appInfo.deviceToken),
         (Constants.voiptoken.value, appInfo.voipToken),
-        (Constants.fileprovidertoken.value, appInfo.fileProviderToken),
+        (Constants.fileprovidertoken.value, appInfo.fileProviderToken)
     ]}
-    
+
     private var cancellables = [AnyCancellable]()
-    
+
     init(
         showAlert: Bool = false,
         alertMessage: String = "",
@@ -70,7 +70,7 @@ class TesterAppModel: ObservableObject {
             self.alertMessage = alertMessage
             self.showToast = showToast
             self.toastModel = toastModel
-            
+
             let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitTokenInfo in
                 let (pushKitToken, type) = pushKitTokenInfo
                 switch type {
@@ -81,26 +81,26 @@ class TesterAppModel: ObservableObject {
                 default:
                     break
                 }
-                
+
             }
             cancellables.append(pushkitCancellable)
-            
+
             let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
                 self.appInfo.deviceToken = deviceToken
             }
             cancellables.append(deviceTokenCancellable)
-            
+
             let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
                 self.alertMessage = message
             }
             cancellables.append(backgroundNotificationCancellable)
-            
+
             let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
                 self.toastModel = ToastModel.success().title("Copyed to Pasteboard!")
             }
             cancellables.append(copyToPasteboardCancellable)
         }
-    
+
     func copyAllInfo() {
         appInfo.jsonString?.copyToPasteboard()
     }

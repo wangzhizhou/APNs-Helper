@@ -13,11 +13,11 @@ import AppKit
 #endif
 
 extension String {
-    
+
     static let empty = ""
-    
+
     var trimmed: String { self.trimmingCharacters(in: .whitespacesAndNewlines) }
-    
+
     func copyToPasteboard() {
 #if os(iOS)
         UIPasteboard.general.string = self
@@ -26,7 +26,7 @@ extension String {
 #endif
         NotificationCenter.default.post(name: .APNSHelperStringCopyedToPastedboard, object: self)
     }
-    
+
     func printDebugInfo() {
 #if DEBUG
         print("[DEBUG_INFO]: \(self)")

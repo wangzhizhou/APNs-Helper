@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct AppContentIOS: View {
-    
+
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var contentModel: AppContentModel
-    
+
     let loadPayloadTemplate: () -> Void
     let saveAsPreset: () -> Void
     let clearAllPreset: () -> Void
     let clearCurrentConfigPresetIfExist: () -> Void
     let importAppInfoOnPasteboard: () -> Void
     let refreshTestMode: () -> Void
-    
+
     var body: some View {
         VStack {
             ScrollViewReader { scrollView in
@@ -30,7 +30,7 @@ struct AppContentIOS: View {
                         }
                         Button(Constants.clearallpreset.value, action: clearAllPreset)
                     }
-                    
+
                     // Push Type & APN Server
                     Section(Constants.apnserver.value) {
                         Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
@@ -43,7 +43,7 @@ struct AppContentIOS: View {
                         .onChange(of: contentModel.appInfo.pushType, perform: { _ in
                             loadPayloadTemplate()
                         })
-                        
+
                         Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
                             ForEach(APNServerEnv.allCases, id: \.self) {
                                 Text($0.rawValue).tag($0)
@@ -51,12 +51,12 @@ struct AppContentIOS: View {
                         }
                     }
                     .listRowSeparator(.hidden)
-                    
+
                     // App Info
                     Section(Constants.appInfo.value) {
-                        
+
                         let titleWidth: CGFloat = 70
-                        
+
                         InputView(
                             title: Constants.keyid.value,
                             titleWidth: titleWidth,
@@ -64,7 +64,7 @@ struct AppContentIOS: View {
                         .onChange(of: contentModel.appInfo.keyIdentifier) { _ in
                             refreshTestMode()
                         }
-                        
+
                         InputView(
                             title: Constants.teamid.value,
                             titleWidth: titleWidth,
@@ -72,7 +72,7 @@ struct AppContentIOS: View {
                         .onChange(of: contentModel.appInfo.teamIdentifier) { _ in
                             refreshTestMode()
                         }
-                        
+
                         InputView(
                             title: Constants.bundleid.value,
                             titleWidth: titleWidth,
@@ -80,7 +80,7 @@ struct AppContentIOS: View {
                         .onChange(of: contentModel.appInfo.appBundleID) { _ in
                             refreshTestMode()
                         }
-                        
+
                         P8KeyView(
                             showFileImporter: $contentModel.showFileImporter,
                             privateKey: $contentModel.appInfo.privateKey,
@@ -89,7 +89,7 @@ struct AppContentIOS: View {
                             } onFileImporterError: { error in
                                 appModel.appLog.append(error.localizedDescription)
                             }
-                        
+
                         // Token
                         TokenView(
                             pushType: contentModel.appInfo.pushType,
@@ -97,7 +97,7 @@ struct AppContentIOS: View {
                             pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
                             fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken
                         )
-                        
+
 #if DEBUG
                         Toggle(isOn: $contentModel.isInTestMode) {
                             Text(Constants.fillInAppInfo.value)
@@ -119,8 +119,7 @@ struct AppContentIOS: View {
 #endif
                     }
                     .listRowSeparator(.hidden)
-                    
-                    
+
                     if !contentModel.config.isEmpty {
                         Button(Constants.clearCurrentAppInfo.value) {
                             contentModel.clearAppInfo()
@@ -136,7 +135,7 @@ struct AppContentIOS: View {
                             saveAsPreset()
                         }
                     }
-                    
+
                     // Payload
                     Section(Constants.payload.value) {
                         PayloadEditor(payload: $contentModel.payload)
@@ -144,18 +143,18 @@ struct AppContentIOS: View {
                             .padding(.vertical, 12)
                     }
                     .listRowSeparator(.hidden)
-                    
+
                     Group {
                         Button( Constants.loadTemplatePayload.value) {
                             loadPayloadTemplate()
                         }
-                        
+
                         Button(Constants.clearPayload.value) {
                             contentModel.payload = .empty
                         }
                     }
                     .listRowSeparator(.hidden)
-                    
+
                     Section(Constants.log.value) {
                         // Log
                         LogView()
@@ -172,7 +171,7 @@ struct AppContentIOS: View {
                     scrollView.scrollTo(Constants.log.value)
                 }
             }
-            
+
             // Send Button Area
             SendButtonArea(loadPayloadTemplate: loadPayloadTemplate)
                 .padding(.horizontal)

@@ -15,9 +15,9 @@ struct APNsHelperApp: App {
 #if os(iOS) && DEBUG
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
-    
+
     let persistenceController = PersistenceController.preview
-    
+
     @StateObject var model = AppModel()
     var body: some Scene {
         WindowGroup {

@@ -9,14 +9,14 @@ import SwiftUI
 import AlertToast
 
 struct AppContent: View {
-    
+
     @Environment(\.scenePhase) var scenePhase
-    
+
     @EnvironmentObject var appModel: AppModel
-    
+
     @StateObject
     private var contentModel = AppContentModel()
-    
+
     var body: some View {
         VStack {
 #if os(iOS)
@@ -68,10 +68,10 @@ struct AppContent: View {
 }
 
 extension AppContent {
-    
+
     func fillAppInfoFromPasteboard() {
-        
-        var pasteboardContent: String? = nil
+
+        var pasteboardContent: String?
 #if os(macOS)
         pasteboardContent = NSPasteboard.general.string(forType: .string)
 #elseif os(iOS)
@@ -90,27 +90,27 @@ extension AppContent {
         contentModel.appInfo.pushKitVoIPToken = appInfo.voipToken
         contentModel.appInfo.pushKitFileProviderToken = appInfo.fileProviderToken
     }
-    
+
     func loadPayloadTemplate() {
         if let template = APNsService.templatePayload(for: contentModel.config) {
             contentModel.payload = template
         }
     }
-    
+
     func saveAsPreset() {
         if appModel.saveConfigAsPreset(contentModel.config) {
             contentModel.presetConfig = contentModel.config
         }
     }
-    
+
     func clearAllPreset() {
         appModel.clearAllPresets()
     }
-    
+
     func clearCurrentConfigPresetIfExist() {
         appModel.clearPresetIfExist(contentModel.config)
     }
-    
+
     func refreshTestMode() {
         guard appModel.thisAppConfig.isValid.valid
         else { return }
@@ -124,7 +124,7 @@ struct AppContent_Previews: PreviewProvider {
             AppContent()
                 .previewDevice("My Mac")
                 .previewDisplayName("MacOS")
-            
+
             AppContent()
                 .previewDevice("iPhone 14 Pro Max")
                 .previewDisplayName("iOS")

@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 /// 定义应用中所有的字符串相关的常量
 enum Constants: String {
     case preset = "Preset"
@@ -34,7 +33,7 @@ enum Constants: String {
     case send = "Send (⌘+⏎)"
     case sendPush = "Send Push"
     case log = "Log"
-    
+
     case appInfo = "App Info"
     case fillInAppInfo = "Fill this App's Info"
     case clearCurrentAppInfo = "Clear Current App Info"
@@ -44,11 +43,11 @@ enum Constants: String {
     case clearPayload = "Clear Payload"
     case tipForNotReady = "The App Info is not ready for send push!"
     case importAppInfoOnPasteboard = "App Info On Pasteboard"
-    
+
     var value: String {
         self.rawValue
     }
-    
+
     var firstChar: Character {
         let i = self.value.index(self.value.startIndex, offsetBy: 0)
         let char = self.value[i]

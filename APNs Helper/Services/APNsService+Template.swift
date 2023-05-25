@@ -10,11 +10,11 @@ import APNSwift
 
 @available(macOS 11.0, *)
 extension APNsService {
-    
+
     static func templatePayload(for config: Config) -> String? {
-        
+
         var jsonString: String?
-        
+
         switch config.pushType {
         case .alert:
             jsonString = toJSONString(with: APNSAlertNotification(
@@ -42,7 +42,7 @@ extension APNsService {
         }
         return jsonString
     }
-    
+
     static func toJSONString<T: Encodable>(with template: T) -> String? {
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = [
@@ -51,9 +51,8 @@ extension APNsService {
             .withoutEscapingSlashes
         ]
         if let data = try? jsonEncoder.encode(template) {
-            return String(data: data, encoding:.utf8)
-        }
-        else {
+            return String(data: data, encoding: .utf8)
+        } else {
             return nil
         }
     }

@@ -8,7 +8,7 @@
 import FileProvider
 
 extension NSFileProviderManager {
-    
+
     static func setup() {
     }
 }

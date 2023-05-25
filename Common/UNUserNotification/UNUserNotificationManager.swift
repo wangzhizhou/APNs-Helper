@@ -10,18 +10,18 @@ import UserNotifications
 import Combine
 
 class UNUserNotificationManager: NSObject {
-    
+
     // 单例实现
     static let shared = UNUserNotificationManager()
-    private override init(){}
-    
+    private override init() {}
+
     // 功能实现
     let deviceTokenSubject = PassthroughSubject<String, Never>()
     let backgroundNotificationSubject = PassthroughSubject<String, Never>()
 }
 
 extension UNUserNotificationManager: UNUserNotificationCenterDelegate {
-    
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.badge, .sound, .list, .banner])
     }

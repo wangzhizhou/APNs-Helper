@@ -8,25 +8,25 @@
 import Foundation
 
 struct Config {
-    
+
     // Token Info
     var deviceToken: String
     var pushKitVoIPToken: String
     var pushKitFileProviderToken: String
-    
+
     // App Info
     var appBundleID: String
     var privateKey: String
     var keyIdentifier: String
     var teamIdentifier: String
-    
+
     // Server Info
     var pushType: PushType = .alert
     var apnsServerEnv: APNServerEnv = .sandbox
 }
 
 extension Config: Identifiable {
-    
+
     var id: String {
         appBundleID
     }
@@ -56,7 +56,7 @@ extension Config {
             privateKey: privateKey,
             keyIdentifier: keyIdentifier.trimmed,
             teamIdentifier: teamIdentifier.trimmed,
-            pushType:pushType,
+            pushType: pushType,
             apnsServerEnv: apnsServerEnv
         )
     }

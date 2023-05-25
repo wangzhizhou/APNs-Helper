@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct PresetPicker: View {
-    
+
     let presets: [Config]
-    
+
     @Binding var selectedPreset: Config
-    
+
     var onPresetChange: (Config) -> Void
-    
+
     var body: some View {
         Picker(Constants.preset.value, selection: $selectedPreset) {
             ForEach(presets) {
@@ -45,20 +45,20 @@ struct PresetView_Previews: PreviewProvider {
             appBundleID: "test aid",
             privateKey: "test private key",
             keyIdentifier: "test key id",
-            teamIdentifier: "test team id"),
+            teamIdentifier: "test team id")
     ]
     static var previews: some View {
         Group {
-            PresetPicker(presets: presets, selectedPreset: .constant(.none)) { preset in
-                
+            PresetPicker(presets: presets, selectedPreset: .constant(.none)) { _ in
+
             }
             .frame(width: 300)
             .previewDevice("My Mac")
             .previewDisplayName("MacOS")
-            
+
             Form {
                 Section {
-                    PresetPicker(presets: presets, selectedPreset: .constant(.none)) { preset in
+                    PresetPicker(presets: presets, selectedPreset: .constant(.none)) { _ in
                     }
                 }
             }

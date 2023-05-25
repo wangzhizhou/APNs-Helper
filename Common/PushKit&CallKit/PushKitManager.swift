@@ -16,11 +16,11 @@ enum PushKitTokenType {
 }
 typealias PushKitTokenInfo = (token: String, type: PushKitTokenType)
 class PushKitManager: NSObject {
-    
+
     // MARK: 单例实现
     static let shared = PushKitManager()
-    private override init(){}
-    
+    private override init() {}
+
     // MARK: 功能
     private lazy var pushKitRegistry: PKPushRegistry = {
         let registry = PKPushRegistry(queue: .main)
@@ -31,18 +31,18 @@ class PushKitManager: NSObject {
 #endif
         return registry
     }()
-    
+
     func setup() {
         pushKitRegistry.delegate = self
     }
-    
+
     let pushKitTokenSubject = PassthroughSubject<PushKitTokenInfo, Never>()
 }
 
 extension PushKitManager: PKPushRegistryDelegate {
-    
+
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
-        
+
         var pushKitTokenType: PushKitTokenType = .unknown
         switch type {
 #if os(iOS)
@@ -58,19 +58,19 @@ extension PushKitManager: PKPushRegistryDelegate {
         else {
             return
         }
-        
+
         let pushKitTokenInfo: PushKitTokenInfo = (token: pushCredentials.token.hexString, type: pushKitTokenType)
         pushKitTokenSubject.send(pushKitTokenInfo)
-        
+
         "pushkit token: \(pushKitTokenInfo.token) for type: \(pushKitTokenInfo.type)".printDebugInfo()
     }
-    
+
     func pushRegistry(_ registry: PKPushRegistry, didInvalidatePushTokenFor type: PKPushType) {
         "pushkit token invalidate for type: \(type)".printDebugInfo()
     }
-    
+
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
-        
+
         switch type {
 #if os(iOS)
         case .voIP:
@@ -78,11 +78,10 @@ extension PushKitManager: PKPushRegistryDelegate {
 #endif
         case .fileProvider:
             "pushkit file provider notification received".printDebugInfo()
-            break
         default:
             break
         }
-        
+
         completion()
     }
 }

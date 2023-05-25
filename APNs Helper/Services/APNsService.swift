@@ -14,7 +14,7 @@ import NIO
 enum APNServerEnv: String, CaseIterable, Codable {
     case sandbox
     case production
-    
+
     var env: APNSClientConfiguration.Environment {
         switch self {
         case .sandbox:
@@ -23,10 +23,10 @@ enum APNServerEnv: String, CaseIterable, Codable {
             return .production
         }
     }
-    
-    var reachable: Bool  {
+
+    var reachable: Bool {
         var reachable = false
-        
+
         var hostname: String?
         switch self {
         case .sandbox:
@@ -42,7 +42,7 @@ enum APNServerEnv: String, CaseIterable, Codable {
                 reachable = false
             }
         }
-        
+
         return reachable
     }
 }
@@ -56,33 +56,34 @@ enum PushType: String, CaseIterable, Codable {
 
 struct APNsService {
     struct Payload: Codable {}
-    
+
     let config: Config
     private let payload =  Payload()
     var payloadData: Data
-    
+
     let appModel: AppModel
-    
+
     let logger: Logger
-    
+
     init(config: Config, payloadData: Data, appModel: AppModel) {
         self.config = config
         self.payloadData = payloadData
         self.appModel = appModel
         self.logger = Logger(label: "APNs Helper") { _ in AppLogHandler(appModel: appModel) }
     }
-    
+
+    // swiftlint: disable function_body_length
     func send() async throws -> Bool {
-        
+
         guard config.apnsServerEnv.reachable
         else {
             appModel.toastModel = ToastModel.info().title("APN Server Not Reachable")
             return false
         }
-                
+
         var client: APNSClient<JSONDecoder, JSONEncoder>?
-        
-        do {            
+
+        do {
             client = APNSClient(
                 configuration: .init(
                     authenticationMethod: .jwt(
@@ -106,9 +107,7 @@ struct APNsService {
             var topic = config.appBundleID
             var priority = 10
             switch config.pushType {
-            case .alert:
-                fallthrough
-            case .background:
+            case .alert, .background:
                 token = config.deviceToken
                 priority = 5
             case .voip:
@@ -132,14 +131,14 @@ struct APNsService {
             logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
             await shutdownClient(client, appModel: appModel)
             return true
-        }
-        catch {
+        } catch {
             logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
             await shutdownClient(client, appModel: appModel)
             return false
         }
     }
-    
+    // swiftlint: enable function_body_length
+
     func shutdownClient(_ client: APNSClient<JSONDecoder, JSONEncoder>?, appModel: AppModel) async {
         _ = await MainActor.run {
             appModel.isSendingPush = false

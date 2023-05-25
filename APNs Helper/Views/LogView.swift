@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct LogView: View {
-    
+
     @EnvironmentObject var appModel: AppModel
-    
+
     @FocusState
     private var logTextEditorFocusState: Bool
-    
+
     var body: some View {
         VStack {
 #if os(macOS)
@@ -38,13 +38,13 @@ struct LogView: View {
 
 struct LogView_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         Group {
             LogView()
                 .padding()
                 .previewDevice("My Mac")
                 .previewDisplayName("MacOS")
-            
+
             Form {
                 Section(Constants.log.value) {
                     LogView()

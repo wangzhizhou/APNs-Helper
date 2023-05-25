@@ -13,7 +13,7 @@ class ToastModel {
     var title: String?
     var subtitle: String?
     var style: AlertToast.AlertStyle?
-    
+
     init(
         mode: AlertToast.DisplayMode,
         type: AlertToast.AlertType,
@@ -26,7 +26,7 @@ class ToastModel {
             self.subtitle = subtitle
             self.style = style
         }
-    
+
     var shouldShow: Bool {
         var hasTitle = false
         var hasSubtitle = false
@@ -38,33 +38,32 @@ class ToastModel {
         }
         return hasTitle || hasSubtitle
     }
-    
+
     func mode(_ mode: AlertToast.DisplayMode) -> Self {
         self.mode = mode
         return self
     }
-    
+
     func type(_ type: AlertToast.AlertType) -> Self {
         self.type = type
         return self
     }
-    
+
     func title(_ title: String) -> Self {
         self.title = title
         return self
     }
-    
+
     func subtitle(_ subtitle: String) -> Self {
         self.subtitle = subtitle
         return self
     }
-    
+
     func style(_ style: AlertToast.AlertStyle) -> Self {
         self.style = style
         return self
     }
-    
-    
+
 }
 
 extension ToastModel {
@@ -72,10 +71,10 @@ extension ToastModel {
         return ToastModel(
             mode: .hud,
             type: .regular,
-            style:.style(backgroundColor: .orange)
+            style: .style(backgroundColor: .orange)
         )
     }
-    
+
     static func success() -> ToastModel {
         return ToastModel(
             mode: .alert,

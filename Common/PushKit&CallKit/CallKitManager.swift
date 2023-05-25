@@ -9,11 +9,11 @@
 import CallKit
 
 class CallKitManager: NSObject {
-    
+
     // MARK: 单例实现
     static let shared = CallKitManager()
-    private override init(){}
-    
+    private override init() {}
+
     // MARK: 功能实现
     private(set) lazy var callProvider: CXProvider = {
         var config = CXProviderConfiguration()
@@ -25,7 +25,7 @@ class CallKitManager: NSObject {
         let provider = CXProvider(configuration: config)
         return provider
     }()
-    
+
     func setupForVoip() {
         callProvider.setDelegate(self, queue: .main)
         let updateHandle = CXHandle(type: .generic, value: "VoIP Push")
@@ -35,41 +35,40 @@ class CallKitManager: NSObject {
     }
 }
 
-
 extension CallKitManager: CXProviderDelegate {
-    
+
     func providerDidReset(_ provider: CXProvider) {
-        
+
     }
-    
+
     func provider(_ provider: CXProvider, perform action: CXStartCallAction) {
         action.fulfill()
     }
-    
+
     func provider(_ provider: CXProvider, perform action: CXAnswerCallAction) {
         action.fulfill()
-        
+
         let endCallAction = CXEndCallAction(call: action.callUUID)
         let transaction = CXTransaction(action: endCallAction)
         CXCallController().request(transaction) { _ in }
     }
-    
+
     func provider(_ provider: CXProvider, perform action: CXEndCallAction) {
         action.fulfill()
     }
-    
+
     func provider(_ provider: CXProvider, perform action: CXSetHeldCallAction) {
         action.fulfill()
     }
-    
+
     func provider(_ provider: CXProvider, perform action: CXSetMutedCallAction) {
         action.fulfill()
     }
-    
+
     func provider(_ provider: CXProvider, perform action: CXSetGroupCallAction) {
         action.fulfill()
     }
-    
+
     func provider(_ provider: CXProvider, perform action: CXPlayDTMFCallAction) {
         action.fulfill()
     }

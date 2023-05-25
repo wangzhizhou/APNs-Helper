@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct AppContentMacOS: View {
-    
+
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var contentModel: AppContentModel
-    
+
     let loadPayloadTemplate: () -> Void
     let saveAsPreset: () -> Void
     let clearAllPreset: () -> Void
     let clearCurrentConfigPresetIfExist: () -> Void
     let importAppInfoOnPasteboard: () -> Void
     let refreshTestMode: () -> Void
-    
+
     var body: some View {
-        
+
         VStack {
             // Preset
             if !appModel.presets.isEmpty {
@@ -33,7 +33,7 @@ struct AppContentMacOS: View {
                     Button(Constants.clearallpreset.value, action: clearAllPreset).buttonStyle(BorderedButtonStyle())
                 }
             }
-            
+
             // Push Type & APN Server
             HStack {
                 Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
@@ -57,12 +57,12 @@ struct AppContentMacOS: View {
                 .pickerStyle(.segmented)
             }
             .padding(.bottom)
-            
+
             // App Info
             VStack {
-                
+
                 let titleWidth: CGFloat = 60
-                
+
                 InputView(
                     title: Constants.keyid.value,
                     titleWidth: titleWidth,
@@ -70,7 +70,7 @@ struct AppContentMacOS: View {
                 .onChange(of: contentModel.appInfo.keyIdentifier) { _ in
                     refreshTestMode()
                 }
-                
+
                 InputView(
                     title: Constants.teamid.value,
                     titleWidth: titleWidth,
@@ -78,7 +78,7 @@ struct AppContentMacOS: View {
                 .onChange(of: contentModel.appInfo.teamIdentifier) { _ in
                     refreshTestMode()
                 }
-                
+
                 InputView(
                     title: Constants.bundleid.value,
                     titleWidth: titleWidth,
@@ -86,7 +86,7 @@ struct AppContentMacOS: View {
                 .onChange(of: contentModel.appInfo.appBundleID) { _ in
                     refreshTestMode()
                 }
-                
+
                 P8KeyView(
                     showFileImporter: $contentModel.showFileImporter,
                     privateKey: $contentModel.appInfo.privateKey,
@@ -96,7 +96,7 @@ struct AppContentMacOS: View {
                     onFileImporterError: { error in
                         appModel.appLog.append(error.localizedDescription)
                     })
-                
+
                 // Token
                 TokenView(
                     pushType: contentModel.appInfo.pushType,
@@ -105,7 +105,7 @@ struct AppContentMacOS: View {
                     fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken
                 )
                 .padding(.vertical, 10)
-                
+
                 HStack {
                     Button(Constants.clearIfExist.value) {
                         clearCurrentConfigPresetIfExist()
@@ -136,20 +136,20 @@ struct AppContentMacOS: View {
                 }
                 .padding(.bottom, 10)
             }
-            
+
             // Payload
             PayloadEditor(
                 title: Constants.payload.value,
                 payload: $contentModel.payload
             )
             .frame(height: 200)
-            
+
             // Send Button Area
             SendButtonArea(loadPayloadTemplate: loadPayloadTemplate)
-            
+
             // Log
             LogView()
-            
+
         }
         .frame(minWidth: 600)
         .padding()

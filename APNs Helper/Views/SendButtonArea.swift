@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SendButtonArea: View {
-    
+
     @EnvironmentObject var appModel: AppModel
-    
+
     @EnvironmentObject var contentModel: AppContentModel
-    
+
     let loadPayloadTemplate: () -> Void
-    
+
     private var myLayout: AnyLayout {
 #if os(iOS)
         AnyLayout(VStackLayout())
@@ -22,10 +22,10 @@ struct SendButtonArea: View {
         AnyLayout(HStackLayout())
 #endif
     }
-    
+
     var body: some View {
         myLayout {
-            
+
 #if os(macOS)
             if contentModel.payload.isEmpty {
                 Button(Constants.loadTemplate.value, action: loadPayloadTemplate)
@@ -33,7 +33,7 @@ struct SendButtonArea: View {
                     .keyboardShortcut(.init(unicodeScalarLiteral: Constants.loadTemplateShortcutKey.firstChar), modifiers: [.command])
             }
 #endif
-            
+
             Button {
                 let (ready, message) = contentModel.config.isReadyForSend
                 guard ready else {
@@ -42,7 +42,7 @@ struct SendButtonArea: View {
                     }
                     return
                 }
-                
+
                 let config = contentModel.config
                 Task {
                     guard !contentModel.payload.isEmpty
@@ -90,15 +90,15 @@ struct SendButtonArea: View {
 struct SendButtonArea_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            
+
             SendButtonArea(loadPayloadTemplate: {
-                
+
             })
             .previewDevice("My Mac")
             .previewDisplayName("MacOS")
-            
+
             SendButtonArea(loadPayloadTemplate: {
-                
+
             })
             .previewDevice("iPhone 14 Pro Max")
             .previewDisplayName("iOS")

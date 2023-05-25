@@ -11,7 +11,7 @@ import FileProvider
 struct FileProviderPushPayload: Codable {
     let containerID: String = NSFileProviderItemIdentifier.workingSet.rawValue
     let domain: String
-    
+
     enum CodingKeys: String, CodingKey {
         case domain
         case containerID = "container-identifier"

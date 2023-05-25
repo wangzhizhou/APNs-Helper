@@ -9,9 +9,9 @@ import SwiftUI
 import AlertToast
 
 struct ContentView: View {
-    
+
     @EnvironmentObject var model: TesterAppModel
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -26,7 +26,7 @@ struct ContentView: View {
                     }
                 }
 #endif
-                
+
 #if os(macOS)
                 ScrollView {
                     ForEach(model.content.filter { !$0.1.isEmpty }, id: \.self.0) { item in
@@ -64,9 +64,9 @@ struct ContentView: View {
 }
 
 struct ItemEntry: View {
-    
+
     let title: String
-    
+
     var body: some View {
         HStack {
             Text(title)
@@ -76,7 +76,7 @@ struct ItemEntry: View {
             } label: {
                 Image(systemName: "doc.on.doc.fill")
             }
-            
+
         }
     }
 }

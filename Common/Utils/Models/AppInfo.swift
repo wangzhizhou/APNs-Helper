@@ -18,14 +18,14 @@ struct AppInfo: Codable {
 }
 
 extension AppInfo {
-    
+
     var jsonString: String? {
         if let data = try? Self.jsonEncoder.encode(self) {
             return String(data: data, encoding: .utf8)
         }
         return nil
     }
-    
+
     private static let jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [
@@ -35,12 +35,12 @@ extension AppInfo {
         ]
         return encoder
     }()
-    
+
     private static let jsonDecoder: JSONDecoder = {
         let decoder = JSONDecoder()
         return decoder
     }()
-    
+
     static func decode(from json: String) -> AppInfo? {
         if let data = json.data(using: .utf8), let appInfo = try? Self.jsonDecoder.decode(AppInfo.self, from: data) {
             return appInfo

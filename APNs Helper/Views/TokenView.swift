@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct TokenView: View {
-    
+
     let pushType: PushType
-    
+
     @Binding var deviceToken: String
     @Binding var pushKitDeviceToken: String
     @Binding var fileProviderDeviceToken: String
-    
+
     var body: some View {
         if pushType == .alert || pushType == .background {
             InputView(
@@ -34,26 +34,25 @@ struct TokenView: View {
 
 struct TokenView_Previews: PreviewProvider {
     static var previews: some View {
-        
+
         Group {
-            
+
             VStack {
-                
+
                 TokenView(
                     pushType: .alert,
                     deviceToken: .constant("alert device token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token")
                 )
-                
+
                 TokenView(
                     pushType: .background,
                     deviceToken: .constant("background device token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token")
                 )
-                
-                
+
                 TokenView(
                     pushType: .voip,
                     deviceToken: .constant("void push kit token"),
@@ -64,8 +63,7 @@ struct TokenView_Previews: PreviewProvider {
             .padding()
             .previewDevice("My Mac")
             .previewDisplayName("MacOS")
-            
-            
+
             Form {
                 TokenView(
                     pushType: .alert,
@@ -73,15 +71,14 @@ struct TokenView_Previews: PreviewProvider {
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token")
                 )
-                
+
                 TokenView(
                     pushType: .background,
                     deviceToken: .constant("background device token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token")
                 )
-                
-                
+
                 TokenView(
                     pushType: .voip,
                     deviceToken: .constant("void push kit token"),

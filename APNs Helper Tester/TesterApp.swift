@@ -12,11 +12,11 @@ struct TesterApp: App {
 #if os(iOS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
-    
+
 #if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
-    
+
     @StateObject var model = TesterAppModel()
     var body: some Scene {
         WindowGroup {

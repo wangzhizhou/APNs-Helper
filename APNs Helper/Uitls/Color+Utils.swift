@@ -8,10 +8,10 @@
 import SwiftUI
 
 extension Color {
-    
+
     static let invalid = Color("InvalidColor")
-    
+
     static let valid = Color("ValidColor")
-    
+
     static let border = Color("BorderColor")
 }

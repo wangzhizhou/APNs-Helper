@@ -12,7 +12,7 @@
 		2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */ = {isa = PBXBuildFile; productRef = 2B00316A2A0DFF6F009BEACD /* PrettierBabel */; };
 		2B00316F2A0E0221009BEACD /* CodeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00316E2A0E0221009BEACD /* CodeFormatter.swift */; };
 		2B0031722A0E02DC009BEACD /* MacOSCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */; platformFilters = (macos, ); };
-		2B0031742A0E0306009BEACD /* iOSCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */; platformFilter = ios; };
+		2B0031742A0E0306009BEACD /* IOSCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031732A0E0306009BEACD /* IOSCodeEditor.swift */; platformFilter = ios; };
 		2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031752A0E0369009BEACD /* CodeEditor.swift */; };
 		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
 		2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72E28DEAB17009EF9C9 /* Persistence.swift */; };
@@ -152,7 +152,7 @@
 		2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadEditor.swift; sourceTree = "<group>"; };
 		2B00316E2A0E0221009BEACD /* CodeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFormatter.swift; sourceTree = "<group>"; };
 		2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSCodeEditor.swift; sourceTree = "<group>"; };
-		2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCodeEditor.swift; sourceTree = "<group>"; };
+		2B0031732A0E0306009BEACD /* IOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSCodeEditor.swift; sourceTree = "<group>"; };
 		2B0031752A0E0369009BEACD /* CodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
 		2B35F72928DEAB17009EF9C9 /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B35F72C28DEAB17009EF9C9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -304,7 +304,7 @@
 			children = (
 				2B00316E2A0E0221009BEACD /* CodeFormatter.swift */,
 				2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */,
-				2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */,
+				2B0031732A0E0306009BEACD /* IOSCodeEditor.swift */,
 				2B0031752A0E0369009BEACD /* CodeEditor.swift */,
 			);
 			path = CodeFormatter;
@@ -630,6 +630,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2B79816A2A1F57AC00DF795A /* PBXTargetDependency */,
 			);
 			name = "APNs Helper";
 			packageProductDependencies = (
@@ -654,6 +655,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2B7981752A1F7F2200DF795A /* PBXTargetDependency */,
 				2BD842112A14ECFC008D2A86 /* PBXTargetDependency */,
 				2BD842142A14ECFC008D2A86 /* PBXTargetDependency */,
 				2BD8422E2A14ED38008D2A86 /* PBXTargetDependency */,
@@ -799,6 +801,7 @@
 				2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */,
 				2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */,
 				2B0031692A0DFF6F009BEACD /* XCRemoteSwiftPackageReference "Prettier" */,
+				2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -892,7 +895,7 @@
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
-				2B0031742A0E0306009BEACD /* iOSCodeEditor.swift in Sources */,
+				2B0031742A0E0306009BEACD /* IOSCodeEditor.swift in Sources */,
 				2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,
 				2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */,
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
@@ -999,6 +1002,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2B79816A2A1F57AC00DF795A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2B7981692A1F57AC00DF795A /* OrzSwiftLintBuildToolPlugin */;
+		};
+		2B7981752A1F7F2200DF795A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 2B7981742A1F7F2200DF795A /* OrzSwiftLintBuildToolPlugin */;
+		};
 		2BD842112A14ECFC008D2A86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			platformFilter = ios;
@@ -1731,6 +1742,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OrzGeeker/OrzSwiftLint.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		2BDB538929384BCE00E38E77 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
@@ -1756,6 +1775,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		2B7981692A1F57AC00DF795A /* OrzSwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */;
+			productName = "plugin:OrzSwiftLintBuildToolPlugin";
+		};
+		2B7981742A1F7F2200DF795A /* OrzSwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */;
+			productName = "plugin:OrzSwiftLintBuildToolPlugin";
 		};
 		2BDB538A29384BCE00E38E77 /* APNSwift */ = {
 			isa = XCSwiftPackageProductDependency;

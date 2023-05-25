@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UnderLineModifier: ViewModifier {
-    
+
     func body(content: Content) -> some View {
         return content
             .overlay(alignment: .bottom) {

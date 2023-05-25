@@ -8,10 +8,10 @@
 import FileProvider
 
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
-    
+
     private let enumeratedItemIdentifier: NSFileProviderItemIdentifier
     private let anchor = NSFileProviderSyncAnchor("an anchor".data(using: .utf8)!)
-    
+
     init(enumeratedItemIdentifier: NSFileProviderItemIdentifier) {
         self.enumeratedItemIdentifier = enumeratedItemIdentifier
         super.init()
@@ -37,7 +37,7 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         observer.didEnumerate([FileProviderItem(identifier: NSFileProviderItemIdentifier("a file"))])
         observer.finishEnumerating(upTo: nil)
     }
-    
+
     func enumerateChanges(for observer: NSFileProviderChangeObserver, from anchor: NSFileProviderSyncAnchor) {
         /* TODO:
          - query the server for updates since the passed-in sync anchor

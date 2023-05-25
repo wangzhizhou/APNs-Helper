@@ -12,28 +12,28 @@ import SwiftUI
 import Combine
 
 struct MacOSCodeEditor: NSViewRepresentable {
-    
+
     @Binding var content: String
-    
-    var language: CodeFomater.Language? = nil
-    
+
+    var language: CodeFomater.Language?
+
     let size: CGSize
-    
+
     let colorScheme: ColorScheme
-    
-    var onError: ((Error?) -> Void)? = nil
-    
+
+    var onError: ((Error?) -> Void)?
+
     func makeNSView(context: Context) -> NSScrollView {
         CodeFomater.resetTheme(colorScheme: colorScheme)
         let frame = CGRect(origin: .zero, size: size)
-        
+
         let scrollView = NSTextView.scrollableTextView()
         scrollView.frame = frame
         scrollView.hasVerticalScroller = false
         scrollView.hasHorizontalScroller = false
         scrollView.drawsBackground = false
         scrollView.horizontalScrollElasticity = .none
-        
+
         let highlighter = CodeFomater.highlightTextContainer(language: language)
         let textView = NSTextView(frame: frame, textContainer: highlighter)
         textView.drawsBackground = false
@@ -45,26 +45,26 @@ struct MacOSCodeEditor: NSViewRepresentable {
         textView.usesFontPanel = false
         textView.textContainer?.containerSize = textView.maxSize
         textView.textContainer?.widthTracksTextView = false
-        
+
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4.0
         textView.defaultParagraphStyle = paragraphStyle
         textView.delegate = context.coordinator
         textView.allowsUndo = true
         textView.enabledTextCheckingTypes = 0
-        
+
         scrollView.documentView = textView
         context.coordinator.scrollView = scrollView
         return scrollView
     }
-    
+
     func updateNSView(_ scrollView: NSScrollView, context: Context) {
         format(scrollView)
     }
     func sizeThatFits(_ proposal: ProposedViewSize, nsView: NSScrollView, context: Context) -> CGSize? {
         return size
     }
-    
+
     func format(_ scrollView: NSScrollView, force: Bool = false) {
         guard let textView = scrollView.textView
         else {
@@ -103,21 +103,21 @@ struct MacOSCodeEditor: NSViewRepresentable {
             }
         }
     }
-    
+
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
-    
+
     final class Coordinator: NSObject, NSTextViewDelegate {
-        
+
         let parent: MacOSCodeEditor
-        
-        var scrollView: NSScrollView? = nil
-        
+
+        var scrollView: NSScrollView?
+
         let textDidChangeSubject = PassthroughSubject<Void, Never>()
-        
+
         var cancellables = [AnyCancellable]()
-        
+
         init(parent: MacOSCodeEditor) {
             self.parent = parent
             super.init()

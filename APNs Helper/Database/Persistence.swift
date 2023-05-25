@@ -8,22 +8,22 @@
 import CoreData
 
 struct PersistenceController {
-    
+
     static var preview = PersistenceController(inMemory: true)
-    
+
     static let shared = PersistenceController()
-    
+
     let container: NSPersistentContainer
-    
+
     init(inMemory: Bool = false) {
-        
+
         container = NSPersistentContainer(name: "CoreDataStore")
-        
+
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
-        
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 /*
                  Typical reasons for an error here include:
@@ -35,13 +35,13 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        
+
         container.viewContext.automaticallyMergesChangesFromParent = true
     }
 }
 
 extension NSManagedObjectContext {
-    
+
     func synchronize() {
         do {
             try self.save()
