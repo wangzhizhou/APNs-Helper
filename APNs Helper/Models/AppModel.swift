@@ -36,7 +36,7 @@ class AppModel: ObservableObject {
     private var presetData: Data = Data()
 
     var presets: [Config] {
-        get { presetData.toPresetConfigs }
+        get { presetData.toPresetConfigs.sorted(by: <) }
         set {
             if let data = newValue.data {
                 presetData = data

@@ -34,11 +34,21 @@ extension Config: Identifiable {
 
 extension Config: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
-        return lhs.id == rhs.id
-        && lhs.keyIdentifier == rhs.keyIdentifier
-        && lhs.teamIdentifier == rhs.teamIdentifier
+        return lhs.deviceToken == rhs.deviceToken
+        && lhs.pushKitVoIPToken == rhs.pushKitVoIPToken
+        && lhs.pushKitFileProviderToken == rhs.pushKitFileProviderToken
         && lhs.appBundleID == rhs.appBundleID
         && lhs.privateKey == rhs.privateKey
+        && lhs.keyIdentifier == rhs.keyIdentifier
+        && lhs.teamIdentifier == rhs.teamIdentifier
+        && lhs.pushType == rhs.pushType
+        && lhs.apnsServerEnv == rhs.apnsServerEnv
+    }
+}
+
+extension Config: Comparable {
+    static func < (lhs: Config, rhs: Config) -> Bool {
+        return lhs.appBundleID < rhs.appBundleID
     }
 }
 
