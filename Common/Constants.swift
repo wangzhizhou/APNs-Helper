@@ -42,7 +42,7 @@ enum Constants: String {
     case loadTemplatePayload = "Load Template Payload"
     case clearPayload = "Clear Payload"
     case tipForNotReady = "The App Info is not ready for send push!"
-    case importAppInfoOnPasteboard = "App Info On Pasteboard"
+    case importAppInfoOnPasteboard = "Import From Pasteboard"
 
     var value: String {
         self.rawValue
