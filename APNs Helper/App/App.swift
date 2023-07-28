@@ -9,15 +9,23 @@ import SwiftUI
 
 @main
 struct APNsHelperApp: App {
-#if os(iOS)
+#if os(macOS) && DEBUG
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+#endif
+#if os(iOS) && DEBUG
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
+
     let persistenceController = PersistenceController.preview
-    static let model = AppModel()
+
+    @StateObject var model = AppModel()
     var body: some Scene {
         WindowGroup {
             AppContent()
-                .environmentObject(Self.model)
+#if os(macOS)
+                .frame(maxWidth: 632, minHeight: 828, maxHeight: 828)
+#endif
+                .environmentObject(model)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
 #if os(macOS)

@@ -25,9 +25,8 @@ extension APNSMessage {
             .withoutEscapingSlashes
         ]
         if let data = try? jsonEncoder.encode(self) {
-            return String(data: data, encoding:.utf8)
-        }
-        else {
+            return String(data: data, encoding: .utf8)
+        } else {
             return nil
         }
     }
@@ -55,6 +54,10 @@ extension PushType {
         case .voip:
             return APNSVoIPNotification(
                 priority: .immediately,
+                appID: topic)
+        case .fileprovider:
+            return APNSFileProviderNotification(
+                expiration: .immediately,
                 appID: topic)
         }
     }

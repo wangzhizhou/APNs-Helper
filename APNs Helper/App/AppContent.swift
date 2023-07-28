@@ -6,87 +6,129 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct AppContent: View {
-    
-    @EnvironmentObject var appModel: AppModel
-    
-    @State var presetConfig: Config = .invalid
-    @State var teamIdentifier: String = ""
-    @State var keyIdentifier: String = ""
-    @State var appBundleID: String = ""
-    @State var deviceToken: String = ""
-    @State var pushKitDeviceToken: String = ""
-    @State var fileProviderDeviceToken: String = ""
-    @State var privateKey: String = ""
-    @State var pushType: PushType = .alert
-    @State var apnsServerEnv: APNServerEnv = .sandbox
-    @State var payload: String = ""
-    @State var isLoading: Bool = false
-    
-    @State var simulator: Bool = false
-    @State var isPresented: Bool = false
-    
-    @State var showFileImporter: Bool = false
-    @State var isInTestMode: Bool = false
 
-    var config: Config {
-        .init(
-            deviceToken: deviceToken.trimmed,
-            pushKitDeviceToken: pushKitDeviceToken.trimmed,
-            fileProviderDeviceToken: fileProviderDeviceToken.trimmed,
-            appBundleID: appBundleID.trimmed,
-            privateKey: privateKey,
-            keyIdentifier: keyIdentifier.trimmed,
-            teamIdentifier: teamIdentifier.trimmed,
-            pushType:pushType,
-            apnsServerEnv: apnsServerEnv,
-            sendToSimulator: simulator
-        )
-    }
-    
-    func loadPayloadTemplate() {
-        if let template = APNsService.templatePayload(for: config) {
-            payload = template
+    @Environment(\.scenePhase) var scenePhase
+
+    @EnvironmentObject var appModel: AppModel
+
+    @StateObject
+    private var contentModel = AppContentModel()
+
+    var body: some View {
+        VStack {
+#if os(iOS)
+            AppContentIOS(
+                loadPayloadTemplate: loadPayloadTemplate,
+                saveAsPreset: saveAsPreset,
+                clearAllPreset: clearAllPreset,
+                clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist,
+                importAppInfoOnPasteboard: fillAppInfoFromPasteboard,
+                refreshTestMode: refreshTestMode
+            )
+#elseif os(macOS)
+            AppContentMacOS(
+                loadPayloadTemplate: loadPayloadTemplate,
+                saveAsPreset: saveAsPreset,
+                clearAllPreset: clearAllPreset,
+                clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist,
+                importAppInfoOnPasteboard: fillAppInfoFromPasteboard,
+                refreshTestMode: refreshTestMode
+            )
+#endif
+        }
+        .background(.background)
+        .environmentObject(contentModel)
+        .onAppear {
+            loadPayloadTemplate()
+        }
+        .toast(isPresenting: $appModel.showToast) {
+            AlertToast(
+                displayMode: appModel.toastModel.mode,
+                type: appModel.toastModel.type,
+                title: appModel.toastModel.title,
+                subTitle: appModel.toastModel.subtitle,
+                style: appModel.toastModel.style)
+        }
+        .onChange(of: scenePhase) { scenePhase in
+            switch scenePhase {
+            case .active:
+                break
+            case .background:
+                break
+            case .inactive:
+                break
+            default:
+                break
+            }
         }
     }
-    
-    func saveAsPreset() {
-        appModel.saveConfigAsPreset(self.config)
+}
+
+extension AppContent {
+
+    func fillAppInfoFromPasteboard() {
+
+        var pasteboardContent: String?
+#if os(macOS)
+        pasteboardContent = NSPasteboard.general.string(forType: .string)
+#elseif os(iOS)
+        pasteboardContent = UIPasteboard.general.string
+#endif
+        guard let appInfoJson = pasteboardContent, let appInfo = AppInfo.decode(from: appInfoJson)
+        else {
+            appModel.toastModel = ToastModel.info().title("No App Info on pasteboard!")
+            return
+        }
+        contentModel.appInfo.keyIdentifier = appInfo.keyID
+        contentModel.appInfo.teamIdentifier = appInfo.teamID
+        contentModel.appInfo.appBundleID = appInfo.bundleID
+        contentModel.appInfo.privateKey = appInfo.p8Key
+        contentModel.appInfo.deviceToken = appInfo.deviceToken
+        contentModel.appInfo.pushKitVoIPToken = appInfo.voipToken
+        contentModel.appInfo.pushKitFileProviderToken = appInfo.fileProviderToken
     }
-    
+
+    func loadPayloadTemplate() {
+        if let template = APNsService.templatePayload(for: contentModel.config) {
+            contentModel.payload = template
+        }
+    }
+
+    func saveAsPreset() {
+        if appModel.saveConfigAsPreset(contentModel.config) {
+            contentModel.presetConfig = contentModel.config
+        }
+    }
+
     func clearAllPreset() {
         appModel.clearAllPresets()
     }
-    
+
     func clearCurrentConfigPresetIfExist() {
-        appModel.clearPresetIfExist(self.config)
+        appModel.clearPresetIfExist(contentModel.config)
     }
-    
-    func clearAppInfo() {
-        keyIdentifier = ""
-        teamIdentifier = ""
-        appBundleID = ""
-        privateKey = ""
-        deviceToken = ""
-        pushKitDeviceToken = ""
-        fileProviderDeviceToken = ""
-    }
-    
-    func configThisAppInfo() {
-        keyIdentifier = appModel.thisAppConfig.keyIdentifier
-        teamIdentifier = appModel.thisAppConfig.teamIdentifier
-        appBundleID = appModel.thisAppConfig.appBundleID
-        privateKey = appModel.thisAppConfig.privateKey
-        deviceToken = appModel.thisAppConfig.deviceToken
-        pushKitDeviceToken = appModel.thisAppConfig.pushKitDeviceToken
-        fileProviderDeviceToken = appModel.thisAppConfig.fileProviderDeviceToken
+
+    func refreshTestMode() {
+        guard appModel.thisAppConfig.isValid.valid
+        else { return }
+        contentModel.isInTestMode = (contentModel.config == appModel.thisAppConfig)
     }
 }
 
 struct AppContent_Previews: PreviewProvider {
     static var previews: some View {
-        AppContent()
-            .environmentObject(AppModel())
+        Group {
+            AppContent()
+                .previewDevice("My Mac")
+                .previewDisplayName("MacOS")
+
+            AppContent()
+                .previewDevice("iPhone 14 Pro Max")
+                .previewDisplayName("iOS")
+        }
+        .environmentObject(AppModel())
     }
 }
