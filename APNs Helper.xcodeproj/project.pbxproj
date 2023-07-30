@@ -88,6 +88,7 @@
 		2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */; };
 		2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
 		2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
+		F36039A62A76665A00A989BC /* APNs-Helper-Tester-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
 		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
 		F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD122A096B0B0061DF8A /* AppContentModel.swift */; };
@@ -177,7 +178,6 @@
 		2B64E95D29E6B36A0007B1D0 /* TesterApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesterApp.swift; sourceTree = "<group>"; };
 		2B64E95E29E6B36A0007B1D0 /* TesterAppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesterAppModel.swift; sourceTree = "<group>"; };
 		2B64E95F29E6B36A0007B1D0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2B64E96829E6B5690007B1D0 /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "APNs-Helper-Tester-Info.plist"; sourceTree = SOURCE_ROOT; };
 		2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
 		2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNUserNotificationManager.swift; sourceTree = "<group>"; };
 		2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextEditor.swift; sourceTree = "<group>"; };
@@ -226,6 +226,7 @@
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
+		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
 		F360B9722A0FAB4400CDD8BD /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F369DD122A096B0B0061DF8A /* AppContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentModel.swift; sourceTree = "<group>"; };
 		F369DD182A0A9E890061DF8A /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,8 +391,8 @@
 		2B64E95729E6B36A0007B1D0 /* APNs Helper Tester */ = {
 			isa = PBXGroup;
 			children = (
+				F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */,
 				F3CEE6432A1687F300459F71 /* APNs Helper TesterDebug.entitlements */,
-				2B64E96829E6B5690007B1D0 /* APNs-Helper-Tester-Info.plist */,
 				2B64E95829E6B36A0007B1D0 /* APNs Helper Tester.entitlements */,
 				2B64E95A29E6B36A0007B1D0 /* Assets.xcassets */,
 				2B64E95B29E6B36A0007B1D0 /* Preview Content */,
@@ -834,6 +835,7 @@
 			files = (
 				2B64E96229E6B36A0007B1D0 /* Assets.xcassets in Resources */,
 				2B64E96329E6B36A0007B1D0 /* Preview Assets.xcassets in Resources */,
+				F36039A62A76665A00A989BC /* APNs-Helper-Tester-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,7 +1283,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "APNs-Helper-Tester-Info.plist";
+				INFOPLIST_FILE = "APNs Helper Tester/APNs-Helper-Tester-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Tester App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -1326,7 +1328,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "APNs-Helper-Tester-Info.plist";
+				INFOPLIST_FILE = "APNs Helper Tester/APNs-Helper-Tester-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Tester App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
