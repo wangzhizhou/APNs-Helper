@@ -22,7 +22,9 @@ extension String {
 #if os(iOS)
         UIPasteboard.general.string = self
 #elseif os(macOS)
-        NSPasteboard.general.setString(self, forType: .string)
+        NSPasteboard.general.declareTypes([.string], owner: nil)
+        let ret = NSPasteboard.general.setString(self, forType: .string)
+        assert(ret, "write string to paste board failed!")
 #endif
         NotificationCenter.default.post(name: .APNSHelperStringCopyedToPastedboard, object: self)
     }
