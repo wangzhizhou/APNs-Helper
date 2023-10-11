@@ -70,12 +70,13 @@ enum PushType: String, CaseIterable, Codable {
 }
 
 struct APNsService {
-    struct Payload: Codable {}
+    
     let config: Config
-    private let payload =  Payload()
+    
     var payloadData: Data
 
     let appModel: AppModel
+    
     let logger: Logger
 
     init(config: Config, payloadData: Data, appModel: AppModel) {
@@ -113,37 +114,6 @@ struct APNsService {
                 requestEncoder: JSONEncoder()
             )
 
-//            var byteBuffer = ByteBufferAllocator().buffer(capacity: 0)
-//            byteBuffer.writeData(payloadData)
-//            _ = try JSONSerialization.jsonObject(with: byteBuffer, options: .mutableContainers)
-//            var token = config.deviceToken
-//            var topic = config.appBundleID
-//            var priority = 10
-//            switch config.pushType {
-//            case .alert, .background:
-//                token = config.deviceToken
-//                priority = 5
-//            case .voip:
-//                token = config.pushKitVoIPToken
-//                topic += ".voip"
-//            case .fileprovider:
-//                priority = 5
-//                topic += ".pushkit.fileprovider"
-//                token = config.pushKitFileProviderToken
-//            }
-            
-//            let response = try await client!.send(
-//                payload: byteBuffer,
-//                deviceToken: token,
-//                pushType: config.pushType.rawValue,
-//                apnsID: UUID(),
-//                expiration: 0,
-//                priority: priority,
-//                topic: topic,
-//                deadline: .now() + .seconds(10))
-
-            ///
-
             var response: APNSResponse?
             switch config.pushType {
             case .alert:
@@ -155,25 +125,33 @@ struct APNsService {
                             body: .raw("Body")),
                         expiration: .immediately,
                         priority: .immediately,
-                        topic: config.appBundleID),
+                        topic: config.appBundleID,
+                        rawPayloadData: payloadData
+                    ),
                     deviceToken: config.deviceToken)
             case .background:
                 response = try await client?.sendBackgroundNotification(
                     .init(
                         expiration: .immediately,
-                        topic: config.appBundleID),
+                        topic: config.appBundleID,
+                        rawPayloadData: payloadData
+                    ),
                     deviceToken: config.deviceToken)
             case .voip:
                 response = try await client?.sendVoIPNotification(
                     .init(
                         priority: .immediately,
-                        appID: config.appBundleID),
+                        appID: config.appBundleID,
+                        rawPayloadData: payloadData
+                    ),
                     deviceToken: config.pushKitVoIPToken)
             case .fileprovider:
                 response = try await client?.sendFileProviderNotification(
                     .init(
                         expiration: .immediately,
-                        appID: config.appBundleID),
+                        appID: config.appBundleID,
+                        rawPayloadData: payloadData
+                    ),
                     deviceToken: config.pushKitFileProviderToken)
             }
             
