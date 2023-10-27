@@ -102,6 +102,6 @@ class TesterAppModel: ObservableObject {
         }
 
     func copyAllInfo() {
-        appInfo.jsonString?.copyToPasteboard()
+        appInfo.formattedText?.copyToPasteboard()
     }
 }

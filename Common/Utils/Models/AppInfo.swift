@@ -25,6 +25,22 @@ extension AppInfo {
         }
         return nil
     }
+    
+    var formattedText: String? {
+        
+        guard
+            let data = try? Self.jsonEncoder.encode(self),
+            let jsonObj = try? Self.jsonDecoder.decode([String: String].self, from: data)
+        else {
+            return nil
+        }
+        
+        let ret = jsonObj.reduce("") { partialResult, entry in
+            "\(partialResult)\(entry.key)\n\(entry.value)\n\n"
+        }.trimmed
+        
+        return ret
+    }
 
     private static let jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
