@@ -35,9 +35,13 @@ extension AppInfo {
             return nil
         }
         
-        let ret = jsonObj.reduce("") { partialResult, entry in
-            "\(partialResult)\(entry.key)\n\(entry.value)\n\n"
-        }.trimmed
+        
+        let ret = jsonObj
+            .enumerated()
+            .map { "\($0.element.key)\n\($0.element.value)" }.sorted()
+            .reduce("") { partialResult, entry in
+                "\(partialResult)\(entry)\n\n"
+            }.trimmed
         
         return ret
     }
