@@ -36,6 +36,21 @@ extension String {
     }
 }
 
+extension String {
+    
+    var floatValue: Float? {
+        return Float(self)
+    }
+    
+    var doubleValue: Double? {
+        return Double(self)
+    }
+    
+    var intValue: Int? {
+        return Int(self)
+    }
+}
+
 extension Notification.Name {
     static let APNSHelperStringCopyedToPastedboard = Notification.Name("APNSHelperStringCopyedToPastedboard")
 }

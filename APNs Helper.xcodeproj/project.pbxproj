@@ -88,6 +88,9 @@
 		2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */; };
 		2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
 		2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
+		F33327C52AECFF0F00EB6C49 /* PayloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327C42AECFF0F00EB6C49 /* PayloadView.swift */; };
+		F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */; };
+		F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D82AED402C00EB6C49 /* AlertModel.swift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
 		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
 		F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD122A096B0B0061DF8A /* AppContentModel.swift */; };
@@ -225,6 +228,9 @@
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
+		F33327C42AECFF0F00EB6C49 /* PayloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadView.swift; sourceTree = "<group>"; };
+		F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotificationView.swift; sourceTree = "<group>"; };
+		F33327D82AED402C00EB6C49 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
 		F360B9722A0FAB4400CDD8BD /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F369DD122A096B0B0061DF8A /* AppContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentModel.swift; sourceTree = "<group>"; };
@@ -424,6 +430,7 @@
 		2BA3DB6728E5415D006DBCCC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F33327C22AECFDD900EB6C49 /* Payload */,
 				2BD846502A165B8B008D2A86 /* Modifiers */,
 				2BBDDE7828E49A770052DC28 /* InputView.swift */,
 				2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */,
@@ -584,6 +591,24 @@
 				2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */,
 			);
 			path = UNUserNotification;
+			sourceTree = "<group>";
+		};
+		F33327C22AECFDD900EB6C49 /* Payload */ = {
+			isa = PBXGroup;
+			children = (
+				F33327C42AECFF0F00EB6C49 /* PayloadView.swift */,
+				F33327CD2AED00A300EB6C49 /* Alert */,
+			);
+			path = Payload;
+			sourceTree = "<group>";
+		};
+		F33327CD2AED00A300EB6C49 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */,
+				F33327D82AED402C00EB6C49 /* AlertModel.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		F360B9752A0FDC8C00CDD8BD /* Frameworks */ = {
@@ -882,12 +907,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
+				F33327C52AECFF0F00EB6C49 /* PayloadView.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
 				2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */,
 				2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */,
 				2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */,
+				F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */,
 				2BD801872A09EDBD00DDD17E /* PresetPicker.swift in Sources */,
 				2B00316F2A0E0221009BEACD /* CodeFormatter.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
@@ -897,6 +924,7 @@
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
 				2B0031742A0E0306009BEACD /* IOSCodeEditor.swift in Sources */,
 				2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,
+				F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */,
 				2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */,
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
 				2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */,
@@ -1109,7 +1137,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1166,7 +1194,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1203,10 +1231,9 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.1;
 				OTHER_SWIFT_FLAGS = "-DENABLE_PUSHKIT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper;
@@ -1250,10 +1277,9 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1296,10 +1322,8 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-DENABLE_PUSHKIT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper.tester;
@@ -1343,10 +1367,8 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-DENABLE_PUSHKIT";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper.tester;
@@ -1372,7 +1394,6 @@
 				INFOPLIST_FILE = FileProviderExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FileProviderExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1400,7 +1421,6 @@
 				INFOPLIST_FILE = FileProviderExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FileProviderExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1428,7 +1448,6 @@
 				INFOPLIST_FILE = FileProviderExtensionUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FileProviderExtensionUI;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1455,7 +1474,6 @@
 				INFOPLIST_FILE = FileProviderExtensionUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = FileProviderExtensionUI;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1483,7 +1501,6 @@
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationContentExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1510,7 +1527,6 @@
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationContentExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1541,7 +1557,6 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1571,7 +1586,6 @@
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotificationServiceExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1608,7 +1622,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.joker.APNs-Helper-Doc";
 				PRODUCT_NAME = "APNs Helper";
@@ -1637,7 +1650,6 @@
 					"@executable_path/../Frameworks",
 				);
 				MACH_O_TYPE = mh_dylib;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.joker.APNs-Helper-Doc";
 				PRODUCT_NAME = "APNs Helper";
