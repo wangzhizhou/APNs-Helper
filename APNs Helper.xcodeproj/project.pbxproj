@@ -88,7 +88,6 @@
 		2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */; };
 		2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
 		2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
-		F33327C52AECFF0F00EB6C49 /* PayloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327C42AECFF0F00EB6C49 /* PayloadView.swift */; };
 		F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */; };
 		F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D82AED402C00EB6C49 /* AlertModel.swift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
@@ -228,7 +227,6 @@
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
-		F33327C42AECFF0F00EB6C49 /* PayloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadView.swift; sourceTree = "<group>"; };
 		F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotificationView.swift; sourceTree = "<group>"; };
 		F33327D82AED402C00EB6C49 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
@@ -596,7 +594,6 @@
 		F33327C22AECFDD900EB6C49 /* Payload */ = {
 			isa = PBXGroup;
 			children = (
-				F33327C42AECFF0F00EB6C49 /* PayloadView.swift */,
 				F33327CD2AED00A300EB6C49 /* Alert */,
 			);
 			path = Payload;
@@ -907,7 +904,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
-				F33327C52AECFF0F00EB6C49 /* PayloadView.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
 				2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */,
 				2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */,
