@@ -32,7 +32,9 @@ struct PresetPicker: View {
 #elseif os(macOS)
         .padding(.vertical)
 #endif
-        .onChange(of: selectedPreset, perform: onPresetChange)
+        .onChange(of: selectedPreset) { _, newValue in
+            onPresetChange(newValue)
+        }
     }
 }
 struct PresetView_Previews: PreviewProvider {

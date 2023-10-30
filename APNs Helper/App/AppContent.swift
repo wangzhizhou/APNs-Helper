@@ -52,8 +52,8 @@ struct AppContent: View {
                 subTitle: appModel.toastModel.subtitle,
                 style: appModel.toastModel.style)
         }
-        .onChange(of: scenePhase) { scenePhase in
-            switch scenePhase {
+        .onChange(of: scenePhase) { _, newValue in
+            switch newValue {
             case .active:
                 break
             case .background:

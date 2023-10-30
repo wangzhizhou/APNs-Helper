@@ -132,26 +132,6 @@ struct AlertNotificationView: View {
     )
 }
 
-//#Preview("Localized Alert") {
-//
-//    AlertNotificationView(
-//        notification: .constant(
-//            APNSAlertNotification(
-//                alert: .init(
-//                    title: .localized(key: "title", arguments: ["Localized"]),
-//                    subtitle: .localized(key: "subtitle", arguments: ["APNS"]),
-//                    body: .localized(key: "body", arguments: ["APNS"]),
-//                    launchImage: nil
-//                ),
-//                expiration: .immediately,
-//                priority: .immediately,
-//                topic: "",
-//                payload: RawPayload()
-//            )
-//        )
-//    )
-//}
-
 #Preview("Threaded Alert") {
     
     AlertNotificationView(

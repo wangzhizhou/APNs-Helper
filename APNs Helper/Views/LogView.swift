@@ -26,13 +26,13 @@ struct LogView: View {
 #endif
         }
         .focused($logTextEditorFocusState)
-        .onChange(of: logTextEditorFocusState, perform: { focusState in
-            guard focusState == false
+        .onChange(of: logTextEditorFocusState) { _, newValue in
+            guard newValue == false
             else {
                 logTextEditorFocusState = false
                 return
             }
-        })
+        }
     }
 }
 

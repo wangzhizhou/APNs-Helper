@@ -39,8 +39,8 @@ struct CodeEditor: View {
 #endif
             }
         }
-        .onChange(of: colorScheme) { scheme in
-            CodeFomater.resetTheme(colorScheme: scheme)
+        .onChange(of: colorScheme) { _, newValue in
+            CodeFomater.resetTheme(colorScheme: newValue)
         }
     }
 }

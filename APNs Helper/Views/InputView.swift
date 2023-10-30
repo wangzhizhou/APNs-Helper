@@ -31,7 +31,7 @@ struct InputView: View {
                     .onSubmit {
                         focusState = false
                     }
-                    .onChange(of: inputValue) { newValue in
+                    .onChange(of: inputValue) { _, newValue in
                         let trimmedValue = newValue.replacingOccurrences(of: " ", with: "")
                         guard trimmedValue == newValue else {
                             inputValue = trimmedValue

@@ -35,9 +35,9 @@ struct P8KeyView: View {
             InputTextEditor(content: $privateKey)
                 .scrollIndicators(.hidden)
                 .frame(height: editorHeight)
-                .onChange(of: privateKey) { newPrivateKey in
+                .onChange(of: privateKey) { _, newValue in
                     if let onPrivateKeyChange = onPrivateKeyChange {
-                        onPrivateKeyChange(newPrivateKey)
+                        onPrivateKeyChange(newValue)
                     }
                 }
         }
