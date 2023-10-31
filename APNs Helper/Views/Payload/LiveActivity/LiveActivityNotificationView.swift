@@ -56,6 +56,7 @@ struct LiveActivityNotificationView: View {
                 PayloadEditor(payload: .constant(payloadEditorContent))
                     .frame(minHeight: 200)
                     .padding([.top], 10)
+                    .disabled(true)
             }
         }
         .padding()

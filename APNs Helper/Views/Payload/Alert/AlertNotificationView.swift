@@ -115,6 +115,7 @@ struct AlertNotificationView: View {
                 PayloadEditor(payload: .constant(payloadEditorContent))
                     .padding([.top], 10)
                     .frame(height: 200)
+                    .disabled(true)
             }
         }
         .padding()
