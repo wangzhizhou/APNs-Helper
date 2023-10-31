@@ -257,7 +257,6 @@
 		F33327D82AED402C00EB6C49 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModel.swift; sourceTree = "<group>"; };
 		F33327E42AEE7B9400EB6C49 /* LiveActivityNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityNotificationView.swift; sourceTree = "<group>"; };
-		F33327E62AEE970200EB6C49 /* APNSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNSwift; path = ../APNSwift; sourceTree = "<group>"; };
 		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
 		F360B9722A0FAB4400CDD8BD /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F369DD122A096B0B0061DF8A /* AppContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentModel.swift; sourceTree = "<group>"; };
@@ -368,7 +367,6 @@
 		2B35F72028DEAB17009EF9C9 = {
 			isa = PBXGroup;
 			children = (
-				F33327E62AEE970200EB6C49 /* APNSwift */,
 				2BD801912A0A6B0100DDD17E /* README.md */,
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
 				F369DD192A0A9E890061DF8A /* APNs Helper Doc */,

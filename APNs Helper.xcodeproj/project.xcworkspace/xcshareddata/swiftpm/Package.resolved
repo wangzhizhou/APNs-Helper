@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "apnswift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wangzhizhou/APNSwift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "dfe67e8a37b7a9acff0ac1d1c05edfffa564e74c"
+      }
+    },
+    {
       "identity" : "async-http-client",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swift-server/async-http-client.git",
@@ -109,20 +118,11 @@
       }
     },
     {
-      "identity" : "swift-docc-plugin",
+      "identity" : "swift-http-types",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-docc-plugin",
+      "location" : "https://github.com/apple/swift-http-types",
       "state" : {
-        "revision" : "26ac5758409154cc448d7ab82389c520fa8a8247",
-        "version" : "1.3.0"
-      }
-    },
-    {
-      "identity" : "swift-docc-symbolkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-docc-symbolkit",
-      "state" : {
-        "revision" : "b45d1f2ed151d057b54504d653e0da5552844e34",
+        "revision" : "99d066e29effa8845e4761dd3f2f831edfdf8925",
         "version" : "1.0.0"
       }
     },
@@ -140,8 +140,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "54c85cb26308b89846d4671f23954dce088da2b0",
-        "version" : "2.60.0"
+        "revision" : "9497e442486aab515c8486ef8153a506f93a5032",
+        "version" : "2.61.0"
       }
     },
     {
@@ -149,8 +149,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio-extras.git",
       "state" : {
-        "revision" : "fb70a0f5e984f23be48b11b4f1909f3bee016178",
-        "version" : "1.19.1"
+        "revision" : "798c962495593a23fdea0c0c63fd55571d8dff51",
+        "version" : "1.20.0"
       }
     },
     {
