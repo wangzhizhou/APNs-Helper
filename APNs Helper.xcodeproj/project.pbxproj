@@ -90,6 +90,8 @@
 		2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
 		F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */; };
 		F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D82AED402C00EB6C49 /* AlertModel.swift */; };
+		F33327E32AEE7B7E00EB6C49 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */; };
+		F33327E52AEE7B9400EB6C49 /* LiveActivityNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327E42AEE7B9400EB6C49 /* LiveActivityNotificationView.swift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
 		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
 		F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD122A096B0B0061DF8A /* AppContentModel.swift */; };
@@ -229,6 +231,9 @@
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
 		F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotificationView.swift; sourceTree = "<group>"; };
 		F33327D82AED402C00EB6C49 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModel.swift; sourceTree = "<group>"; };
+		F33327E42AEE7B9400EB6C49 /* LiveActivityNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityNotificationView.swift; sourceTree = "<group>"; };
+		F33327E62AEE970200EB6C49 /* APNSwift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = APNSwift; path = ../APNSwift; sourceTree = "<group>"; };
 		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
 		F360B9722A0FAB4400CDD8BD /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F369DD122A096B0B0061DF8A /* AppContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentModel.swift; sourceTree = "<group>"; };
@@ -317,6 +322,7 @@
 		2B35F72028DEAB17009EF9C9 = {
 			isa = PBXGroup;
 			children = (
+				F33327E62AEE970200EB6C49 /* APNSwift */,
 				2BD801912A0A6B0100DDD17E /* README.md */,
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
 				F369DD192A0A9E890061DF8A /* APNs Helper Doc */,
@@ -594,6 +600,7 @@
 		F33327C22AECFDD900EB6C49 /* Payload */ = {
 			isa = PBXGroup;
 			children = (
+				F33327E02AEE7B6900EB6C49 /* LiveActivity */,
 				F33327CD2AED00A300EB6C49 /* Alert */,
 			);
 			path = Payload;
@@ -606,6 +613,15 @@
 				F33327D82AED402C00EB6C49 /* AlertModel.swift */,
 			);
 			path = Alert;
+			sourceTree = "<group>";
+		};
+		F33327E02AEE7B6900EB6C49 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */,
+				F33327E42AEE7B9400EB6C49 /* LiveActivityNotificationView.swift */,
+			);
+			path = LiveActivity;
 			sourceTree = "<group>";
 		};
 		F360B9752A0FDC8C00CDD8BD /* Frameworks */ = {
@@ -911,8 +927,10 @@
 				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */,
 				F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */,
+				F33327E32AEE7B7E00EB6C49 /* LiveActivityModel.swift in Sources */,
 				2BD801872A09EDBD00DDD17E /* PresetPicker.swift in Sources */,
 				2B00316F2A0E0221009BEACD /* CodeFormatter.swift in Sources */,
+				F33327E52AEE7B9400EB6C49 /* LiveActivityNotificationView.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
 				2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
