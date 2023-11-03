@@ -53,6 +53,7 @@ enum PushType: String, CaseIterable, Codable {
     case background
     case voip
     case fileprovider
+    case location
     
     var type: APNSPushType {
         switch self {
@@ -64,6 +65,8 @@ enum PushType: String, CaseIterable, Codable {
             return .voip
         case .fileprovider:
             return .fileprovider
+        case .location:
+            return .location
         }
     }
     
@@ -153,6 +156,14 @@ struct APNsService {
                         rawPayloadData: payloadData
                     ),
                     deviceToken: config.pushKitFileProviderToken)
+            case .location:
+                response = try await client?.sendLocationNotification(
+                    .init(
+                        priority: .immediately,
+                        appID: config.appBundleID,
+                        rawPayloadData: payloadData
+                    ),
+                    deviceToken: config.locationPushServiceToken)
             }
             
             if let apnsID = response?.apnsID {

@@ -44,6 +44,7 @@ struct PresetView_Previews: PreviewProvider {
             deviceToken: "test device token",
             pushKitVoIPToken: "test pushkit token",
             pushKitFileProviderToken: "test file provider token",
+            locationPushServiceToken: "test location push service token",
             appBundleID: "test aid",
             privateKey: "test private key",
             keyIdentifier: "test key id",

@@ -95,7 +95,8 @@ struct AppContentMacOS: View {
                     pushType: contentModel.appInfo.pushType,
                     deviceToken: $contentModel.appInfo.deviceToken,
                     pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
-                    fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken
+                    fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken,
+                    locationPushServiceToken: $contentModel.appInfo.locationPushServiceToken
                 )
                 .padding(.vertical, 10)
 

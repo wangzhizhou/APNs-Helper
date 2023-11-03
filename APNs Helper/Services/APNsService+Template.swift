@@ -11,7 +11,7 @@ import APNSCore
 
 @available(macOS 11.0, *)
 extension APNsService {
-    
+    typealias EmptyPayload = [String: String]
     static func templatePayload(for config: Config) -> String? {
         
         var payload: Encodable
@@ -42,6 +42,12 @@ extension APNsService {
         case .fileprovider:
             payload = APNSFileProviderNotification(
                 expiration: .immediately,
+                appID: config.appBundleID
+            )
+            .payload
+        case .location:
+            payload = APNSLocationNotification(
+                priority: .immediately,
                 appID: config.appBundleID
             )
             .payload

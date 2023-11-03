@@ -14,20 +14,26 @@ struct TokenView: View {
     @Binding var deviceToken: String
     @Binding var pushKitDeviceToken: String
     @Binding var fileProviderDeviceToken: String
+    @Binding var locationPushServiceToken: String
 
     var body: some View {
-        if pushType == .alert || pushType == .background {
+        switch pushType {
+        case .alert, .background:
             InputView(
                 title: Constants.devicetoken.value,
                 inputValue: $deviceToken)
-        } else if pushType == .voip {
+        case .voip:
             InputView(
                 title: Constants.voiptoken.value,
                 inputValue: $pushKitDeviceToken)
-        } else if pushType == .fileprovider {
+        case .fileprovider:
             InputView(
                 title: Constants.fileprovidertoken.value,
                 inputValue: $fileProviderDeviceToken)
+        case .location:
+            InputView(
+                title: Constants.locationPushServiceToken.value,
+                inputValue: $locationPushServiceToken)
         }
     }
 }
@@ -43,21 +49,24 @@ struct TokenView_Previews: PreviewProvider {
                     pushType: .alert,
                     deviceToken: .constant("alert device token"),
                     pushKitDeviceToken: .constant("push kit token"),
-                    fileProviderDeviceToken: .constant("file provider token")
+                    fileProviderDeviceToken: .constant("file provider token"),
+                    locationPushServiceToken: .constant("location push token")
                 )
 
                 TokenView(
                     pushType: .background,
                     deviceToken: .constant("background device token"),
                     pushKitDeviceToken: .constant("push kit token"),
-                    fileProviderDeviceToken: .constant("file provider token")
+                    fileProviderDeviceToken: .constant("file provider token"),
+                    locationPushServiceToken: .constant("location push token")
                 )
 
                 TokenView(
                     pushType: .voip,
                     deviceToken: .constant("void push kit token"),
                     pushKitDeviceToken: .constant("push kit token"),
-                    fileProviderDeviceToken: .constant("file provider token")
+                    fileProviderDeviceToken: .constant("file provider token"),
+                    locationPushServiceToken: .constant("location push token")
                 )
             }
             .padding()
@@ -69,21 +78,24 @@ struct TokenView_Previews: PreviewProvider {
                     pushType: .alert,
                     deviceToken: .constant("alert device token"),
                     pushKitDeviceToken: .constant("push kit token"),
-                    fileProviderDeviceToken: .constant("file provider token")
+                    fileProviderDeviceToken: .constant("file provider token"),
+                    locationPushServiceToken: .constant("location push token")
                 )
 
                 TokenView(
                     pushType: .background,
                     deviceToken: .constant("background device token"),
                     pushKitDeviceToken: .constant("push kit token"),
-                    fileProviderDeviceToken: .constant("file provider token")
+                    fileProviderDeviceToken: .constant("file provider token"),
+                    locationPushServiceToken: .constant("location push token")
                 )
 
                 TokenView(
                     pushType: .voip,
                     deviceToken: .constant("void push kit token"),
                     pushKitDeviceToken: .constant("push kit token"),
-                    fileProviderDeviceToken: .constant("file provider token")
+                    fileProviderDeviceToken: .constant("file provider token"),
+                    locationPushServiceToken: .constant("location push token")
                 )
             }
             .previewDevice("iPhone 14 Pro Max")

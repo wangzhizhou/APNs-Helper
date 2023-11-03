@@ -12,7 +12,7 @@ class LocationPushService: NSObject, CLLocationPushServiceExtension, CLLocationM
     var completion: (() -> Void)?
     var locationManager: CLLocationManager?
 
-    func didReceiveLocationPushPayload(_ payload: [String : Any], completion: @escaping () -> Void) {
+    func didReceiveLocationPushPayload(_ payload: [String: Any], completion: @escaping () -> Void) {
         self.completion = completion
         self.locationManager = CLLocationManager()
         self.locationManager!.delegate = self

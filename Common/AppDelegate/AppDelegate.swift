@@ -13,6 +13,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         setupUNUserNotification()
         setupPushKitAndCallKit()
         setupFileProvider()
+        setupLocationManager()
         return true
     }
 }

@@ -43,6 +43,8 @@ extension Config {
             hasToken = !pushKitVoIPToken.isEmpty
         case .fileprovider:
             hasToken = !pushKitFileProviderToken.isEmpty
+        case .location:
+            hasToken = !locationPushServiceToken.isEmpty
         }
         let (isValid, message) = isValid
         guard isValid
@@ -67,6 +69,7 @@ extension Config {
         deviceToken: .empty,
         pushKitVoIPToken: .empty,
         pushKitFileProviderToken: .empty,
+        locationPushServiceToken: .empty,
         appBundleID: .empty,
         privateKey: .empty,
         keyIdentifier: .empty,
@@ -76,6 +79,7 @@ extension Config {
         deviceToken: .empty,
         pushKitVoIPToken: .empty,
         pushKitFileProviderToken: .empty,
+        locationPushServiceToken: .empty,
         appBundleID: Bundle.main.bundleIdentifier ?? .empty,
         privateKey: """
         -----BEGIN PRIVATE KEY-----

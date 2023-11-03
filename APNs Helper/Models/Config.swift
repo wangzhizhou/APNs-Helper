@@ -13,6 +13,7 @@ struct Config {
     var deviceToken: String
     var pushKitVoIPToken: String
     var pushKitFileProviderToken: String
+    var locationPushServiceToken: String
 
     // App Info
     var appBundleID: String
@@ -62,6 +63,7 @@ extension Config {
             deviceToken: deviceToken.trimmed,
             pushKitVoIPToken: pushKitVoIPToken.trimmed,
             pushKitFileProviderToken: pushKitFileProviderToken.trimmed,
+            locationPushServiceToken: locationPushServiceToken.trimmed,
             appBundleID: appBundleID.trimmed,
             privateKey: privateKey,
             keyIdentifier: keyIdentifier.trimmed,
