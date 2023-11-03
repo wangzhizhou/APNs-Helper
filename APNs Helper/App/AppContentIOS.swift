@@ -40,9 +40,7 @@ struct AppContentIOS: View {
                                 Text($0.rawValue).tag($0)
                             }
                         }
-                        .onChange(of: contentModel.appInfo.pushType, perform: { _ in
-                            loadPayloadTemplate()
-                        })
+                        .onChange(of: contentModel.appInfo.pushType, loadPayloadTemplate)
 
                         Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
                             ForEach(APNServerEnv.allCases, id: \.self) {
@@ -61,26 +59,20 @@ struct AppContentIOS: View {
                             title: Constants.keyid.value,
                             titleWidth: titleWidth,
                             inputValue: $contentModel.appInfo.keyIdentifier)
-                        .onChange(of: contentModel.appInfo.keyIdentifier) { _ in
-                            refreshTestMode()
-                        }
+                        .onChange(of: contentModel.appInfo.keyIdentifier, refreshTestMode)
 
                         InputView(
                             title: Constants.teamid.value,
                             titleWidth: titleWidth,
                             inputValue: $contentModel.appInfo.teamIdentifier)
-                        .onChange(of: contentModel.appInfo.teamIdentifier) { _ in
-                            refreshTestMode()
-                        }
+                        .onChange(of: contentModel.appInfo.teamIdentifier, refreshTestMode)
 
                         InputView(
                             title: Constants.bundleid.value,
                             titleWidth: titleWidth,
                             inputValue: $contentModel.appInfo.appBundleID)
-                        .onChange(of: contentModel.appInfo.appBundleID) { _ in
-                            refreshTestMode()
-                        }
-
+                        .onChange(of: contentModel.appInfo.appBundleID, refreshTestMode)
+                        
                         P8KeyView(
                             showFileImporter: $contentModel.showFileImporter,
                             privateKey: $contentModel.appInfo.privateKey,
@@ -95,21 +87,22 @@ struct AppContentIOS: View {
                             pushType: contentModel.appInfo.pushType,
                             deviceToken: $contentModel.appInfo.deviceToken,
                             pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
-                            fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken
+                            fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken,
+                            locationPushServiceToken: $contentModel.appInfo.locationPushServiceToken
                         )
 
 #if DEBUG
                         Toggle(isOn: $contentModel.isInTestMode) {
                             Text(Constants.fillInAppInfo.value)
                         }
-                        .onChange(of: contentModel.isInTestMode) { mode in
+                        .onChange(of: contentModel.isInTestMode) { _, mode in
                             if mode {
                                 contentModel.appInfo = appModel.thisAppConfig
                             } else {
                                 contentModel.clearAppInfo()
                             }
                         }
-                        .onChange(of: appModel.thisAppConfig) { _ in
+                        .onChange(of: appModel.thisAppConfig) {
                             guard contentModel.isInTestMode else {
                                 return
                             }
@@ -163,7 +156,7 @@ struct AppContentIOS: View {
                     .listRowSeparator(.hidden)
                 }
                 .scrollDismissesKeyboard(.immediately)
-                .onChange(of: appModel.isSendingPush) { isSendingPush in
+                .onChange(of: appModel.isSendingPush) { _, isSendingPush in
                     guard !isSendingPush
                     else {
                         return
