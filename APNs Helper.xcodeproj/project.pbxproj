@@ -21,6 +21,8 @@
 		2B08393C2AEF75EE00488752 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08393B2AEF75EE00488752 /* AppIntent.swift */; };
 		2B08393E2AEF75EF00488752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B08393D2AEF75EF00488752 /* Assets.xcassets */; };
 		2B0839432AEF75EF00488752 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B0839312AEF75EE00488752 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2B08DFDA2AF4FE7800488752 /* LocationPushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08DFD92AF4FE7800488752 /* LocationPushService.swift */; };
+		2B08DFDE2AF4FE7800488752 /* LocationPushServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
 		2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72E28DEAB17009EF9C9 /* Persistence.swift */; };
 		2B35F73228DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */; };
@@ -119,6 +121,13 @@
 			remoteGlobalIDString = 2B0839302AEF75EE00488752;
 			remoteInfo = WidgetsExtension;
 		};
+		2B08DFDC2AF4FE7800488752 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B35F72128DEAB17009EF9C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B08DFD62AF4FE7800488752;
+			remoteInfo = LocationPushServiceExtension;
+		};
 		2BD842102A14ECFC008D2A86 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2B35F72128DEAB17009EF9C9 /* Project object */;
@@ -157,6 +166,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				2BD842122A14ECFC008D2A86 /* FileProviderExtensionUI.appex in Embed Foundation Extensions */,
+				2B08DFDE2AF4FE7800488752 /* LocationPushServiceExtension.appex in Embed Foundation Extensions */,
 				2BD8422F2A14ED38008D2A86 /* NotificationContentExtension.appex in Embed Foundation Extensions */,
 				2B0839432AEF75EF00488752 /* WidgetsExtension.appex in Embed Foundation Extensions */,
 				2BD842152A14ECFC008D2A86 /* FileProviderExtension.appex in Embed Foundation Extensions */,
@@ -182,6 +192,9 @@
 		2B08393D2AEF75EF00488752 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B08393F2AEF75EF00488752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B0839402AEF75EF00488752 /* Widgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Widgets.entitlements; sourceTree = "<group>"; };
+		2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LocationPushServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B08DFD92AF4FE7800488752 /* LocationPushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPushService.swift; sourceTree = "<group>"; };
+		2B08DFDB2AF4FE7800488752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B35F72928DEAB17009EF9C9 /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B35F72C28DEAB17009EF9C9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		2B35F72E28DEAB17009EF9C9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -279,6 +292,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2B08DFD42AF4FE7800488752 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2B35F72628DEAB17009EF9C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -364,6 +384,15 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		2B08DFD82AF4FE7800488752 /* LocationPushServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2B08DFD92AF4FE7800488752 /* LocationPushService.swift */,
+				2B08DFDB2AF4FE7800488752 /* Info.plist */,
+			);
+			path = LocationPushServiceExtension;
+			sourceTree = "<group>";
+		};
 		2B35F72028DEAB17009EF9C9 = {
 			isa = PBXGroup;
 			children = (
@@ -377,6 +406,7 @@
 				2BD842262A14ED38008D2A86 /* NotificationContentExtension */,
 				2BD842382A14ED47008D2A86 /* NotificationServiceExtension */,
 				2B0839362AEF75EE00488752 /* Widgets */,
+				2B08DFD82AF4FE7800488752 /* LocationPushServiceExtension */,
 				F360B9752A0FDC8C00CDD8BD /* Frameworks */,
 				2B35F72A28DEAB17009EF9C9 /* Products */,
 			);
@@ -393,6 +423,7 @@
 				2BD842212A14ED38008D2A86 /* NotificationContentExtension.appex */,
 				2BD842372A14ED47008D2A86 /* NotificationServiceExtension.appex */,
 				2B0839312AEF75EE00488752 /* WidgetsExtension.appex */,
+				2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -721,6 +752,23 @@
 			productReference = 2B0839312AEF75EE00488752 /* WidgetsExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		2B08DFD62AF4FE7800488752 /* LocationPushServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B08DFE12AF4FE7800488752 /* Build configuration list for PBXNativeTarget "LocationPushServiceExtension" */;
+			buildPhases = (
+				2B08DFD32AF4FE7800488752 /* Sources */,
+				2B08DFD42AF4FE7800488752 /* Frameworks */,
+				2B08DFD52AF4FE7800488752 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocationPushServiceExtension;
+			productName = LocationPushServiceExtension;
+			productReference = 2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		2B35F72828DEAB17009EF9C9 /* APNs Helper */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2B35F75328DEAB18009EF9C9 /* Build configuration list for PBXNativeTarget "APNs Helper" */;
@@ -764,6 +812,7 @@
 				2BD8422E2A14ED38008D2A86 /* PBXTargetDependency */,
 				2BD846472A15072C008D2A86 /* PBXTargetDependency */,
 				2B0839422AEF75EF00488752 /* PBXTargetDependency */,
+				2B08DFDD2AF4FE7800488752 /* PBXTargetDependency */,
 			);
 			name = "APNs Helper Tester";
 			packageProductDependencies = (
@@ -871,6 +920,9 @@
 					2B0839302AEF75EE00488752 = {
 						CreatedOnToolsVersion = 15.0;
 					};
+					2B08DFD62AF4FE7800488752 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					2B35F72828DEAB17009EF9C9 = {
 						CreatedOnToolsVersion = 14.0.1;
 					};
@@ -922,6 +974,7 @@
 				2BD842202A14ED38008D2A86 /* NotificationContentExtension */,
 				2BD842362A14ED47008D2A86 /* NotificationServiceExtension */,
 				2B0839302AEF75EE00488752 /* WidgetsExtension */,
+				2B08DFD62AF4FE7800488752 /* LocationPushServiceExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -932,6 +985,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B08393E2AEF75EF00488752 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B08DFD52AF4FE7800488752 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1060,14 @@
 				2B0839382AEF75EE00488752 /* WidgetsBundle.swift in Sources */,
 				2B08393A2AEF75EE00488752 /* Widgets.swift in Sources */,
 				2B08393C2AEF75EE00488752 /* AppIntent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B08DFD32AF4FE7800488752 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2B08DFDA2AF4FE7800488752 /* LocationPushService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1136,6 +1204,11 @@
 			target = 2B0839302AEF75EE00488752 /* WidgetsExtension */;
 			targetProxy = 2B0839412AEF75EF00488752 /* PBXContainerItemProxy */;
 		};
+		2B08DFDD2AF4FE7800488752 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B08DFD62AF4FE7800488752 /* LocationPushServiceExtension */;
+			targetProxy = 2B08DFDC2AF4FE7800488752 /* PBXContainerItemProxy */;
+		};
 		2B79816A2A1F57AC00DF795A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 2B7981692A1F57AC00DF795A /* OrzSwiftLintBuildToolPlugin */;
@@ -1268,6 +1341,66 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2B08DFDF2AF4FE7800488752 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LocationPushServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LocationPushServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper.tester.LocationPushServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2B08DFE02AF4FE7800488752 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LocationPushServiceExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = LocationPushServiceExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper.tester.LocationPushServiceExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1855,6 +1988,15 @@
 			buildConfigurations = (
 				2B0839442AEF75F000488752 /* Debug */,
 				2B0839452AEF75F000488752 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B08DFE12AF4FE7800488752 /* Build configuration list for PBXNativeTarget "LocationPushServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B08DFDF2AF4FE7800488752 /* Debug */,
+				2B08DFE02AF4FE7800488752 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
