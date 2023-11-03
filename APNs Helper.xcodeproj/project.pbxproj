@@ -97,8 +97,10 @@
 		2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */; };
 		2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
 		2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
-		F315F0B52AF569550012B376 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B42AF569550012B376 /* AppDelegate+Location.swift */; };
-		F315F0B62AF569550012B376 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B42AF569550012B376 /* AppDelegate+Location.swift */; };
+		F315F0BA2AF56AE80012B376 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B92AF56AE80012B376 /* LocationManager.swift */; };
+		F315F0BB2AF56AE80012B376 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B92AF56AE80012B376 /* LocationManager.swift */; };
+		F315F0BE2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */; };
+		F315F0BF2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */; };
 		F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */; };
 		F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D82AED402C00EB6C49 /* AlertModel.swift */; };
 		F33327E32AEE7B7E00EB6C49 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */; };
@@ -268,7 +270,8 @@
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
-		F315F0B42AF569550012B376 /* AppDelegate+Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Location.swift"; sourceTree = "<group>"; };
+		F315F0B92AF56AE80012B376 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Location.swift"; sourceTree = "<group>"; };
 		F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotificationView.swift; sourceTree = "<group>"; };
 		F33327D82AED402C00EB6C49 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModel.swift; sourceTree = "<group>"; };
@@ -459,7 +462,7 @@
 			children = (
 				2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */,
 				2BD8465B2A173ACF008D2A86 /* AppDelegate+FileProvider.swift */,
-				F315F0B42AF569550012B376 /* AppDelegate+Location.swift */,
+				F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */,
 				2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */,
 				2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotification.swift */,
 			);
@@ -620,6 +623,7 @@
 				2BB3E89029FBB7BB00B90602 /* Constants.swift */,
 				2B40F8A929DEE24700E484FB /* AppDelegate */,
 				2BD8465A2A173AB4008D2A86 /* FileProvider */,
+				F315F0B82AF56AD90012B376 /* Location */,
 				2BE68FEC29E6A4720013237F /* PushKit&CallKit */,
 				2BE68FF329E6A7BE0013237F /* UNUserNotification */,
 				F3A46DEA29DDAA26004D4AD1 /* Utils */,
@@ -676,6 +680,14 @@
 				2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */,
 			);
 			path = UNUserNotification;
+			sourceTree = "<group>";
+		};
+		F315F0B82AF56AD90012B376 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				F315F0B92AF56AE80012B376 /* LocationManager.swift */,
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 		F33327C22AECFDD900EB6C49 /* Payload */ = {
@@ -1092,7 +1104,6 @@
 				2B00316F2A0E0221009BEACD /* CodeFormatter.swift in Sources */,
 				F33327E52AEE7B9400EB6C49 /* LiveActivityNotificationView.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
-				F315F0B52AF569550012B376 /* AppDelegate+Location.swift in Sources */,
 				2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
@@ -1104,6 +1115,7 @@
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
 				2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */,
 				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
+				F315F0BE2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */,
 				2BD846542A165BBC008D2A86 /* UnderLineModifier.swift in Sources */,
 				2BD8018F2A0A5CD000DDD17E /* TokenView.swift in Sources */,
 				2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */,
@@ -1113,6 +1125,7 @@
 				F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */,
+				F315F0BA2AF56AE80012B376 /* LocationManager.swift in Sources */,
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
 				2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */,
 				2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */,
@@ -1139,7 +1152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BD801852A092E4300DDD17E /* String+Utils.swift in Sources */,
-				F315F0B62AF569550012B376 /* AppDelegate+Location.swift in Sources */,
+				F315F0BF2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */,
 				2B64E98129E6C8180007B1D0 /* UNUserNotificationManager.swift in Sources */,
 				2B64E96A29E6BA590007B1D0 /* AppDelegate.swift in Sources */,
 				2B64E98829E6CD690007B1D0 /* Data+Hex.swift in Sources */,
@@ -1155,6 +1168,7 @@
 				2B64E96929E6B9B10007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
 				2BD8464A2A16142D008D2A86 /* AppInfo.swift in Sources */,
 				2BD8465D2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,
+				F315F0BB2AF56AE80012B376 /* LocationManager.swift in Sources */,
 				2BD846482A15E450008D2A86 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1638,6 +1652,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Tester App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "test location push notification";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "test location push notification";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "test location push notification";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1683,6 +1700,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = "Tester App";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "test location push notification";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "test location push notification";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "test location push notification";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

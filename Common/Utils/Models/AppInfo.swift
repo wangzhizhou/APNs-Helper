@@ -15,6 +15,7 @@ struct AppInfo: Codable {
     var deviceToken: String = ""
     var voipToken: String = ""
     var fileProviderToken: String = ""
+    var locationPushToken: String = ""
 }
 
 extension AppInfo {

@@ -56,7 +56,8 @@ class TesterAppModel: ObservableObject {
         (Constants.p8key.value, appInfo.p8Key),
         (Constants.devicetoken.value, appInfo.deviceToken),
         (Constants.voiptoken.value, appInfo.voipToken),
-        (Constants.fileprovidertoken.value, appInfo.fileProviderToken)
+        (Constants.fileprovidertoken.value, appInfo.fileProviderToken),
+        (Constants.locationPushServiceToken.value, appInfo.locationPushToken)
     ]}
 
     private var cancellables = [AnyCancellable]()
@@ -71,6 +72,16 @@ class TesterAppModel: ObservableObject {
             self.showToast = showToast
             self.toastModel = toastModel
 
+            let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
+                self.appInfo.deviceToken = deviceToken
+            }
+            cancellables.append(deviceTokenCancellable)
+            
+            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
+                self.alertMessage = message
+            }
+            cancellables.append(backgroundNotificationCancellable)
+            
             let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitTokenInfo in
                 let (pushKitToken, type) = pushKitTokenInfo
                 switch type {
@@ -84,16 +95,11 @@ class TesterAppModel: ObservableObject {
 
             }
             cancellables.append(pushkitCancellable)
-
-            let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
-                self.appInfo.deviceToken = deviceToken
+            
+            let locationPushTokenCancellable = LocationManager.shared.locationPushTokenSubject.sink { locationPushToken in
+                self.appInfo.locationPushToken = locationPushToken
             }
-            cancellables.append(deviceTokenCancellable)
-
-            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
-                self.alertMessage = message
-            }
-            cancellables.append(backgroundNotificationCancellable)
+            cancellables.append(locationPushTokenCancellable)
 
             let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
                 self.toastModel = ToastModel.success().title("Copyed to Pasteboard!")
