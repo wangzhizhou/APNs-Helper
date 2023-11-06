@@ -12,6 +12,10 @@ import UIKit
 import AppKit
 #endif
 
+#if canImport(ActivityKit)
+import ActivityKit
+#endif
+
 import Combine
 
 class TesterAppModel: ObservableObject {
@@ -121,4 +125,31 @@ class TesterAppModel: ObservableObject {
         }
         // ----
     }
+    
+    
+    func startLiveActivity() {
+#if canImport(ActivityKit)
+        
+        guard let activity = try? Activity.request(
+            attributes: LiveActivityAttributes(),
+            content: ActivityContent(
+                state: LiveActivityContentState(),
+                staleDate: .none
+            ),
+            pushType: .token
+        ) else {
+            return
+        }
+        
+        Task {
+            await activity.update(
+                ActivityContent(
+                    state: LiveActivityContentState(),
+                    staleDate: .none
+                )
+            )
+        }
+#endif
+    }
+    
 }

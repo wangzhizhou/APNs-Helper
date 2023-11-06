@@ -65,6 +65,9 @@ struct ContentView: View {
         .onReceive(timer) { _ in
             model.checkReceiveLocationNotification()
         }
+        .onAppear {
+            model.startLiveActivity()
+        }
     }
 }
 

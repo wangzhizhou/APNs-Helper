@@ -107,6 +107,10 @@
 		F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D82AED402C00EB6C49 /* AlertModel.swift */; };
 		F33327E32AEE7B7E00EB6C49 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */; };
 		F33327E52AEE7B9400EB6C49 /* LiveActivityNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327E42AEE7B9400EB6C49 /* LiveActivityNotificationView.swift */; };
+		F3521C042AF945D4009BAE84 /* LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C032AF9448D009BAE84 /* LiveActivity.swift */; };
+		F3521C072AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */; };
+		F3521C082AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */; };
+		F3521C0B2AF94CAF009BAE84 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
 		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
 		F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD122A096B0B0061DF8A /* AppContentModel.swift */; };
@@ -280,6 +284,9 @@
 		F33327D82AED402C00EB6C49 /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModel.swift; sourceTree = "<group>"; };
 		F33327E42AEE7B9400EB6C49 /* LiveActivityNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityNotificationView.swift; sourceTree = "<group>"; };
+		F3521C032AF9448D009BAE84 /* LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivity.swift; sourceTree = "<group>"; };
+		F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModel.swift; sourceTree = "<group>"; };
+		F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
 		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
 		F360B9722A0FAB4400CDD8BD /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F369DD122A096B0B0061DF8A /* AppContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentModel.swift; sourceTree = "<group>"; };
@@ -386,6 +393,9 @@
 			children = (
 				2B0839372AEF75EE00488752 /* WidgetsBundle.swift */,
 				2B0839392AEF75EE00488752 /* Widgets.swift */,
+				F3521C032AF9448D009BAE84 /* LiveActivity.swift */,
+				F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */,
+				F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */,
 				2B08393B2AEF75EE00488752 /* AppIntent.swift */,
 				2B08393D2AEF75EF00488752 /* Assets.xcassets */,
 				2B08393F2AEF75EF00488752 /* Info.plist */,
@@ -1089,6 +1099,9 @@
 			files = (
 				2B0839382AEF75EE00488752 /* WidgetsBundle.swift in Sources */,
 				2B08393A2AEF75EE00488752 /* Widgets.swift in Sources */,
+				F3521C042AF945D4009BAE84 /* LiveActivity.swift in Sources */,
+				F3521C0B2AF94CAF009BAE84 /* LiveActivityView.swift in Sources */,
+				F3521C082AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */,
 				2B08393C2AEF75EE00488752 /* AppIntent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1180,6 +1193,7 @@
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,
 				2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */,
 				2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
+				F3521C072AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */,
 				2B64E96629E6B36A0007B1D0 /* ContentView.swift in Sources */,
 				2B64E96929E6B9B10007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
 				2BD8464A2A16142D008D2A86 /* AppInfo.swift in Sources */,
@@ -1673,6 +1687,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "test location push notification";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "test location push notification";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "test location push notification";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -1721,6 +1736,7 @@
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "test location push notification";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "test location push notification";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "test location push notification";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
