@@ -494,9 +494,7 @@
 				2B64E95829E6B36A0007B1D0 /* APNs Helper Tester.entitlements */,
 				2B64E95A29E6B36A0007B1D0 /* Assets.xcassets */,
 				2B64E95B29E6B36A0007B1D0 /* Preview Content */,
-				2B64E95D29E6B36A0007B1D0 /* TesterApp.swift */,
-				2B64E95E29E6B36A0007B1D0 /* TesterAppModel.swift */,
-				2B64E95F29E6B36A0007B1D0 /* ContentView.swift */,
+				2BA110E02AF902A900E62255 /* App */,
 			);
 			path = "APNs Helper Tester";
 			sourceTree = "<group>";
@@ -518,6 +516,16 @@
 				2BD846552A165BDE008D2A86 /* View+Modifiers.swift */,
 			);
 			path = Uitls;
+			sourceTree = "<group>";
+		};
+		2BA110E02AF902A900E62255 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				2B64E95D29E6B36A0007B1D0 /* TesterApp.swift */,
+				2B64E95E29E6B36A0007B1D0 /* TesterAppModel.swift */,
+				2B64E95F29E6B36A0007B1D0 /* ContentView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		2BA3DB6728E5415D006DBCCC /* Views */ = {

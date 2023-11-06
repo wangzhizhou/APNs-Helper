@@ -11,6 +11,8 @@ import AlertToast
 struct ContentView: View {
 
     @EnvironmentObject var model: TesterAppModel
+    
+    @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 
     var body: some View {
         NavigationStack {
@@ -60,7 +62,7 @@ struct ContentView: View {
                 subTitle: model.toastModel.subtitle,
                 style: model.toastModel.style)
         }
-        .onAppear {
+        .onReceive(timer) { _ in
             model.checkReceiveLocationNotification()
         }
     }
