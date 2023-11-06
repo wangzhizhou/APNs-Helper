@@ -55,6 +55,8 @@
 		2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */; };
 		2B64E98129E6C8180007B1D0 /* UNUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */; };
 		2B64E98829E6CD690007B1D0 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */; };
+		2BA110D32AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */; };
+		2BA110D42AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
 		2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3E89029FBB7BB00B90602 /* Constants.swift */; };
@@ -224,6 +226,8 @@
 		2B64E95F29E6B36A0007B1D0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
 		2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNUserNotificationManager.swift; sourceTree = "<group>"; };
+		2B74CA5D2AF8D6F800498521 /* LocationPushServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationPushServiceExtension.entitlements; sourceTree = "<group>"; };
+		2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
 		2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextEditor.swift; sourceTree = "<group>"; };
 		2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogHandler.swift; sourceTree = "<group>"; };
 		2BB3E88C29FBA30B00B90602 /* APNs-Helper-Info-debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Info-debug.plist"; sourceTree = "<group>"; };
@@ -393,6 +397,7 @@
 		2B08DFD82AF4FE7800488752 /* LocationPushServiceExtension */ = {
 			isa = PBXGroup;
 			children = (
+				2B74CA5D2AF8D6F800498521 /* LocationPushServiceExtension.entitlements */,
 				2B08DFD92AF4FE7800488752 /* LocationPushService.swift */,
 				2B08DFDB2AF4FE7800488752 /* Info.plist */,
 			);
@@ -744,6 +749,7 @@
 				2BD8464F2A164A87008D2A86 /* Models */,
 				2B40E2AB29DE756500E484FB /* String+Utils.swift */,
 				2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */,
+				2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1118,6 +1124,7 @@
 				F315F0BE2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */,
 				2BD846542A165BBC008D2A86 /* UnderLineModifier.swift in Sources */,
 				2BD8018F2A0A5CD000DDD17E /* TokenView.swift in Sources */,
+				2BA110D32AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */,
 				2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */,
 				F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */,
 				F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */,
@@ -1158,6 +1165,7 @@
 				2B64E98829E6CD690007B1D0 /* Data+Hex.swift in Sources */,
 				2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */,
 				2B64E96B29E6BA5E0007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */,
+				2BA110D42AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */,
 				2B64E96D29E6BA5E0007B1D0 /* CallKitManager.swift in Sources */,
 				2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */,
 				2B64E96529E6B36A0007B1D0 /* TesterAppModel.swift in Sources */,
@@ -1367,6 +1375,7 @@
 		2B08DFDF2AF4FE7800488752 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LocationPushServiceExtension/LocationPushServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
@@ -1397,6 +1406,7 @@
 		2B08DFE02AF4FE7800488752 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LocationPushServiceExtension/LocationPushServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;

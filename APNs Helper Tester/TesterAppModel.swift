@@ -110,4 +110,15 @@ class TesterAppModel: ObservableObject {
     func copyAllInfo() {
         appInfo.formattedText?.copyToPasteboard()
     }
+    
+    func checkReceiveLocationNotification() {
+        // Read Location Notification Payload into group user defaults
+        if  let groupUserDefaults = UserDefaults(suiteName: "group.com.joker.APNsHelper.tester"),
+            let locationNotificationPayloadDict = groupUserDefaults.dictionary(forKey: "location_notification_payload"),
+            let jsonString = locationNotificationPayloadDict.jsonString {
+            self.alertMessage = "location_push_payload: \(jsonString)"
+            groupUserDefaults.set(nil, forKey: "location_notification_payload")
+        }
+        // ----
+    }
 }

@@ -30,7 +30,7 @@ extension LocationManager: CLLocationManagerDelegate {
         
         switch manager.authorizationStatus {
         case .notDetermined:
-            manager.requestAlwaysAuthorization()
+            manager.requestWhenInUseAuthorization()
         case .authorizedWhenInUse:
             manager.requestAlwaysAuthorization()
         case .authorizedAlways:
@@ -40,7 +40,7 @@ extension LocationManager: CLLocationManagerDelegate {
                     print(error.localizedDescription)
                 } else if let tokenData = token {
                     let locationPushToken = tokenData.hexString
-                    print("location push token: \(locationPushToken)")
+                    "location push token: \(locationPushToken)".printDebugInfo()
                     self.locationPushTokenSubject.send(locationPushToken)
                     self.locationPushTokenSubject.send(completion: .finished)
                 }
@@ -49,5 +49,13 @@ extension LocationManager: CLLocationManagerDelegate {
         default:
             break
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
     }
 }

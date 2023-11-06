@@ -17,6 +17,12 @@ class LocationPushService: NSObject, CLLocationPushServiceExtension, CLLocationM
         self.locationManager = CLLocationManager()
         self.locationManager!.delegate = self
         self.locationManager!.requestLocation()
+        
+        // Write Location Notification Payload into group user defaults
+        if let groupUserDefault = UserDefaults(suiteName: "group.com.joker.APNsHelper.tester") {
+            groupUserDefault.set(payload, forKey: "location_notification_payload")
+        }
+        // ----
     }
     
     func serviceExtensionWillTerminate() {
@@ -31,7 +37,6 @@ class LocationPushService: NSObject, CLLocationPushServiceExtension, CLLocationM
         // let location = locations.first
 
         // If sharing the locations to another user, end-to-end encrypt them to protect privacy
-        
         // When finished, always call completion()
         self.completion?()
     }

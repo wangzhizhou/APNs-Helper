@@ -60,6 +60,9 @@ struct ContentView: View {
                 subTitle: model.toastModel.subtitle,
                 style: model.toastModel.style)
         }
+        .onAppear {
+            model.checkReceiveLocationNotification()
+        }
     }
 }
 
