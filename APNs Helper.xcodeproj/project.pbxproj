@@ -23,6 +23,7 @@
 		2B0839432AEF75EF00488752 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B0839312AEF75EE00488752 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B08DFDA2AF4FE7800488752 /* LocationPushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08DFD92AF4FE7800488752 /* LocationPushService.swift */; };
 		2B08DFDE2AF4FE7800488752 /* LocationPushServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2B34AFC92AFA0842001C2A0B /* LiveActivityStageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B34AFC82AFA0842001C2A0B /* LiveActivityStageButton.swift */; };
 		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
 		2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72E28DEAB17009EF9C9 /* Persistence.swift */; };
 		2B35F73228DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */; };
@@ -205,6 +206,7 @@
 		2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LocationPushServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B08DFD92AF4FE7800488752 /* LocationPushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPushService.swift; sourceTree = "<group>"; };
 		2B08DFDB2AF4FE7800488752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B34AFC82AFA0842001C2A0B /* LiveActivityStageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityStageButton.swift; sourceTree = "<group>"; };
 		2B35F72928DEAB17009EF9C9 /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B35F72C28DEAB17009EF9C9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		2B35F72E28DEAB17009EF9C9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 				2B64E95D29E6B36A0007B1D0 /* TesterApp.swift */,
 				2B64E95E29E6B36A0007B1D0 /* TesterAppModel.swift */,
 				2B64E95F29E6B36A0007B1D0 /* ContentView.swift */,
+				2B34AFC82AFA0842001C2A0B /* LiveActivityStageButton.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -1195,6 +1198,7 @@
 				2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
 				F3521C072AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */,
 				2B64E96629E6B36A0007B1D0 /* ContentView.swift in Sources */,
+				2B34AFC92AFA0842001C2A0B /* LiveActivityStageButton.swift in Sources */,
 				2B64E96929E6B9B10007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
 				2BD8464A2A16142D008D2A86 /* AppInfo.swift in Sources */,
 				2BD8465D2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,

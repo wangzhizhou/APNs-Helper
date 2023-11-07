@@ -10,6 +10,14 @@ import ActivityKit
 
 struct LiveActivityContentState: Codable, Hashable {
     
+    enum LiveActivityStage: String, Codable {
+        case none
+        case new
+        case update
+        case end
+    }
+    
+    let stage: LiveActivityStage
 }
 
 struct LiveActivityAttributes: ActivityAttributes {

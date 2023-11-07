@@ -14,7 +14,8 @@ struct LiveActivityView: View {
     let contenxt: ActivityViewContext<LiveActivityAttributes>
     
     var body: some View {
-        Text("LiveActivityContentView")
+        
+        Text("LiveActivityContentView: \(contenxt.state.stage.rawValue)")
     }
 }
 #endif

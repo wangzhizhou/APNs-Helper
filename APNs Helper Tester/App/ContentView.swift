@@ -9,11 +9,11 @@ import SwiftUI
 import AlertToast
 
 struct ContentView: View {
-
+    
     @EnvironmentObject var model: TesterAppModel
     
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -21,14 +21,17 @@ struct ContentView: View {
                 Form {
                     ForEach(model.content.filter {
                         !$0.1.isEmpty
-                    }, id: \.self.0) { item in
-                        Section(item.0) {
-                            ItemEntry(title: item.1)
+                    }, id: \.self.0) { (sectionTitle, entryContent) in
+                        Section(sectionTitle) {
+                            ItemEntry(title: entryContent)
+                            if sectionTitle == Constants.locationPushServiceToken.value {
+                                LiveActivityStageButton()
+                            }
                         }
                     }
                 }
 #endif
-
+                
 #if os(macOS)
                 ScrollView {
                     ForEach(model.content.filter { !$0.1.isEmpty }, id: \.self.0) { item in
@@ -65,16 +68,13 @@ struct ContentView: View {
         .onReceive(timer) { _ in
             model.checkReceiveLocationNotification()
         }
-        .onAppear {
-            model.startLiveActivity()
-        }
     }
 }
 
 struct ItemEntry: View {
-
+    
     let title: String
-
+    
     var body: some View {
         HStack {
             Text(title)
@@ -84,7 +84,7 @@ struct ItemEntry: View {
             } label: {
                 Image(systemName: "doc.on.doc.fill")
             }
-
+            
         }
     }
 }

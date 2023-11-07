@@ -19,7 +19,9 @@ import ActivityKit
 import Combine
 
 class TesterAppModel: ObservableObject {
-
+    
+    var liveActivity: Activity<LiveActivityAttributes>?
+    
     @Published var appInfo = AppInfo(
         keyID: "7S6SUT5L43",
         teamID: "2N62934Y28",
@@ -32,16 +34,16 @@ class TesterAppModel: ObservableObject {
         -----END PRIVATE KEY-----
         """
     )
-
+    
     @Published
     var showAlert: Bool
-
+    
     var alertMessage: String {
         didSet {
             showAlert = true
         }
     }
-
+    
     @Published var showToast: Bool
     var toastModel: ToastModel {
         didSet {
@@ -52,7 +54,7 @@ class TesterAppModel: ObservableObject {
             }
         }
     }
-
+    
     var content: [(String, String)] {[
         (Constants.keyid.value, appInfo.keyID),
         (Constants.teamid.value, appInfo.teamID),
@@ -63,9 +65,9 @@ class TesterAppModel: ObservableObject {
         (Constants.fileprovidertoken.value, appInfo.fileProviderToken),
         (Constants.locationPushServiceToken.value, appInfo.locationPushToken)
     ]}
-
+    
     private var cancellables = [AnyCancellable]()
-
+    
     init(
         showAlert: Bool = false,
         alertMessage: String = "",
@@ -75,7 +77,7 @@ class TesterAppModel: ObservableObject {
             self.alertMessage = alertMessage
             self.showToast = showToast
             self.toastModel = toastModel
-
+            
             let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
                 self.appInfo.deviceToken = deviceToken
             }
@@ -96,7 +98,7 @@ class TesterAppModel: ObservableObject {
                 default:
                     break
                 }
-
+                
             }
             cancellables.append(pushkitCancellable)
             
@@ -104,52 +106,26 @@ class TesterAppModel: ObservableObject {
                 self.appInfo.locationPushToken = locationPushToken
             }
             cancellables.append(locationPushTokenCancellable)
-
+            
             let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
                 self.toastModel = ToastModel.success().title("Copyed to Pasteboard!")
             }
             cancellables.append(copyToPasteboardCancellable)
+            
+            
         }
-
+    
     func copyAllInfo() {
         appInfo.formattedText?.copyToPasteboard()
     }
     
     func checkReceiveLocationNotification() {
-        // Read Location Notification Payload into group user defaults
+        
         if  let groupUserDefaults = UserDefaults(suiteName: "group.com.joker.APNsHelper.tester"),
             let locationNotificationPayloadDict = groupUserDefaults.dictionary(forKey: "location_notification_payload"),
             let jsonString = locationNotificationPayloadDict.jsonString {
             self.alertMessage = "location_push_payload: \(jsonString)"
             groupUserDefaults.set(nil, forKey: "location_notification_payload")
         }
-        // ----
     }
-    
-    
-    func startLiveActivity() {
-#if canImport(ActivityKit)
-        
-        guard let activity = try? Activity.request(
-            attributes: LiveActivityAttributes(),
-            content: ActivityContent(
-                state: LiveActivityContentState(),
-                staleDate: .none
-            ),
-            pushType: .token
-        ) else {
-            return
-        }
-        
-        Task {
-            await activity.update(
-                ActivityContent(
-                    state: LiveActivityContentState(),
-                    staleDate: .none
-                )
-            )
-        }
-#endif
-    }
-    
 }
