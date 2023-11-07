@@ -207,6 +207,9 @@
 		2B08DFD92AF4FE7800488752 /* LocationPushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPushService.swift; sourceTree = "<group>"; };
 		2B08DFDB2AF4FE7800488752 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B34AFC82AFA0842001C2A0B /* LiveActivityStageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityStageButton.swift; sourceTree = "<group>"; };
+		2B34BA142AFA6B1F001C2A0B /* ci_post_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_xcodebuild.sh; sourceTree = "<group>"; };
+		2B34BA152AFA6B1F001C2A0B /* ci_pre_xcodebuild.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_pre_xcodebuild.sh; sourceTree = "<group>"; };
+		2B34BA162AFA6B1F001C2A0B /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		2B35F72928DEAB17009EF9C9 /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B35F72C28DEAB17009EF9C9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		2B35F72E28DEAB17009EF9C9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -416,10 +419,21 @@
 			path = LocationPushServiceExtension;
 			sourceTree = "<group>";
 		};
+		2B34BA132AFA6B1F001C2A0B /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				2B34BA162AFA6B1F001C2A0B /* ci_post_clone.sh */,
+				2B34BA152AFA6B1F001C2A0B /* ci_pre_xcodebuild.sh */,
+				2B34BA142AFA6B1F001C2A0B /* ci_post_xcodebuild.sh */,
+			);
+			path = ci_scripts;
+			sourceTree = "<group>";
+		};
 		2B35F72028DEAB17009EF9C9 = {
 			isa = PBXGroup;
 			children = (
 				2BD801912A0A6B0100DDD17E /* README.md */,
+				2B34BA132AFA6B1F001C2A0B /* ci_scripts */,
 				2B35F72B28DEAB17009EF9C9 /* APNs Helper */,
 				F369DD192A0A9E890061DF8A /* APNs Helper Doc */,
 				2B64E95729E6B36A0007B1D0 /* APNs Helper Tester */,
