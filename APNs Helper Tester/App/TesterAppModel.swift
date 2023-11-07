@@ -21,7 +21,25 @@ import Combine
 class TesterAppModel: ObservableObject {
     
 #if canImport(ActivityKit)
-    var liveActivity: Activity<LiveActivityAttributes>?
+    var liveActivity: Activity<LiveActivityAttributes>? {
+        didSet {
+            guard let activity = liveActivity
+            else {
+                appInfo.liveActivityPushToken = ""
+                return
+            }
+            
+            Task {
+                for await pushToken in activity.pushTokenUpdates {
+                    pushToken.hexString.printDebugInfo()
+                    
+                    await MainActor.run {
+                        appInfo.liveActivityPushToken = pushToken.hexString                        
+                    }
+                }
+            }
+        }
+    }
 #endif
     
     @Published var appInfo = AppInfo(
@@ -65,7 +83,8 @@ class TesterAppModel: ObservableObject {
         (Constants.devicetoken.value, appInfo.deviceToken),
         (Constants.voiptoken.value, appInfo.voipToken),
         (Constants.fileprovidertoken.value, appInfo.fileProviderToken),
-        (Constants.locationPushServiceToken.value, appInfo.locationPushToken)
+        (Constants.locationPushServiceToken.value, appInfo.locationPushToken),
+        (Constants.liveactivityPushToken.value, appInfo.liveActivityPushToken)
     ]}
     
     private var cancellables = [AnyCancellable]()

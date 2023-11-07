@@ -22,6 +22,7 @@ enum Constants: String {
     case voiptoken = "VoIP Token"
     case fileprovidertoken = "File Provider Token"
     case locationPushServiceToken = "Location Push Token"
+    case liveactivityPushToken = "Live Activity Push Token"
     case p8key = "P8 Key"
     case p8FileExt = "p8"
     case importP8File = "Import P8"
