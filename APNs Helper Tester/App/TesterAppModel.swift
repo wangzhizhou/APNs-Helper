@@ -20,7 +20,9 @@ import Combine
 
 class TesterAppModel: ObservableObject {
     
+#if canImport(ActivityKit)
     var liveActivity: Activity<LiveActivityAttributes>?
+#endif
     
     @Published var appInfo = AppInfo(
         keyID: "7S6SUT5L43",
