@@ -13,6 +13,6 @@ struct LiveActivityContentState: Codable, Hashable {
 }
 
 struct LiveActivityAttributes: ActivityAttributes {
-    typealias ContentState = [LiveActivityContentState]
+    typealias ContentState = LiveActivityContentState
 }
 #endif
