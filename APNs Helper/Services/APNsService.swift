@@ -54,6 +54,7 @@ enum PushType: String, CaseIterable, Codable {
     case voip
     case fileprovider
     case location
+    case liveactivity
     
     var type: APNSPushType {
         switch self {
@@ -67,9 +68,10 @@ enum PushType: String, CaseIterable, Codable {
             return .fileprovider
         case .location:
             return .location
+        case .liveactivity:
+            return .liveactivity
         }
     }
-    
 }
 
 struct APNsService {
@@ -164,6 +166,22 @@ struct APNsService {
                         rawPayloadData: payloadData
                     ),
                     deviceToken: config.locationPushServiceToken)
+            case .liveactivity:
+                
+                let mockNotification = APNSLiveActivityNotification(
+                    expiration: .immediately,
+                    priority: .immediately,
+                    appID: config.appBundleID,
+                    contentState: EmptyPayload(),
+                    event: .update,
+                    timestamp: 0,
+                    dismissalDate: .immediately,
+                    rawPayloadData: payloadData
+                )
+                
+                response = try await client?.sendLiveActivityNotification(
+                    mockNotification,
+                    deviceToken: config.liveActivityPushToken)
             }
             
             if let apnsID = response?.apnsID {

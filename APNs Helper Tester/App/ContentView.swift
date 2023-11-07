@@ -19,16 +19,14 @@ struct ContentView: View {
             VStack {
 #if os(iOS)
                 Form {
-                    ForEach(model.content.filter { (sectionTitle, entryContent) in
-                        !entryContent.isEmpty || sectionTitle == Constants.liveactivityPushToken.value
-                    }, id: \.self.0) { (sectionTitle, entryContent) in
-                        Section(sectionTitle) {
-                            if sectionTitle == Constants.liveactivityPushToken.value {
-                                LiveActivityStageButton()
-                            }
-                            if !entryContent.isEmpty {
+                    ForEach(model.content, id: \.self.0) { (sectionTitle, entryContent) in
+                        if !entryContent.isEmpty {
+                            Section(sectionTitle) {
                                 ItemEntry(title: entryContent)
                             }
+                        }
+                        if sectionTitle == Constants.liveactivityPushToken.value {
+                            LiveActivityStageButton()
                         }
                     }
                 }

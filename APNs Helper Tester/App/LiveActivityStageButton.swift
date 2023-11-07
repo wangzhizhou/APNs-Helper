@@ -10,36 +10,38 @@ import SwiftUI
 #if canImport(ActivityKit)
 import ActivityKit
 
-
 struct LiveActivityStageButton: View {
     
     @EnvironmentObject var model: TesterAppModel
     
-    @State private var stage: LiveActivityContentState.LiveActivityStage = .none
-    
     var body: some View {
-        Button {
-            switch stage {
-            case .none:
-                stage = .new
-                startLiveActivity()
-            case .new:
-                stage = .update
-                updateLiveActivity()
-            case .update:
-                stage = .end
-                endLiveActivity()
-            case .end:
-                stage = .none
-                dismissLiveActivity()
+        
+        HStack {
+            let disable = model.appInfo.liveActivityPushToken.isEmpty && model.stage != .start
+            
+            Button("\(model.stage.rawValue) live activity") {
+                switch model.stage {
+                case .start:
+                    startLiveActivity()
+                    model.stage = .update
+                case .update:
+                    updateLiveActivity()
+                    model.stage = .end
+                case .end:
+                    endLiveActivity()
+                    model.stage = .dismiss
+                case .dismiss:
+                    dismissLiveActivity()
+                    model.stage = .start
+                }
             }
-        } label: {
-            HStack {
-                Text("Live Activity Operation")
-                
-                Spacer()
-                
-                Text("\(stage.rawValue)")
+            .disabled(disable)
+            
+            Spacer()
+            
+            if disable {
+                ProgressView()
+                    .progressViewStyle(.circular)
             }
         }
     }
@@ -48,7 +50,7 @@ struct LiveActivityStageButton: View {
         model.liveActivity = try? Activity.request(
             attributes: LiveActivityAttributes(),
             content: ActivityContent(
-                state: LiveActivityContentState(stage: .new),
+                state: LiveActivityContentState(),
                 staleDate: .none
             ),
             pushType: .token
@@ -59,7 +61,7 @@ struct LiveActivityStageButton: View {
         Task {
             await model.liveActivity?.update(
                 ActivityContent(
-                    state: LiveActivityContentState(stage: .update),
+                    state: LiveActivityContentState(),
                     staleDate: .none
                 )
             )
@@ -70,7 +72,7 @@ struct LiveActivityStageButton: View {
         Task {
             await model.liveActivity?.end(
                 ActivityContent(
-                    state: LiveActivityContentState(stage: .end),
+                    state: LiveActivityContentState(),
                     staleDate: nil
                 )
             )
@@ -81,7 +83,7 @@ struct LiveActivityStageButton: View {
         Task {
             await model.liveActivity?.end(
                 ActivityContent(
-                    state: LiveActivityContentState(stage: .end),
+                    state: LiveActivityContentState(),
                     staleDate: nil
                 ),
                 dismissalPolicy: .immediate

@@ -15,7 +15,13 @@ struct LiveActivityView: View {
     
     var body: some View {
         
-        Text("LiveActivityContentView: \(contenxt.state.stage.rawValue)")
+        let randomColor = Color.random
+        Text(Date().formatted(.dateTime.year().month().day().hour().minute().second()))
+            .foregroundStyle(randomColor)
+            .font(.subheadline)
+            .padding()
+            .background(randomColor.colorInvert())
+            
     }
 }
 #endif

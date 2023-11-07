@@ -112,6 +112,9 @@
 		F3521C072AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */; };
 		F3521C082AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */; };
 		F3521C0B2AF94CAF009BAE84 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */; };
+		F355EB062AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */; };
+		F355EB072AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */; };
+		F355EB0A2AFAA47700C9DA83 /* Color+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */; };
 		F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = F360B9722A0FAB4400CDD8BD /* Reachability.swift */; };
 		F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F360B9762A0FDC8C00CDD8BD /* AlertToast */; };
 		F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F369DD122A096B0B0061DF8A /* AppContentModel.swift */; };
@@ -292,6 +295,7 @@
 		F3521C032AF9448D009BAE84 /* LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivity.swift; sourceTree = "<group>"; };
 		F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModel.swift; sourceTree = "<group>"; };
 		F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
+		F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Utils.swift"; sourceTree = "<group>"; };
 		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
 		F360B9722A0FAB4400CDD8BD /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F369DD122A096B0B0061DF8A /* AppContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentModel.swift; sourceTree = "<group>"; };
@@ -785,6 +789,7 @@
 				2B40E2AB29DE756500E484FB /* String+Utils.swift */,
 				2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */,
 				2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */,
+				F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1120,6 +1125,7 @@
 				F3521C0B2AF94CAF009BAE84 /* LiveActivityView.swift in Sources */,
 				F3521C082AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */,
 				2B08393C2AEF75EE00488752 /* AppIntent.swift in Sources */,
+				F355EB0A2AFAA47700C9DA83 /* Color+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1186,6 +1192,7 @@
 				2BD8464D2A163F81008D2A86 /* ToastModel.swift in Sources */,
 				F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */,
 				2BD8018B2A0A3B0100DDD17E /* LogView.swift in Sources */,
+				F355EB062AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */,
 				2B0031722A0E02DC009BEACD /* MacOSCodeEditor.swift in Sources */,
 				2B64E97529E6BAC80007B1D0 /* AppDelegate.swift in Sources */,
 				F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */,
@@ -1205,6 +1212,7 @@
 				2B64E96B29E6BA5E0007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */,
 				2BA110D42AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */,
 				2B64E96D29E6BA5E0007B1D0 /* CallKitManager.swift in Sources */,
+				F355EB072AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */,
 				2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */,
 				2B64E96529E6B36A0007B1D0 /* TesterAppModel.swift in Sources */,
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,

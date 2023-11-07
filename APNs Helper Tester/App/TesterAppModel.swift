@@ -34,12 +34,22 @@ class TesterAppModel: ObservableObject {
                     pushToken.hexString.printDebugInfo()
                     
                     await MainActor.run {
-                        appInfo.liveActivityPushToken = pushToken.hexString                        
+                        appInfo.liveActivityPushToken = pushToken.hexString
                     }
                 }
             }
         }
     }
+    
+    enum LiveActivityStage: String, Codable {
+        case start
+        case update
+        case end
+        case dismiss
+    }
+    
+    @Published var stage: LiveActivityStage = .start
+    
 #endif
     
     @Published var appInfo = AppInfo(

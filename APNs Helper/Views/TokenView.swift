@@ -15,6 +15,7 @@ struct TokenView: View {
     @Binding var pushKitDeviceToken: String
     @Binding var fileProviderDeviceToken: String
     @Binding var locationPushServiceToken: String
+    @Binding var liveActivityPushToken: String
 
     var body: some View {
         switch pushType {
@@ -34,6 +35,10 @@ struct TokenView: View {
             InputView(
                 title: Constants.locationPushServiceToken.value,
                 inputValue: $locationPushServiceToken)
+        case .liveactivity:
+            InputView(
+                title: Constants.liveactivityPushToken.value,
+                inputValue: $liveActivityPushToken)
         }
     }
 }
@@ -50,7 +55,8 @@ struct TokenView_Previews: PreviewProvider {
                     deviceToken: .constant("alert device token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token"),
-                    locationPushServiceToken: .constant("location push token")
+                    locationPushServiceToken: .constant("location push token"),
+                    liveActivityPushToken: .constant("live activity push token")
                 )
 
                 TokenView(
@@ -58,7 +64,8 @@ struct TokenView_Previews: PreviewProvider {
                     deviceToken: .constant("background device token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token"),
-                    locationPushServiceToken: .constant("location push token")
+                    locationPushServiceToken: .constant("location push token"),
+                    liveActivityPushToken: .constant("live activity push token")
                 )
 
                 TokenView(
@@ -66,7 +73,8 @@ struct TokenView_Previews: PreviewProvider {
                     deviceToken: .constant("void push kit token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token"),
-                    locationPushServiceToken: .constant("location push token")
+                    locationPushServiceToken: .constant("location push token"),
+                    liveActivityPushToken: .constant("live activity push token")
                 )
             }
             .padding()
@@ -79,7 +87,8 @@ struct TokenView_Previews: PreviewProvider {
                     deviceToken: .constant("alert device token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token"),
-                    locationPushServiceToken: .constant("location push token")
+                    locationPushServiceToken: .constant("location push token"),
+                    liveActivityPushToken: .constant("live activity push token")
                 )
 
                 TokenView(
@@ -87,7 +96,8 @@ struct TokenView_Previews: PreviewProvider {
                     deviceToken: .constant("background device token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token"),
-                    locationPushServiceToken: .constant("location push token")
+                    locationPushServiceToken: .constant("location push token"),
+                    liveActivityPushToken: .constant("live activity push token")
                 )
 
                 TokenView(
@@ -95,7 +105,8 @@ struct TokenView_Previews: PreviewProvider {
                     deviceToken: .constant("void push kit token"),
                     pushKitDeviceToken: .constant("push kit token"),
                     fileProviderDeviceToken: .constant("file provider token"),
-                    locationPushServiceToken: .constant("location push token")
+                    locationPushServiceToken: .constant("location push token"),
+                    liveActivityPushToken: .constant("live activity push token")
                 )
             }
             .previewDevice("iPhone 14 Pro Max")

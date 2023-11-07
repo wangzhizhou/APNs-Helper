@@ -11,7 +11,7 @@ import APNSCore
 
 @available(macOS 11.0, *)
 extension APNsService {
-    typealias EmptyPayload = [String: String]
+    
     static func templatePayload(for config: Config) -> String? {
         
         var payload: Encodable
@@ -51,6 +51,16 @@ extension APNsService {
                 appID: config.appBundleID
             )
             .payload
+        case .liveactivity:
+            payload = APNSLiveActivityNotification(
+                expiration: .immediately,
+                priority: .immediately,
+                appID: config.appBundleID,
+                contentState: EmptyPayload(),
+                event: .update,
+                timestamp: Int(Date(timeIntervalSinceNow: 60).timeIntervalSince1970),
+                dismissalDate: .date(.now)
+            )
         }
         
         return payload.jsonString

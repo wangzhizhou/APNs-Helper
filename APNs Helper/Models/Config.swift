@@ -14,6 +14,7 @@ struct Config {
     var pushKitVoIPToken: String
     var pushKitFileProviderToken: String
     var locationPushServiceToken: String
+    var liveActivityPushToken: String
 
     // App Info
     var appBundleID: String
@@ -64,6 +65,7 @@ extension Config {
             pushKitVoIPToken: pushKitVoIPToken.trimmed,
             pushKitFileProviderToken: pushKitFileProviderToken.trimmed,
             locationPushServiceToken: locationPushServiceToken.trimmed,
+            liveActivityPushToken: liveActivityPushToken.trimmed,
             appBundleID: appBundleID.trimmed,
             privateKey: privateKey,
             keyIdentifier: keyIdentifier.trimmed,
