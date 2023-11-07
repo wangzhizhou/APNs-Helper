@@ -5,12 +5,14 @@
 //  Created by joker on 11/6/23.
 //
 
-import SwiftUI
+#if canImport(WidgetKit) && os(iOS)
 import WidgetKit
+import SwiftUI
 
 struct LiveActivity: Widget {
     
     var body: some WidgetConfiguration {
+        
         ActivityConfiguration(for: LiveActivityAttributes.self) { context in
             LiveActivityView(contenxt: context)
         } dynamicIsland: { context in
@@ -26,6 +28,6 @@ struct LiveActivity: Widget {
                 LiveActivityView(contenxt: context)
             })
         }
-        
     }
 }
+#endif

@@ -22,7 +22,7 @@
 		2B08393E2AEF75EF00488752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B08393D2AEF75EF00488752 /* Assets.xcassets */; };
 		2B0839432AEF75EF00488752 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B0839312AEF75EE00488752 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B08DFDA2AF4FE7800488752 /* LocationPushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08DFD92AF4FE7800488752 /* LocationPushService.swift */; };
-		2B08DFDE2AF4FE7800488752 /* LocationPushServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2B08DFDE2AF4FE7800488752 /* LocationPushServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
 		2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72E28DEAB17009EF9C9 /* Persistence.swift */; };
 		2B35F73228DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */; };
@@ -1256,6 +1256,7 @@
 		};
 		2B08DFDD2AF4FE7800488752 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2B08DFD62AF4FE7800488752 /* LocationPushServiceExtension */;
 			targetProxy = 2B08DFDC2AF4FE7800488752 /* PBXContainerItemProxy */;
 		};
