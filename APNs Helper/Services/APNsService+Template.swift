@@ -34,7 +34,7 @@ extension APNsService {
                 topic: config.appBundleID
             )
         case .voip:
-            payload =  APNSVoIPNotification(
+            payload = APNSVoIPNotification(
                 priority: .immediately,
                 appID: config.appBundleID
             )
