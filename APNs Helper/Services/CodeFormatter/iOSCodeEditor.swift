@@ -44,6 +44,9 @@ struct IOSCodeEditor: UIViewRepresentable {
             if !textView.text.isEmpty {
                 guard let runloopMode = RunLoop.main.currentMode, runloopMode != .tracking
                 else {
+                    if textView.text != content {
+                        textView.text = content
+                    }
                     return
                 }
             }
