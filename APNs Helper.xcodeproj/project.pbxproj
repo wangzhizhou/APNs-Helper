@@ -296,6 +296,7 @@
 		F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModel.swift; sourceTree = "<group>"; };
 		F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
 		F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Utils.swift"; sourceTree = "<group>"; };
+		F35664FE2AFE98CA00B7BEE8 /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk/System/Library/Frameworks/ActivityKit.framework; sourceTree = DEVELOPER_DIR; };
 		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
 		F360B9722A0FAB4400CDD8BD /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		F369DD122A096B0B0061DF8A /* AppContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentModel.swift; sourceTree = "<group>"; };
@@ -764,6 +765,7 @@
 		F360B9752A0FDC8C00CDD8BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F35664FE2AFE98CA00B7BEE8 /* ActivityKit.framework */,
 				2BD841F92A14ECFC008D2A86 /* UniformTypeIdentifiers.framework */,
 				2BD842222A14ED38008D2A86 /* UserNotifications.framework */,
 				2BD842242A14ED38008D2A86 /* UserNotificationsUI.framework */,
@@ -868,7 +870,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2B7981752A1F7F2200DF795A /* PBXTargetDependency */,
 				2BD842112A14ECFC008D2A86 /* PBXTargetDependency */,
 				2BD842142A14ECFC008D2A86 /* PBXTargetDependency */,
 				2BD8422E2A14ED38008D2A86 /* PBXTargetDependency */,
@@ -1289,10 +1290,6 @@
 		2B79816A2A1F57AC00DF795A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			productRef = 2B7981692A1F57AC00DF795A /* OrzSwiftLintBuildToolPlugin */;
-		};
-		2B7981752A1F7F2200DF795A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			productRef = 2B7981742A1F7F2200DF795A /* OrzSwiftLintBuildToolPlugin */;
 		};
 		2BD842112A14ECFC008D2A86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2226,11 +2223,6 @@
 			productName = AlertToast;
 		};
 		2B7981692A1F57AC00DF795A /* OrzSwiftLintBuildToolPlugin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */;
-			productName = "plugin:OrzSwiftLintBuildToolPlugin";
-		};
-		2B7981742A1F7F2200DF795A /* OrzSwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */;
 			productName = "plugin:OrzSwiftLintBuildToolPlugin";
