@@ -870,6 +870,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F3F5E8AB2AFEBB330063A1A0 /* PBXTargetDependency */,
 				2BD842112A14ECFC008D2A86 /* PBXTargetDependency */,
 				2BD842142A14ECFC008D2A86 /* PBXTargetDependency */,
 				2BD8422E2A14ED38008D2A86 /* PBXTargetDependency */,
@@ -1314,6 +1315,10 @@
 			platformFilter = ios;
 			target = 2BD842362A14ED47008D2A86 /* NotificationServiceExtension */;
 			targetProxy = 2BD846462A15072C008D2A86 /* PBXContainerItemProxy */;
+		};
+		F3F5E8AB2AFEBB330063A1A0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = F3F5E8AA2AFEBB330063A1A0 /* OrzSwiftLintBuildToolPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2241,6 +2246,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F3C9772B2AD715920020B200 /* XCRemoteSwiftPackageReference "APNSwift" */;
 			productName = APNSCore;
+		};
+		F3F5E8AA2AFEBB330063A1A0 /* OrzSwiftLintBuildToolPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */;
+			productName = "plugin:OrzSwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 
