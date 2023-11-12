@@ -58,8 +58,8 @@ extension APNsService {
                 appID: config.appBundleID,
                 contentState: EmptyPayload(),
                 event: .update,
-                timestamp: Int(Date(timeIntervalSinceNow: 60).timeIntervalSince1970),
-                dismissalDate: .date(.now)
+                timestamp: Int(Date.now.timeIntervalSince1970),
+                dismissalDate: .date(.init(timeIntervalSinceNow: 30))
             )
         }
         

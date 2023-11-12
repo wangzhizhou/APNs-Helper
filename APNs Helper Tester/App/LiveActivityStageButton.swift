@@ -88,7 +88,6 @@ struct LiveActivityStageButton: View {
                 ),
                 dismissalPolicy: .immediate
             )
-            model.liveActivity = nil
         }
     }
 }

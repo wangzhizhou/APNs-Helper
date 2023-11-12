@@ -22,22 +22,28 @@ class TesterAppModel: ObservableObject {
     
 #if canImport(ActivityKit)
     var liveActivity: Activity<LiveActivityAttributes>? {
-        didSet {
-            guard let activity = liveActivity
+        
+        willSet {
+            
+            guard let newActivity = newValue
             else {
-                appInfo.liveActivityPushToken = ""
+                resetLiveActivity()
                 return
             }
             
-            Task {
-                for await pushToken in activity.pushTokenUpdates {
-                    pushToken.hexString.printDebugInfo()
-                    
-                    await MainActor.run {
-                        appInfo.liveActivityPushToken = pushToken.hexString
-                    }
-                }
+            guard let oldActivity = liveActivity
+            else {
+                observePushTokenAndState(for: newActivity)
+                return
             }
+            
+            guard newActivity.id != oldActivity.id
+            else {
+                return
+            }
+            
+            observePushTokenAndState(for: newActivity)
+            
         }
     }
     
@@ -49,6 +55,40 @@ class TesterAppModel: ObservableObject {
     }
     
     @Published var stage: LiveActivityStage = .start
+    
+    func resetLiveActivity() {
+        appInfo.liveActivityPushToken = .empty
+        stage = .start
+    }
+    
+    func observePushTokenAndState(for activity: Activity<LiveActivityAttributes>) {
+        
+        Task {
+            
+            for await pushToken in activity.pushTokenUpdates {
+                
+                "live activity(\(activity.id)) token:\n\(pushToken.hexString)".printDebugInfo()
+                
+                await MainActor.run {
+                    appInfo.liveActivityPushToken = pushToken.hexString
+                }
+            }
+        }
+        
+        Task {
+            
+            for await state in activity.activityStateUpdates {
+                
+                if state == .dismissed, let currentLiveActivity = liveActivity, currentLiveActivity.id == activity.id {
+                    
+                    await MainActor.run {
+                        
+                        resetLiveActivity()
+                    }
+                }
+            }
+        }
+    }
     
 #endif
     
@@ -101,7 +141,7 @@ class TesterAppModel: ObservableObject {
     
     init(
         showAlert: Bool = false,
-        alertMessage: String = "",
+        alertMessage: String = .empty,
         showToast: Bool = false,
         toastModel: ToastModel = ToastModel.info()) {
             self.showAlert = showAlert
