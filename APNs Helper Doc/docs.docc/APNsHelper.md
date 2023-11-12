@@ -15,6 +15,8 @@ This app can be installed by clicking the app icon bellow.
     - **background**
     - **voip**
     - **fileprovider**
+    - **location**
+    - **liveactivity**
 - [x] Custom json payload configuration
 - [x] Support json formatting and highlighting for payload 
 - [x] Import **`*.p8`** file from file system or input private key content manually 
@@ -28,4 +30,3 @@ This app can be installed by clicking the app icon bellow.
 - [ ] Custom Category Alert Push
 - [ ] Threaded Alert Push
 - [ ] Localized Alert Push
-- [ ] File Provider Push
