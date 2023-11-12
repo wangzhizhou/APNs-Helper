@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct InputTextEditor: View {
-    
-    var title: String? = nil
-    
+
+    var title: String?
+
     @Binding var content: String
-    
-    var textEditorFont: Font? = nil
-    
+
+    var textEditorFont: Font?
+
     var body: some View {
         VStack(alignment: .leading) {
             if let title = title {
@@ -33,9 +33,9 @@ struct InputTextEditor: View {
 }
 
 struct InputTextEditor_Previews: PreviewProvider {
-    
+
     @State static var detail: String = "content"
-    
+
     static var previews: some View {
         InputTextEditor(title: "title", content: $detail)
             .frame(height: 100)

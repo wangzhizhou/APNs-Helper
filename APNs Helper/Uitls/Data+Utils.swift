@@ -8,7 +8,7 @@
 import Foundation
 
 extension Data {
-    
+
     var toPresetConfigs: [Config] {
         if let configs = try? JSONDecoder().decode([Config].self, from: self) {
             return configs
@@ -16,5 +16,5 @@ extension Data {
             return []
         }
     }
-    
+
 }

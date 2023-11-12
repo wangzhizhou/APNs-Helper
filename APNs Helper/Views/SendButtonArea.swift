@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct SendButtonArea: View {
-    
+
     @EnvironmentObject var appModel: AppModel
-    
+
     @EnvironmentObject var contentModel: AppContentModel
-    
+
     let loadPayloadTemplate: () -> Void
-    
+
     private var myLayout: AnyLayout {
 #if os(iOS)
         AnyLayout(VStackLayout())
@@ -22,10 +22,10 @@ struct SendButtonArea: View {
         AnyLayout(HStackLayout())
 #endif
     }
-    
+
     var body: some View {
         myLayout {
-            
+
 #if os(macOS)
             if contentModel.payload.isEmpty {
                 Button(Constants.loadTemplate.value, action: loadPayloadTemplate)
@@ -33,27 +33,27 @@ struct SendButtonArea: View {
                     .keyboardShortcut(.init(unicodeScalarLiteral: Constants.loadTemplateShortcutKey.firstChar), modifiers: [.command])
             }
 #endif
-            
+
             Button {
                 let (ready, message) = contentModel.config.isReadyForSend
                 guard ready else {
                     if let message = message {
-                        appModel.toastMessage = "\(message) is not ready"
+                        appModel.toastModel = ToastModel.info().title("\(message) is not ready")
                     }
                     return
                 }
-                
+
                 let config = contentModel.config
                 Task {
                     guard !contentModel.payload.isEmpty
                     else {
-                        appModel.toastMessage = "\(Constants.payload.value) is Empty"
+                        appModel.toastModel = ToastModel.info().title("\(Constants.payload.value) is Empty")
                         return
                     }
                     appModel.isSendingPush = true
                     appModel.resetLog()
                     if let payloadData = contentModel.payload.data(using: .utf8) {
-                        try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
+                        _ = try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                     }
                     appModel.isSendingPush = false
                 }
@@ -90,15 +90,15 @@ struct SendButtonArea: View {
 struct SendButtonArea_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            
+
             SendButtonArea(loadPayloadTemplate: {
-                
+
             })
             .previewDevice("My Mac")
             .previewDisplayName("MacOS")
-            
+
             SendButtonArea(loadPayloadTemplate: {
-                
+
             })
             .previewDevice("iPhone 14 Pro Max")
             .previewDisplayName("iOS")

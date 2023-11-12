@@ -9,17 +9,17 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 struct P8KeyView: View {
-    
+
     @Binding var showFileImporter: Bool
-    
+
     @Binding var privateKey: String
-    
+
     var editorHeight: CGFloat = 80.0
 
     var onPrivateKeyChange: ((String) -> Void)?
-    
+
     var onFileImporterError: ((Error) -> Void)?
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -31,13 +31,13 @@ struct P8KeyView: View {
                     Text(Constants.importP8File.value)
                 }
             }
-            
+
             InputTextEditor(content: $privateKey)
                 .scrollIndicators(.hidden)
                 .frame(height: editorHeight)
-                .onChange(of: privateKey) { newPrivateKey in
+                .onChange(of: privateKey) { _, newValue in
                     if let onPrivateKeyChange = onPrivateKeyChange {
-                        onPrivateKeyChange(newPrivateKey)
+                        onPrivateKeyChange(newValue)
                     }
                 }
         }
@@ -57,10 +57,10 @@ struct P8KeyView: View {
 }
 
 struct P8KeyView_Previews: PreviewProvider {
-    
+
     @State static var showFileImporter: Bool = false
     @State static var privateKey: String = ""
-    
+
     static var previews: some View {
         Group {
             P8KeyView(
@@ -69,7 +69,7 @@ struct P8KeyView_Previews: PreviewProvider {
             .padding()
             .previewDevice("My Mac")
             .previewDisplayName("MacOS")
-            
+
             Form {
                 Section {
                     P8KeyView(

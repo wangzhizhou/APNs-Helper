@@ -8,155 +8,164 @@
 import SwiftUI
 
 struct AppContentIOS: View {
-    
+
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var contentModel: AppContentModel
-    
+
     let loadPayloadTemplate: () -> Void
     let saveAsPreset: () -> Void
     let clearAllPreset: () -> Void
     let clearCurrentConfigPresetIfExist: () -> Void
-    
+    let importAppInfoOnPasteboard: () -> Void
     let refreshTestMode: () -> Void
-    
+
     var body: some View {
         VStack {
-            Form {
-                // Preset
-                if !appModel.presets.isEmpty {
-                    PresetPicker(presets: appModel.presets, selectedPreset: $contentModel.presetConfig) { preset in
-                        contentModel.appInfo = preset
+            ScrollViewReader { scrollView in
+                Form {
+                    // Preset
+                    if !appModel.presets.isEmpty {
+                        PresetPicker(presets: appModel.presets, selectedPreset: $contentModel.presetConfig) { preset in
+                            contentModel.appInfo = preset
+                        }
+                        Button(Constants.clearallpreset.value, action: clearAllPreset)
                     }
-                    Button(Constants.clearallpreset.value, action: clearAllPreset)
-                }
-                
-                // Push Type & APN Server
-                Section(Constants.apnserver.value) {
-                    Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
-                        ForEach(PushType.allCases, id: \.self) {
-                            Text($0.rawValue).tag($0)
+
+                    // Push Type & APN Server
+                    Section(Constants.apnserver.value) {
+                        Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
+                            ForEach(PushType.allCases.filter {
+                                !contentModel.isInTestMode || $0 != .fileprovider
+                            }, id: \.self) {
+                                Text($0.rawValue).tag($0)
+                            }
+                        }
+                        .onChange(of: contentModel.appInfo.pushType, loadPayloadTemplate)
+
+                        Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
+                            ForEach(APNServerEnv.allCases, id: \.self) {
+                                Text($0.rawValue).tag($0)
+                            }
                         }
                     }
-                    .onChange(of: contentModel.appInfo.pushType, perform: { _ in
-                        loadPayloadTemplate()
-                    })
-                    Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
-                        ForEach(APNServerEnv.allCases, id: \.self) {
-                            Text($0.rawValue).tag($0)
-                        }
-                    }
-                }
-                .listRowSeparator(.hidden)
-                
-                // App Info
-                Section(Constants.appInfo.value) {
-                    
-                    let titleWidth: CGFloat = 70
-                    
-                    InputView(
-                        title: Constants.keyid.value,
-                        titleWidth: titleWidth,
-                        inputValue: $contentModel.appInfo.keyIdentifier)
-                    .onChange(of: contentModel.appInfo.keyIdentifier) { _ in
-                        refreshTestMode()
-                    }
-                    
-                    InputView(
-                        title: Constants.teamid.value,
-                        titleWidth: titleWidth,
-                        inputValue: $contentModel.appInfo.teamIdentifier)
-                    .onChange(of: contentModel.appInfo.teamIdentifier) { _ in
-                        refreshTestMode()
-                    }
-                    
-                    InputView(
-                        title: Constants.bundleid.value,
-                        titleWidth: titleWidth,
-                        inputValue: $contentModel.appInfo.appBundleID)
-                    .onChange(of: contentModel.appInfo.appBundleID) { _ in
-                        refreshTestMode()
-                    }
-                    
-                    P8KeyView(
-                        showFileImporter: $contentModel.showFileImporter,
-                        privateKey: $contentModel.appInfo.privateKey,
-                        editorHeight: 120) { _ in
-                            refreshTestMode()
-                        } onFileImporterError: { error in
-                            appModel.appLog.append(error.localizedDescription)
-                        }
-                    
-                    // Token
-                    TokenView(
-                        pushType: contentModel.appInfo.pushType,
-                        deviceToken: $contentModel.appInfo.deviceToken,
-                        pushKitDeviceToken: $contentModel.appInfo.pushKitDeviceToken)
-                    
+                    .listRowSeparator(.hidden)
+
+                    // App Info
+                    Section(Constants.appInfo.value) {
+
+                        let titleWidth: CGFloat = 70
+
+                        InputView(
+                            title: Constants.keyid.value,
+                            titleWidth: titleWidth,
+                            inputValue: $contentModel.appInfo.keyIdentifier)
+                        .onChange(of: contentModel.appInfo.keyIdentifier, refreshTestMode)
+
+                        InputView(
+                            title: Constants.teamid.value,
+                            titleWidth: titleWidth,
+                            inputValue: $contentModel.appInfo.teamIdentifier)
+                        .onChange(of: contentModel.appInfo.teamIdentifier, refreshTestMode)
+
+                        InputView(
+                            title: Constants.bundleid.value,
+                            titleWidth: titleWidth,
+                            inputValue: $contentModel.appInfo.appBundleID)
+                        .onChange(of: contentModel.appInfo.appBundleID, refreshTestMode)
+                        
+                        P8KeyView(
+                            showFileImporter: $contentModel.showFileImporter,
+                            privateKey: $contentModel.appInfo.privateKey,
+                            editorHeight: 120) { _ in
+                                refreshTestMode()
+                            } onFileImporterError: { error in
+                                appModel.appLog.append(error.localizedDescription)
+                            }
+
+                        // Token
+                        TokenView(
+                            pushType: contentModel.appInfo.pushType,
+                            deviceToken: $contentModel.appInfo.deviceToken,
+                            pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
+                            fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken,
+                            locationPushServiceToken: $contentModel.appInfo.locationPushServiceToken,
+                            liveActivityPushToken: $contentModel.appInfo.liveActivityPushToken
+                        )
+
 #if DEBUG
-                    Toggle(isOn: $contentModel.isInTestMode) {
-                        Text(Constants.fillInAppInfo.value)
-                    }
-                    .onChange(of: contentModel.isInTestMode) { mode in
-                        if mode {
+                        Toggle(isOn: $contentModel.isInTestMode) {
+                            Text(Constants.fillInAppInfo.value)
+                        }
+                        .onChange(of: contentModel.isInTestMode) { _, mode in
+                            if mode {
+                                contentModel.appInfo = appModel.thisAppConfig
+                            } else {
+                                contentModel.clearAppInfo()
+                            }
+                        }
+                        .onChange(of: appModel.thisAppConfig) {
+                            guard contentModel.isInTestMode else {
+                                return
+                            }
                             contentModel.appInfo = appModel.thisAppConfig
                         }
-                    }
-                    .onChange(of: appModel.thisAppConfig) { _ in
-                        guard contentModel.isInTestMode else {
-                            return
-                        }
-                        contentModel.appInfo = appModel.thisAppConfig
-                    }
+                        Button(Constants.importAppInfoOnPasteboard.value, action: importAppInfoOnPasteboard)
 #endif
-                }
-                .listRowSeparator(.hidden)
-                
-                
-                if !contentModel.config.isEmpty {
-                    Button(Constants.clearCurrentAppInfo.value) {
-                        contentModel.clearAppInfo()
                     }
-                }
-                if !contentModel.appInfo.appBundleID.isEmpty {
-                    Button(Constants.removeAppInfoFromPreset.value) {
-                        clearCurrentConfigPresetIfExist()
+                    .listRowSeparator(.hidden)
+
+                    if !contentModel.config.isEmpty {
+                        Button(Constants.clearCurrentAppInfo.value) {
+                            contentModel.clearAppInfo()
+                        }
                     }
-                }
-                if contentModel.config.isValid.valid {
-                    Button(Constants.saveAppInfoAsPreset.value) {
-                        saveAsPreset()
+                    if !contentModel.appInfo.appBundleID.isEmpty {
+                        Button(Constants.removeAppInfoFromPreset.value) {
+                            clearCurrentConfigPresetIfExist()
+                        }
                     }
-                }
-                
-                // Payload
-                Section(Constants.payload.value) {
-                    PayloadEditor(payload: $contentModel.payload)
-                        .frame(minHeight: 200)
-                        .padding(.vertical, 12)
-                }
-                .listRowSeparator(.hidden)
-                
-                Group {
-                    Button( Constants.loadTemplatePayload.value) {
-                        loadPayloadTemplate()
+                    if contentModel.config.isValid.valid {
+                        Button(Constants.saveAppInfoAsPreset.value) {
+                            saveAsPreset()
+                        }
                     }
-                    
-                    Button(Constants.clearPayload.value) {
-                        contentModel.payload = .empty
+
+                    // Payload
+                    Section(Constants.payload.value) {
+                        PayloadEditor(payload: $contentModel.payload)
+                            .frame(minHeight: 200)
+                            .padding(.vertical, 12)
                     }
+                    .listRowSeparator(.hidden)
+
+                    Group {
+                        Button( Constants.loadTemplatePayload.value) {
+                            loadPayloadTemplate()
+                        }
+
+                        Button(Constants.clearPayload.value) {
+                            contentModel.payload = .empty
+                        }
+                    }
+                    .listRowSeparator(.hidden)
+
+                    Section(Constants.log.value) {
+                        // Log
+                        LogView()
+                    }
+                    .id(Constants.log.value)
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
-                
-                
-                Section(Constants.log.value) {
-                    // Log
-                    LogView()
+                .scrollDismissesKeyboard(.immediately)
+                .onChange(of: appModel.isSendingPush) { _, isSendingPush in
+                    guard !isSendingPush
+                    else {
+                        return
+                    }
+                    scrollView.scrollTo(Constants.log.value)
                 }
-                .listRowSeparator(.hidden)
             }
-            .scrollDismissesKeyboard(.immediately)
-            
-            
+
             // Send Button Area
             SendButtonArea(loadPayloadTemplate: loadPayloadTemplate)
                 .padding(.horizontal)

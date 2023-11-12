@@ -6,55 +6,78 @@
 //
 
 import Foundation
-import APNSwift
+import APNS
+import APNSCore
 
 @available(macOS 11.0, *)
 extension APNsService {
     
     static func templatePayload(for config: Config) -> String? {
         
-        var jsonString: String?
+        var payload: Encodable
         
         switch config.pushType {
         case .alert:
-            jsonString = toJSONString(with: APNSAlertNotification(
+            payload = APNSAlertNotification(
                 alert: .init(
                     title: .raw("Simple Alert"),
                     subtitle: .raw("Subtitle"),
-                    body: .raw("Body"),
-                    launchImage: nil
+                    body: .raw("Body")
                 ),
                 expiration: .immediately,
                 priority: .immediately,
-                topic: config.appBundleID,
-                payload: Payload()
-            ))
+                topic: config.appBundleID
+            )
         case .background:
-            jsonString = toJSONString(with: APNSBackgroundNotification(
+            payload = APNSBackgroundNotification(
                 expiration: .immediately,
-                topic: config.appBundleID,
-                payload: Payload()
-            ))
+                topic: config.appBundleID
+            )
         case .voip:
-            jsonString = toJSONString(with: Payload())
-//        case .fileprovider:
-//            jsonString = toJSONString(with: Payload())
+            payload = APNSVoIPNotification(
+                priority: .immediately,
+                appID: config.appBundleID
+            )
+            .payload
+        case .fileprovider:
+            payload = APNSFileProviderNotification(
+                expiration: .immediately,
+                appID: config.appBundleID
+            )
+            .payload
+        case .location:
+            payload = APNSLocationNotification(
+                priority: .immediately,
+                appID: config.appBundleID
+            )
+            .payload
+        case .liveactivity:
+            payload = APNSLiveActivityNotification(
+                expiration: .immediately,
+                priority: .immediately,
+                appID: config.appBundleID,
+                contentState: EmptyPayload(),
+                event: .update,
+                timestamp: Int(Date.now.timeIntervalSince1970),
+                dismissalDate: .date(.init(timeIntervalSinceNow: 30))
+            )
         }
         
-        return jsonString
+        return payload.jsonString
     }
-    
-    static func toJSONString<T: Encodable>(with template: T) -> String? {
+}
+
+extension Encodable {
+    var jsonString: String? {
         let jsonEncoder = JSONEncoder()
         jsonEncoder.outputFormatting = [
             .prettyPrinted,
             .sortedKeys,
             .withoutEscapingSlashes
         ]
-        if let data = try? jsonEncoder.encode(template) {
-            return String(data: data, encoding:.utf8)
-        }
-        else {
+        if let data = try? jsonEncoder.encode(self) {
+            return String(data: data, encoding: .utf8)
+        } else {
             return nil
         }
     }

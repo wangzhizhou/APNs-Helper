@@ -7,17 +7,16 @@
 
 import SwiftUI
 
-
 struct PayloadEditor: View {
-    
+
     @EnvironmentObject var appModel: AppModel
-    
-    var title: String? = nil
-    
+
+    var title: String?
+
     @Binding var payload: String
-    
+
     @State var hasError: Bool = false
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             if let title = title {

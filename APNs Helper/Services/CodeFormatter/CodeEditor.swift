@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct CodeEditor: View {
-    
+
     @Environment(\.colorScheme) var colorScheme
-    
+
     @Binding var content: String
-    
+
     var language: CodeFomater.Language? = .json
-    
-    var onError: ((Error?) -> Void)? = nil
-    
+
+    var onError: ((Error?) -> Void)?
+
     var body: some View {
         Group {
             GeometryReader { geometry in
@@ -29,7 +29,7 @@ struct CodeEditor: View {
                     onError: onError
                 )
 #elseif os(iOS)
-                iOSCodeEditor(
+                IOSCodeEditor(
                     content: $content,
                     language: language,
                     size: geometry.size,
@@ -39,16 +39,16 @@ struct CodeEditor: View {
 #endif
             }
         }
-        .onChange(of: colorScheme) { scheme in
-            CodeFomater.resetTheme(colorScheme: scheme)
+        .onChange(of: colorScheme) { _, newValue in
+            CodeFomater.resetTheme(colorScheme: newValue)
         }
     }
 }
 
 struct CodeEditor_Previews: PreviewProvider {
-    
-    @State static var error: Error? = nil
-    
+
+    @State static var error: Error?
+
     static var previews: some View {
         Group {
             VStack {
@@ -58,9 +58,9 @@ struct CodeEditor_Previews: PreviewProvider {
                     "h1":
                     }
                     """))
-                    
+
                 }
-                
+
                 GroupBox("Valid JSON") {
                     CodeEditor(content: .constant("""
                     {
@@ -73,8 +73,7 @@ struct CodeEditor_Previews: PreviewProvider {
         .padding()
         .previewDevice("My Mac")
         .previewDisplayName("MacOS")
-        
-        
+
         Group {
             VStack {
                 GroupBox("Invalid JSON") {
@@ -83,9 +82,9 @@ struct CodeEditor_Previews: PreviewProvider {
                     "h1":
                     }
                     """))
-                    
+
                 }
-                
+
                 GroupBox("Valid JSON") {
                     CodeEditor(content: .constant("""
                     {

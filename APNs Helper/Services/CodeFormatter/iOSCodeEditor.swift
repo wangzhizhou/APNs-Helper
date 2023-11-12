@@ -1,5 +1,5 @@
 //
-//  iOSCodeEditor.swift
+//  IOSCodeEditor.swift
 //  APNs Helper
 //
 //  Created by joker on 2023/5/12.
@@ -11,20 +11,20 @@ import UIKit
 import SwiftUI
 import Combine
 
-struct iOSCodeEditor: UIViewRepresentable {
-    
+struct IOSCodeEditor: UIViewRepresentable {
+
     @EnvironmentObject var appModel: AppModel
-    
+
     @Binding var content: String
-    
-    var language: CodeFomater.Language? = nil
-    
+
+    var language: CodeFomater.Language?
+
     let size: CGSize
-    
+
     let colorScheme: ColorScheme
-    
-    var onError: ((Error?) -> Void)? = nil
-    
+
+    var onError: ((Error?) -> Void)?
+
     func makeUIView(context: Context) -> UITextView {
         CodeFomater.resetTheme(colorScheme: colorScheme)
         let frame = CGRect(origin: .zero, size: size)
@@ -33,16 +33,20 @@ struct iOSCodeEditor: UIViewRepresentable {
         textView.autocorrectionType = .no
         textView.smartQuotesType = .no
         textView.backgroundColor = .clear
-        
+
         context.coordinator.textView = textView
         return textView
     }
-    
+
+    // swiftlint: disable cyclomatic_complexity
     func format(_ textView: UITextView, force: Bool = false) {
         do {
             if !textView.text.isEmpty {
                 guard let runloopMode = RunLoop.main.currentMode, runloopMode != .tracking
                 else {
+                    if textView.text != content {
+                        textView.text = content
+                    }
                     return
                 }
             }
@@ -81,26 +85,27 @@ struct iOSCodeEditor: UIViewRepresentable {
             }
         }
     }
-    
+    // swiftlint: enable cyclomatic_complexity
+
     func updateUIView(_ textView: UITextView, context: Context) {
         format(textView)
     }
-    
+
     func makeCoordinator() -> Coordinator {
         return Coordinator(parent: self)
     }
-    
+
     final class Coordinator: NSObject, UITextViewDelegate {
-        
-        let parent: iOSCodeEditor
-        
-        var textView: UITextView? = nil
-        
+
+        let parent: IOSCodeEditor
+
+        var textView: UITextView?
+
         let textDidChangeSubject = PassthroughSubject<Void, Never>()
-        
+
         var cancellables = [AnyCancellable]()
-        
-        init(parent: iOSCodeEditor) {
+
+        init(parent: IOSCodeEditor) {
             self.parent = parent
             super.init()
             let cancellable = textDidChangeSubject.debounce(for: 0.3, scheduler: RunLoop.main).sink {[weak self] _ in
@@ -110,7 +115,7 @@ struct iOSCodeEditor: UIViewRepresentable {
             }
             cancellables.append(cancellable)
         }
-        
+
         func textViewDidChange(_ textView: UITextView) {
             guard parent.content != textView.text else {
                 return
@@ -121,11 +126,11 @@ struct iOSCodeEditor: UIViewRepresentable {
     }
 }
 
-struct iOSCodeEditor_Previews: PreviewProvider {
+struct IOSCodeEditor_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader { geometry in
-            
-            iOSCodeEditor(
+
+            IOSCodeEditor(
                 content: .constant("""
                 {
                 "h1": 1

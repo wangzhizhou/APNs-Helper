@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct PresetPicker: View {
-    
+
     let presets: [Config]
-    
+
     @Binding var selectedPreset: Config
-    
+
     var onPresetChange: (Config) -> Void
-    
+
     var body: some View {
         Picker(Constants.preset.value, selection: $selectedPreset) {
             ForEach(presets) {
@@ -32,7 +32,9 @@ struct PresetPicker: View {
 #elseif os(macOS)
         .padding(.vertical)
 #endif
-        .onChange(of: selectedPreset, perform: onPresetChange)
+        .onChange(of: selectedPreset) { _, newValue in
+            onPresetChange(newValue)
+        }
     }
 }
 struct PresetView_Previews: PreviewProvider {
@@ -40,25 +42,27 @@ struct PresetView_Previews: PreviewProvider {
         .none,
         .init(
             deviceToken: "test device token",
-            pushKitDeviceToken: "test pushkit token",
-            fileProviderDeviceToken: "test file provider token",
+            pushKitVoIPToken: "test pushkit token",
+            pushKitFileProviderToken: "test file provider token",
+            locationPushServiceToken: "test location push service token",
+            liveActivityPushToken: "test live activity push token",
             appBundleID: "test aid",
             privateKey: "test private key",
             keyIdentifier: "test key id",
-            teamIdentifier: "test team id"),
+            teamIdentifier: "test team id")
     ]
     static var previews: some View {
         Group {
-            PresetPicker(presets: presets, selectedPreset: .constant(.none)) { preset in
-                
+            PresetPicker(presets: presets, selectedPreset: .constant(.none)) { _ in
+
             }
             .frame(width: 300)
             .previewDevice("My Mac")
             .previewDisplayName("MacOS")
-            
+
             Form {
                 Section {
-                    PresetPicker(presets: presets, selectedPreset: .constant(.none)) { preset in
+                    PresetPicker(presets: presets, selectedPreset: .constant(.none)) { _ in
                     }
                 }
             }
