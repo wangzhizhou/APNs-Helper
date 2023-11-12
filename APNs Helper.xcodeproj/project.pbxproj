@@ -1626,7 +1626,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 17;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"APNs Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = 2N62934Y28;
@@ -1672,7 +1672,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 17;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"APNs Helper/Preview Content\"";
 				DEVELOPMENT_TEAM = 2N62934Y28;
@@ -1717,7 +1717,7 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = "APNs Helper Tester/APNs Helper Tester(iOS).entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "APNs Helper Tester/APNs Helper Tester(MacOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"APNs Helper Tester/Preview Content\"";
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1769,7 +1769,7 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = "APNs Helper Tester/APNs Helper Tester(iOS).entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "APNs Helper Tester/APNs Helper Tester(MacOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"APNs Helper Tester/Preview Content\"";
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				ENABLE_HARDENED_RUNTIME = YES;
