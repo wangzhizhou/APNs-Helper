@@ -85,7 +85,7 @@ class TesterAppModel: ObservableObject {
         }
     }
     
-    var content: [(String, String)] {[
+    var content: [(title: String, content: String)] {[
         (Constants.keyid.value, appInfo.keyID),
         (Constants.teamid.value, appInfo.teamID),
         (Constants.bundleid.value, appInfo.bundleID),
@@ -147,7 +147,8 @@ class TesterAppModel: ObservableObject {
         }
     
     func copyAllInfo() {
-        appInfo.formattedText?.copyToPasteboard()
+        
+        appInfo.formattedText(with: content.map { $0.content })?.copyToPasteboard()
     }
     
     func checkReceiveLocationNotification() {
@@ -158,5 +159,45 @@ class TesterAppModel: ObservableObject {
             self.alertMessage = "location_push_payload: \(jsonString)"
             groupUserDefaults.set(nil, forKey: "location_notification_payload")
         }
+    }
+}
+
+
+extension AppInfo {
+    
+    var asDictionary: [String: String]? {
+        
+        guard
+            let data = try? JSONEncoder().encode(self),
+            let jsonObj = try? JSONDecoder().decode([String: String].self, from: data)
+        else {
+            return nil
+        }
+        
+        return jsonObj
+    }
+    
+    func formattedText(with orderedValues: [String]) -> String? {
+        
+        guard let dictionary = asDictionary
+        else {
+            return nil
+        }
+        
+        var valueToKeyDict = [String: String]()
+        dictionary.forEach { (key: String, value: String) in
+            guard !value.isEmpty
+            else {
+                return
+            }
+            valueToKeyDict[value] = key
+        }
+        
+        let ret = orderedValues.map { value in
+            let key = valueToKeyDict[value] ?? .empty
+            return "\(key)\n\(value)"
+        }.joined(separator: "\n\n")
+        
+        return ret
     }
 }
