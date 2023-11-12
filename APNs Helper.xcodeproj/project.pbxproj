@@ -111,7 +111,6 @@
 		F3521C042AF945D4009BAE84 /* LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C032AF9448D009BAE84 /* LiveActivity.swift */; };
 		F3521C072AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */; };
 		F3521C082AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */; };
-		F3521C0B2AF94CAF009BAE84 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */; };
 		F355EB062AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */; };
 		F355EB072AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */; };
 		F355EB0A2AFAA47700C9DA83 /* Color+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */; };
@@ -294,7 +293,6 @@
 		F33327E42AEE7B9400EB6C49 /* LiveActivityNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityNotificationView.swift; sourceTree = "<group>"; };
 		F3521C032AF9448D009BAE84 /* LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivity.swift; sourceTree = "<group>"; };
 		F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityModel.swift; sourceTree = "<group>"; };
-		F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
 		F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Utils.swift"; sourceTree = "<group>"; };
 		F35664FE2AFE98CA00B7BEE8 /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ActivityKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS17.0.sdk/System/Library/Frameworks/ActivityKit.framework; sourceTree = DEVELOPER_DIR; };
 		F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Tester-Info.plist"; sourceTree = "<group>"; };
@@ -402,11 +400,8 @@
 			isa = PBXGroup;
 			children = (
 				2B0839372AEF75EE00488752 /* WidgetsBundle.swift */,
-				2B0839392AEF75EE00488752 /* Widgets.swift */,
-				F3521C032AF9448D009BAE84 /* LiveActivity.swift */,
-				F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */,
-				F3521C0A2AF94CAF009BAE84 /* LiveActivityView.swift */,
-				2B08393B2AEF75EE00488752 /* AppIntent.swift */,
+				F3A2173A2B009DBC0039FBC8 /* normal */,
+				F3A2173C2B009DD40039FBC8 /* liveactivity */,
 				2B08393D2AEF75EF00488752 /* Assets.xcassets */,
 				2B08393F2AEF75EF00488752 /* Info.plist */,
 				2B0839402AEF75EF00488752 /* Widgets.entitlements */,
@@ -784,6 +779,24 @@
 			path = "APNs Helper Doc";
 			sourceTree = "<group>";
 		};
+		F3A2173A2B009DBC0039FBC8 /* normal */ = {
+			isa = PBXGroup;
+			children = (
+				2B0839392AEF75EE00488752 /* Widgets.swift */,
+				2B08393B2AEF75EE00488752 /* AppIntent.swift */,
+			);
+			path = normal;
+			sourceTree = "<group>";
+		};
+		F3A2173C2B009DD40039FBC8 /* liveactivity */ = {
+			isa = PBXGroup;
+			children = (
+				F3521C032AF9448D009BAE84 /* LiveActivity.swift */,
+				F3521C062AF94C9B009BAE84 /* LiveActivityModel.swift */,
+			);
+			path = liveactivity;
+			sourceTree = "<group>";
+		};
 		F3A46DEA29DDAA26004D4AD1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -1124,7 +1137,6 @@
 				2B0839382AEF75EE00488752 /* WidgetsBundle.swift in Sources */,
 				2B08393A2AEF75EE00488752 /* Widgets.swift in Sources */,
 				F3521C042AF945D4009BAE84 /* LiveActivity.swift in Sources */,
-				F3521C0B2AF94CAF009BAE84 /* LiveActivityView.swift in Sources */,
 				F3521C082AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */,
 				2B08393C2AEF75EE00488752 /* AppIntent.swift in Sources */,
 				F355EB0A2AFAA47700C9DA83 /* Color+Utils.swift in Sources */,
