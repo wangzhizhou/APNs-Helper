@@ -4,7 +4,7 @@ This app can be used to receive notifications which send from APNs Server
 
 ## Overview
 
-[![App Icon](tester)]()
+[![App Icon](receiver)](https://apps.apple.com/cn/app/apns-helper-tester/id6444835507)
 
 
 ## iOS Edition
