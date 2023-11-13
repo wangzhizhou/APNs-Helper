@@ -34,7 +34,7 @@ xcodebuild docbuild \
     -destination=generic/platform=macOS \
     -derivedDataPath ./derivedData
 
-PATH_TO_ARCHIVE_FILE=$(find ./derivedData -type d -name 'APNs Helper.doccarchive')
+PATH_TO_ARCHIVE_FILE=$(find ./derivedData -type d -name 'APNs Helper Doc.doccarchive')
 
 if [ -z "$PATH_TO_ARCHIVE_FILE" ]; then
     echo no archive file found
