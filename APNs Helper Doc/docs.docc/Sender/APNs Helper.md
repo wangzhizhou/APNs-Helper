@@ -1,4 +1,4 @@
-#  ``APNs_Helper``
+# APNs Helper
 
 A tool that can run on MacOS/iOS device, you can use it to send apns notifications.
 
@@ -6,9 +6,9 @@ A tool that can run on MacOS/iOS device, you can use it to send apns notificatio
 
 This app can be installed by clicking the app icon bellow.
 
-[![App Icon](appicon)](https://apps.apple.com/cn/app/apns-helper/id6443608175)
+[![App Icon](sender)](https://apps.apple.com/cn/app/apns-helper/id6443608175)
 
-## Features
+### Features
 
 - [x] Supported push type: 
     - **[alert][alert push]**
@@ -25,7 +25,7 @@ This app can be installed by clicking the app icon bellow.
 - [x] **`⌘+⏎`** keyboard shortcut to trigger send button on macOS App
 - [x] **`⌘+T`** keyboard shortcut to load default payload template on macOS App if you clear payload
 
-## Todos
+### Todos
 
 - [ ] Mutable Content Alert Push
 - [ ] Custom Category Alert Push
