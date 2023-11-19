@@ -32,12 +32,20 @@ struct InputTextEditor: View {
     }
 }
 
-struct InputTextEditor_Previews: PreviewProvider {
-
-    @State static var detail: String = "content"
-
-    static var previews: some View {
-        InputTextEditor(title: "title", content: $detail)
-            .frame(height: 100)
+#Preview {
+    
+    struct Preview: View {
+        
+        @State var detail: String = "content"
+        
+        var body: some View {
+            InputTextEditor(
+                title: "title",
+                content: $detail)
+            .padding()
+        }
     }
+    
+    return Preview()
+    
 }
