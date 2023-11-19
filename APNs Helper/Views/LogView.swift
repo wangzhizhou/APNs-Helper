@@ -9,12 +9,13 @@ import SwiftUI
 
 struct LogView: View {
 
-    @EnvironmentObject var appModel: AppModel
+    @Environment(AppModel.self) private var appModel
 
     @FocusState
     private var logTextEditorFocusState: Bool
 
     var body: some View {
+        @Bindable var appModel = appModel
         VStack {
 #if os(macOS)
             InputTextEditor(title: Constants.log.value, content: $appModel.appLog)
@@ -53,6 +54,6 @@ struct LogView_Previews: PreviewProvider {
             .previewDevice("iPhone 14 Pro Max")
             .previewDisplayName("iOS")
         }
-        .environmentObject(AppModel())
+        .environment(AppModel())
     }
 }

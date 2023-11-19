@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 import Combine
 
-class AppModel: ObservableObject {
+@Observable
+class AppModel {
 
     // MARK: Log
-    @Published var appLog: String
+    var appLog: String
 
     @MainActor
     func resetLog() {
@@ -20,7 +21,7 @@ class AppModel: ObservableObject {
     }
 
     // MARK: Toast
-    @Published var showToast: Bool
+    var showToast: Bool
     var toastModel: ToastModel {
         didSet {
             Task {
@@ -33,13 +34,13 @@ class AppModel: ObservableObject {
 
     // MARK: Preset Persistence
     @AppStorage("presets")
-    private var presetData: Data = Data()
+    static private var presetData: Data = Data()
 
     var presets: [Config] {
-        get { presetData.toPresetConfigs.sorted(by: <) }
+        get { AppModel.presetData.toPresetConfigs.sorted(by: <) }
         set {
             if let data = newValue.data {
-                presetData = data
+                AppModel.presetData = data
             }
         }
     }
@@ -92,9 +93,8 @@ class AppModel: ObservableObject {
     }
 
     // MARK: Test Mode Config
-    @Published var thisAppConfig: Config
+    var thisAppConfig: Config
 
-    @MainActor
     var isSendingPush: Bool
 
     init(
@@ -102,13 +102,11 @@ class AppModel: ObservableObject {
         showAlert: Bool  = false,
         showToast: Bool = false,
         toastModel: ToastModel = ToastModel.info(),
-        presetData: Data = Data(),
         thisAppConfig: Config = .thisApp,
         isSendingPush: Bool = false) {
             self.appLog = appLog
             self.showToast = showToast
             self.toastModel = toastModel
-            self.presetData = presetData
             self.thisAppConfig = thisAppConfig
             self.isSendingPush = isSendingPush
 

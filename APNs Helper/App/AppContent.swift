@@ -12,12 +12,12 @@ struct AppContent: View {
 
     @Environment(\.scenePhase) var scenePhase
 
-    @EnvironmentObject var appModel: AppModel
+    @Environment(AppModel.self) private var appModel
 
-    @StateObject
-    private var contentModel = AppContentModel()
+    @State private var contentModel = AppContentModel()
 
     var body: some View {
+        @Bindable var appModel = appModel
         VStack {
 #if os(iOS)
             AppContentIOS(
@@ -40,7 +40,7 @@ struct AppContent: View {
 #endif
         }
         .background(.background)
-        .environmentObject(contentModel)
+        .environment(contentModel)
         .onAppear {
             loadPayloadTemplate()
         }
@@ -77,7 +77,7 @@ extension AppContent {
 #elseif os(iOS)
         pasteboardContent = UIPasteboard.general.string
 #endif
-        guard let appInfoJson = pasteboardContent, let appInfo = AppInfo.decode(from: appInfoJson)
+        guard let appInfoJson = AppInfo.jsonStringFromFormattedText(pasteboardContent), let appInfo = AppInfo.decode(from: appInfoJson)
         else {
             appModel.toastModel = ToastModel.info().title("No App Info on pasteboard!")
             return
@@ -89,6 +89,8 @@ extension AppContent {
         contentModel.appInfo.deviceToken = appInfo.deviceToken
         contentModel.appInfo.pushKitVoIPToken = appInfo.voipToken
         contentModel.appInfo.pushKitFileProviderToken = appInfo.fileProviderToken
+        contentModel.appInfo.locationPushServiceToken = appInfo.locationPushToken
+        contentModel.appInfo.liveActivityPushToken = appInfo.liveActivityPushToken
     }
 
     func loadPayloadTemplate() {
@@ -129,6 +131,6 @@ struct AppContent_Previews: PreviewProvider {
                 .previewDevice("iPhone 14 Pro Max")
                 .previewDisplayName("iOS")
         }
-        .environmentObject(AppModel())
+        .environment(AppModel())
     }
 }

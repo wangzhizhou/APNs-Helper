@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SendButtonArea: View {
 
-    @EnvironmentObject var appModel: AppModel
+    @Environment(AppModel.self) private var appModel
 
-    @EnvironmentObject var contentModel: AppContentModel
+    @Environment(AppContentModel.self) private var contentModel
 
     let loadPayloadTemplate: () -> Void
 
@@ -104,7 +104,7 @@ struct SendButtonArea_Previews: PreviewProvider {
             .previewDisplayName("iOS")
         }
         .padding()
-        .environmentObject(AppModel())
-        .environmentObject(AppContentModel())
+        .environment(AppModel())
+        .environment(AppContentModel())
     }
 }

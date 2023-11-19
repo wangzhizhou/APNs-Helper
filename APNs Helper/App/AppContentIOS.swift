@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AppContentIOS: View {
 
-    @EnvironmentObject var appModel: AppModel
-    @EnvironmentObject var contentModel: AppContentModel
+    @Environment(AppModel.self) private var appModel
+    @Environment(AppContentModel.self) private var contentModel
 
     let loadPayloadTemplate: () -> Void
     let saveAsPreset: () -> Void
@@ -20,6 +20,7 @@ struct AppContentIOS: View {
     let refreshTestMode: () -> Void
 
     var body: some View {
+        @Bindable var contentModel = contentModel
         VStack {
             ScrollViewReader { scrollView in
                 Form {

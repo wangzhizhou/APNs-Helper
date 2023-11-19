@@ -18,14 +18,14 @@ struct APNsHelperApp: App {
 
     let persistenceController = PersistenceController.preview
 
-    @StateObject var model = AppModel()
+    @State private var model = AppModel()
     var body: some Scene {
         WindowGroup {
             AppContent()
 #if os(macOS)
                 .frame(maxWidth: 632, minHeight: 828, maxHeight: 828)
 #endif
-                .environmentObject(model)
+                .environment(model)
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
 #if os(macOS)

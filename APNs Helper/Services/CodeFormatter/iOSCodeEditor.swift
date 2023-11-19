@@ -13,7 +13,7 @@ import Combine
 
 struct IOSCodeEditor: UIViewRepresentable {
 
-    @EnvironmentObject var appModel: AppModel
+    @Environment(AppModel.self) private var appModel
 
     @Binding var content: String
 

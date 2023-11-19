@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PayloadEditor: View {
 
-    @EnvironmentObject var appModel: AppModel
+    @Environment(AppModel.self) private var appModel
 
     var title: String?
 

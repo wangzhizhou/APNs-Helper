@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AppContentMacOS: View {
 
-    @EnvironmentObject var appModel: AppModel
-    @EnvironmentObject var contentModel: AppContentModel
+    @Environment(AppModel.self) private var appModel
+    @Environment(AppContentModel.self) private var contentModel
 
     let loadPayloadTemplate: () -> Void
     let saveAsPreset: () -> Void
@@ -20,7 +20,7 @@ struct AppContentMacOS: View {
     let refreshTestMode: () -> Void
 
     var body: some View {
-
+        @Bindable var contentModel = contentModel
         VStack {
             // Preset
             if !appModel.presets.isEmpty {
