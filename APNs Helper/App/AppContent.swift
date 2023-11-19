@@ -9,13 +9,13 @@ import SwiftUI
 import AlertToast
 
 struct AppContent: View {
-
+    
     @Environment(\.scenePhase) var scenePhase
-
+    
     @Environment(AppModel.self) private var appModel
-
+    
     @State private var contentModel = AppContentModel()
-
+    
     var body: some View {
         @Bindable var appModel = appModel
         VStack {
@@ -68,9 +68,9 @@ struct AppContent: View {
 }
 
 extension AppContent {
-
+    
     func fillAppInfoFromPasteboard() {
-
+        
         var pasteboardContent: String?
 #if os(macOS)
         pasteboardContent = NSPasteboard.general.string(forType: .string)
@@ -92,27 +92,27 @@ extension AppContent {
         contentModel.appInfo.locationPushServiceToken = appInfo.locationPushToken
         contentModel.appInfo.liveActivityPushToken = appInfo.liveActivityPushToken
     }
-
+    
     func loadPayloadTemplate() {
         if let template = APNsService.templatePayload(for: contentModel.config) {
             contentModel.payload = template
         }
     }
-
+    
     func saveAsPreset() {
         if appModel.saveConfigAsPreset(contentModel.config) {
             contentModel.presetConfig = contentModel.config
         }
     }
-
+    
     func clearAllPreset() {
         appModel.clearAllPresets()
     }
-
+    
     func clearCurrentConfigPresetIfExist() {
         appModel.clearPresetIfExist(contentModel.config)
     }
-
+    
     func refreshTestMode() {
         guard appModel.thisAppConfig.isValid.valid
         else { return }
@@ -120,17 +120,7 @@ extension AppContent {
     }
 }
 
-struct AppContent_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            AppContent()
-                .previewDevice("My Mac")
-                .previewDisplayName("MacOS")
-
-            AppContent()
-                .previewDevice("iPhone 14 Pro Max")
-                .previewDisplayName("iOS")
-        }
+#Preview {
+    AppContent()
         .environment(AppModel())
-    }
 }
