@@ -17,11 +17,12 @@ struct TesterApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
 
-    @StateObject var model = TesterAppModel()
+    @State var model = TesterAppModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(model)
+                .environment(model)
 #if os(macOS)
                 .frame(minWidth: 632, maxWidth: 632, minHeight: 500, maxHeight: 500)
 #endif

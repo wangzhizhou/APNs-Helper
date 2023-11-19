@@ -9,12 +9,15 @@ import SwiftUI
 import AlertToast
 
 struct ContentView: View {
-    
-    @EnvironmentObject var model: TesterAppModel
+
+    @Environment(TesterAppModel.self) private var model
     
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
+        
+        @Bindable var model = model
+        
         NavigationStack {
             VStack {
 #if os(iOS)
@@ -92,6 +95,6 @@ struct ItemEntry: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(TesterAppModel())
+            .environment(TesterAppModel())
     }
 }

@@ -18,7 +18,8 @@ import ActivityKit
 
 import Combine
 
-class TesterAppModel: ObservableObject {
+@Observable
+class TesterAppModel {
     
 #if canImport(ActivityKit)
     var liveActivity: Activity<LiveActivityAttributes>? {
@@ -54,7 +55,7 @@ class TesterAppModel: ObservableObject {
         case dismiss
     }
     
-    @Published var stage: LiveActivityStage = .start
+    var stage: LiveActivityStage = .start
     
     func resetLiveActivity() {
         appInfo.liveActivityPushToken = .empty
@@ -92,7 +93,7 @@ class TesterAppModel: ObservableObject {
     
 #endif
     
-    @Published var appInfo = AppInfo(
+    var appInfo = AppInfo(
         keyID: "7S6SUT5L43",
         teamID: "2N62934Y28",
         bundleID: Bundle.main.bundleIdentifier!,
@@ -105,7 +106,6 @@ class TesterAppModel: ObservableObject {
         """
     )
     
-    @Published
     var showAlert: Bool
     
     var alertMessage: String {
@@ -114,7 +114,7 @@ class TesterAppModel: ObservableObject {
         }
     }
     
-    @Published var showToast: Bool
+    var showToast: Bool
     var toastModel: ToastModel {
         didSet {
             Task {

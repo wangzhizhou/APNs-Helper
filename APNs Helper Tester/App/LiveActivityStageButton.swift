@@ -12,7 +12,7 @@ import ActivityKit
 
 struct LiveActivityStageButton: View {
     
-    @EnvironmentObject var model: TesterAppModel
+    @Environment(TesterAppModel.self) private var model
     
     var body: some View {
         
