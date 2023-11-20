@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import SwiftData
 
 @Observable
 class AppModel {
@@ -32,19 +33,14 @@ class AppModel {
         }
     }
 
-    // MARK: Preset Persistence
-    @AppStorage("presets")
-    static private var presetData: Data = Data()
-
+    @MainActor
     var presets: [Config] {
-        get { AppModel.presetData.toPresetConfigs.sorted(by: <) }
-        set {
-            if let data = newValue.data {
-                AppModel.presetData = data
-            }
-        }
+        let fetchDescriptor = FetchDescriptor<Config>(sortBy: [.init(\.appBundleID)])
+        let savedPresets = try? modelContainer.mainContext.fetch(fetchDescriptor)
+        return savedPresets ?? []
     }
 
+    @MainActor
     func saveConfigAsPreset(_ config: Config) -> Bool {
 
         let (valid, message) = config.isValid
@@ -54,60 +50,59 @@ class AppModel {
             }
             return false
         }
-
-        var newPresets = presets.filter { preset in
-            return preset.appBundleID != config.appBundleID
+        
+        do {
+            modelContainer.mainContext.insert(Config.none)
+            modelContainer.mainContext.insert(config)
+            try modelContainer.mainContext.save()
+            toastModel = ToastModel.info().title("Save Preset Successfully!")
+            return true
+        } catch {
+            print(error)
+            return false
         }
-        let containEmptyConfig = newPresets.contains { config in
-            return config.appBundleID.isEmpty
-        }
-        if !containEmptyConfig {
-            newPresets.insert(.none, at: 0)
-        }
-        newPresets.append(config)
-        presets = newPresets
-        toastModel = ToastModel.info().title("Save Preset Successfully!")
-
-        return true
     }
 
+    @MainActor
     func clearAllPresets() {
-        presets = [Config]()
-        toastModel = ToastModel.info().title("Clear All Preset Successfully!")
+        do {
+            try modelContainer.mainContext.delete(model: Config.self)
+            toastModel = ToastModel.info().title("Clear All Preset Successfully!")
+        } catch {
+            fatalError("clear all preset failed!!!")
+        }
     }
 
+    @MainActor
     func clearPresetIfExist(_ config: Config) {
-        var newPresets = presets
-        newPresets.removeAll { preset in
-            !preset.appBundleID.isEmpty && preset.appBundleID == config.appBundleID
-        }
-        if newPresets.count == 1, let onlyOneConfig = newPresets.last, onlyOneConfig.appBundleID == Config.none.appBundleID {
-            newPresets.removeAll()
-        }
-        if presets.count != newPresets.count {
-            presets = newPresets
-            toastModel = ToastModel.info().title("Remove Exist Preset")
-        } else {
-            toastModel = ToastModel.info().title("No Preset Exist")
-        }
+        modelContainer.mainContext.delete(config)
+        toastModel = ToastModel.info().title("Remove Exist Preset")
     }
 
     // MARK: Test Mode Config
     var thisAppConfig: Config
 
     var isSendingPush: Bool
-
+    
+    let modelContainer: ModelContainer
+     
     init(
         appLog: String = .empty,
         showAlert: Bool  = false,
         showToast: Bool = false,
         toastModel: ToastModel = ToastModel.info(),
-        thisAppConfig: Config = .thisApp,
         isSendingPush: Bool = false) {
+            
+            do {
+                try modelContainer = ModelContainer(for: Config.self)
+            } catch {
+                fatalError("Could not initialize ModelContainer")
+            }
+            
             self.appLog = appLog
             self.showToast = showToast
             self.toastModel = toastModel
-            self.thisAppConfig = thisAppConfig
+            self.thisAppConfig = .thisApp
             self.isSendingPush = isSendingPush
 
 #if ENABLE_PUSHKIT

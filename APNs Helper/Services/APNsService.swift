@@ -15,6 +15,9 @@ import APNSCore
 enum APNServerEnv: String, CaseIterable, Codable {
     case sandbox
     case production
+}
+
+extension APNServerEnv {
     
     var env: APNSEnvironment {
         switch self {
@@ -55,7 +58,8 @@ enum PushType: String, CaseIterable, Codable {
     case fileprovider
     case location
     case liveactivity
-    
+}
+extension PushType {
     var type: APNSPushType {
         switch self {
         case .alert:

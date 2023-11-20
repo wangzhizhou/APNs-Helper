@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AppContentMacOS: View {
 
     @Environment(AppModel.self) private var appModel
     @Environment(AppContentModel.self) private var contentModel
+    
+    @Query(sort: [.init(\Config.appBundleID)]) private var presets: [Config]
 
     let loadPayloadTemplate: () -> Void
     let saveAsPreset: () -> Void
@@ -23,10 +26,10 @@ struct AppContentMacOS: View {
         @Bindable var contentModel = contentModel
         VStack {
             // Preset
-            if !appModel.presets.isEmpty {
+            if !presets.isEmpty {
                 HStack {
                     PresetPicker(
-                        presets: appModel.presets,
+                        presets: presets,
                         selectedPreset: $contentModel.presetConfig) { preset in
                             contentModel.appInfo = preset
                         }

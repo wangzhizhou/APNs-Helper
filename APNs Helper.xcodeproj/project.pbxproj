@@ -25,9 +25,6 @@
 		2B08DFDE2AF4FE7800488752 /* LocationPushServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B34AFC92AFA0842001C2A0B /* LiveActivityStageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B34AFC82AFA0842001C2A0B /* LiveActivityStageButton.swift */; };
 		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
-		2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72E28DEAB17009EF9C9 /* Persistence.swift */; };
-		2B35F73228DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */; };
-		2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F73328DEAB17009EF9C9 /* ContentView.swift */; };
 		2B35F73628DEAB18009EF9C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35F73528DEAB18009EF9C9 /* Assets.xcassets */; };
 		2B35F73A28DEAB18009EF9C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35F73928DEAB18009EF9C9 /* Preview Assets.xcassets */; };
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
@@ -214,9 +211,6 @@
 		2B34BA162AFA6B1F001C2A0B /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		2B35F72928DEAB17009EF9C9 /* APNs Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "APNs Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B35F72C28DEAB17009EF9C9 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		2B35F72E28DEAB17009EF9C9 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		2B35F73128DEAB17009EF9C9 /* APNs_Helper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = APNs_Helper.xcdatamodel; sourceTree = "<group>"; };
-		2B35F73328DEAB17009EF9C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2B35F73528DEAB18009EF9C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2B35F73728DEAB18009EF9C9 /* APNs_Helper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = APNs_Helper.entitlements; sourceTree = "<group>"; };
 		2B35F73928DEAB18009EF9C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -469,7 +463,6 @@
 			isa = PBXGroup;
 			children = (
 				2B40FB3C29DFDABC00E484FB /* App */,
-				2BA3E0AF28E54E55006DBCCC /* Database */,
 				2BA3E0B028E54E82006DBCCC /* Models */,
 				2B35F73828DEAB18009EF9C9 /* Preview Content */,
 				2BA3E0B128E54E9D006DBCCC /* Resources */,
@@ -582,16 +575,6 @@
 				2B0031702A0E02B2009BEACD /* CodeFormatter */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		2BA3E0AF28E54E55006DBCCC /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				2B35F72E28DEAB17009EF9C9 /* Persistence.swift */,
-				2B35F73328DEAB17009EF9C9 /* ContentView.swift */,
-				2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */,
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		2BA3E0B028E54E82006DBCCC /* Models */ = {
@@ -1160,7 +1143,6 @@
 				2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */,
 				2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */,
 				2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
-				2B35F72F28DEAB17009EF9C9 /* Persistence.swift in Sources */,
 				2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */,
 				F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */,
 				F33327E32AEE7B7E00EB6C49 /* LiveActivityModel.swift in Sources */,
@@ -1193,8 +1175,6 @@
 				F315F0BA2AF56AE80012B376 /* LocationManager.swift in Sources */,
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
 				2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */,
-				2B35F73428DEAB17009EF9C9 /* ContentView.swift in Sources */,
-				2B35F73228DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld in Sources */,
 				2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */,
 				2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */,
 				2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */,
@@ -2265,19 +2245,6 @@
 			productName = "plugin:OrzSwiftLintBuildToolPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		2B35F73028DEAB17009EF9C9 /* CoreDataStore.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				2B35F73128DEAB17009EF9C9 /* APNs_Helper.xcdatamodel */,
-			);
-			currentVersion = 2B35F73128DEAB17009EF9C9 /* APNs_Helper.xcdatamodel */;
-			path = CoreDataStore.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 2B35F72128DEAB17009EF9C9 /* Project object */;
 }

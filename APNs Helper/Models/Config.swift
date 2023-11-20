@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Config {
+@Model
+final class Config {
 
     // Token Info
     var deviceToken: String
@@ -17,25 +19,54 @@ struct Config {
     var liveActivityPushToken: String
 
     // App Info
+    @Attribute(.unique)
     var appBundleID: String
+    
     var privateKey: String
     var keyIdentifier: String
     var teamIdentifier: String
 
     // Server Info
+    
+    @Transient
     var pushType: PushType = .alert
+    
+    @Transient
     var apnsServerEnv: APNServerEnv = .sandbox
+    
+    init(
+        deviceToken: String,
+        pushKitVoIPToken: String,
+        pushKitFileProviderToken: String,
+        locationPushServiceToken: String,
+        liveActivityPushToken: String,
+        appBundleID: String,
+        privateKey: String,
+        keyIdentifier: String,
+        teamIdentifier: String,
+        pushType: PushType  = .alert,
+        apnsServerEnv: APNServerEnv = .sandbox) {
+            self.deviceToken = deviceToken
+            self.pushKitVoIPToken = pushKitVoIPToken
+            self.pushKitFileProviderToken = pushKitFileProviderToken
+            self.locationPushServiceToken = locationPushServiceToken
+            self.liveActivityPushToken = liveActivityPushToken
+            self.appBundleID = appBundleID
+            self.privateKey = privateKey
+            self.keyIdentifier = keyIdentifier
+            self.teamIdentifier = teamIdentifier
+            self.pushType = pushType
+            self.apnsServerEnv = apnsServerEnv
+        }
 }
 
 extension Config: Identifiable {
-
-    var id: String {
-        appBundleID
-    }
+    var id: String { self.appBundleID }
 }
 
 extension Config: Equatable {
-    static func == (lhs: Self, rhs: Self) -> Bool {
+    
+    static func == (lhs: Config, rhs: Config) -> Bool {
         return lhs.deviceToken == rhs.deviceToken
         && lhs.pushKitVoIPToken == rhs.pushKitVoIPToken
         && lhs.pushKitFileProviderToken == rhs.pushKitFileProviderToken
@@ -53,8 +84,6 @@ extension Config: Comparable {
         return lhs.appBundleID < rhs.appBundleID
     }
 }
-
-extension Config: Codable {}
 
 extension Config: Hashable {}
 

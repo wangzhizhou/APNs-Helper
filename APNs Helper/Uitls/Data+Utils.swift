@@ -9,12 +9,12 @@ import Foundation
 
 extension Data {
 
-    var toPresetConfigs: [Config] {
-        if let configs = try? JSONDecoder().decode([Config].self, from: self) {
-            return configs
-        } else {
-            return []
-        }
-    }
+//    var toArray<T>: [T]  where T:Decodable {
+//        if let configs = try? JSONDecoder().decode([T].self, from: self) {
+//            return configs
+//        } else {
+//            return []
+//        }
+//    }
 
 }

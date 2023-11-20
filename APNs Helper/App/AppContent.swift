@@ -100,17 +100,29 @@ extension AppContent {
     }
     
     func saveAsPreset() {
-        if appModel.saveConfigAsPreset(contentModel.config) {
-            contentModel.presetConfig = contentModel.config
+        Task {
+            await MainActor.run {
+                if appModel.saveConfigAsPreset(contentModel.config) {
+                    contentModel.presetConfig = contentModel.config
+                }
+            }
         }
     }
     
     func clearAllPreset() {
-        appModel.clearAllPresets()
+        Task {
+            await MainActor.run {
+                appModel.clearAllPresets()
+            }
+        }
     }
     
     func clearCurrentConfigPresetIfExist() {
-        appModel.clearPresetIfExist(contentModel.config)
+        Task {
+            await MainActor.run {
+                appModel.clearPresetIfExist(contentModel.config)
+            }
+        }
     }
     
     func refreshTestMode() {
