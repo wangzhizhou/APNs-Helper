@@ -11,7 +11,7 @@ extension NSFileProviderManager {
 
     static func setup() {
 
-        guard let bundleIdentifier = Bundle.main.bundleIdentifier
+        guard let bundleIdentifier = Bundle.main.bundleIdentifier, bundleIdentifier == "com.joker.APNsHelper.tester"
         else {
             return
         }
