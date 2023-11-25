@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  APNs Helper
+//
+//  Created by joker on 11/25/23.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+CURRENT_PROJECT_VERSION=15

@@ -314,6 +314,7 @@
 		F36AADEC2B11BD8300D442A1 /* FileProviderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderEnumerator.swift; sourceTree = "<group>"; };
 		F36AADEE2B11BD8300D442A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F36AADEF2B11BD8300D442A1 /* FileProviderMacOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FileProviderMacOS.entitlements; sourceTree = "<group>"; };
+		F36AADFC2B11CBF900D442A1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Utils.swift"; sourceTree = "<group>"; };
 		F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Utils.swift"; sourceTree = "<group>"; };
@@ -537,12 +538,13 @@
 		2B64E95729E6B36A0007B1D0 /* APNs Helper Tester */ = {
 			isa = PBXGroup;
 			children = (
-				F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */,
-				F3CEE6432A1687F300459F71 /* APNs Helper Tester(MacOS).entitlements */,
 				2B64E95829E6B36A0007B1D0 /* APNs Helper Tester(iOS).entitlements */,
+				F3CEE6432A1687F300459F71 /* APNs Helper Tester(MacOS).entitlements */,
+				F36039A52A76665A00A989BC /* APNs-Helper-Tester-Info.plist */,
 				2B64E95A29E6B36A0007B1D0 /* Assets.xcassets */,
-				2B64E95B29E6B36A0007B1D0 /* Preview Content */,
 				2BA110E02AF902A900E62255 /* App */,
+				F36AADFB2B11CBCB00D442A1 /* Configuration */,
+				2B64E95B29E6B36A0007B1D0 /* Preview Content */,
 			);
 			path = "APNs Helper Tester";
 			sourceTree = "<group>";
@@ -801,6 +803,14 @@
 				F36AADEF2B11BD8300D442A1 /* FileProviderMacOS.entitlements */,
 			);
 			path = FileProviderMacOS;
+			sourceTree = "<group>";
+		};
+		F36AADFB2B11CBCB00D442A1 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				F36AADFC2B11CBF900D442A1 /* Config.xcconfig */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 		F3A2173A2B009DBC0039FBC8 /* normal */ = {
@@ -1424,12 +1434,12 @@
 /* Begin XCBuildConfiguration section */
 		2B0839442AEF75F000488752 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = Widgets/Widgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -1465,12 +1475,12 @@
 		};
 		2B0839452AEF75F000488752 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_ENTITLEMENTS = Widgets/Widgets.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -1505,10 +1515,10 @@
 		};
 		2B08DFDF2AF4FE7800488752 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = LocationPushServiceExtension/LocationPushServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1536,10 +1546,10 @@
 		};
 		2B08DFE02AF4FE7800488752 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = LocationPushServiceExtension/LocationPushServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1775,6 +1785,7 @@
 		};
 		2B64E95429E6B3170007B1D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1783,7 +1794,6 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = "APNs Helper Tester/APNs Helper Tester(iOS).entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "APNs Helper Tester/APNs Helper Tester(MacOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"APNs Helper Tester/Preview Content\"";
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1827,6 +1837,7 @@
 		};
 		2B64E95529E6B3170007B1D0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1835,7 +1846,6 @@
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphonesimulator*]" = "APNs Helper Tester/APNs Helper Tester(iOS).entitlements";
 				"CODE_SIGN_ENTITLEMENTS[sdk=macosx*]" = "APNs Helper Tester/APNs Helper Tester(MacOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"APNs Helper Tester/Preview Content\"";
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1879,10 +1889,10 @@
 		};
 		2BD842172A14ECFD008D2A86 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = FileProviderExtension/FileProviderExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FileProviderExtension/Info.plist;
@@ -1906,10 +1916,10 @@
 		};
 		2BD842182A14ECFD008D2A86 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = FileProviderExtension/FileProviderExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FileProviderExtension/Info.plist;
@@ -1934,9 +1944,9 @@
 		};
 		2BD842192A14ECFD008D2A86 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FileProviderExtensionUI/Info.plist;
@@ -1960,9 +1970,9 @@
 		};
 		2BD8421A2A14ECFD008D2A86 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FileProviderExtensionUI/Info.plist;
@@ -1987,9 +1997,9 @@
 		};
 		2BD842312A14ED38008D2A86 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -2013,9 +2023,9 @@
 		};
 		2BD842322A14ED38008D2A86 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationContentExtension/Info.plist;
@@ -2040,12 +2050,12 @@
 		};
 		2BD842402A14ED48008D2A86 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
@@ -2069,12 +2079,12 @@
 		};
 		2BD842412A14ED48008D2A86 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
@@ -2155,10 +2165,10 @@
 		};
 		F36AADF42B11BD8300D442A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = FileProviderMacOS/FileProviderMacOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
@@ -2185,10 +2195,10 @@
 		};
 		F36AADF52B11BD8300D442A1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F36AADFC2B11CBF900D442A1 /* Config.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = FileProviderMacOS/FileProviderMacOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2N62934Y28;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
