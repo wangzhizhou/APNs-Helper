@@ -1,17 +1,17 @@
 //
 //  FileProviderEnumerator.swift
-//  FileProviderExtension
+//  FileProviderMacOS
 //
-//  Created by joker on 2023/5/17.
+//  Created by joker on 11/25/23.
 //
 
 import FileProvider
 
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
-
+    
     private let enumeratedItemIdentifier: NSFileProviderItemIdentifier
     private let anchor = NSFileProviderSyncAnchor("an anchor".data(using: .utf8)!)
-
+    
     init(enumeratedItemIdentifier: NSFileProviderItemIdentifier) {
         self.enumeratedItemIdentifier = enumeratedItemIdentifier
         super.init()
@@ -37,7 +37,7 @@ class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
         observer.didEnumerate([FileProviderItem(identifier: NSFileProviderItemIdentifier("a_test_file"))])
         observer.finishEnumerating(upTo: nil)
     }
-
+    
     func enumerateChanges(for observer: NSFileProviderChangeObserver, from anchor: NSFileProviderSyncAnchor) {
         /*
          - query the server for updates since the passed-in sync anchor

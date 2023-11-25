@@ -10,5 +10,14 @@ import FileProvider
 extension NSFileProviderManager {
 
     static func setup() {
+
+        guard let bundleIdentifier = Bundle.main.bundleIdentifier
+        else {
+            return
+        }
+        
+        NSFileProviderManager.add(.init(identifier: .init(bundleIdentifier), displayName: "fileProvider")) { error in
+            error?.localizedDescription.printDebugInfo()
+        }
     }
 }
