@@ -15,7 +15,7 @@
       "location" : "https://github.com/wangzhizhou/APNSwift.git",
       "state" : {
         "branch" : "main",
-        "revision" : "2cd295ee97352da93f013f8a7ce2a9f7e20967ca"
+        "revision" : "50a6fb8508604f0ee2d73674f49b5015725096f4"
       }
     },
     {
@@ -59,8 +59,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/OrzGeeker/OrzSwiftLint.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "08ba3a12394478c5d4aa78347a34c371c7dec277"
+        "revision" : "08ba3a12394478c5d4aa78347a34c371c7dec277",
+        "version" : "0.0.1"
       }
     },
     {
