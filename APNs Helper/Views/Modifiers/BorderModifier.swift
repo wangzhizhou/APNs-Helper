@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct BorderModifier: ViewModifier {
-
+    
     let color: Color
     var padding: CGFloat = 10
-
+    
     func body(content: Content) -> some View {
         return content
             .padding(padding)

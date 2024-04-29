@@ -9,25 +9,20 @@ import SwiftUI
 
 @main
 struct APNsHelperApp: App {
+
 #if os(macOS) && DEBUG
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
 #if os(iOS) && DEBUG
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
-    @State private var model = AppModel()
+
     var body: some Scene {
-        WindowGroup {
-            AppContent()
-#if os(macOS)
-                .frame(maxWidth: 632, minHeight: 828, maxHeight: 828)
-#endif
-                .environment(model)
-                .modelContainer(model.modelContainer)
-        }
-#if os(macOS)
-        .windowResizability(.contentSize)
-        .windowStyle(.hiddenTitleBar)
+
+#if os(macOS) && false
+        MacOSScene()
+#else
+        AppScene()
 #endif
     }
 }

@@ -58,6 +58,10 @@
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
 		2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */; };
 		2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3E89029FBB7BB00B90602 /* Constants.swift */; };
+		2BBBCFEA2BDF646000C63662 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFE92BDF646000C63662 /* ContentView.swift */; };
+		2BBBCFEC2BDF851600C63662 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFEB2BDF851600C63662 /* SettingsView.swift */; };
+		2BBBCFF12BDF85B400C63662 /* MacOSScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF02BDF85B400C63662 /* MacOSScene.swift */; platformFilters = (macos, ); };
+		2BBBCFF42BDF860600C63662 /* AppScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF32BDF860600C63662 /* AppScene.swift */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
@@ -251,6 +255,10 @@
 		2BB3E88C29FBA30B00B90602 /* APNs-Helper-Info-debug.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Info-debug.plist"; sourceTree = "<group>"; };
 		2BB3E88D29FBA30B00B90602 /* APNs-Helper-Info-release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "APNs-Helper-Info-release.plist"; sourceTree = "<group>"; };
 		2BB3E89029FBB7BB00B90602 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2BBBCFE92BDF646000C63662 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		2BBBCFEB2BDF851600C63662 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2BBBCFF02BDF85B400C63662 /* MacOSScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSScene.swift; sourceTree = "<group>"; };
+		2BBBCFF32BDF860600C63662 /* AppScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScene.swift; sourceTree = "<group>"; };
 		2BBDDE7628E494440052DC28 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
 		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsService.swift; sourceTree = "<group>"; };
@@ -527,9 +535,8 @@
 			isa = PBXGroup;
 			children = (
 				2B35F72C28DEAB17009EF9C9 /* App.swift */,
-				2BBDDE7628E494440052DC28 /* AppContent.swift */,
-				2B505E2729DD25B50010F62D /* AppContentIOS.swift */,
-				2B505E2929DD26230010F62D /* AppContentMacOS.swift */,
+				2BBBCFEE2BDF857500C63662 /* NewUI */,
+				2BBBCFF22BDF85F400C63662 /* OldUI */,
 				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
 			);
 			path = App;
@@ -628,6 +635,27 @@
 				2B35F73528DEAB18009EF9C9 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		2BBBCFEE2BDF857500C63662 /* NewUI */ = {
+			isa = PBXGroup;
+			children = (
+				2BBBCFE92BDF646000C63662 /* ContentView.swift */,
+				2BBBCFEB2BDF851600C63662 /* SettingsView.swift */,
+				2BBBCFF02BDF85B400C63662 /* MacOSScene.swift */,
+			);
+			path = NewUI;
+			sourceTree = "<group>";
+		};
+		2BBBCFF22BDF85F400C63662 /* OldUI */ = {
+			isa = PBXGroup;
+			children = (
+				2BBDDE7628E494440052DC28 /* AppContent.swift */,
+				2B505E2729DD25B50010F62D /* AppContentIOS.swift */,
+				2B505E2929DD26230010F62D /* AppContentMacOS.swift */,
+				2BBBCFF32BDF860600C63662 /* AppScene.swift */,
+			);
+			path = OldUI;
 			sourceTree = "<group>";
 		};
 		2BD841FB2A14ECFC008D2A86 /* FileProviderExtension */ = {
@@ -1221,6 +1249,7 @@
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
 				2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */,
+				2BBBCFEA2BDF646000C63662 /* ContentView.swift in Sources */,
 				2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */,
 				2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
 				2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */,
@@ -1231,13 +1260,16 @@
 				F33327E52AEE7B9400EB6C49 /* LiveActivityNotificationView.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
 				2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */,
+				2BBBCFF12BDF85B400C63662 /* MacOSScene.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
+				2BBBCFF42BDF860600C63662 /* AppScene.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
 				2B0031742A0E0306009BEACD /* IOSCodeEditor.swift in Sources */,
 				2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,
 				F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */,
 				2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */,
+				2BBBCFEC2BDF851600C63662 /* SettingsView.swift in Sources */,
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
 				2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */,
 				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
