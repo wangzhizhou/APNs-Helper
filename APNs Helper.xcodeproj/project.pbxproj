@@ -63,6 +63,7 @@
 		2BBBCFF12BDF85B400C63662 /* MacOSScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF02BDF85B400C63662 /* MacOSScene.swift */; platformFilters = (macos, ); };
 		2BBBCFF42BDF860600C63662 /* AppScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF32BDF860600C63662 /* AppScene.swift */; };
 		2BBBCFFE2BDFD4BB00C63662 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 2BBBCFFD2BDFD4BB00C63662 /* SwiftUIX */; };
+		2BBBD0032BDFDDDB00C63662 /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 2BBBD0022BDFDDDB00C63662 /* Utils */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
@@ -356,6 +357,7 @@
 				F3C9772F2AD715920020B200 /* APNSCore in Frameworks */,
 				2BBBCFFE2BDFD4BB00C63662 /* SwiftUIX in Frameworks */,
 				F3C9772D2AD715920020B200 /* APNS in Frameworks */,
+				2BBBD0032BDFDDDB00C63662 /* Utils in Frameworks */,
 				2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,6 +933,7 @@
 				F3C9772C2AD715920020B200 /* APNS */,
 				F3C9772E2AD715920020B200 /* APNSCore */,
 				2BBBCFFD2BDFD4BB00C63662 /* SwiftUIX */,
+				2BBBD0022BDFDDDB00C63662 /* Utils */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -2436,6 +2439,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */;
 			productName = SwiftUIX;
+		};
+		2BBBD0022BDFDDDB00C63662 /* Utils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */;
+			productName = Utils;
 		};
 		F360B9762A0FDC8C00CDD8BD /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
