@@ -62,6 +62,7 @@
 		2BBBCFEC2BDF851600C63662 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFEB2BDF851600C63662 /* SettingsView.swift */; };
 		2BBBCFF12BDF85B400C63662 /* MacOSScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF02BDF85B400C63662 /* MacOSScene.swift */; platformFilters = (macos, ); };
 		2BBBCFF42BDF860600C63662 /* AppScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF32BDF860600C63662 /* AppScene.swift */; };
+		2BBBCFF72BDF8B7300C63662 /* FeedBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF62BDF8B7300C63662 /* FeedBackButton.swift */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
@@ -259,6 +260,7 @@
 		2BBBCFEB2BDF851600C63662 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2BBBCFF02BDF85B400C63662 /* MacOSScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSScene.swift; sourceTree = "<group>"; };
 		2BBBCFF32BDF860600C63662 /* AppScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScene.swift; sourceTree = "<group>"; };
+		2BBBCFF62BDF8B7300C63662 /* FeedBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackButton.swift; sourceTree = "<group>"; };
 		2BBDDE7628E494440052DC28 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
 		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsService.swift; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				2BD8018C2A0A575600DDD17E /* SendButtonArea.swift */,
 				2BD8018E2A0A5CD000DDD17E /* TokenView.swift */,
 				2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */,
+				2BBBCFF62BDF8B7300C63662 /* FeedBackButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1269,6 +1272,7 @@
 				2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,
 				F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */,
 				2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */,
+				2BBBCFF72BDF8B7300C63662 /* FeedBackButton.swift in Sources */,
 				2BBBCFEC2BDF851600C63662 /* SettingsView.swift in Sources */,
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
 				2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */,

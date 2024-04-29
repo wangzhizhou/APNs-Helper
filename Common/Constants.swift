@@ -45,6 +45,7 @@ enum Constants: String {
     case clearPayload = "Clear Payload"
     case tipForNotReady = "The App Info is not ready for send push!"
     case importAppInfoOnPasteboard = "Import From Pasteboard"
+    case feedbackEmail = "824219521@qq.com"
 
     var value: String {
         self.rawValue

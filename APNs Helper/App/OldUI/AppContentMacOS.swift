@@ -105,6 +105,12 @@ struct AppContentMacOS: View {
                 .padding(.vertical, 10)
 
                 HStack {
+                    
+                    FeedBackButton(email: Constants.feedbackEmail.value)
+                        .frame(width: 50)
+                        .tint(.teal)
+                        .buttonStyle(BorderedProminentButtonStyle())
+
                     Button(Constants.clearIfExist.value) {
                         clearCurrentConfigPresetIfExist()
                     }

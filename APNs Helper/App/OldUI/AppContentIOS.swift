@@ -27,6 +27,12 @@ struct AppContentIOS: View {
         VStack {
             ScrollViewReader { scrollView in
                 Form {
+                    HStack {
+                        Spacer()
+                        FeedBackButton(email: Constants.feedbackEmail.value)
+                            .tint(.teal)
+                        Spacer()
+                    }
                     // Preset
                     if !presets.isEmpty {
                         PresetPicker(presets: presets, selectedPreset: $contentModel.presetConfig) { preset in
