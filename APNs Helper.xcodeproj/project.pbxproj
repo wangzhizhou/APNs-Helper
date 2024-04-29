@@ -62,7 +62,7 @@
 		2BBBCFEC2BDF851600C63662 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFEB2BDF851600C63662 /* SettingsView.swift */; };
 		2BBBCFF12BDF85B400C63662 /* MacOSScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF02BDF85B400C63662 /* MacOSScene.swift */; platformFilters = (macos, ); };
 		2BBBCFF42BDF860600C63662 /* AppScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF32BDF860600C63662 /* AppScene.swift */; };
-		2BBBCFF72BDF8B7300C63662 /* FeedBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBBCFF62BDF8B7300C63662 /* FeedBackButton.swift */; };
+		2BBBCFFE2BDFD4BB00C63662 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 2BBBCFFD2BDFD4BB00C63662 /* SwiftUIX */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
@@ -260,7 +260,6 @@
 		2BBBCFEB2BDF851600C63662 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		2BBBCFF02BDF85B400C63662 /* MacOSScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSScene.swift; sourceTree = "<group>"; };
 		2BBBCFF32BDF860600C63662 /* AppScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScene.swift; sourceTree = "<group>"; };
-		2BBBCFF62BDF8B7300C63662 /* FeedBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBackButton.swift; sourceTree = "<group>"; };
 		2BBDDE7628E494440052DC28 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
 		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsService.swift; sourceTree = "<group>"; };
@@ -355,6 +354,7 @@
 				2B0031662A0DEAFF009BEACD /* Highlightr in Frameworks */,
 				2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */,
 				F3C9772F2AD715920020B200 /* APNSCore in Frameworks */,
+				2BBBCFFE2BDFD4BB00C63662 /* SwiftUIX in Frameworks */,
 				F3C9772D2AD715920020B200 /* APNS in Frameworks */,
 				2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */,
 			);
@@ -601,7 +601,6 @@
 				2BD8018C2A0A575600DDD17E /* SendButtonArea.swift */,
 				2BD8018E2A0A5CD000DDD17E /* TokenView.swift */,
 				2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */,
-				2BBBCFF62BDF8B7300C63662 /* FeedBackButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -931,6 +930,7 @@
 				2B00316A2A0DFF6F009BEACD /* PrettierBabel */,
 				F3C9772C2AD715920020B200 /* APNS */,
 				F3C9772E2AD715920020B200 /* APNSCore */,
+				2BBBCFFD2BDFD4BB00C63662 /* SwiftUIX */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -1124,6 +1124,7 @@
 				2B0031692A0DFF6F009BEACD /* XCRemoteSwiftPackageReference "Prettier" */,
 				2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */,
 				F3C9772B2AD715920020B200 /* XCRemoteSwiftPackageReference "APNSwift" */,
+				2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -1272,7 +1273,6 @@
 				2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,
 				F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */,
 				2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */,
-				2BBBCFF72BDF8B7300C63662 /* FeedBackButton.swift in Sources */,
 				2BBBCFEC2BDF851600C63662 /* SettingsView.swift in Sources */,
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
 				2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */,
@@ -2393,6 +2393,14 @@
 				minimumVersion = 0.0.1;
 			};
 		};
+		2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OrzGeeker/OrzSwiftKit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		F3C9772B2AD715920020B200 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/wangzhizhou/APNSwift.git";
@@ -2423,6 +2431,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */;
 			productName = "plugin:OrzSwiftLintBuildToolPlugin";
+		};
+		2BBBCFFD2BDFD4BB00C63662 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */;
+			productName = SwiftUIX;
 		};
 		F360B9762A0FDC8C00CDD8BD /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;

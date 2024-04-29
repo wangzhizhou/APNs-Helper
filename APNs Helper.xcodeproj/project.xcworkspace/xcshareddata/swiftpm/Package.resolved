@@ -1,5 +1,15 @@
 {
+  "originHash" : "fdcc76e6a7b5b5f9b44128f03394c44ca1508c7a4f5e04bb4197e9b16a0c3fc4",
   "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
+        "version" : "5.9.1"
+      }
+    },
     {
       "identity" : "alerttoast",
       "kind" : "remoteSourceControl",
@@ -15,7 +25,7 @@
       "location" : "https://github.com/wangzhizhou/APNSwift.git",
       "state" : {
         "branch" : "main",
-        "revision" : "50a6fb8508604f0ee2d73674f49b5015725096f4"
+        "revision" : "c6c72d07b4f92102fb57c75fe45083a0de18eb78"
       }
     },
     {
@@ -37,6 +47,15 @@
       }
     },
     {
+      "identity" : "console-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/console-kit.git",
+      "state" : {
+        "revision" : "a31f44ebfbd15a2cc0fda705279676773ac16355",
+        "version" : "4.14.1"
+      }
+    },
+    {
       "identity" : "cryptoswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
@@ -52,6 +71,15 @@
       "state" : {
         "revision" : "93199b9e434f04bda956a613af8f571933f9f037",
         "version" : "2.1.2"
+      }
+    },
+    {
+      "identity" : "orzswiftkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/OrzGeeker/OrzSwiftKit.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "86287243e3ba70d52228d5350bc2702991377184"
       }
     },
     {
@@ -113,8 +141,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-crypto.git",
       "state" : {
-        "revision" : "60f13f60c4d093691934dc6cfdf5f508ada1f894",
-        "version" : "2.6.0"
+        "revision" : "f0525da24dc3c6cbb2b6b338b65042bc91cbc4bb",
+        "version" : "3.3.0"
       }
     },
     {
@@ -226,5 +254,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

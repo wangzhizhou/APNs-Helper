@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import SwiftUIX
 
 struct AppContentMacOS: View {
 
