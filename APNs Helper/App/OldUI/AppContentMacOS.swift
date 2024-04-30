@@ -108,14 +108,15 @@ struct AppContentMacOS: View {
                 HStack {
                     
                     FeedBackButton(email: Constants.feedbackEmail.value)
-                        .frame(width: 50)
+                        .frame(width: 30)
                         .tint(.teal)
                         .buttonStyle(BorderedProminentButtonStyle())
+
+                    Spacer()
 
                     Button(Constants.clearIfExist.value) {
                         clearCurrentConfigPresetIfExist()
                     }
-                    Spacer()
 #if DEBUG
                     Button(Constants.importAppInfoOnPasteboard.value, action: importAppInfoOnPasteboard)
                     Toggle(isOn: $contentModel.isInTestMode) {
