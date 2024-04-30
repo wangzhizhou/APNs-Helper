@@ -60,7 +60,7 @@ struct ContentView: View {
                 Text("SideBar")
                     .toolbar(removing: .sidebarToggle)
             } content: {
-                Form(content: {
+                Form {
                     Section {
                         HStack {
                             Picker("Presets", selection: $preset) {
@@ -119,7 +119,7 @@ struct ContentView: View {
                     Section("Log") {
                         TextEditor(text: $logReadOnlyEditorContent)
                     }
-                })
+                }
                 .formStyle(GroupedFormStyle())
                 .toolbar {
                     ToolbarItem {
