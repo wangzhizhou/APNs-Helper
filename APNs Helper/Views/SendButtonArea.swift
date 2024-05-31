@@ -52,8 +52,8 @@ struct SendButtonArea: View {
                     }
                     appModel.isSendingPush = true
                     appModel.resetLog()
-                    if let payloadData = contentModel.payload.data(using: .utf8) {
-                        _ = try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
+                    if let payload = contentModel.payload.model {
+                        _ = try? await APNsService(config: config, payload: payload, appModel: appModel).send()
                     }
                     appModel.isSendingPush = false
                 }

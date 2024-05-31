@@ -50,7 +50,6 @@ extension APNsService {
                 priority: .immediately,
                 appID: config.appBundleID
             )
-            .payload
         case .liveactivity:
             payload = APNSLiveActivityNotification(
                 expiration: .immediately,

@@ -11,6 +11,7 @@ import SystemConfiguration
 import NIO
 import APNS
 import APNSCore
+import AnyCodable
 
 enum APNServerEnv: String, CaseIterable, Codable {
     case sandbox
@@ -82,15 +83,15 @@ struct APNsService {
     
     let config: Config
     
-    var payloadData: Data
+    var payload: AnyCodable
 
     let appModel: AppModel
     
     let logger: Logger
 
-    init(config: Config, payloadData: Data, appModel: AppModel) {
+    init(config: Config, payload: AnyCodable, appModel: AppModel) {
         self.config = config
-        self.payloadData = payloadData
+        self.payload = payload
         self.appModel = appModel
         self.logger = Logger(label: "APNs Helper") { _ in
             AppLogHandler(appModel: appModel)
@@ -135,7 +136,7 @@ struct APNsService {
                         expiration: .immediately,
                         priority: .immediately,
                         topic: config.appBundleID,
-                        rawPayloadData: payloadData
+                        payload: payload
                     ),
                     deviceToken: config.deviceToken)
             case .background:
@@ -143,7 +144,7 @@ struct APNsService {
                     .init(
                         expiration: .immediately,
                         topic: config.appBundleID,
-                        rawPayloadData: payloadData
+                        payload: payload
                     ),
                     deviceToken: config.deviceToken)
             case .voip:
@@ -151,7 +152,7 @@ struct APNsService {
                     .init(
                         priority: .immediately,
                         appID: config.appBundleID,
-                        rawPayloadData: payloadData
+                        payload: payload
                     ),
                     deviceToken: config.pushKitVoIPToken)
             case .fileprovider:
@@ -159,15 +160,14 @@ struct APNsService {
                     .init(
                         expiration: .immediately,
                         appID: config.appBundleID,
-                        rawPayloadData: payloadData
+                        payload: payload
                     ),
                     deviceToken: config.pushKitFileProviderToken)
             case .location:
                 response = try await client?.sendLocationNotification(
                     .init(
                         priority: .immediately,
-                        appID: config.appBundleID,
-                        rawPayloadData: payloadData
+                        appID: config.appBundleID
                     ),
                     deviceToken: config.locationPushServiceToken)
             case .liveactivity:
@@ -179,8 +179,7 @@ struct APNsService {
                     contentState: EmptyPayload(),
                     event: .update,
                     timestamp: 0,
-                    dismissalDate: .immediately,
-                    rawPayloadData: payloadData
+                    dismissalDate: .immediately
                 )
                 
                 response = try await client?.sendLiveActivityNotification(

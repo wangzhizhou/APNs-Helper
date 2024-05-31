@@ -54,3 +54,14 @@ extension String {
 extension Notification.Name {
     static let APNSHelperStringCopyedToPastedboard = Notification.Name("APNSHelperStringCopyedToPastedboard")
 }
+
+import AnyCodable
+extension String {
+    var model: AnyCodable? {
+        guard let data = self.data(using: .utf8)
+        else {
+            return nil
+        }
+        return try? JSONDecoder().decode(AnyCodable.self, from: data)
+    }
+}
