@@ -1052,6 +1052,8 @@
 			dependencies = (
 			);
 			name = "APNs Helper Doc";
+			packageProductDependencies = (
+			);
 			productName = "APNs Helper Doc";
 			productReference = F369DD182A0A9E890061DF8A /* APNs Helper Doc.app */;
 			productType = "com.apple.product-type.application";
@@ -1132,6 +1134,7 @@
 				2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */,
 				2B4DBFE62C09D43B00B6327C /* XCRemoteSwiftPackageReference "anycodable" */,
 				2B4DBFE92C09D47800B6327C /* XCRemoteSwiftPackageReference "APNSwift" */,
+				E203E9DC2C3518F000014D6E /* XCRemoteSwiftPackageReference "swift-docc-plugin" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -2420,8 +2423,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OrzGeeker/OrzSwiftKit.git";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.0.1;
+				branch = main;
+				kind = branch;
+			};
+		};
+		E203E9DC2C3518F000014D6E /* XCRemoteSwiftPackageReference "swift-docc-plugin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-docc-plugin.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
