@@ -49,6 +49,10 @@ extension String {
     var intValue: Int? {
         return Int(self)
     }
+    
+    var utf8Data: Data {
+        return Data(self.utf8)
+    }
 }
 
 extension Notification.Name {

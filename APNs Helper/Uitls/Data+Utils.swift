@@ -16,5 +16,6 @@ extension Data {
 //            return []
 //        }
 //    }
-
+    
+    var toUTF8String: String { String(decoding: self, as: UTF8.self) }
 }

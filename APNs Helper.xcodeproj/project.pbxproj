@@ -2413,8 +2413,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OrzGeeker/OrzSwiftLint.git";
 			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 0.0.2;
+				branch = main;
+				kind = branch;
 			};
 		};
 		2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */ = {

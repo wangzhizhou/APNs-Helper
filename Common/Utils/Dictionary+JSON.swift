@@ -13,6 +13,6 @@ extension Dictionary where Key == String {
         guard let jsonData = try? JSONSerialization.data(withJSONObject: self, options: []) else {
             return nil
         }
-        return String(data: jsonData, encoding: .utf8)
+        return jsonData.toUTF8String
     }
 }

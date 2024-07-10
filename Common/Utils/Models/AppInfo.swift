@@ -24,10 +24,11 @@ struct AppInfo: Codable {
 extension AppInfo {
 
     var jsonString: String? {
-        if let data = try? Self.jsonEncoder.encode(self) {
-            return String(data: data, encoding: .utf8)
+        guard let data = try? Self.jsonEncoder.encode(self)
+        else {
+            return nil
         }
-        return nil
+        return data.toUTF8String
     }
     
     private static let jsonEncoder: JSONEncoder = {

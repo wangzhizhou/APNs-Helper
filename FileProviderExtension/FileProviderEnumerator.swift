@@ -10,7 +10,7 @@ import FileProvider
 class FileProviderEnumerator: NSObject, NSFileProviderEnumerator {
 
     private let enumeratedItemIdentifier: NSFileProviderItemIdentifier
-    private let anchor = NSFileProviderSyncAnchor("an anchor".data(using: .utf8)!)
+    private let anchor = NSFileProviderSyncAnchor(Data("an anchor".utf8))
 
     init(enumeratedItemIdentifier: NSFileProviderItemIdentifier) {
         self.enumeratedItemIdentifier = enumeratedItemIdentifier

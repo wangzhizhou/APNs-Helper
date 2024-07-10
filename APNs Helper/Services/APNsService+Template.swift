@@ -74,10 +74,10 @@ extension Encodable {
             .sortedKeys,
             .withoutEscapingSlashes
         ]
-        if let data = try? jsonEncoder.encode(self) {
-            return String(data: data, encoding: .utf8)
-        } else {
+        guard let data = try? jsonEncoder.encode(self)
+        else {
             return nil
         }
+        return data.toUTF8String
     }
 }

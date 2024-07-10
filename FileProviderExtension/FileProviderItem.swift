@@ -32,7 +32,7 @@ class FileProviderItem: NSObject, NSFileProviderItem {
     }
 
     var itemVersion: NSFileProviderItemVersion {
-        NSFileProviderItemVersion(contentVersion: "a content version".data(using: .utf8)!, metadataVersion: "a metadata version".data(using: .utf8)!)
+        NSFileProviderItemVersion(contentVersion: Data("a content version".utf8), metadataVersion: Data("a metadata version".utf8))
     }
 
     var filename: String {

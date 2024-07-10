@@ -15,9 +15,10 @@ extension URL {
         defer {
             self.stopAccessingSecurityScopedResource()
         }
-        guard let data = try? Data(contentsOf: self), let content = String(data: data, encoding: .utf8) else {
+        guard let data = try? Data(contentsOf: self)
+        else {
             return nil
         }
-        return content
+        return data.toUTF8String
     }
 }
