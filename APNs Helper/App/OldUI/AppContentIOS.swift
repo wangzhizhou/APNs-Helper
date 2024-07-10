@@ -45,7 +45,7 @@ struct AppContentIOS: View {
                     // Push Type & APN Server
                     Section(Constants.apnserver.value) {
                         Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
-                            ForEach(PushType.allCases.filter {
+                            ForEach(APNPushType.allCases.filter {
                                 !contentModel.isInTestMode || $0 != .fileprovider
                             }, id: \.self) {
                                 Text($0.rawValue).tag($0)
