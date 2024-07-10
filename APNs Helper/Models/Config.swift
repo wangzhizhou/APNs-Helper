@@ -32,7 +32,7 @@ final class Config {
     var pushType: APNPushType = .alert
     
     @Transient
-    var apnsServerEnv: APNServerEnv = .sandbox
+    var apnsServerEnv: APNServerEnv = .development
     
     init(
         deviceToken: String,
@@ -45,7 +45,7 @@ final class Config {
         keyIdentifier: String,
         teamIdentifier: String,
         pushType: APNPushType  = .alert,
-        apnsServerEnv: APNServerEnv = .sandbox) {
+        apnsServerEnv: APNServerEnv = .development) {
             self.deviceToken = deviceToken
             self.pushKitVoIPToken = pushKitVoIPToken
             self.pushKitFileProviderToken = pushKitFileProviderToken

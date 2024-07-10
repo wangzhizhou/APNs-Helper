@@ -9,7 +9,7 @@ import Foundation
 import APNSCore
 
 enum APNServerEnv: String, CaseIterable, Codable {
-    case sandbox
+    case development
     case production
 }
 
@@ -17,8 +17,8 @@ extension APNServerEnv {
     
     var env: APNSEnvironment {
         switch self {
-        case .sandbox:
-            return .sandbox
+        case .development:
+            return .development
         case .production:
             return .production
         }
@@ -29,7 +29,7 @@ extension APNServerEnv {
         
         var hostname: String?
         switch self {
-        case .sandbox:
+        case .development:
             hostname = "api.development.push.apple.com"
         case .production:
             hostname = "api.push.apple.com"

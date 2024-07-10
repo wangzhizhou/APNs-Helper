@@ -17,7 +17,7 @@ enum SelectionType: String, CaseIterable {
 }
 
 enum EnvironmentType: String, CaseIterable {
-    case sandbox
+    case development
     case production
 }
 
@@ -45,7 +45,7 @@ enum SendResultError: Error {
 struct ContentView: View {
     @State private var input: String = ""
     @State private var selection: SelectionType = .alert
-    @State private var environment: EnvironmentType = .sandbox
+    @State private var environment: EnvironmentType = .development
     @State private var preset: String = "App1"
     @State private var payload: String = "{\"hello\": \"value\"}"
     @State private var sendResult: SendResult = .failure(error: .network)
