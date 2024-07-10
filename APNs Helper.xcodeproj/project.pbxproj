@@ -49,10 +49,8 @@
 		2B64E97629E6BAC80007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */; };
 		2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotification.swift */; };
 		2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FEF29E6A4B30013237F /* CallKitManager.swift */; platformFilter = ios; };
-		2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */; };
 		2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */; };
 		2B64E98129E6C8180007B1D0 /* UNUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */; };
-		2B64E98829E6CD690007B1D0 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */; };
 		2BA110D32AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */; };
 		2BA110D42AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */; };
 		2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */; };
@@ -135,6 +133,8 @@
 		F36FAC322C3EFD8E00376331 /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC312C3EFD8E00376331 /* AnyCodable */; };
 		F36FAC362C3F017300376331 /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC352C3F017300376331 /* APNS */; };
 		F36FAC382C3F017300376331 /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC372C3F017300376331 /* APNSCore */; };
+		F36FAC3D2C3F04A900376331 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
+		F36FAC402C3F059400376331 /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC3F2C3F059400376331 /* AnyCodable */; };
 		F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
 		F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */; };
 		F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */; };
@@ -254,7 +254,6 @@
 		2B64E95D29E6B36A0007B1D0 /* TesterApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesterApp.swift; sourceTree = "<group>"; };
 		2B64E95E29E6B36A0007B1D0 /* TesterAppModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TesterAppModel.swift; sourceTree = "<group>"; };
 		2B64E95F29E6B36A0007B1D0 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
 		2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UNUserNotificationManager.swift; sourceTree = "<group>"; };
 		2B74CA5D2AF8D6F800498521 /* LocationPushServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LocationPushServiceExtension.entitlements; sourceTree = "<group>"; };
 		2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+JSON.swift"; sourceTree = "<group>"; };
@@ -378,6 +377,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F36FAC402C3F059400376331 /* AnyCodable in Frameworks */,
 				F360B9772A0FDC8C00CDD8BD /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,7 +583,6 @@
 		2B64E98B29E6CD720007B1D0 /* Uitls */ = {
 			isa = PBXGroup;
 			children = (
-				F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */,
 				F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */,
 				F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */,
 				2BD846552A165BDE008D2A86 /* View+Modifiers.swift */,
@@ -890,9 +889,9 @@
 			children = (
 				2BD8464F2A164A87008D2A86 /* Models */,
 				2B40E2AB29DE756500E484FB /* String+Utils.swift */,
-				2B64E97A29E6BB950007B1D0 /* Data+Hex.swift */,
 				2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */,
 				F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */,
+				F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -989,6 +988,7 @@
 			name = "APNs Helper Tester";
 			packageProductDependencies = (
 				F360B9762A0FDC8C00CDD8BD /* AlertToast */,
+				F36FAC3F2C3F059400376331 /* AnyCodable */,
 			);
 			productName = "APNs Helper Tester";
 			productReference = 2B64E94829E6B3160007B1D0 /* APNs Helper Tester.app */;
@@ -1285,7 +1285,6 @@
 			files = (
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
-				2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */,
 				2BBBCFEA2BDF646000C63662 /* ContentView.swift in Sources */,
 				2BB3E89129FBB7BB00B90602 /* Constants.swift in Sources */,
 				2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */,
@@ -1352,7 +1351,6 @@
 				F315F0BF2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */,
 				2B64E98129E6C8180007B1D0 /* UNUserNotificationManager.swift in Sources */,
 				2B64E96A29E6BA590007B1D0 /* AppDelegate.swift in Sources */,
-				2B64E98829E6CD690007B1D0 /* Data+Hex.swift in Sources */,
 				2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */,
 				2B64E96B29E6BA5E0007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */,
 				2BA110D42AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */,
@@ -1361,6 +1359,7 @@
 				2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */,
 				2B64E96529E6B36A0007B1D0 /* TesterAppModel.swift in Sources */,
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,
+				F36FAC3D2C3F04A900376331 /* Data+Utils.swift in Sources */,
 				2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */,
 				2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
 				F3521C072AF94C9B009BAE84 /* LiveActivityModel.swift in Sources */,
@@ -2522,6 +2521,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F36FAC342C3F017300376331 /* XCRemoteSwiftPackageReference "APNSwift" */;
 			productName = APNSCore;
+		};
+		F36FAC3F2C3F059400376331 /* AnyCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F36FAC302C3EFD8E00376331 /* XCRemoteSwiftPackageReference "anycodable" */;
+			productName = AnyCodable;
 		};
 		F3F5E8AA2AFEBB330063A1A0 /* OrzSwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
