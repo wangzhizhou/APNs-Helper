@@ -1,5 +1,5 @@
 {
-  "originHash" : "4338645a0d7f4cc923cf339bd94cd97391db93d623fb2691e448fc7fe8f3038b",
+  "originHash" : "0f098ad2e3807e95987839d8b5d55ccaf96b27c424f513300f463b812c07ac02",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -17,15 +17,6 @@
       "state" : {
         "revision" : "b39252eacd159904afd7d718bba0afabb87f2f2f",
         "version" : "1.3.9"
-      }
-    },
-    {
-      "identity" : "anycodable",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/flight-school/anycodable.git",
-      "state" : {
-        "revision" : "862808b2070cd908cb04f9aafe7de83d35f81b05",
-        "version" : "0.6.7"
       }
     },
     {

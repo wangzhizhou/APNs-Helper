@@ -32,9 +32,6 @@
 		2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
 		2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8A529DEE00E00E484FB /* Config+Utils.swift */; };
 		2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2B40F8B429DEEC1000E484FB /* AlertToast */; };
-		2B4DBFE82C09D43B00B6327C /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 2B4DBFE72C09D43B00B6327C /* AnyCodable */; };
-		2B4DBFEB2C09D47800B6327C /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = 2B4DBFEA2C09D47800B6327C /* APNS */; };
-		2B4DBFED2C09D47800B6327C /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2B4DBFEC2C09D47800B6327C /* APNSCore */; };
 		2B505E2829DD25B50010F62D /* AppContentIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2729DD25B50010F62D /* AppContentIOS.swift */; platformFilter = ios; };
 		2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2929DD26230010F62D /* AppContentMacOS.swift */; platformFilters = (macos, ); };
 		2B64E96229E6B36A0007B1D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B64E95A29E6B36A0007B1D0 /* Assets.xcassets */; };
@@ -70,7 +67,6 @@
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
 		2BBDDE7B28E4B0FF0052DC28 /* APNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */; };
-		2BD3323F28E7221200E27D2D /* APNService+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3323E28E7221200E27D2D /* APNService+Template.swift */; };
 		2BD801852A092E4300DDD17E /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
 		2BD801872A09EDBD00DDD17E /* PresetPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD801862A09EDBD00DDD17E /* PresetPicker.swift */; };
 		2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD801882A0A0F3900DDD17E /* P8KeyView.swift */; };
@@ -106,8 +102,14 @@
 		2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */; };
 		2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
 		2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
+		E21B42C92C3ECAF700B8F66A /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = E21B42C82C3ECAF700B8F66A /* APNS */; };
+		E21B42CB2C3ECAF700B8F66A /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = E21B42CA2C3ECAF700B8F66A /* APNSCore */; };
 		E2ADF6D52C3E668800A1FF5C /* APNServerEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */; };
 		E2ADF6D72C3E66CF00A1FF5C /* APNPushType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */; };
+		E2ADF6DA2C3EA9AC00A1FF5C /* Config+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */; };
+		E2ADF6DD2C3EAFCD00A1FF5C /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = E2ADF6DC2C3EAFCD00A1FF5C /* AnyCodable */; };
+		E2CD63222C3EB22800A44663 /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = E2CD63212C3EB22800A44663 /* APNS */; };
+		E2CD63242C3EB22800A44663 /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = E2CD63232C3EB22800A44663 /* APNSCore */; };
 		F315F0BA2AF56AE80012B376 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B92AF56AE80012B376 /* LocationManager.swift */; };
 		F315F0BB2AF56AE80012B376 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B92AF56AE80012B376 /* LocationManager.swift */; };
 		F315F0BE2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */; };
@@ -267,7 +269,6 @@
 		2BBDDE7628E494440052DC28 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
 		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNService.swift; sourceTree = "<group>"; };
-		2BD3323E28E7221200E27D2D /* APNService+Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNService+Template.swift"; sourceTree = "<group>"; };
 		2BD801862A09EDBD00DDD17E /* PresetPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetPicker.swift; sourceTree = "<group>"; };
 		2BD801882A0A0F3900DDD17E /* P8KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P8KeyView.swift; sourceTree = "<group>"; };
 		2BD8018A2A0A3B0100DDD17E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
@@ -307,6 +308,7 @@
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
 		E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNServerEnv.swift; sourceTree = "<group>"; };
 		E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNPushType.swift; sourceTree = "<group>"; };
+		E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Payload.swift"; sourceTree = "<group>"; };
 		F315F0B92AF56AE80012B376 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Location.swift"; sourceTree = "<group>"; };
 		F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotificationView.swift; sourceTree = "<group>"; };
@@ -360,10 +362,12 @@
 				2B0031662A0DEAFF009BEACD /* Highlightr in Frameworks */,
 				2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */,
 				2BBBCFFE2BDFD4BB00C63662 /* SwiftUIX in Frameworks */,
-				2B4DBFED2C09D47800B6327C /* APNSCore in Frameworks */,
+				E2CD63242C3EB22800A44663 /* APNSCore in Frameworks */,
+				E21B42C92C3ECAF700B8F66A /* APNS in Frameworks */,
+				E2ADF6DD2C3EAFCD00A1FF5C /* AnyCodable in Frameworks */,
+				E2CD63222C3EB22800A44663 /* APNS in Frameworks */,
+				E21B42CB2C3ECAF700B8F66A /* APNSCore in Frameworks */,
 				2BBBD0032BDFDDDB00C63662 /* Utils in Frameworks */,
-				2B4DBFEB2C09D47800B6327C /* APNS in Frameworks */,
-				2B4DBFE82C09D43B00B6327C /* AnyCodable in Frameworks */,
 				2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -629,6 +633,7 @@
 			children = (
 				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2B35F76A28DEAF56009EF9C9 /* Config.swift */,
+				E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */,
 				2B40F8A529DEE00E00E484FB /* Config+Utils.swift */,
 				F369DD122A096B0B0061DF8A /* AppContentModel.swift */,
 			);
@@ -777,7 +782,6 @@
 			isa = PBXGroup;
 			children = (
 				2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */,
-				2BD3323E28E7221200E27D2D /* APNService+Template.swift */,
 				E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */,
 				E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */,
 			);
@@ -948,9 +952,11 @@
 				2B00316A2A0DFF6F009BEACD /* PrettierBabel */,
 				2BBBCFFD2BDFD4BB00C63662 /* SwiftUIX */,
 				2BBBD0022BDFDDDB00C63662 /* Utils */,
-				2B4DBFE72C09D43B00B6327C /* AnyCodable */,
-				2B4DBFEA2C09D47800B6327C /* APNS */,
-				2B4DBFEC2C09D47800B6327C /* APNSCore */,
+				E2ADF6DC2C3EAFCD00A1FF5C /* AnyCodable */,
+				E2CD63212C3EB22800A44663 /* APNS */,
+				E2CD63232C3EB22800A44663 /* APNSCore */,
+				E21B42C82C3ECAF700B8F66A /* APNS */,
+				E21B42CA2C3ECAF700B8F66A /* APNSCore */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -1146,9 +1152,8 @@
 				2B0031692A0DFF6F009BEACD /* XCRemoteSwiftPackageReference "Prettier" */,
 				2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */,
 				2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */,
-				2B4DBFE62C09D43B00B6327C /* XCRemoteSwiftPackageReference "anycodable" */,
-				2B4DBFE92C09D47800B6327C /* XCRemoteSwiftPackageReference "APNSwift" */,
 				E203E9DC2C3518F000014D6E /* XCRemoteSwiftPackageReference "swift-docc-plugin" */,
+				E21B42C72C3ECAF700B8F66A /* XCRemoteSwiftPackageReference "APNSwift" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -1316,7 +1321,6 @@
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
 				2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */,
 				2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */,
-				2BD3323F28E7221200E27D2D /* APNService+Template.swift in Sources */,
 				2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */,
 				2B0031682A0DEBEB009BEACD /* PayloadEditor.swift in Sources */,
 				2BD8018D2A0A575600DDD17E /* SendButtonArea.swift in Sources */,
@@ -1325,6 +1329,7 @@
 				2B505E2829DD25B50010F62D /* AppContentIOS.swift in Sources */,
 				2BD8465F2A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
 				2BD8464D2A163F81008D2A86 /* ToastModel.swift in Sources */,
+				E2ADF6DA2C3EA9AC00A1FF5C /* Config+Payload.swift in Sources */,
 				F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */,
 				2BD8018B2A0A3B0100DDD17E /* LogView.swift in Sources */,
 				E2ADF6D52C3E668800A1FF5C /* APNServerEnv.swift in Sources */,
@@ -2409,22 +2414,6 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		2B4DBFE62C09D43B00B6327C /* XCRemoteSwiftPackageReference "anycodable" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/flight-school/anycodable.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.6.7;
-			};
-		};
-		2B4DBFE92C09D47800B6327C /* XCRemoteSwiftPackageReference "APNSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.3;
-			};
-		};
 		2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OrzGeeker/OrzSwiftLint.git";
@@ -2449,6 +2438,14 @@
 				minimumVersion = 1.3.0;
 			};
 		};
+		E21B42C72C3ECAF700B8F66A /* XCRemoteSwiftPackageReference "APNSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -2467,21 +2464,6 @@
 			package = 2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
 		};
-		2B4DBFE72C09D43B00B6327C /* AnyCodable */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B4DBFE62C09D43B00B6327C /* XCRemoteSwiftPackageReference "anycodable" */;
-			productName = AnyCodable;
-		};
-		2B4DBFEA2C09D47800B6327C /* APNS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B4DBFE92C09D47800B6327C /* XCRemoteSwiftPackageReference "APNSwift" */;
-			productName = APNS;
-		};
-		2B4DBFEC2C09D47800B6327C /* APNSCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 2B4DBFE92C09D47800B6327C /* XCRemoteSwiftPackageReference "APNSwift" */;
-			productName = APNSCore;
-		};
 		2B7981692A1F57AC00DF795A /* OrzSwiftLintBuildToolPlugin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B7981682A1F579100DF795A /* XCRemoteSwiftPackageReference "OrzSwiftLint" */;
@@ -2496,6 +2478,28 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */;
 			productName = Utils;
+		};
+		E21B42C82C3ECAF700B8F66A /* APNS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E21B42C72C3ECAF700B8F66A /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNS;
+		};
+		E21B42CA2C3ECAF700B8F66A /* APNSCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E21B42C72C3ECAF700B8F66A /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNSCore;
+		};
+		E2ADF6DC2C3EAFCD00A1FF5C /* AnyCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AnyCodable;
+		};
+		E2CD63212C3EB22800A44663 /* APNS */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = APNS;
+		};
+		E2CD63232C3EB22800A44663 /* APNSCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = APNSCore;
 		};
 		F360B9762A0FDC8C00CDD8BD /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;

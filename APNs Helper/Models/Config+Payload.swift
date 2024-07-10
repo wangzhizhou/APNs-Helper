@@ -1,22 +1,20 @@
 //
-//  APNsService+Template.swift
+//  Config+Payload.swift
 //  APNs Helper
 //
-//  Created by joker on 2022/9/30.
+//  Created by wangzhizhou on 2024/7/10.
 //
 
 import Foundation
-import APNS
 import APNSCore
 
-@available(macOS 11.0, *)
-extension APNsService {
+extension Config {
     
-    static func templatePayload(for config: Config) -> String? {
+    var jsonPayload: String? {
         
         var payload: Encodable
         
-        switch config.pushType {
+        switch self.pushType {
         case .alert:
             payload = APNSAlertNotification(
                 alert: .init(
@@ -26,35 +24,35 @@ extension APNsService {
                 ),
                 expiration: .immediately,
                 priority: .immediately,
-                topic: config.appBundleID
+                topic: self.appBundleID
             )
         case .background:
             payload = APNSBackgroundNotification(
                 expiration: .immediately,
-                topic: config.appBundleID
+                topic: self.appBundleID
             )
         case .voip:
             payload = APNSVoIPNotification(
                 priority: .immediately,
-                appID: config.appBundleID
+                appID: self.appBundleID
             )
             .payload
         case .fileprovider:
             payload = APNSFileProviderNotification(
                 expiration: .immediately,
-                appID: config.appBundleID
+                appID: self.appBundleID
             )
             .payload
         case .location:
             payload = APNSLocationNotification(
                 priority: .immediately,
-                appID: config.appBundleID
+                appID: self.appBundleID
             )
         case .liveactivity:
             payload = APNSLiveActivityNotification(
                 expiration: .immediately,
                 priority: .immediately,
-                appID: config.appBundleID,
+                appID: self.appBundleID,
                 contentState: EmptyPayload(),
                 event: .update,
                 timestamp: Int(Date.now.timeIntervalSince1970),
@@ -63,6 +61,7 @@ extension APNsService {
         }
         
         return payload.jsonString
+        
     }
 }
 

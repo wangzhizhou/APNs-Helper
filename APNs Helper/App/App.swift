@@ -19,7 +19,7 @@ struct APNsHelperApp: App {
 
     var body: some Scene {
 
-#if os(macOS) && true
+#if os(macOS) && false
         MacOSScene()
 #else
         AppScene()

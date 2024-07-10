@@ -94,7 +94,7 @@ extension AppContent {
     }
     
     func loadPayloadTemplate() {
-        if let template = APNsService.templatePayload(for: contentModel.config) {
+        if let template = contentModel.config.jsonPayload {
             contentModel.payload = template
         }
     }

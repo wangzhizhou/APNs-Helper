@@ -81,8 +81,12 @@ class AppModel {
     }
     
     @MainActor func sendPush(with config: Config, payload: AnyCodable) async throws {
-        let apnService = APNsService(config: config, payload: payload, appModel: self)
-        try await apnService.send()
+        do {
+            let apnService = APNsService(config: config, payload: payload, appModel: self)
+            try await apnService.send()
+        } catch let error {
+            error.localizedDescription.printDebugInfo()
+        }
     }
 
     // MARK: Test Mode Config
