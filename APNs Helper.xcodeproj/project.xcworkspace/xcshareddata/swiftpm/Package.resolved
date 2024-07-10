@@ -1,5 +1,5 @@
 {
-  "originHash" : "0f098ad2e3807e95987839d8b5d55ccaf96b27c424f513300f463b812c07ac02",
+  "originHash" : "4338645a0d7f4cc923cf339bd94cd97391db93d623fb2691e448fc7fe8f3038b",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -20,12 +20,21 @@
       }
     },
     {
+      "identity" : "anycodable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/flight-school/anycodable.git",
+      "state" : {
+        "revision" : "862808b2070cd908cb04f9aafe7de83d35f81b05",
+        "version" : "0.6.7"
+      }
+    },
+    {
       "identity" : "apnswift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swift-server-community/APNSwift.git",
       "state" : {
-        "revision" : "31649357ffc70a1300313994419ceed4ee4b309c",
-        "version" : "5.0.3"
+        "branch" : "main",
+        "revision" : "7cfeec89b16f82104ba3cfa27eb86083bf85ffec"
       }
     },
     {
