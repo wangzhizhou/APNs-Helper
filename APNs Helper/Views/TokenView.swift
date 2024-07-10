@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TokenView: View {
 
-    let pushType: PushType
+    let pushType: APNPushType
 
     @Binding var deviceToken: String
     @Binding var pushKitDeviceToken: String

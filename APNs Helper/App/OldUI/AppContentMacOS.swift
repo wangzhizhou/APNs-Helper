@@ -41,7 +41,7 @@ struct AppContentMacOS: View {
             // Push Type & APN Server
             HStack {
                 Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
-                    ForEach(PushType.allCases.filter {
+                    ForEach(APNPushType.allCases.filter {
                         !contentModel.isInTestMode || ($0 != .voip && $0 != .fileprovider)
                     }, id: \.self) {
                         Text($0.rawValue)

@@ -29,7 +29,7 @@ final class Config {
     // Server Info
     
     @Transient
-    var pushType: PushType = .alert
+    var pushType: APNPushType = .alert
     
     @Transient
     var apnsServerEnv: APNServerEnv = .sandbox
@@ -44,7 +44,7 @@ final class Config {
         privateKey: String,
         keyIdentifier: String,
         teamIdentifier: String,
-        pushType: PushType  = .alert,
+        pushType: APNPushType  = .alert,
         apnsServerEnv: APNServerEnv = .sandbox) {
             self.deviceToken = deviceToken
             self.pushKitVoIPToken = pushKitVoIPToken

@@ -69,8 +69,8 @@
 		2BBBD0032BDFDDDB00C63662 /* Utils in Frameworks */ = {isa = PBXBuildFile; productRef = 2BBBD0022BDFDDDB00C63662 /* Utils */; };
 		2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7628E494440052DC28 /* AppContent.swift */; };
 		2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7828E49A770052DC28 /* InputView.swift */; };
-		2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */; };
-		2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3323E28E7221200E27D2D /* APNsService+Template.swift */; };
+		2BBDDE7B28E4B0FF0052DC28 /* APNService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */; };
+		2BD3323F28E7221200E27D2D /* APNService+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD3323E28E7221200E27D2D /* APNService+Template.swift */; };
 		2BD801852A092E4300DDD17E /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
 		2BD801872A09EDBD00DDD17E /* PresetPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD801862A09EDBD00DDD17E /* PresetPicker.swift */; };
 		2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD801882A0A0F3900DDD17E /* P8KeyView.swift */; };
@@ -106,6 +106,8 @@
 		2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */; };
 		2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
 		2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
+		E2ADF6D52C3E668800A1FF5C /* APNServerEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */; };
+		E2ADF6D72C3E66CF00A1FF5C /* APNPushType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */; };
 		F315F0BA2AF56AE80012B376 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B92AF56AE80012B376 /* LocationManager.swift */; };
 		F315F0BB2AF56AE80012B376 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B92AF56AE80012B376 /* LocationManager.swift */; };
 		F315F0BE2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */; };
@@ -264,8 +266,8 @@
 		2BBBCFF32BDF860600C63662 /* AppScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppScene.swift; sourceTree = "<group>"; };
 		2BBDDE7628E494440052DC28 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
 		2BBDDE7828E49A770052DC28 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
-		2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNsService.swift; sourceTree = "<group>"; };
-		2BD3323E28E7221200E27D2D /* APNsService+Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNsService+Template.swift"; sourceTree = "<group>"; };
+		2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNService.swift; sourceTree = "<group>"; };
+		2BD3323E28E7221200E27D2D /* APNService+Template.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APNService+Template.swift"; sourceTree = "<group>"; };
 		2BD801862A09EDBD00DDD17E /* PresetPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetPicker.swift; sourceTree = "<group>"; };
 		2BD801882A0A0F3900DDD17E /* P8KeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P8KeyView.swift; sourceTree = "<group>"; };
 		2BD8018A2A0A3B0100DDD17E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
@@ -303,6 +305,8 @@
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
+		E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNServerEnv.swift; sourceTree = "<group>"; };
+		E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNPushType.swift; sourceTree = "<group>"; };
 		F315F0B92AF56AE80012B376 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Location.swift"; sourceTree = "<group>"; };
 		F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotificationView.swift; sourceTree = "<group>"; };
@@ -614,8 +618,7 @@
 			children = (
 				2BD846612A174291008D2A86 /* Payload */,
 				F360B9722A0FAB4400CDD8BD /* Reachability.swift */,
-				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
-				2BD3323E28E7221200E27D2D /* APNsService+Template.swift */,
+				E2ADF6D22C3E663300A1FF5C /* APNService */,
 				2B0031702A0E02B2009BEACD /* CodeFormatter */,
 			);
 			path = Services;
@@ -768,6 +771,17 @@
 				2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */,
 			);
 			path = UNUserNotification;
+			sourceTree = "<group>";
+		};
+		E2ADF6D22C3E663300A1FF5C /* APNService */ = {
+			isa = PBXGroup;
+			children = (
+				2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */,
+				2BD3323E28E7221200E27D2D /* APNService+Template.swift */,
+				E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */,
+				E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */,
+			);
+			path = APNService;
 			sourceTree = "<group>";
 		};
 		F315F0B82AF56AD90012B376 /* Location */ = {
@@ -1275,7 +1289,7 @@
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
 				2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */,
 				2BBBCFF12BDF85B400C63662 /* MacOSScene.swift in Sources */,
-				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
+				2BBDDE7B28E4B0FF0052DC28 /* APNService.swift in Sources */,
 				2BBBCFF42BDF860600C63662 /* AppScene.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
@@ -1302,16 +1316,18 @@
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
 				2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */,
 				2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */,
-				2BD3323F28E7221200E27D2D /* APNsService+Template.swift in Sources */,
+				2BD3323F28E7221200E27D2D /* APNService+Template.swift in Sources */,
 				2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */,
 				2B0031682A0DEBEB009BEACD /* PayloadEditor.swift in Sources */,
 				2BD8018D2A0A575600DDD17E /* SendButtonArea.swift in Sources */,
 				2B64E97629E6BAC80007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */,
+				E2ADF6D72C3E66CF00A1FF5C /* APNPushType.swift in Sources */,
 				2B505E2829DD25B50010F62D /* AppContentIOS.swift in Sources */,
 				2BD8465F2A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
 				2BD8464D2A163F81008D2A86 /* ToastModel.swift in Sources */,
 				F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */,
 				2BD8018B2A0A3B0100DDD17E /* LogView.swift in Sources */,
+				E2ADF6D52C3E668800A1FF5C /* APNServerEnv.swift in Sources */,
 				F355EB062AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */,
 				2B0031722A0E02DC009BEACD /* MacOSCodeEditor.swift in Sources */,
 				2B64E97529E6BAC80007B1D0 /* AppDelegate.swift in Sources */,

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 import SwiftData
+import AnyCodable
 
 @Observable
 class AppModel {
@@ -77,6 +78,11 @@ class AppModel {
     func clearPresetIfExist(_ config: Config) {
         modelContainer.mainContext.delete(config)
         toastModel = ToastModel.info().title("Remove Exist Preset")
+    }
+    
+    @MainActor func sendPush(with config: Config, payload: AnyCodable) async throws {
+        let apnService = APNsService(config: config, payload: payload, appModel: self)
+        try await apnService.send()
     }
 
     // MARK: Test Mode Config

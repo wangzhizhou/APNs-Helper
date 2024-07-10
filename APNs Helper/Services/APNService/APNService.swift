@@ -13,72 +13,6 @@ import APNS
 import APNSCore
 import AnyCodable
 
-enum APNServerEnv: String, CaseIterable, Codable {
-    case sandbox
-    case production
-}
-
-extension APNServerEnv {
-    
-    var env: APNSEnvironment {
-        switch self {
-        case .sandbox:
-            return .sandbox
-        case .production:
-            return .production
-        }
-    }
-
-    var reachable: Bool {
-        var reachable = false
-
-        var hostname: String?
-        switch self {
-        case .sandbox:
-            hostname = "api.development.push.apple.com"
-        case .production:
-            hostname = "api.push.apple.com"
-        }
-        if let hostname = hostname {
-            do {
-                let reachability = try Reachability(hostname: hostname)
-                reachable = reachability.connection != .unavailable
-            } catch {
-                reachable = false
-            }
-        }
-
-        return reachable
-    }
-}
-
-enum PushType: String, CaseIterable, Codable {
-    case alert
-    case background
-    case voip
-    case fileprovider
-    case location
-    case liveactivity
-}
-extension PushType {
-    var type: APNSPushType {
-        switch self {
-        case .alert:
-            return .alert
-        case .background:
-            return .background
-        case .voip:
-            return .voip
-        case .fileprovider:
-            return .fileprovider
-        case .location:
-            return .location
-        case .liveactivity:
-            return .liveactivity
-        }
-    }
-}
-
 struct APNsService {
     
     let config: Config
@@ -99,6 +33,7 @@ struct APNsService {
     }
 
     // swiftlint: disable function_body_length
+    @discardableResult
     func send() async throws -> Bool {
 
         guard config.apnsServerEnv.reachable
