@@ -77,8 +77,16 @@ final class AppModel {
 
     @MainActor
     func clearPresetIfExist(_ config: Config) {
-        modelContainer.mainContext.delete(config)
-        toastModel = ToastModel.info().title("Remove Exist Preset")
+        let appBundleID = config.appBundleID
+        do {
+            try modelContainer.mainContext.delete(model: Config.self, where: #Predicate {
+                $0.appBundleID == appBundleID
+            })
+            toastModel = ToastModel.info().title("Remove Exist Preset")
+        } catch let error {
+            error.localizedDescription.printDebugInfo()
+            fatalError("delete preset failed!!!")
+        }
     }
     
     @MainActor func sendPush(with config: Config, payload: AnyCodable) async throws {
