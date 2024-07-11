@@ -126,7 +126,7 @@ extension AppContent {
     func refreshTestMode() {
         guard appModel.thisAppInfo.isValid.valid
         else { return }
-//        contentModel.isInTestMode = (contentModel.appInfo == appModel.thisAppInfo)
+        contentModel.isInTestMode = (contentModel.appInfo == appModel.thisAppInfo)
     }
 }
 

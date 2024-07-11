@@ -107,7 +107,7 @@ struct AppContentIOS: View {
                         .onChange(of: contentModel.isInTestMode) { _, mode in
                             if mode {
                                 contentModel.appInfo = appModel.thisAppInfo
-                            } else {
+                            } else if contentModel.appInfo == appModel.thisAppInfo {
                                 contentModel.clearAppInfo()
                             }
                         }

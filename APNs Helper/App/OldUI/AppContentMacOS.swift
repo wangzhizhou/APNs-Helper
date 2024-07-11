@@ -122,7 +122,7 @@ struct AppContentMacOS: View {
                     .onChange(of: contentModel.isInTestMode) { _, newValue in
                         if newValue {
                             contentModel.appInfo = appModel.thisAppInfo
-                        } else {
+                        } else if contentModel.appInfo == appModel.thisAppInfo {
                             contentModel.clearAppInfo()
                         }
                     }
