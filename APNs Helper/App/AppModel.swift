@@ -13,7 +13,7 @@ import AnyCodable
 import Logging
 
 @Observable
-class AppModel {
+final class AppModel {
 
     // MARK: Log
     var appLog: String
@@ -100,7 +100,7 @@ class AppModel {
     }
 
     // MARK: Test Mode Config
-    var thisAppConfig: Config
+    let thisAppConfig: Config
 
     var isSendingPush: Bool
     

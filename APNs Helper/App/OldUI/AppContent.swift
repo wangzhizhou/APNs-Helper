@@ -82,15 +82,18 @@ extension AppContent {
             appModel.toastModel = ToastModel.info().title("No App Info on pasteboard!")
             return
         }
-        contentModel.appInfo.keyIdentifier = appInfo.keyID
-        contentModel.appInfo.teamIdentifier = appInfo.teamID
-        contentModel.appInfo.appBundleID = appInfo.bundleID
-        contentModel.appInfo.privateKey = appInfo.p8Key
-        contentModel.appInfo.deviceToken = appInfo.deviceToken
-        contentModel.appInfo.pushKitVoIPToken = appInfo.voipToken
-        contentModel.appInfo.pushKitFileProviderToken = appInfo.fileProviderToken
-        contentModel.appInfo.locationPushServiceToken = appInfo.locationPushToken
-        contentModel.appInfo.liveActivityPushToken = appInfo.liveActivityPushToken
+        
+        contentModel.appInfo = Config(
+            deviceToken: appInfo.deviceToken,
+            pushKitVoIPToken: appInfo.voipToken,
+            pushKitFileProviderToken: appInfo.fileProviderToken,
+            locationPushServiceToken: appInfo.locationPushToken,
+            liveActivityPushToken: appInfo.liveActivityPushToken,
+            appBundleID: appInfo.bundleID,
+            privateKey: appInfo.p8Key,
+            keyIdentifier: appInfo.keyID,
+            teamIdentifier: appInfo.teamID
+        )
     }
     
     func loadPayloadTemplate() {

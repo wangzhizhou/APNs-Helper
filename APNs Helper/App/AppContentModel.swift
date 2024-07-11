@@ -8,9 +8,9 @@
 import SwiftUI
 
 @Observable
-class AppContentModel {
+final class AppContentModel {
     var presetConfig: Config = .none
-    var appInfo = Config.none
+    var appInfo: Config = .none
     var payload: String = ""
     var showFileImporter: Bool = false
 
