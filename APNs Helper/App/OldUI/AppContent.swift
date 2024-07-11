@@ -114,6 +114,11 @@ extension AppContent {
         Task {
             await MainActor.run {
                 appModel.clearPresetIfExist(contentModel.selectedAppInfo)
+                if appModel.presets.count == 1, let preset = appModel.presets.first, preset == .none {
+                    appModel.clearAllPresets()
+                } else if let lastPreset = appModel.presets.last {
+                    contentModel.selectedAppInfo = lastPreset
+                }
             }
         }
     }
