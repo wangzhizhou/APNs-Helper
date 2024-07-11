@@ -8,21 +8,20 @@
 import Foundation
 import SwiftUI
 import Combine
-import SwiftData
 import AnyCodable
 import Logging
 
 @Observable
 final class AppModel {
-
+    
     // MARK: Log
     var appLog: String
-
+    
     @MainActor
     func resetLog() {
         appLog = .empty
     }
-
+    
     // MARK: Toast
     var showToast: Bool
     var toastModel: ToastModel {
@@ -34,83 +33,9 @@ final class AppModel {
             }
         }
     }
-
-    @MainActor
-    var presets: [Config] {
-        let fetchDescriptor = FetchDescriptor<Config>(sortBy: [.init(\.appBundleID)])
-        let savedPresets = try? modelContainer.mainContext.fetch(fetchDescriptor)
-        return savedPresets ?? []
-    }
-
-    @MainActor
-    func saveConfigAsPreset(_ config: Config) -> Bool {
-
-        let (valid, message) = config.isValid
-        guard valid else {
-            if let message = message {
-                toastModel = ToastModel.info().title("\(message) is invalid")
-            }
-            return false
-        }
-        
-        do {
-            modelContainer.mainContext.insert(Config.none)
-            modelContainer.mainContext.insert(config)
-            try modelContainer.mainContext.save()
-            toastModel = ToastModel.info().title("Save Preset Successfully!")
-            return true
-        } catch {
-            print(error)
-            return false
-        }
-    }
-
-    @MainActor
-    func clearAllPresets() {
-        do {
-            try modelContainer.mainContext.delete(model: Config.self)
-            try modelContainer.mainContext.save()
-            toastModel = ToastModel.info().title("Clear All Preset Successfully!")
-        } catch {
-            fatalError("clear all preset failed!!!")
-        }
-    }
-
-    @MainActor
-    func clearPresetIfExist(_ config: Config) {
-        let appBundleID = config.appBundleID
-        do {
-            try modelContainer.mainContext.delete(model: Config.self, where: #Predicate {
-                $0.appBundleID == appBundleID
-            })
-            toastModel = ToastModel.info().title("Remove Exist Preset")
-        } catch let error {
-            error.localizedDescription.printDebugInfo()
-            fatalError("delete preset failed!!!")
-        }
-    }
-    
-    @MainActor func sendPush(with config: Config, payload: AnyCodable) async throws {
-        let apnService = APNsService(config: config, payload: payload)
-        do {
-            let response = try await apnService.send()
-            logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
-            self.isSendingPush = false
-        } catch let error as APNServiceError {
-            self.isSendingPush = false
-            switch error {
-            case .notReachable:
-                self.toastModel = ToastModel.info().title("APN Server Not Reachable")
-            }
-        } catch let error {
-            self.isSendingPush = false
-            logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
-        }
-    }
-
     // MARK: Test Mode Config
-    let thisAppConfig: Config
-
+    var thisAppInfo: AppInfo
+    
     var isSendingPush: Bool
     
     let modelContainer: ModelContainer
@@ -121,7 +46,7 @@ final class AppModel {
             AppLogHandler(appModel: self)
         }
     }()
-
+    
     init(
         appLog: String = .empty,
         showAlert: Bool  = false,
@@ -138,41 +63,127 @@ final class AppModel {
             self.appLog = appLog
             self.showToast = showToast
             self.toastModel = toastModel
-            self.thisAppConfig = .thisApp
+            self.thisAppInfo = .thisAppInfo
             self.isSendingPush = isSendingPush
-
+            
 #if ENABLE_PUSHKIT
             let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitTokenInfo in
-                let (pushKitVoIPToken, type) = pushKitTokenInfo
+                let (pushKitToken, type) = pushKitTokenInfo
                 switch type {
                 case .voip:
-                    self.thisAppConfig.pushKitVoIPToken = pushKitVoIPToken
+                    self.thisAppInfo.voipToken = pushKitToken
                 case .fileprovider:
-                    self.thisAppConfig.pushKitFileProviderToken = pushKitVoIPToken
+                    self.thisAppInfo.fileProviderToken = pushKitToken
                 default:
                     break
                 }
             }
             cancellables.append(pushkitCancellable)
 #endif
-
+            
             let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
-                self.thisAppConfig.deviceToken = deviceToken
+                self.thisAppInfo.deviceToken = deviceToken
             }
             cancellables.append(deviceTokenCancellable)
-
+            
             let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
                 self.toastModel = ToastModel.info().title(message)
             }
             cancellables.append(backgroundNotificationCancellable)
-
+            
             let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
                 self.toastModel = ToastModel.info().title("Copyed to Pasteboard!")
             }
             cancellables.append(copyToPasteboardCancellable)
-
+            
             CodeFomater.setup()
         }
-
+    
     private var cancellables = [AnyCancellable]()
+}
+
+// MARK: 发送通知
+extension AppModel {
+    @MainActor func sendPush(with content: AppContentModel, payload: AnyCodable) async throws {
+        let apnService = APNsService(
+            appInfo: content.appInfo,
+            pushType: content.pushType,
+            apnsServerEnv: content.apnsServerEnv,
+            payload: payload
+        )
+        do {
+            let response = try await apnService.send()
+            logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
+            self.isSendingPush = false
+        } catch let error as APNServiceError {
+            self.isSendingPush = false
+            switch error {
+            case .notReachable:
+                self.toastModel = ToastModel.info().title("APN Server Not Reachable")
+            }
+        } catch let error {
+            self.isSendingPush = false
+            logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
+        }
+    }
+}
+
+// MARK: 持久化
+import SwiftData
+extension AppModel {
+    
+    @MainActor
+    var presets: [AppInfo] {
+        let fetchDescriptor = FetchDescriptor<Config>(sortBy: [.init(\.appBundleID)])
+        let savedPresets = try? modelContainer.mainContext.fetch(fetchDescriptor)
+        return savedPresets?.compactMap { $0.appInfo } ?? []
+    }
+    
+    @MainActor
+    func saveConfigAsPreset(_ appInfo: AppInfo) -> Bool {
+        
+        let (valid, message) = appInfo.isValid
+        guard valid else {
+            if let message = message {
+                toastModel = ToastModel.info().title("\(message) is invalid")
+            }
+            return false
+        }
+        
+        do {
+            modelContainer.mainContext.insert(AppInfo.none.toConfig)
+            modelContainer.mainContext.insert(appInfo.toConfig)
+            try modelContainer.mainContext.save()
+            toastModel = ToastModel.info().title("Save Preset Successfully!")
+            return true
+        } catch {
+            print(error)
+            return false
+        }
+    }
+    
+    @MainActor
+    func clearAllPresets() {
+        do {
+            try modelContainer.mainContext.delete(model: Config.self)
+            try modelContainer.mainContext.save()
+            toastModel = ToastModel.info().title("Clear All Preset Successfully!")
+        } catch {
+            fatalError("clear all preset failed!!!")
+        }
+    }
+    
+    @MainActor
+    func clearPresetIfExist(_ appInfo: AppInfo) {
+        let appBundleID = appInfo.bundleID
+        do {
+            try modelContainer.mainContext.delete(model: Config.self, where: #Predicate {
+                $0.appBundleID == appBundleID
+            })
+            toastModel = ToastModel.info().title("Remove Exist Preset")
+        } catch let error {
+            error.localizedDescription.printDebugInfo()
+            fatalError("delete preset failed!!!")
+        }
+    }
 }

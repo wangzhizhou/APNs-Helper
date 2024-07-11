@@ -60,21 +60,6 @@ final class Config {
         }
 }
 
-extension Config: Equatable {
-    
-    static func == (lhs: Config, rhs: Config) -> Bool {
-        return lhs.deviceToken == rhs.deviceToken
-        && lhs.pushKitVoIPToken == rhs.pushKitVoIPToken
-        && lhs.pushKitFileProviderToken == rhs.pushKitFileProviderToken
-        && lhs.appBundleID == rhs.appBundleID
-        && lhs.privateKey == rhs.privateKey
-        && lhs.keyIdentifier == rhs.keyIdentifier
-        && lhs.teamIdentifier == rhs.teamIdentifier
-        && lhs.pushType == rhs.pushType
-        && lhs.apnsServerEnv == rhs.apnsServerEnv
-    }
-}
-
 extension Config: Comparable {
     static func < (lhs: Config, rhs: Config) -> Bool {
         return lhs.appBundleID < rhs.appBundleID
@@ -82,19 +67,18 @@ extension Config: Comparable {
 }
 
 extension Config {
-    var trimmed: Config {
-        .init(
-            deviceToken: deviceToken.trimmed,
-            pushKitVoIPToken: pushKitVoIPToken.trimmed,
-            pushKitFileProviderToken: pushKitFileProviderToken.trimmed,
-            locationPushServiceToken: locationPushServiceToken.trimmed,
-            liveActivityPushToken: liveActivityPushToken.trimmed,
-            appBundleID: appBundleID.trimmed,
-            privateKey: privateKey,
-            keyIdentifier: keyIdentifier.trimmed,
-            teamIdentifier: teamIdentifier.trimmed,
-            pushType: pushType,
-            apnsServerEnv: apnsServerEnv
+    
+    var appInfo: AppInfo {
+        AppInfo(
+            keyID: self.keyIdentifier,
+            teamID: self.teamIdentifier,
+            bundleID: self.appBundleID,
+            p8Key: self.privateKey,
+            deviceToken: self.deviceToken,
+            voipToken: self.pushKitVoIPToken,
+            fileProviderToken: self.pushKitFileProviderToken,
+            locationPushToken: self.locationPushServiceToken,
+            liveActivityPushToken: self.liveActivityPushToken
         )
     }
 }

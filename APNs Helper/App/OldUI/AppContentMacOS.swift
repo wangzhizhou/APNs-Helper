@@ -27,8 +27,8 @@ struct AppContentMacOS: View {
             if !appModel.presets.isEmpty {
                 HStack {
                     PresetPicker(
-                        presets: appModel.presets,
-                        selectedPreset: $contentModel.presetConfig) { preset in
+                        presetAppInfos: appModel.presets,
+                        selectedAppInfo: $contentModel.selectedAppInfo) { preset in
                             contentModel.appInfo = preset
                         }
                     Button(Constants.clearallpreset.value, action: clearAllPreset).buttonStyle(BorderedButtonStyle())
@@ -37,7 +37,7 @@ struct AppContentMacOS: View {
 
             // Push Type & APN Server
             HStack {
-                Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
+                Picker(Constants.pushtype.value, selection: $contentModel.pushType) {
                     ForEach(APNPushType.allCases.filter {
                         !contentModel.isInTestMode || ($0 != .voip && $0 != .fileprovider)
                     }, id: \.self) {
@@ -45,10 +45,10 @@ struct AppContentMacOS: View {
                             .tag($0)
                     }
                 }
-                .onChange(of: contentModel.appInfo.pushType, loadPayloadTemplate)
+                .onChange(of: contentModel.pushType, loadPayloadTemplate)
                 
                 Spacer(minLength: 50)
-                Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
+                Picker(Constants.apnserver.value, selection: $contentModel.apnsServerEnv) {
                     ForEach(APNServerEnv.allCases, id: \.self) {
                         Text($0.rawValue)
                             .tag($0)
@@ -66,24 +66,24 @@ struct AppContentMacOS: View {
                 InputView(
                     title: Constants.keyid.value,
                     titleWidth: titleWidth,
-                    inputValue: $contentModel.appInfo.keyIdentifier)
-                .onChange(of: contentModel.appInfo.keyIdentifier, refreshTestMode)
+                    inputValue: $contentModel.appInfo.keyID)
+                .onChange(of: contentModel.appInfo.keyID, refreshTestMode)
 
                 InputView(
                     title: Constants.teamid.value,
                     titleWidth: titleWidth,
-                    inputValue: $contentModel.appInfo.teamIdentifier)
-                .onChange(of: contentModel.appInfo.teamIdentifier, refreshTestMode)
+                    inputValue: $contentModel.appInfo.teamID)
+                .onChange(of: contentModel.appInfo.teamID, refreshTestMode)
 
                 InputView(
                     title: Constants.bundleid.value,
                     titleWidth: titleWidth,
-                    inputValue: $contentModel.appInfo.appBundleID)
-                .onChange(of: contentModel.appInfo.appBundleID, refreshTestMode)
+                    inputValue: $contentModel.appInfo.bundleID)
+                .onChange(of: contentModel.appInfo.bundleID, refreshTestMode)
 
                 P8KeyView(
                     showFileImporter: $contentModel.showFileImporter,
-                    privateKey: $contentModel.appInfo.privateKey,
+                    privateKey: $contentModel.appInfo.p8Key,
                     onPrivateKeyChange: { _ in
                         refreshTestMode()
                     },
@@ -93,11 +93,11 @@ struct AppContentMacOS: View {
 
                 // Token
                 TokenView(
-                    pushType: contentModel.appInfo.pushType,
+                    pushType: contentModel.pushType,
                     deviceToken: $contentModel.appInfo.deviceToken,
-                    pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
-                    fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken,
-                    locationPushServiceToken: $contentModel.appInfo.locationPushServiceToken,
+                    pushKitDeviceToken: $contentModel.appInfo.voipToken,
+                    fileProviderDeviceToken: $contentModel.appInfo.fileProviderToken,
+                    locationPushServiceToken: $contentModel.appInfo.locationPushToken,
                     liveActivityPushToken: $contentModel.appInfo.liveActivityPushToken
                 )
                 .padding(.vertical, 10)
@@ -121,16 +121,16 @@ struct AppContentMacOS: View {
                     }
                     .onChange(of: contentModel.isInTestMode) { _, newValue in
                         if newValue {
-                            contentModel.appInfo = appModel.thisAppConfig
+                            contentModel.appInfo = appModel.thisAppInfo
                         } else {
                             contentModel.clearAppInfo()
                         }
                     }
-                    .onChange(of: appModel.thisAppConfig) {
+                    .onChange(of: appModel.thisAppInfo) {
                         guard contentModel.isInTestMode else {
                             return
                         }
-                        contentModel.appInfo = appModel.thisAppConfig
+                        contentModel.appInfo = appModel.thisAppInfo
                     }
 #endif
                     Button(Constants.saveAsPreset.value) {

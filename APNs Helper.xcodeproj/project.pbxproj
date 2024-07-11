@@ -30,7 +30,6 @@
 		2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76A28DEAF56009EF9C9 /* Config.swift */; };
 		2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */; };
 		2B40E2AC29DE756500E484FB /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40E2AB29DE756500E484FB /* String+Utils.swift */; };
-		2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8A529DEE00E00E484FB /* Config+Utils.swift */; };
 		2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 2B40F8B429DEEC1000E484FB /* AlertToast */; };
 		2B505E2829DD25B50010F62D /* AppContentIOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2729DD25B50010F62D /* AppContentIOS.swift */; platformFilter = ios; };
 		2B505E2A29DD26230010F62D /* AppContentMacOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B505E2929DD26230010F62D /* AppContentMacOS.swift */; platformFilters = (macos, ); };
@@ -104,7 +103,6 @@
 		E2AD64E62C3FA44800EF046D /* i18n.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E2AD64E42C3FA44800EF046D /* i18n.xcstrings */; };
 		E2ADF6D52C3E668800A1FF5C /* APNServerEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */; };
 		E2ADF6D72C3E66CF00A1FF5C /* APNPushType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */; };
-		E2ADF6DA2C3EA9AC00A1FF5C /* Config+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */; };
 		E2ADF6DD2C3EAFCD00A1FF5C /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = E2ADF6DC2C3EAFCD00A1FF5C /* AnyCodable */; };
 		E2CD63222C3EB22800A44663 /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = E2CD63212C3EB22800A44663 /* APNS */; };
 		E2CD63242C3EB22800A44663 /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = E2CD63232C3EB22800A44663 /* APNSCore */; };
@@ -244,7 +242,6 @@
 		2B35F76A28DEAF56009EF9C9 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
 		2B40E2AB29DE756500E484FB /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
-		2B40F8A529DEE00E00E484FB /* Config+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Utils.swift"; sourceTree = "<group>"; };
 		2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UNUserNotification.swift"; sourceTree = "<group>"; };
 		2B505E2729DD25B50010F62D /* AppContentIOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentIOS.swift; sourceTree = "<group>"; };
@@ -311,7 +308,6 @@
 		E2AD64E42C3FA44800EF046D /* i18n.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = i18n.xcstrings; sourceTree = "<group>"; };
 		E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNServerEnv.swift; sourceTree = "<group>"; };
 		E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNPushType.swift; sourceTree = "<group>"; };
-		E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Payload.swift"; sourceTree = "<group>"; };
 		F315F0B92AF56AE80012B376 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Location.swift"; sourceTree = "<group>"; };
 		F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotificationView.swift; sourceTree = "<group>"; };
@@ -558,6 +554,7 @@
 				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2BBBCFEE2BDF857500C63662 /* NewUI */,
 				2BBBCFF22BDF85F400C63662 /* OldUI */,
+				E2AD64E02C3F98D000EF046D /* SwiftData */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -723,7 +720,6 @@
 		2BD8464F2A164A87008D2A86 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2BD846492A16142D008D2A86 /* AppInfo.swift */,
 				2BD8464C2A163F81008D2A86 /* ToastModel.swift */,
 			);
 			path = Models;
@@ -771,24 +767,22 @@
 			path = UNUserNotification;
 			sourceTree = "<group>";
 		};
-		E2AD64E02C3F98D000EF046D /* Config */ = {
+		E2AD64E02C3F98D000EF046D /* SwiftData */ = {
 			isa = PBXGroup;
 			children = (
 				2B35F76A28DEAF56009EF9C9 /* Config.swift */,
-				E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */,
-				2B40F8A529DEE00E00E484FB /* Config+Utils.swift */,
 			);
-			path = Config;
+			path = SwiftData;
 			sourceTree = "<group>";
 		};
 		E2ADF6D22C3E663300A1FF5C /* APNService */ = {
 			isa = PBXGroup;
 			children = (
-				2BD846612A174291008D2A86 /* Payload */,
-				E2AD64E02C3F98D000EF046D /* Config */,
-				2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */,
-				E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */,
 				E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */,
+				E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */,
+				2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */,
+				2BD846492A16142D008D2A86 /* AppInfo.swift */,
+				2BD846612A174291008D2A86 /* Payload */,
 			);
 			path = APNService;
 			sourceTree = "<group>";
@@ -1320,7 +1314,6 @@
 				2BD846542A165BBC008D2A86 /* UnderLineModifier.swift in Sources */,
 				2BD8018F2A0A5CD000DDD17E /* TokenView.swift in Sources */,
 				2BA110D32AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */,
-				2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */,
 				F369DD132A096B0B0061DF8A /* AppContentModel.swift in Sources */,
 				F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */,
 				2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */,
@@ -1339,7 +1332,6 @@
 				2B505E2829DD25B50010F62D /* AppContentIOS.swift in Sources */,
 				2BD8465F2A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
 				2BD8464D2A163F81008D2A86 /* ToastModel.swift in Sources */,
-				E2ADF6DA2C3EA9AC00A1FF5C /* Config+Payload.swift in Sources */,
 				F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */,
 				2BD8018B2A0A3B0100DDD17E /* LogView.swift in Sources */,
 				E2ADF6D52C3E668800A1FF5C /* APNServerEnv.swift in Sources */,

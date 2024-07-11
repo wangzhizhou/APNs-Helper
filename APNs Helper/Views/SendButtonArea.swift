@@ -35,15 +35,14 @@ struct SendButtonArea: View {
 #endif
 
             Button {
-                let (ready, message) = contentModel.config.isReadyForSend
+                let (ready, message) = contentModel.isReadyForSend
                 guard ready else {
                     if let message = message {
                         appModel.toastModel = ToastModel.info().title("\(message) is not ready")
                     }
                     return
                 }
-
-                let config = contentModel.config
+                
                 Task {
                     guard !contentModel.payload.isEmpty
                     else {
@@ -53,7 +52,7 @@ struct SendButtonArea: View {
                     appModel.isSendingPush = true
                     appModel.resetLog()
                     if let payload = contentModel.payload.model {
-                        try await appModel.sendPush(with: config, payload: payload)
+                        try await appModel.sendPush(with: contentModel, payload: payload)
                     }
                     appModel.isSendingPush = false
                 }

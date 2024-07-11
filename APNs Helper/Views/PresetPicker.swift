@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct PresetPicker: View {
-
-    let presets: [Config]
-
-    @Binding var selectedPreset: Config
-
-    var onPresetChange: (Config) -> Void
-
+    
+    let presetAppInfos: [AppInfo]
+    
+    @Binding var selectedAppInfo: AppInfo
+    
+    var onPresetChange: (AppInfo) -> Void
+    
     var body: some View {
-        Picker(Constants.preset.value, selection: $selectedPreset) {
-            ForEach(presets) {
-                if $0 == .none {
+        Picker(Constants.preset.value, selection: $selectedAppInfo) {
+            ForEach(presetAppInfos, id: \.bundleID) {
+                if $0.bundleID.isEmpty {
                     Text(Constants.presetnone.value)
                         .tag($0)
                 } else {
-                    Text($0.appBundleID)
+                    Text($0.bundleID)
                         .lineLimit(1)
                         .tag($0)
                 }
@@ -33,37 +33,25 @@ struct PresetPicker: View {
 #elseif os(macOS)
         .padding(.vertical)
 #endif
-        .onChange(of: selectedPreset) { _, newValue in
+        .onChange(of: selectedAppInfo) { _, newValue in
             onPresetChange(newValue)
         }
     }
 }
 struct PresetView_Previews: PreviewProvider {
-    static let presets: [Config] = [
-        .none,
-        .init(
-            deviceToken: "test device token",
-            pushKitVoIPToken: "test pushkit token",
-            pushKitFileProviderToken: "test file provider token",
-            locationPushServiceToken: "test location push service token",
-            liveActivityPushToken: "test live activity push token",
-            appBundleID: "test aid",
-            privateKey: "test private key",
-            keyIdentifier: "test key id",
-            teamIdentifier: "test team id")
-    ]
+    static let presets: [AppInfo] = [.none, .test]
     static var previews: some View {
         Group {
-            PresetPicker(presets: presets, selectedPreset: .constant(.none)) { _ in
-
+            PresetPicker(presetAppInfos: presets, selectedAppInfo: .constant(.none)) { _ in
+                
             }
             .frame(width: 300)
             .previewDevice("My Mac")
             .previewDisplayName("MacOS")
-
+            
             Form {
                 Section {
-                    PresetPicker(presets: presets, selectedPreset: .constant(.none)) { _ in
+                    PresetPicker(presetAppInfos: presets, selectedAppInfo: .constant(.none)) { _ in
                     }
                 }
             }

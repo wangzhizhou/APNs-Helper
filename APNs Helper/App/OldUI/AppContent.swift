@@ -83,21 +83,11 @@ extension AppContent {
             return
         }
         
-        contentModel.appInfo = Config(
-            deviceToken: appInfo.deviceToken,
-            pushKitVoIPToken: appInfo.voipToken,
-            pushKitFileProviderToken: appInfo.fileProviderToken,
-            locationPushServiceToken: appInfo.locationPushToken,
-            liveActivityPushToken: appInfo.liveActivityPushToken,
-            appBundleID: appInfo.bundleID,
-            privateKey: appInfo.p8Key,
-            keyIdentifier: appInfo.keyID,
-            teamIdentifier: appInfo.teamID
-        )
+        contentModel.appInfo = appInfo
     }
     
     func loadPayloadTemplate() {
-        if let template = contentModel.config.jsonPayload {
+        if let template = contentModel.jsonTemplatePayload {
             contentModel.payload = template
         }
     }
@@ -105,8 +95,8 @@ extension AppContent {
     func saveAsPreset() {
         Task {
             await MainActor.run {
-                if appModel.saveConfigAsPreset(contentModel.config) {
-                    contentModel.presetConfig = contentModel.config
+                if appModel.saveConfigAsPreset(contentModel.appInfo) {
+                    contentModel.selectedAppInfo = contentModel.appInfo
                 }
             }
         }
@@ -123,15 +113,15 @@ extension AppContent {
     func clearCurrentConfigPresetIfExist() {
         Task {
             await MainActor.run {
-                appModel.clearPresetIfExist(contentModel.presetConfig)
+                appModel.clearPresetIfExist(contentModel.selectedAppInfo)
             }
         }
     }
     
     func refreshTestMode() {
-        guard appModel.thisAppConfig.isValid.valid
+        guard appModel.thisAppInfo.isValid.valid
         else { return }
-        contentModel.isInTestMode = (contentModel.config == appModel.thisAppConfig)
+//        contentModel.isInTestMode = (contentModel.appInfo == appModel.thisAppInfo)
     }
 }
 
