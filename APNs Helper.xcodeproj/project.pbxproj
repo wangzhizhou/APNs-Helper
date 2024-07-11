@@ -100,6 +100,8 @@
 		2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */; };
 		2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
 		2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */; };
+		E2AD64E52C3FA44800EF046D /* i18n.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E2AD64E42C3FA44800EF046D /* i18n.xcstrings */; };
+		E2AD64E62C3FA44800EF046D /* i18n.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E2AD64E42C3FA44800EF046D /* i18n.xcstrings */; };
 		E2ADF6D52C3E668800A1FF5C /* APNServerEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */; };
 		E2ADF6D72C3E66CF00A1FF5C /* APNPushType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */; };
 		E2ADF6DA2C3EA9AC00A1FF5C /* Config+Payload.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */; };
@@ -306,6 +308,7 @@
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
 		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
+		E2AD64E42C3FA44800EF046D /* i18n.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = i18n.xcstrings; sourceTree = "<group>"; };
 		E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNServerEnv.swift; sourceTree = "<group>"; };
 		E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNPushType.swift; sourceTree = "<group>"; };
 		E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Payload.swift"; sourceTree = "<group>"; };
@@ -712,6 +715,7 @@
 				2BE68FEC29E6A4720013237F /* PushKit&CallKit */,
 				2BE68FF329E6A7BE0013237F /* UNUserNotification */,
 				F3A46DEA29DDAA26004D4AD1 /* Utils */,
+				E2AD64E42C3FA44800EF046D /* i18n.xcstrings */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1147,6 +1151,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 2B35F72028DEAB17009EF9C9;
 			packageReferences = (
@@ -1198,6 +1203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B35F73A28DEAB18009EF9C9 /* Preview Assets.xcassets in Resources */,
+				E2AD64E52C3FA44800EF046D /* i18n.xcstrings in Resources */,
 				2B35F73628DEAB18009EF9C9 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1207,6 +1213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B64E96229E6B36A0007B1D0 /* Assets.xcassets in Resources */,
+				E2AD64E62C3FA44800EF046D /* i18n.xcstrings in Resources */,
 				2B64E96329E6B36A0007B1D0 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1704,6 +1711,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1760,6 +1768,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
