@@ -82,3 +82,19 @@ extension Config {
         )
     }
 }
+
+extension AppInfo {
+    var toConfig: Config {
+        Config(
+            deviceToken: deviceToken,
+            pushKitVoIPToken: voipToken,
+            pushKitFileProviderToken: fileProviderToken,
+            locationPushServiceToken: locationPushToken,
+            liveActivityPushToken: liveActivityPushToken,
+            appBundleID: bundleID,
+            privateKey: p8Key,
+            keyIdentifier: keyID,
+            teamIdentifier: teamID
+        )
+    }
+}

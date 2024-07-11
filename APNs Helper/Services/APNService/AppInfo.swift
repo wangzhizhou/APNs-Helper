@@ -218,18 +218,4 @@ extension AppInfo {
         
         return (valid: true, message: nil)
     }
-    
-    var toConfig: Config {
-        Config(
-            deviceToken: deviceToken,
-            pushKitVoIPToken: voipToken,
-            pushKitFileProviderToken: fileProviderToken,
-            locationPushServiceToken: locationPushToken,
-            liveActivityPushToken: liveActivityPushToken,
-            appBundleID: bundleID,
-            privateKey: p8Key,
-            keyIdentifier: keyID,
-            teamIdentifier: teamID
-        )
-    }
 }
