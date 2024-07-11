@@ -69,6 +69,7 @@ final class AppModel {
     func clearAllPresets() {
         do {
             try modelContainer.mainContext.delete(model: Config.self)
+            try modelContainer.mainContext.save()
             toastModel = ToastModel.info().title("Clear All Preset Successfully!")
         } catch {
             fatalError("clear all preset failed!!!")

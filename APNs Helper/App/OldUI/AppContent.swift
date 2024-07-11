@@ -123,7 +123,7 @@ extension AppContent {
     func clearCurrentConfigPresetIfExist() {
         Task {
             await MainActor.run {
-                appModel.clearPresetIfExist(contentModel.config)
+                appModel.clearPresetIfExist(contentModel.presetConfig)
             }
         }
     }

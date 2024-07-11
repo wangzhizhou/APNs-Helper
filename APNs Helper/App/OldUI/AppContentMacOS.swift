@@ -14,8 +14,6 @@ struct AppContentMacOS: View {
     @Environment(AppModel.self) private var appModel
     @Environment(AppContentModel.self) private var contentModel
     
-    @Query(sort: [.init(\Config.appBundleID)]) private var presets: [Config]
-
     let loadPayloadTemplate: () -> Void
     let saveAsPreset: () -> Void
     let clearAllPreset: () -> Void
@@ -27,10 +25,10 @@ struct AppContentMacOS: View {
         @Bindable var contentModel = contentModel
         VStack {
             // Preset
-            if !presets.isEmpty {
+            if !appModel.presets.isEmpty {
                 HStack {
                     PresetPicker(
-                        presets: presets,
+                        presets: appModel.presets,
                         selectedPreset: $contentModel.presetConfig) { preset in
                             contentModel.appInfo = preset
                         }

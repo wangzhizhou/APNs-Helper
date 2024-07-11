@@ -19,7 +19,8 @@ struct PresetPicker: View {
         Picker(Constants.preset.value, selection: $selectedPreset) {
             ForEach(presets) {
                 if $0 == .none {
-                    Text(Constants.presetnone.value).tag($0)
+                    Text(Constants.presetnone.value)
+                        .tag($0)
                 } else {
                     Text($0.appBundleID)
                         .lineLimit(1)

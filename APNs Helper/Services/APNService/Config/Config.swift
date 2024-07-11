@@ -60,10 +60,6 @@ final class Config {
         }
 }
 
-extension Config: Identifiable {
-    var id: String { self.appBundleID }
-}
-
 extension Config: Equatable {
     
     static func == (lhs: Config, rhs: Config) -> Bool {
@@ -84,8 +80,6 @@ extension Config: Comparable {
         return lhs.appBundleID < rhs.appBundleID
     }
 }
-
-extension Config: Hashable {}
 
 extension Config {
     var trimmed: Config {

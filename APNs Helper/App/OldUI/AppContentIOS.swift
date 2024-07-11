@@ -13,8 +13,6 @@ struct AppContentIOS: View {
 
     @Environment(AppModel.self) private var appModel
     @Environment(AppContentModel.self) private var contentModel
-    
-    @Query(sort: [.init(\Config.appBundleID)]) private var presets: [Config]
 
     let loadPayloadTemplate: () -> Void
     let saveAsPreset: () -> Void
@@ -35,8 +33,8 @@ struct AppContentIOS: View {
                         Spacer()
                     }
                     // Preset
-                    if !presets.isEmpty {
-                        PresetPicker(presets: presets, selectedPreset: $contentModel.presetConfig) { preset in
+                    if !appModel.presets.isEmpty {
+                        PresetPicker(presets: appModel.presets, selectedPreset: $contentModel.presetConfig) { preset in
                             contentModel.appInfo = preset
                         }
                         Button(Constants.clearallpreset.value, action: clearAllPreset)

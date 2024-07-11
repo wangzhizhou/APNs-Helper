@@ -18,7 +18,6 @@ struct AppScene: Scene {
                 .frame(maxWidth: 640, minHeight: 828, maxHeight: 828)
 #endif
                 .environment(model)
-                .modelContainer(model.modelContainer)
         }
 #if os(macOS)
         .windowResizability(.contentSize)
