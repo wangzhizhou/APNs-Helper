@@ -517,7 +517,6 @@
 			isa = PBXGroup;
 			children = (
 				2B40FB3C29DFDABC00E484FB /* App */,
-				2BA3E0B028E54E82006DBCCC /* Models */,
 				2B35F73828DEAB18009EF9C9 /* Preview Content */,
 				2BA3E0B128E54E9D006DBCCC /* Resources */,
 				2B64E98B29E6CD720007B1D0 /* Uitls */,
@@ -551,9 +550,11 @@
 			isa = PBXGroup;
 			children = (
 				2B35F72C28DEAB17009EF9C9 /* App.swift */,
+				F369DD122A096B0B0061DF8A /* AppContentModel.swift */,
+				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
+				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
 				2BBBCFEE2BDF857500C63662 /* NewUI */,
 				2BBBCFF22BDF85F400C63662 /* OldUI */,
-				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -621,24 +622,11 @@
 		2BA3E0AE28E54E4A006DBCCC /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				2BD846612A174291008D2A86 /* Payload */,
 				F360B9722A0FAB4400CDD8BD /* Reachability.swift */,
 				E2ADF6D22C3E663300A1FF5C /* APNService */,
 				2B0031702A0E02B2009BEACD /* CodeFormatter */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		2BA3E0B028E54E82006DBCCC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2B35F76C28DEAFCD009EF9C9 /* AppModel.swift */,
-				2B35F76A28DEAF56009EF9C9 /* Config.swift */,
-				E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */,
-				2B40F8A529DEE00E00E484FB /* Config+Utils.swift */,
-				F369DD122A096B0B0061DF8A /* AppContentModel.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		2BA3E0B128E54E9D006DBCCC /* Resources */ = {
@@ -779,9 +767,21 @@
 			path = UNUserNotification;
 			sourceTree = "<group>";
 		};
+		E2AD64E02C3F98D000EF046D /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2B35F76A28DEAF56009EF9C9 /* Config.swift */,
+				E2ADF6D92C3EA9AC00A1FF5C /* Config+Payload.swift */,
+				2B40F8A529DEE00E00E484FB /* Config+Utils.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		E2ADF6D22C3E663300A1FF5C /* APNService */ = {
 			isa = PBXGroup;
 			children = (
+				2BD846612A174291008D2A86 /* Payload */,
+				E2AD64E02C3F98D000EF046D /* Config */,
 				2BBDDE7A28E4B0FF0052DC28 /* APNService.swift */,
 				E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */,
 				E2ADF6D62C3E66CF00A1FF5C /* APNPushType.swift */,

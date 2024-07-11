@@ -10,6 +10,7 @@ import SwiftUI
 import Combine
 import SwiftData
 import AnyCodable
+import Logging
 
 @Observable
 class AppModel {
@@ -81,11 +82,20 @@ class AppModel {
     }
     
     @MainActor func sendPush(with config: Config, payload: AnyCodable) async throws {
+        let apnService = APNsService(config: config, payload: payload)
         do {
-            let apnService = APNsService(config: config, payload: payload, appModel: self)
-            try await apnService.send()
+            let response = try await apnService.send()
+            logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
+            self.isSendingPush = false
+        } catch let error as APNServiceError {
+            self.isSendingPush = false
+            switch error {
+            case .notReachable:
+                self.toastModel = ToastModel.info().title("APN Server Not Reachable")
+            }
         } catch let error {
-            error.localizedDescription.printDebugInfo()
+            self.isSendingPush = false
+            logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
         }
     }
 
@@ -95,7 +105,14 @@ class AppModel {
     var isSendingPush: Bool
     
     let modelContainer: ModelContainer
-     
+    
+    @ObservationIgnored
+    lazy var logger = {
+        Logger(label: "APNs Helper") { _ in
+            AppLogHandler(appModel: self)
+        }
+    }()
+
     init(
         appLog: String = .empty,
         showAlert: Bool  = false,

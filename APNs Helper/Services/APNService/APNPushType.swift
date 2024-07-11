@@ -5,7 +5,6 @@
 //  Created by wangzhizhou on 2024/7/10.
 //
 
-import Foundation
 import APNSCore
 
 enum APNPushType: String, CaseIterable, Codable {
