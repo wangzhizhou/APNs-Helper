@@ -129,7 +129,7 @@
 		F36AADE92B11BD8300D442A1 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AADE82B11BD8300D442A1 /* FileProviderExtension.swift */; };
 		F36AADEB2B11BD8300D442A1 /* FileProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AADEA2B11BD8300D442A1 /* FileProviderItem.swift */; };
 		F36AADED2B11BD8300D442A1 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AADEC2B11BD8300D442A1 /* FileProviderEnumerator.swift */; };
-		F36AADF22B11BD8300D442A1 /* FileProviderMacOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F36AADE52B11BD8300D442A1 /* FileProviderMacOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F36AADF22B11BD8300D442A1 /* FileProviderMacOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F36AADE52B11BD8300D442A1 /* FileProviderMacOS.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F36FAC322C3EFD8E00376331 /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC312C3EFD8E00376331 /* AnyCodable */; };
 		F36FAC362C3F017300376331 /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC352C3F017300376331 /* APNS */; };
 		F36FAC382C3F017300376331 /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC372C3F017300376331 /* APNSCore */; };
@@ -1464,6 +1464,9 @@
 		};
 		F36AADF12B11BD8300D442A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				macos,
+			);
 			target = F36AADE42B11BD8300D442A1 /* FileProviderMacOS */;
 			targetProxy = F36AADF02B11BD8300D442A1 /* PBXContainerItemProxy */;
 		};
