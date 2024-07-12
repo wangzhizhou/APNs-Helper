@@ -22,7 +22,7 @@
 		2B08393E2AEF75EF00488752 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B08393D2AEF75EF00488752 /* Assets.xcassets */; };
 		2B0839432AEF75EF00488752 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B0839312AEF75EE00488752 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B08DFDA2AF4FE7800488752 /* LocationPushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B08DFD92AF4FE7800488752 /* LocationPushService.swift */; };
-		2B08DFDE2AF4FE7800488752 /* LocationPushServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2B08DFDE2AF4FE7800488752 /* LocationPushServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2B08DFD72AF4FE7800488752 /* LocationPushServiceExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2B34AFC92AFA0842001C2A0B /* LiveActivityStageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B34AFC82AFA0842001C2A0B /* LiveActivityStageButton.swift */; };
 		2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B35F72C28DEAB17009EF9C9 /* App.swift */; };
 		2B35F73628DEAB18009EF9C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B35F73528DEAB18009EF9C9 /* Assets.xcassets */; };
@@ -76,15 +76,15 @@
 		2BD842012A14ECFC008D2A86 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD842002A14ECFC008D2A86 /* FileProviderEnumerator.swift */; };
 		2BD8420B2A14ECFC008D2A86 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8420A2A14ECFC008D2A86 /* DocumentActionViewController.swift */; };
 		2BD8420E2A14ECFC008D2A86 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8420C2A14ECFC008D2A86 /* MainInterface.storyboard */; };
-		2BD842122A14ECFC008D2A86 /* FileProviderExtensionUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD842082A14ECFC008D2A86 /* FileProviderExtensionUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2BD842152A14ECFC008D2A86 /* FileProviderExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD841F82A14ECFC008D2A86 /* FileProviderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2BD842122A14ECFC008D2A86 /* FileProviderExtensionUI.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD842082A14ECFC008D2A86 /* FileProviderExtensionUI.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2BD842152A14ECFC008D2A86 /* FileProviderExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD841F82A14ECFC008D2A86 /* FileProviderExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BD842232A14ED38008D2A86 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD842222A14ED38008D2A86 /* UserNotifications.framework */; };
 		2BD842252A14ED38008D2A86 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD842242A14ED38008D2A86 /* UserNotificationsUI.framework */; };
 		2BD842282A14ED38008D2A86 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD842272A14ED38008D2A86 /* NotificationViewController.swift */; };
 		2BD8422B2A14ED38008D2A86 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BD842292A14ED38008D2A86 /* MainInterface.storyboard */; };
-		2BD8422F2A14ED38008D2A86 /* NotificationContentExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD842212A14ED38008D2A86 /* NotificationContentExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2BD8422F2A14ED38008D2A86 /* NotificationContentExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD842212A14ED38008D2A86 /* NotificationContentExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BD8423A2A14ED47008D2A86 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD842392A14ED47008D2A86 /* NotificationService.swift */; };
-		2BD846452A15072C008D2A86 /* NotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD842372A14ED47008D2A86 /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2BD846452A15072C008D2A86 /* NotificationServiceExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 2BD842372A14ED47008D2A86 /* NotificationServiceExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2BD846482A15E450008D2A86 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB3E89029FBB7BB00B90602 /* Constants.swift */; };
 		2BD8464A2A16142D008D2A86 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846492A16142D008D2A86 /* AppInfo.swift */; };
 		2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846492A16142D008D2A86 /* AppInfo.swift */; };
@@ -1435,6 +1435,7 @@
 		};
 		2B08DFDD2AF4FE7800488752 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2B08DFD62AF4FE7800488752 /* LocationPushServiceExtension */;
 			targetProxy = 2B08DFDC2AF4FE7800488752 /* PBXContainerItemProxy */;
 		};
@@ -1444,21 +1445,25 @@
 		};
 		2BD842112A14ECFC008D2A86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2BD842072A14ECFC008D2A86 /* FileProviderExtensionUI */;
 			targetProxy = 2BD842102A14ECFC008D2A86 /* PBXContainerItemProxy */;
 		};
 		2BD842142A14ECFC008D2A86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2BD841F72A14ECFC008D2A86 /* FileProviderExtension */;
 			targetProxy = 2BD842132A14ECFC008D2A86 /* PBXContainerItemProxy */;
 		};
 		2BD8422E2A14ED38008D2A86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2BD842202A14ED38008D2A86 /* NotificationContentExtension */;
 			targetProxy = 2BD8422D2A14ED38008D2A86 /* PBXContainerItemProxy */;
 		};
 		2BD846472A15072C008D2A86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 2BD842362A14ED47008D2A86 /* NotificationServiceExtension */;
 			targetProxy = 2BD846462A15072C008D2A86 /* PBXContainerItemProxy */;
 		};
