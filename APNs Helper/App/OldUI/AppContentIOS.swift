@@ -101,6 +101,7 @@ struct AppContentIOS: View {
                         )
                         
 #if DEBUG
+                        Button(Constants.importAppInfoOnPasteboard.value, action: importAppInfoOnPasteboard)
                         Toggle(isOn: $contentModel.isInTestMode) {
                             Text(Constants.fillInAppInfo.value)
                         }
