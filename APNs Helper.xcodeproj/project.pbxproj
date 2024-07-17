@@ -110,6 +110,8 @@
 		F315F0BB2AF56AE80012B376 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0B92AF56AE80012B376 /* LocationManager.swift */; };
 		F315F0BE2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */; };
 		F315F0BF2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F315F0BD2AF56BE30012B376 /* AppDelegate+Location.swift */; };
+		F324E3922C48214200A176D7 /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F324E3912C48214200A176D7 /* APNS */; };
+		F324E3942C48214200A176D7 /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = F324E3932C48214200A176D7 /* APNSCore */; };
 		F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D02AED00D200EB6C49 /* AlertNotificationView.swift */; };
 		F33327D92AED402C00EB6C49 /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327D82AED402C00EB6C49 /* AlertModel.swift */; };
 		F33327E32AEE7B7E00EB6C49 /* LiveActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33327E22AEE7B7E00EB6C49 /* LiveActivityModel.swift */; };
@@ -131,8 +133,6 @@
 		F36AADED2B11BD8300D442A1 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36AADEC2B11BD8300D442A1 /* FileProviderEnumerator.swift */; };
 		F36AADF22B11BD8300D442A1 /* FileProviderMacOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F36AADE52B11BD8300D442A1 /* FileProviderMacOS.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		F36FAC322C3EFD8E00376331 /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC312C3EFD8E00376331 /* AnyCodable */; };
-		F36FAC362C3F017300376331 /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC352C3F017300376331 /* APNS */; };
-		F36FAC382C3F017300376331 /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC372C3F017300376331 /* APNSCore */; };
 		F36FAC3D2C3F04A900376331 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
 		F36FAC402C3F059400376331 /* AnyCodable in Frameworks */ = {isa = PBXBuildFile; productRef = F36FAC3F2C3F059400376331 /* AnyCodable */; };
 		F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
@@ -361,13 +361,13 @@
 				2B0031662A0DEAFF009BEACD /* Highlightr in Frameworks */,
 				2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */,
 				2BBBCFFE2BDFD4BB00C63662 /* SwiftUIX in Frameworks */,
-				F36FAC382C3F017300376331 /* APNSCore in Frameworks */,
+				F324E3942C48214200A176D7 /* APNSCore in Frameworks */,
 				E2CD63242C3EB22800A44663 /* APNSCore in Frameworks */,
 				E2ADF6DD2C3EAFCD00A1FF5C /* AnyCodable in Frameworks */,
 				F36FAC322C3EFD8E00376331 /* AnyCodable in Frameworks */,
 				E2CD63222C3EB22800A44663 /* APNS in Frameworks */,
 				2BBBD0032BDFDDDB00C63662 /* Utils in Frameworks */,
-				F36FAC362C3F017300376331 /* APNS in Frameworks */,
+				F324E3922C48214200A176D7 /* APNS in Frameworks */,
 				2B40F8B529DEEC1000E484FB /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -955,8 +955,8 @@
 				E2CD63212C3EB22800A44663 /* APNS */,
 				E2CD63232C3EB22800A44663 /* APNSCore */,
 				F36FAC312C3EFD8E00376331 /* AnyCodable */,
-				F36FAC352C3F017300376331 /* APNS */,
-				F36FAC372C3F017300376331 /* APNSCore */,
+				F324E3912C48214200A176D7 /* APNS */,
+				F324E3932C48214200A176D7 /* APNSCore */,
 			);
 			productName = "APNs Helper";
 			productReference = 2B35F72928DEAB17009EF9C9 /* APNs Helper.app */;
@@ -1156,7 +1156,7 @@
 				2BBBCFFC2BDFD4BB00C63662 /* XCRemoteSwiftPackageReference "OrzSwiftKit" */,
 				E203E9DC2C3518F000014D6E /* XCRemoteSwiftPackageReference "swift-docc-plugin" */,
 				F36FAC302C3EFD8E00376331 /* XCRemoteSwiftPackageReference "anycodable" */,
-				F36FAC342C3F017300376331 /* XCRemoteSwiftPackageReference "APNSwift" */,
+				F324E3902C48214200A176D7 /* XCRemoteSwiftPackageReference "APNSwift" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -2406,20 +2406,20 @@
 				minimumVersion = 1.3.0;
 			};
 		};
+		F324E3902C48214200A176D7 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wangzhizhou/APNSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		F36FAC302C3EFD8E00376331 /* XCRemoteSwiftPackageReference "anycodable" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/flight-school/anycodable.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.6.7;
-			};
-		};
-		F36FAC342C3F017300376331 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
-			requirement = {
-				branch = main;
-				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -2467,6 +2467,16 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = APNSCore;
 		};
+		F324E3912C48214200A176D7 /* APNS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F324E3902C48214200A176D7 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNS;
+		};
+		F324E3932C48214200A176D7 /* APNSCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F324E3902C48214200A176D7 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNSCore;
+		};
 		F360B9762A0FDC8C00CDD8BD /* AlertToast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */;
@@ -2476,16 +2486,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F36FAC302C3EFD8E00376331 /* XCRemoteSwiftPackageReference "anycodable" */;
 			productName = AnyCodable;
-		};
-		F36FAC352C3F017300376331 /* APNS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F36FAC342C3F017300376331 /* XCRemoteSwiftPackageReference "APNSwift" */;
-			productName = APNS;
-		};
-		F36FAC372C3F017300376331 /* APNSCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F36FAC342C3F017300376331 /* XCRemoteSwiftPackageReference "APNSwift" */;
-			productName = APNSCore;
 		};
 		F36FAC3F2C3F059400376331 /* AnyCodable */ = {
 			isa = XCSwiftPackageProductDependency;
