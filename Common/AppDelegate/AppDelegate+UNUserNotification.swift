@@ -17,7 +17,7 @@ import UserNotifications
 
 extension AppDelegate {
 
-    func setupUNUserNotification() {
+    @MainActor func setupUNUserNotification() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {_, _ in }
         UNUserNotificationCenter.current().delegate = UNUserNotificationManager.shared
 

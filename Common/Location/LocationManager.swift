@@ -12,7 +12,7 @@ import Combine
 class LocationManager: NSObject {
     
     // MARK: 单例实现
-    static let shared = LocationManager()
+    @MainActor static let shared = LocationManager()
     private override init() {}
     private let locationManager = CLLocationManager()
     

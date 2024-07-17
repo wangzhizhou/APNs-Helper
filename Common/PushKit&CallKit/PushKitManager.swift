@@ -15,10 +15,10 @@ enum PushKitTokenType {
     case fileprovider
 }
 typealias PushKitTokenInfo = (token: String, type: PushKitTokenType)
-class PushKitManager: NSObject {
+final class PushKitManager: NSObject {
 
     // MARK: 单例实现
-    static let shared = PushKitManager()
+    @MainActor static let shared = PushKitManager()
     private override init() {}
 
     // MARK: 功能

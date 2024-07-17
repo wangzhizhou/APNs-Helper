@@ -16,17 +16,17 @@ import UIKit
 import SwiftUI
 
 /// https://github.com/raspu/Highlightr
-import Highlightr
+@preconcurrency import Highlightr
 
 /// https://github.com/simonbs/Prettier
-import Prettier
+@preconcurrency import Prettier
 import PrettierBabel
 
 struct CodeFomater {
 
-    static var lightColorSheme: String = "github"
+    static let lightColorSheme: String = "github"
 
-    static var darkColorSheme: String = "vs2015"
+    static let darkColorSheme: String = "vs2015"
 
     enum Language: String {
         case json

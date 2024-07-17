@@ -11,13 +11,13 @@ import Combine
 import AnyCodable
 import Logging
 
+@MainActor
 @Observable
 final class AppModel {
     
     // MARK: Log
     var appLog: String
     
-    @MainActor
     func resetLog() {
         appLog = .empty
     }
@@ -26,11 +26,7 @@ final class AppModel {
     var showToast: Bool
     var toastModel: ToastModel {
         didSet {
-            Task {
-                await MainActor.run {
-                    showToast = toastModel.shouldShow
-                }
-            }
+            showToast = toastModel.shouldShow
         }
     }
     // MARK: Test Mode Config
@@ -104,7 +100,7 @@ final class AppModel {
 
 // MARK: 发送通知
 extension AppModel {
-    @MainActor func sendPush(with content: AppContentModel, payload: AnyCodable) async throws {
+    func sendPush(with content: AppContentModel, payload: AnyCodable) async throws {
         let apnService = APNsService(
             appInfo: content.appInfo,
             pushType: content.pushType,
@@ -132,14 +128,12 @@ extension AppModel {
 import SwiftData
 extension AppModel {
     
-    @MainActor
     var presets: [AppInfo] {
         let fetchDescriptor = FetchDescriptor<Config>(sortBy: [.init(\.appBundleID)])
         let savedPresets = try? modelContainer.mainContext.fetch(fetchDescriptor)
         return savedPresets?.compactMap { $0.appInfo } ?? []
     }
     
-    @MainActor
     func saveConfigAsPreset(_ appInfo: AppInfo) -> Bool {
         
         let (valid, message) = appInfo.isValid
@@ -162,7 +156,6 @@ extension AppModel {
         }
     }
     
-    @MainActor
     func clearAllPresets() {
         do {
             try modelContainer.mainContext.delete(model: Config.self)
@@ -173,7 +166,6 @@ extension AppModel {
         }
     }
     
-    @MainActor
     func clearPresetIfExist(_ appInfo: AppInfo) {
         let appBundleID = appInfo.bundleID
         do {

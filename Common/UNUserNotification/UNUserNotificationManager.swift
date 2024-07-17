@@ -7,9 +7,9 @@
 
 import Foundation
 import UserNotifications
-import Combine
+@preconcurrency import Combine
 
-class UNUserNotificationManager: NSObject {
+final class UNUserNotificationManager: NSObject, Sendable {
 
     // 单例实现
     static let shared = UNUserNotificationManager()

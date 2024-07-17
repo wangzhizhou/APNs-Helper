@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+import APNSCore
 
+@MainActor
 @Observable
 final class AppContentModel {
     
@@ -59,7 +61,6 @@ extension AppContentModel {
     
 }
 
-import APNSCore
 extension AppContentModel {
     
     var jsonTemplatePayload: String? {

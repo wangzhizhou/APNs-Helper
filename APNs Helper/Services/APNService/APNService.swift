@@ -7,8 +7,8 @@
 
 import Foundation
 import APNS
-import APNSCore
-import AnyCodable
+@preconcurrency import APNSCore
+@preconcurrency import AnyCodable
 
 enum APNServiceError: Error {
     case notReachable
@@ -25,6 +25,7 @@ struct APNsService {
     let payload: AnyCodable
     
     // swiftlint: disable function_body_length
+    @MainActor
     func send() async throws -> APNSResponse? {
         
         guard apnsServerEnv.reachable

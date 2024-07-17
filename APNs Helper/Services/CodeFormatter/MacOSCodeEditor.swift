@@ -121,9 +121,11 @@ struct MacOSCodeEditor: NSViewRepresentable {
         init(parent: MacOSCodeEditor) {
             self.parent = parent
             super.init()
-            let cancellable = textDidChangeSubject.debounce(for: 0.3, scheduler: RunLoop.main).sink {[weak self] _ in
+            let cancellable = textDidChangeSubject.debounce(for: 0.3, scheduler: RunLoop.main).sink { [weak self] _ in
                 if let scrollView = self?.scrollView {
-                    parent.format(scrollView, force: true)
+                    Task { @MainActor in
+                        parent.format(scrollView, force: true)
+                    }
                 }
             }
             cancellables.append(cancellable)

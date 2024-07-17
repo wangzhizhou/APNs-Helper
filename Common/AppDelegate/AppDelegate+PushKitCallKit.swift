@@ -6,7 +6,7 @@
 //
 
 extension AppDelegate {
-    func setupPushKitAndCallKit() {
+    @MainActor func setupPushKitAndCallKit() {
 #if ENABLE_PUSHKIT
         PushKitManager.shared.setup()
 #endif

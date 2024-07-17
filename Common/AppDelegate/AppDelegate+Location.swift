@@ -8,7 +8,7 @@
 import Foundation
 
 extension AppDelegate {
-    func setupLocationManager() {
+    @MainActor func setupLocationManager() {
         LocationManager.shared.setup()
     }
 }

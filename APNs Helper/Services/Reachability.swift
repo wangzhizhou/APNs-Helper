@@ -46,9 +46,9 @@ public extension Notification.Name {
     static let reachabilityChanged = Notification.Name("reachabilityChanged")
 }
 
-public class Reachability {
+public final class Reachability: Sendable {
 
-    public typealias NetworkReachable = (Reachability) -> Void
+    public typealias NetworkReachable = @Sendable (Reachability) -> Void
     public typealias NetworkUnreachable = (Reachability) -> Void
 
     @available(*, unavailable, renamed: "Connection")
@@ -63,7 +63,7 @@ public class Reachability {
         }
     }
 
-    public enum Connection: CustomStringConvertible {
+    public enum Connection: CustomStringConvertible, Sendable {
         case unavailable, wifi, cellular
         public var description: String {
             switch self {
@@ -77,17 +77,17 @@ public class Reachability {
         public static let none: Connection = .unavailable
     }
 
-    public var whenReachable: NetworkReachable?
-    public var whenUnreachable: NetworkUnreachable?
+    nonisolated(unsafe) public var whenReachable: NetworkReachable?
+    nonisolated(unsafe) public var whenUnreachable: NetworkUnreachable?
 
     @available(*, deprecated, renamed: "allowsCellularConnection")
     public let reachableOnWWAN: Bool = true
 
     /// Set to `false` to force Reachability.connection to .none when on cellular connection (default value `true`)
-    public var allowsCellularConnection: Bool
+    nonisolated(unsafe) public var allowsCellularConnection: Bool
 
     // The notification center on which "reachability changed" events are being posted
-    public var notificationCenter: NotificationCenter = NotificationCenter.default
+    nonisolated(unsafe) public var notificationCenter: NotificationCenter = NotificationCenter.default
 
     @available(*, deprecated, renamed: "connection.description")
     public var currentReachabilityString: String {
@@ -111,7 +111,7 @@ public class Reachability {
         }
     }
 
-    fileprivate var isRunningOnDevice: Bool = {
+    nonisolated(unsafe) fileprivate var isRunningOnDevice: Bool = {
 #if targetEnvironment(simulator)
         return false
 #else
@@ -119,11 +119,11 @@ public class Reachability {
 #endif
     }()
 
-    fileprivate(set) var notifierRunning = false
-    fileprivate let reachabilityRef: SCNetworkReachability
+    nonisolated(unsafe) fileprivate(set) var notifierRunning = false
+    nonisolated(unsafe) fileprivate let reachabilityRef: SCNetworkReachability
     fileprivate let reachabilitySerialQueue: DispatchQueue
     fileprivate let notificationQueue: DispatchQueue?
-    fileprivate(set) var flags: SCNetworkReachabilityFlags? {
+    nonisolated(unsafe) fileprivate(set) var flags: SCNetworkReachabilityFlags? {
         didSet {
             guard flags != oldValue else { return }
             notifyReachabilityChanged()
@@ -273,7 +273,7 @@ fileprivate extension Reachability {
     }
 
     func notifyReachabilityChanged() {
-        let notify = { [weak self] in
+        let notify = { @Sendable [weak self] in
             guard let self = self else { return }
             // swiftlint: disable void_function_in_ternary
             self.connection != .unavailable ? self.whenReachable?(self) : self.whenUnreachable?(self)
