@@ -18,6 +18,7 @@ import ActivityKit
 
 import Combine
 
+@MainActor
 @Observable
 class TesterAppModel {
     
@@ -117,11 +118,7 @@ class TesterAppModel {
     var showToast: Bool
     var toastModel: ToastModel {
         didSet {
-            Task {
-                await MainActor.run {
-                    showToast = toastModel.shouldShow
-                }
-            }
+            showToast = toastModel.shouldShow
         }
     }
     
