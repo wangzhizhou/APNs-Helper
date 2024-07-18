@@ -74,7 +74,9 @@ extension PushKitManager: PKPushRegistryDelegate {
         switch type {
 #if os(iOS)
         case .voIP:
-            CallKitManager.shared.setupForVoip()
+            Task { @MainActor in
+                CallKitManager.shared.setupForVoip()
+            }
 #endif
         case .fileProvider:
             "pushkit file provider notification received".printDebugInfo()

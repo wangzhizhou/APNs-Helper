@@ -1,5 +1,5 @@
 {
-  "originHash" : "866b4b0dc04ea23450594227e926eeb7a843624117c9a3e77f2360ad65d3663a",
+  "originHash" : "4b101f214e2f02fdc893d66893e25c9af7c463a94e2eb45851456f862f8611ed",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -31,10 +31,10 @@
     {
       "identity" : "apnswift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/wangzhizhou/APNSwift.git",
+      "location" : "https://github.com/swift-server-community/APNSwift.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "0050269941175eea8f2507a955d6b3ac2453edaf"
+        "revision" : "36fec7e6ca5e99c6049771601770a5488021e19a",
+        "version" : "5.1.0"
       }
     },
     {

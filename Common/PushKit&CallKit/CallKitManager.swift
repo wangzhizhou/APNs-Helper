@@ -11,7 +11,7 @@ import CallKit
 class CallKitManager: NSObject {
 
     // MARK: 单例实现
-    static let shared = CallKitManager()
+    @MainActor static let shared = CallKitManager()
     private override init() {}
 
     // MARK: 功能实现
