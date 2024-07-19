@@ -58,8 +58,9 @@ struct LiveActivityStageButton: View {
     }
     
     private func updateLiveActivity() {
+        let liveActivity = model.liveActivity
         Task {
-            await model.liveActivity?.update(
+            await liveActivity?.update(
                 ActivityContent(
                     state: LiveActivityContentState(),
                     staleDate: .none
@@ -69,8 +70,9 @@ struct LiveActivityStageButton: View {
     }
     
     private func endLiveActivity() {
+        let liveActivity = model.liveActivity
         Task {
-            await model.liveActivity?.end(
+            await liveActivity?.end(
                 ActivityContent(
                     state: LiveActivityContentState(),
                     staleDate: nil
@@ -80,8 +82,9 @@ struct LiveActivityStageButton: View {
     }
     
     private func dismissLiveActivity() {
+        let liveActivity = model.liveActivity
         Task {
-            await model.liveActivity?.end(
+            await liveActivity?.end(
                 ActivityContent(
                     state: LiveActivityContentState(),
                     staleDate: nil
