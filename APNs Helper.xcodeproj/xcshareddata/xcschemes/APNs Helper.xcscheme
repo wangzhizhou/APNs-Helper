@@ -28,28 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2B35F73E28DEAB18009EF9C9"
-               BuildableName = "APNs HelperTests.xctest"
-               BlueprintName = "APNs HelperTests"
-               ReferencedContainer = "container:APNs Helper.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2B35F74828DEAB18009EF9C9"
-               BuildableName = "APNs HelperUITests.xctest"
-               BlueprintName = "APNs HelperUITests"
-               ReferencedContainer = "container:APNs Helper.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
