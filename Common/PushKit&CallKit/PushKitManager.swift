@@ -19,6 +19,7 @@ final class PushKitManager: NSObject {
 
     // MARK: 单例实现
     @MainActor static let shared = PushKitManager()
+    
     private override init() {}
 
     // MARK: 功能
@@ -31,6 +32,8 @@ final class PushKitManager: NSObject {
 #endif
         return registry
     }()
+    
+    private let callKitProcessor = CallKitProcessor()
 
     func setup() {
         pushKitRegistry.delegate = self
@@ -74,9 +77,7 @@ extension PushKitManager: PKPushRegistryDelegate {
         switch type {
 #if os(iOS)
         case .voIP:
-            Task { @MainActor in
-                CallKitManager.shared.setupForVoip()
-            }
+            callKitProcessor.setupForVoip()
 #endif
         case .fileProvider:
             "pushkit file provider notification received".printDebugInfo()

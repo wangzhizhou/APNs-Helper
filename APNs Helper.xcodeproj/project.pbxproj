@@ -42,12 +42,12 @@
 		2B64E96A29E6BA590007B1D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */; };
 		2B64E96B29E6BA5E0007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */; };
 		2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FED29E6A4AC0013237F /* PushKitManager.swift */; };
-		2B64E96D29E6BA5E0007B1D0 /* CallKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FEF29E6A4B30013237F /* CallKitManager.swift */; };
+		2B64E96D29E6BA5E0007B1D0 /* CallKitProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FEF29E6A4B30013237F /* CallKitProcessor.swift */; };
 		2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FED29E6A4AC0013237F /* PushKitManager.swift */; };
 		2B64E97529E6BAC80007B1D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8AA29DEE25F00E484FB /* AppDelegate.swift */; };
 		2B64E97629E6BAC80007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */; };
 		2B64E97729E6BAC80007B1D0 /* AppDelegate+UNUserNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B40F8B029DEE2F700E484FB /* AppDelegate+UNUserNotification.swift */; };
-		2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FEF29E6A4B30013237F /* CallKitManager.swift */; platformFilter = ios; };
+		2B64E97829E6BAC80007B1D0 /* CallKitProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE68FEF29E6A4B30013237F /* CallKitProcessor.swift */; platformFilter = ios; };
 		2B64E98029E6C78C0007B1D0 /* UNUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */; };
 		2B64E98129E6C8180007B1D0 /* UNUserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B64E97F29E6C78C0007B1D0 /* UNUserNotificationManager.swift */; };
 		2BA110D32AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */; };
@@ -303,7 +303,7 @@
 		2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileProvider+Setup.swift"; sourceTree = "<group>"; };
 		2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderPushPayload.swift; sourceTree = "<group>"; };
 		2BE68FED29E6A4AC0013237F /* PushKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushKitManager.swift; sourceTree = "<group>"; };
-		2BE68FEF29E6A4B30013237F /* CallKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitManager.swift; sourceTree = "<group>"; };
+		2BE68FEF29E6A4B30013237F /* CallKitProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitProcessor.swift; sourceTree = "<group>"; };
 		2BE68FF129E6A5D40013237F /* AppDelegate+PushKitCallKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PushKitCallKit.swift"; sourceTree = "<group>"; };
 		E2AD64E42C3FA44800EF046D /* i18n.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = i18n.xcstrings; sourceTree = "<group>"; };
 		E2ADF6D42C3E668800A1FF5C /* APNServerEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNServerEnv.swift; sourceTree = "<group>"; };
@@ -754,7 +754,7 @@
 			isa = PBXGroup;
 			children = (
 				2BE68FED29E6A4AC0013237F /* PushKitManager.swift */,
-				2BE68FEF29E6A4B30013237F /* CallKitManager.swift */,
+				2BE68FEF29E6A4B30013237F /* CallKitProcessor.swift */,
 			);
 			path = "PushKit&CallKit";
 			sourceTree = "<group>";
@@ -1296,7 +1296,7 @@
 				2B00316F2A0E0221009BEACD /* CodeFormatter.swift in Sources */,
 				F33327E52AEE7B9400EB6C49 /* LiveActivityNotificationView.swift in Sources */,
 				2B35F76B28DEAF56009EF9C9 /* Config.swift in Sources */,
-				2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */,
+				2B64E97829E6BAC80007B1D0 /* CallKitProcessor.swift in Sources */,
 				2BBBCFF12BDF85B400C63662 /* MacOSScene.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNService.swift in Sources */,
 				2BBBCFF42BDF860600C63662 /* AppScene.swift in Sources */,
@@ -1353,7 +1353,7 @@
 				2BD846642A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */,
 				2B64E96B29E6BA5E0007B1D0 /* AppDelegate+PushKitCallKit.swift in Sources */,
 				2BA110D42AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */,
-				2B64E96D29E6BA5E0007B1D0 /* CallKitManager.swift in Sources */,
+				2B64E96D29E6BA5E0007B1D0 /* CallKitProcessor.swift in Sources */,
 				F355EB072AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */,
 				2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */,
 				2B64E96529E6B36A0007B1D0 /* TesterAppModel.swift in Sources */,

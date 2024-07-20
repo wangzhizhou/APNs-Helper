@@ -1,5 +1,5 @@
 //
-//  CallKitManager.swift
+//  CallKitProcessor.swift
 //  APNs Helper
 //
 //  Created by joker on 2023/4/12.
@@ -8,22 +8,18 @@
 
 import CallKit
 
-class CallKitManager: NSObject {
+class CallKitProcessor: NSObject {
 
     // MARK: 单例实现
-    @MainActor static let shared = CallKitManager()
-    private override init() {}
-
-    // MARK: 功能实现
-    private(set) lazy var callProvider: CXProvider = {
+    
+    private let callProvider: CXProvider = {
         var config = CXProviderConfiguration()
         config.supportsVideo = false
         config.supportedHandleTypes = [CXHandle.HandleType.generic]
         config.maximumCallGroups = 1
         config.maximumCallsPerCallGroup = 1
         config.includesCallsInRecents = false
-        let provider = CXProvider(configuration: config)
-        return provider
+        return CXProvider(configuration: config)
     }()
 
     func setupForVoip() {
@@ -35,7 +31,7 @@ class CallKitManager: NSObject {
     }
 }
 
-extension CallKitManager: CXProviderDelegate {
+extension CallKitProcessor: CXProviderDelegate {
 
     func providerDidReset(_ provider: CXProvider) {
 
