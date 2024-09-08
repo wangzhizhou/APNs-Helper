@@ -1,5 +1,9 @@
 # APNs Helper
 
+@Metadata {
+    @PageImage(purpose: card, source: sender)
+}
+
 A tool that can run on MacOS/iOS device, you can use it to send apns notifications.
 
 ## Overview

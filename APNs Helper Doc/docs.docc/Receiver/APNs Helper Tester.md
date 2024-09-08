@@ -1,5 +1,9 @@
 # APNs Helper Tester
 
+@Metadata {
+    @PageImage(purpose: card, source: receiver)
+}
+
 This app can be used to receive notifications which send from APNs Server
 
 ## Overview
