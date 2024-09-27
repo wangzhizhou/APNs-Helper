@@ -96,8 +96,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/OrzGeeker/OrzSwiftLint.git",
       "state" : {
-        "branch" : "main",
-        "revision" : "3fbeec4627605c6bbe5c2fb3341178e8a295e99c"
+        "revision" : "7ab47ec18f40a102504640d95d723ad217f32949",
+        "version" : "0.0.3"
       }
     },
     {
