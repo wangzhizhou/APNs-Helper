@@ -17,17 +17,18 @@ import UserNotifications
 
 extension AppDelegate {
 
-    @MainActor func setupUNUserNotification() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {_, _ in }
-        UNUserNotificationCenter.current().delegate = UNUserNotificationManager.shared
-
+    func setupUNUserNotification() {
+        Task {
+            _ = try? await UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge])
+            UNUserNotificationCenter.current().delegate = UNUserNotificationManager.shared
 #if canImport(UIKit)
-        UIApplication.shared.registerForRemoteNotifications()
+            UIApplication.shared.registerForRemoteNotifications()
 #endif
-
+            
 #if canImport(AppKit)
-        NSApplication.shared.registerForRemoteNotifications()
+            await NSApplication.shared.registerForRemoteNotifications()
 #endif
+        }
     }
 }
 

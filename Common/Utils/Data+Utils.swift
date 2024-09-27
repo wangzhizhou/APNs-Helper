@@ -11,7 +11,5 @@ extension Data {
     
     var hexString: String { reduce("") { $0 + String(format: "%02x", $1) } }
     
-    var toUTF8String: String { String(decoding: self, as: UTF8.self) }
-    
-    
+    var toUTF8String: String? { String(data: self, encoding: .utf8) }
 }

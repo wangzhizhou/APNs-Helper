@@ -109,8 +109,8 @@ extension AppModel {
         )
         do {
             logger.critical("Start Sending Push\n")
-            let response = try await apnService.send()
-            logger.critical("Send Push Success!\napnsID: \(response?.apnsID?.uuidString ?? "None")")
+            let apnsID = try await apnService.send()
+            logger.critical("Send Push Success!\napnsID: \(apnsID?.uuidString ?? "None")")
             self.isSendingPush = false
         } catch let error as APNServiceError {
             self.isSendingPush = false

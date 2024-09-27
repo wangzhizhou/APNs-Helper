@@ -33,7 +33,9 @@ final class PushKitManager: NSObject {
         return registry
     }()
     
+#if os(iOS)
     private let callKitProcessor = CallKitProcessor()
+#endif
 
     func setup() {
         pushKitRegistry.delegate = self
