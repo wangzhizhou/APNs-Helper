@@ -2394,8 +2394,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/OrzGeeker/OrzSwiftKit.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.11;
 			};
 		};
 		E20388DA2C4943120074DC90 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
