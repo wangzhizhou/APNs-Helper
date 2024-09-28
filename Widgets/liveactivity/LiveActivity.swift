@@ -12,32 +12,52 @@ import SwiftUI
 struct LiveActivity: Widget {
     
     var body: some WidgetConfiguration {
-        
+        let randomColor = Color.random
         return ActivityConfiguration(for: LiveActivityAttributes.self) { _ in
-            Text(Date().formatted(.dateTime.year().month().day().hour().minute().second()))
-                .foregroundStyle(.primary)
-                .activityBackgroundTint(.random)
+            HStack {
+                Image(systemName: "clock")
+                Text(Date().formatted(.dateTime.year().month().day().hour().minute().second()))
+                    .bold()
+            }
+            .activityBackgroundTint(randomColor)
         } dynamicIsland: { _ in
-            
             DynamicIsland(expanded: {
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading")
+                    Image(systemName: "calendar.circle")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .offset(y: 30)
+                        .activityBackgroundTint(randomColor)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
+                    Image(systemName: "gauge.with.needle")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .offset(y: 30)
+                        .activityBackgroundTint(randomColor)
                 }
                 DynamicIslandExpandedRegion(.center) {
-                    Text("Center")
+                    Text(Date().formatted(.dateTime.year().month().day()))
+                        .font(.title)
+                        .bold()
+                        .activityBackgroundTint(randomColor)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom")
+                    Text(Date().formatted(.dateTime.hour().minute().second()))
+                        .font(.title3)
+                        .bold()
+                        .activityBackgroundTint(randomColor)
                 }
             }, compactLeading: {
-                Text("Leading")
+                Text(Date().formatted(.dateTime.month().day()))
+                    .activityBackgroundTint(randomColor)
             }, compactTrailing: {
-                Text("Trailing")
+                Text(Date().formatted(.dateTime.hour().minute()))
+                    .activityBackgroundTint(randomColor)
             }, minimal: {
-                Text("😅")
+                Image(systemName: "app.badge.fill")
+                    .symbolEffect(.pulse.wholeSymbol)
+                    .activityBackgroundTint(randomColor)
             })
             .keylineTint(.teal)
         }
