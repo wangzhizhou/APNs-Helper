@@ -11,15 +11,16 @@ import SwiftUI
 
 struct LiveActivity: Widget {
     
+    var randomBackgroundColor: Color { Color.random }
+    
     var body: some WidgetConfiguration {
-        let randomColor = Color.random
         return ActivityConfiguration(for: LiveActivityAttributes.self) { _ in
             HStack {
                 Image(systemName: "clock")
                 Text(Date().formatted(.dateTime.year().month().day().hour().minute().second()))
                     .bold()
             }
-            .activityBackgroundTint(randomColor)
+            .activityBackgroundTint(randomBackgroundColor)
         } dynamicIsland: { _ in
             DynamicIsland(expanded: {
                 DynamicIslandExpandedRegion(.leading) {
