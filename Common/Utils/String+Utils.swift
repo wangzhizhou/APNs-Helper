@@ -61,11 +61,7 @@ extension Notification.Name {
 
 import AnyCodable
 extension String {
-    var model: AnyCodable? {
-        guard let data = self.data(using: .utf8)
-        else {
-            return nil
-        }
-        return try? JSONDecoder().decode(AnyCodable.self, from: data)
+    var anyCodableModel: AnyCodable? {
+        return try? JSONDecoder().decode(AnyCodable.self, from: self.utf8Data)
     }
 }

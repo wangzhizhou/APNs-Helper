@@ -48,9 +48,28 @@ struct APNsService {
             let response: APNSResponse?
             switch pushType {
             case .alert:
+                var alertContent = APNSAlertNotificationContent()
+                if let aps = payload.jsonDict?["aps"], let alert = aps.jsonDict?["alert"] {
+                    
+                    if let title = alert.jsonDict?["title"]?.stringValue {
+                        alertContent.title = .raw(title)
+                    }
+                    
+                    if let subtitle = alert.jsonDict?["subtitle"]?.stringValue {
+                        alertContent.subtitle = .raw(subtitle)
+                    }
+                    
+                    if let body = alert.jsonDict?["body"]?.stringValue {
+                        alertContent.body = .raw(body)
+                    }
+                    
+                    if let launchImage = alert.jsonDict?["launch-image"]?.stringValue {
+                        alertContent.launchImage = launchImage
+                    }
+                }
                 response = try await client?.sendAlertNotification(
                     .init(
-                        alert: .init(title: .raw("Simple Alert"), subtitle: .raw("Subtitle"), body: .raw("Body")),
+                        alert: alertContent,
                         expiration: .immediately,
                         priority: .immediately,
                         topic: appInfo.bundleID,
@@ -73,11 +92,13 @@ struct APNsService {
                     .init(priority: .immediately, appID: appInfo.bundleID),
                     deviceToken: appInfo.locationPushToken)
             case .liveactivity:
+                // TODO: convert from payload
+                let contentState = EmptyPayload()
                 let mockNotification = APNSLiveActivityNotification(
                     expiration: .immediately,
                     priority: .immediately,
                     appID: appInfo.bundleID,
-                    contentState: EmptyPayload(),
+                    contentState: contentState,
                     event: .update,
                     timestamp: 0,
                     dismissalDate: .immediately
@@ -90,5 +111,23 @@ struct APNsService {
             try await client?.shutdown()
             throw error
         }
+    }
+}
+
+extension AnyCodable {
+    var jsonData: Data? { try? JSONEncoder().encode(self) }
+    var jsonDict: [String: AnyCodable]? {
+        guard let jsonData = self.jsonData
+        else {
+            return nil
+        }
+        return try? JSONDecoder().decode([String: AnyCodable].self, from: jsonData)
+    }
+    var stringValue: String? {
+        guard let jsonData = self.jsonData
+        else {
+            return nil
+        }
+        return try? JSONDecoder().decode(String.self, from: jsonData)
     }
 }

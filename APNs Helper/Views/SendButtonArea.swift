@@ -51,7 +51,7 @@ struct SendButtonArea: View {
                     }
                     appModel.isSendingPush = true
                     appModel.resetLog()
-                    if let payload = contentModel.payload.model {
+                    if let payload = contentModel.payload.anyCodableModel {
                         try await appModel.sendPush(with: contentModel, payload: payload)
                     }
                     appModel.isSendingPush = false

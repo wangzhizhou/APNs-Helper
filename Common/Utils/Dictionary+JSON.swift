@@ -6,13 +6,8 @@
 //
 
 import Foundation
+import AnyCodable
 
-extension Dictionary where Key == String {
-    
-    var jsonString: String? {
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: self, options: []) else {
-            return nil
-        }
-        return jsonData.toUTF8String
-    }
+extension Dictionary where Key == String, Value == AnyCodable {
+    var jsonString: String? { try? JSONEncoder().encode(self).toUTF8String }
 }
