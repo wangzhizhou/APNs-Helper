@@ -25,7 +25,7 @@ struct APNsService {
     
     let payload: AnyCodable
     
-    // swiftlint:disable:next function_body_length
+    // swiftlint:disable:next function_body_length cyclomatic_complexity
     func send() async throws -> UUID? {
         guard apnsServerEnv.reachable
         else {
@@ -109,7 +109,6 @@ struct APNsService {
                             liveactivityNotification.event = .end
                         }
                     }
-                    
                     if let timestamp = aps.jsonDict?["timestamp"]?.intValue {
                         liveactivityNotification.timestamp = timestamp
                     }
