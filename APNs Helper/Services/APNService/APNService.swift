@@ -92,18 +92,43 @@ struct APNsService {
                     .init(priority: .immediately, appID: appInfo.bundleID),
                     deviceToken: appInfo.locationPushToken)
             case .liveactivity:
-                // TODO: convert from payload
-                let contentState = EmptyPayload()
-                let mockNotification = APNSLiveActivityNotification(
-                    expiration: .immediately,
-                    priority: .immediately,
-                    appID: appInfo.bundleID,
-                    contentState: contentState,
-                    event: .update,
-                    timestamp: 0,
-                    dismissalDate: .immediately
-                )
-                response = try await client?.sendLiveActivityNotification(mockNotification, deviceToken: appInfo.liveActivityPushToken)
+                if let aps = payload.jsonDict?["aps"], let contentStateAnyCodableModel = aps.jsonDict?["content-state"] {
+                    var liveactivityNotification = APNSLiveActivityNotification(
+                        expiration: .immediately,
+                        priority: .immediately,
+                        appID: appInfo.bundleID,
+                        contentState: contentStateAnyCodableModel,
+                        event: .update,
+                        timestamp: 0,
+                        dismissalDate: .immediately
+                    )
+                    if let event = aps.jsonDict?["event"] {
+                        if event == "update" {
+                            liveactivityNotification.event = .update
+                        } else if event == "end" {
+                            liveactivityNotification.event = .end
+                        }
+                    }
+                    
+                    if let timestamp = aps.jsonDict?["timestamp"]?.intValue {
+                        liveactivityNotification.timestamp = timestamp
+                    }
+                    if let dismissalDate = aps.jsonDict?["dismissal-date"]?.intValue {
+                        liveactivityNotification.dismissalDate = .timeIntervalSince1970InSeconds(dismissalDate)
+                    }
+                    response = try await client?.sendLiveActivityNotification(liveactivityNotification, deviceToken: appInfo.liveActivityPushToken)
+                } else {
+                    let liveactivityNotification = APNSLiveActivityNotification(
+                        expiration: .immediately,
+                        priority: .immediately,
+                        appID: appInfo.bundleID,
+                        contentState: EmptyPayload(),
+                        event: .update,
+                        timestamp: 0,
+                        dismissalDate: .immediately
+                    )
+                    response = try await client?.sendLiveActivityNotification(liveactivityNotification, deviceToken: appInfo.liveActivityPushToken)
+                }
             }
             try await client?.shutdown()
             return response?.apnsID
@@ -129,5 +154,13 @@ extension AnyCodable {
             return nil
         }
         return try? JSONDecoder().decode(String.self, from: jsonData)
+    }
+    
+    var intValue: Int? {
+        guard let jsonData = self.jsonData
+        else {
+            return nil
+        }
+        return try? JSONDecoder().decode(Int.self, from: jsonData)
     }
 }
