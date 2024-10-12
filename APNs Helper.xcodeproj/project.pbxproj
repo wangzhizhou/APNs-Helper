@@ -2403,7 +2403,7 @@
 			repositoryURL = "https://github.com/swift-server-community/APNSwift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
+				minimumVersion = 6.0.1;
 			};
 		};
 		E203E9DC2C3518F000014D6E /* XCRemoteSwiftPackageReference "swift-docc-plugin" */ = {

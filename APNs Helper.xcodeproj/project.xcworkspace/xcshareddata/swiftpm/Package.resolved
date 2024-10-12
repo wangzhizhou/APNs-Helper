@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/swift-server-community/APNSwift.git",
       "state" : {
-        "revision" : "9b5032e62bca132041f55d66e62ba3d5799a4427",
-        "version" : "6.0.0"
+        "revision" : "cc8c715763908750b9155928796a8a981688e4fc",
+        "version" : "6.0.1"
       }
     },
     {
