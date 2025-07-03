@@ -15,7 +15,7 @@ struct AppScene: Scene {
         WindowGroup {
             AppContent()
 #if os(macOS)
-                .frame(maxWidth: 640, minHeight: 828, maxHeight: 828)
+                .frame(minWidth: 650, maxWidth: 650, minHeight: 828, maxHeight: 828)
 #endif
                 .environment(model)
         }
