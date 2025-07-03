@@ -7,7 +7,8 @@
 
 import Foundation
 import APNS
-@preconcurrency import APNSCore
+import APNSCore
+import NIOPosix
 @preconcurrency import AnyCodable
 
 enum APNServiceError: Error {
@@ -40,7 +41,7 @@ struct APNsService {
             let configuration: APNSClientConfiguration = .init(authenticationMethod: authMethod, environment: apnsServerEnv.env)
             client = APNSClient(
                 configuration: configuration,
-                eventLoopGroupProvider: .createNew,
+                eventLoopGroupProvider: .shared(MultiThreadedEventLoopGroup.singleton),
                 responseDecoder: JSONDecoder(),
                 requestEncoder: JSONEncoder()
             )
