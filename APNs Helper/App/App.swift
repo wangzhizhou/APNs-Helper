@@ -16,8 +16,6 @@ struct APNsHelperApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
 
-    let persistenceController = PersistenceController.preview
-
     @StateObject var model = AppModel()
     var body: some Scene {
         WindowGroup {
@@ -26,7 +24,6 @@ struct APNsHelperApp: App {
                 .frame(maxWidth: 632, minHeight: 828, maxHeight: 828)
 #endif
                 .environmentObject(model)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
 #if os(macOS)
         .windowResizability(.contentSize)

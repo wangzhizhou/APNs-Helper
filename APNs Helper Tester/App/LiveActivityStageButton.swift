@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-#if canImport(ActivityKit)
+#if canImport(ActivityKit) && os(iOS)
 import ActivityKit
 
 struct LiveActivityStageButton: View {

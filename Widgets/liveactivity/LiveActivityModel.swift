@@ -5,7 +5,7 @@
 //  Created by joker on 11/7/23.
 //
 
-#if canImport(ActivityKit)
+#if canImport(ActivityKit) && os(iOS)
 import ActivityKit
 
 struct LiveActivityContentState: Codable, Hashable {

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F369DD172A0A9E890061DF8A"
-               BuildableName = "APNs Helper.app"
+               BuildableName = "APNs Helper Doc.app"
                BlueprintName = "APNs Helper Doc"
                ReferencedContainer = "container:APNs Helper.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F369DD172A0A9E890061DF8A"
-            BuildableName = "APNs Helper.app"
+            BuildableName = "APNs Helper Doc.app"
             BlueprintName = "APNs Helper Doc"
             ReferencedContainer = "container:APNs Helper.xcodeproj">
          </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F369DD172A0A9E890061DF8A"
-            BuildableName = "APNs Helper.app"
+            BuildableName = "APNs Helper Doc.app"
             BlueprintName = "APNs Helper Doc"
             ReferencedContainer = "container:APNs Helper.xcodeproj">
          </BuildableReference>

@@ -12,7 +12,7 @@ import UIKit
 import AppKit
 #endif
 
-#if canImport(ActivityKit)
+#if canImport(ActivityKit) && os(iOS)
 import ActivityKit
 #endif
 
@@ -20,7 +20,7 @@ import Combine
 
 class TesterAppModel: ObservableObject {
     
-#if canImport(ActivityKit)
+#if canImport(ActivityKit) && os(iOS)
     var liveActivity: Activity<LiveActivityAttributes>? {
         
         willSet {

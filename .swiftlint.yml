@@ -1,0 +1,68 @@
+# SwiftLint 配置（仓库统一入口）
+#
+# 之前规则写在 OrzSwiftLint 构建插件内部，工程里改不动，且插件依赖会阻塞 Xcode 构建。
+# 现在规则收敛到这个文件：本地可 `brew install swiftlint && swiftlint lint --quiet`，
+# CI 也在 build 之前跑一遍（见 .github/workflows/build.yml）。
+#
+# 规则内容沿用插件原有配置，避免一次性引入大量存量告警。
+
+included:
+  - "APNs Helper"
+  - "APNs Helper Tester"
+  - Common
+  - FileProviderExtension
+  - FileProviderExtensionUI
+  - LocationPushServiceExtension
+  - NotificationContentExtension
+  - NotificationServiceExtension
+  - Widgets
+
+excluded:
+  - website
+  - ci_scripts
+
+indentation_width:
+  indentation_width: 4
+  include_compiler_directives: false
+  include_comments: false
+  include_multiline_strings: false
+
+opt_in_rules:
+  - indentation_width
+
+# TODO 用 issue/PR 跟踪即可，不占用 lint 结果（FileProvider 扩展里保留了 Apple 模板的桩代码 TODO）。
+disabled_rules:
+  - todo
+
+trailing_whitespace:
+  ignores_empty_lines: true
+
+vertical_whitespace:
+  max_empty_lines: 2
+
+line_length:
+  warning: 150
+  error: 300
+  ignores_urls: true
+  ignores_function_declarations: true
+  ignores_comments: true
+
+identifier_name:
+  excluded:
+    - i
+    - id
+    - x
+    - y
+    - z
+    - os
+    - ps
+
+type_name:
+  validates_start_with_lowercase: warning
+
+file_length:
+  ignore_comment_only_lines: true
+
+function_parameter_count:
+  warning: 6
+

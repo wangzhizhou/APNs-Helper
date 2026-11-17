@@ -7,69 +7,18 @@
 
 import Foundation
 import Logging
-import SystemConfiguration
-import NIO
 import APNS
 import APNSCore
 
-enum APNServerEnv: String, CaseIterable, Codable {
-    case sandbox
-    case production
-    
-    var env: APNSEnvironment {
-        switch self {
-        case .sandbox:
-            return .sandbox
-        case .production:
-            return .production
-        }
-    }
+extension APNServerEnv {
 
+    /// 该环境是否可达（用于发送前的前置检查）。
     var reachable: Bool {
-        var reachable = false
-
-        var hostname: String?
-        switch self {
-        case .sandbox:
-            hostname = "api.development.push.apple.com"
-        case .production:
-            hostname = "api.push.apple.com"
-        }
-        if let hostname = hostname {
-            do {
-                let reachability = try Reachability(hostname: hostname)
-                reachable = reachability.connection != .unavailable
-            } catch {
-                reachable = false
-            }
-        }
-
-        return reachable
-    }
-}
-
-enum PushType: String, CaseIterable, Codable {
-    case alert
-    case background
-    case voip
-    case fileprovider
-    case location
-    case liveactivity
-    
-    var type: APNSPushType {
-        switch self {
-        case .alert:
-            return .alert
-        case .background:
-            return .background
-        case .voip:
-            return .voip
-        case .fileprovider:
-            return .fileprovider
-        case .location:
-            return .location
-        case .liveactivity:
-            return .liveactivity
+        do {
+            let reachability = try Reachability(hostname: hostname)
+            return reachability.connection != .unavailable
+        } catch {
+            return false
         }
     }
 }
@@ -93,12 +42,17 @@ struct APNsService {
         }
     }
 
-    // swiftlint: disable function_body_length
     func send() async throws -> Bool {
 
         guard config.apnsServerEnv.reachable
         else {
             appModel.toastModel = ToastModel.info().title("APN Server Not Reachable")
+            return false
+        }
+
+        guard let payload = JSONValue(jsonData: payloadData)
+        else {
+            logger.error("Invalid Payload, please check the JSON format")
             return false
         }
 
@@ -119,71 +73,18 @@ struct APNsService {
                 requestEncoder: JSONEncoder()
             )
 
-            var response: APNSResponse?
-            switch config.pushType {
-            case .alert:
-                response = try await client?.sendAlertNotification(
-                    .init(
-                        alert: .init(
-                            title: .raw("Simple Alert"),
-                            subtitle: .raw("Subtitle"),
-                            body: .raw("Body")),
-                        expiration: .immediately,
-                        priority: .immediately,
-                        topic: config.appBundleID,
-                        rawPayloadData: payloadData
-                    ),
-                    deviceToken: config.deviceToken)
-            case .background:
-                response = try await client?.sendBackgroundNotification(
-                    .init(
-                        expiration: .immediately,
-                        topic: config.appBundleID,
-                        rawPayloadData: payloadData
-                    ),
-                    deviceToken: config.deviceToken)
-            case .voip:
-                response = try await client?.sendVoIPNotification(
-                    .init(
-                        priority: .immediately,
-                        appID: config.appBundleID,
-                        rawPayloadData: payloadData
-                    ),
-                    deviceToken: config.pushKitVoIPToken)
-            case .fileprovider:
-                response = try await client?.sendFileProviderNotification(
-                    .init(
-                        expiration: .immediately,
-                        appID: config.appBundleID,
-                        rawPayloadData: payloadData
-                    ),
-                    deviceToken: config.pushKitFileProviderToken)
-            case .location:
-                response = try await client?.sendLocationNotification(
-                    .init(
-                        priority: .immediately,
-                        appID: config.appBundleID,
-                        rawPayloadData: payloadData
-                    ),
-                    deviceToken: config.locationPushServiceToken)
-            case .liveactivity:
-                
-                let mockNotification = APNSLiveActivityNotification(
-                    expiration: .immediately,
-                    priority: .immediately,
-                    appID: config.appBundleID,
-                    contentState: EmptyPayload(),
-                    event: .update,
-                    timestamp: 0,
-                    dismissalDate: .immediately,
-                    rawPayloadData: payloadData
-                )
-                
-                response = try await client?.sendLiveActivityNotification(
-                    mockNotification,
-                    deviceToken: config.liveActivityPushToken)
-            }
-            
+            let request = APNSRequest(
+                message: RawPayloadNotification(payload: payload),
+                deviceToken: config.pushType.deviceToken(in: config),
+                pushType: config.pushType.type,
+                expiration: config.pushType.expiration,
+                priority: config.pushType.priority,
+                apnsID: nil,
+                topic: config.pushType.topic(forBundleID: config.appBundleID),
+                collapseID: nil
+            )
+            let response: APNSResponse? = try await client?.send(request)
+
             if let apnsID = response?.apnsID {
                 logger.notice("\(apnsID)")
             }
@@ -197,14 +98,15 @@ struct APNsService {
             return false
         }
     }
-    // swiftlint: enable function_body_length
 
     func shutdownClient(_ client: APNSClient<JSONDecoder, JSONEncoder>?, appModel: AppModel) async {
         _ = await MainActor.run {
             appModel.isSendingPush = false
         }
-        client?.shutdown(callback: { error in
-            "shutdown client: \(error?.localizedDescription ?? "Success")".printDebugInfo()
-        })
+        do {
+            try await client?.shutdown()
+        } catch {
+            "shutdown client: \(error.localizedDescription)".printDebugInfo()
+        }
     }
 }

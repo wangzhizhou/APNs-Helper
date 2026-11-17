@@ -1,0 +1,63 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: SwiftLint
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      - name: Lint
+        run: swiftlint lint --config .swiftlint.yml --quiet --force-exclude
+
+  build:
+    name: Build (${{ matrix.name }})
+    runs-on: macos-15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS
+            destination: platform=macOS
+          - name: iOS Simulator
+            destination: generic/platform=iOS Simulator
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show toolchain
+        run: xcodebuild -version
+      - name: Resolve packages
+        run: xcodebuild -resolvePackageDependencies -project "APNs Helper.xcodeproj" -scheme "APNs Helper"
+      - name: Build
+        run: |
+          xcodebuild build \
+            -project "APNs Helper.xcodeproj" \
+            -scheme "APNs Helper" \
+            -destination '${{ matrix.destination }}' \
+            CODE_SIGNING_ALLOWED=NO
+
+  test:
+    name: Unit Tests
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show toolchain
+        run: xcodebuild -version
+      - name: Run tests
+        run: |
+          xcodebuild test \
+            -project "APNs Helper.xcodeproj" \
+            -scheme "APNs Helper Tests" \
+            -destination 'platform=macOS' \
+            CODE_SIGNING_ALLOWED=NO
