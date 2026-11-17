@@ -8,11 +8,11 @@
 import SwiftUI
 
 #if canImport(ActivityKit) && os(iOS)
-import ActivityKit
+@preconcurrency import ActivityKit
 
 struct LiveActivityStageButton: View {
     
-    @EnvironmentObject var model: TesterAppModel
+    @Environment(TesterAppModel.self) private var model
     
     var body: some View {
         
@@ -58,7 +58,7 @@ struct LiveActivityStageButton: View {
     }
     
     private func updateLiveActivity() {
-        Task {
+        Task { @MainActor in
             await model.liveActivity?.update(
                 ActivityContent(
                     state: LiveActivityContentState(),
@@ -69,7 +69,7 @@ struct LiveActivityStageButton: View {
     }
     
     private func endLiveActivity() {
-        Task {
+        Task { @MainActor in
             await model.liveActivity?.end(
                 ActivityContent(
                     state: LiveActivityContentState(),
@@ -80,7 +80,7 @@ struct LiveActivityStageButton: View {
     }
     
     private func dismissLiveActivity() {
-        Task {
+        Task { @MainActor in
             await model.liveActivity?.end(
                 ActivityContent(
                     state: LiveActivityContentState(),

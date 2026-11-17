@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+import Observation
 
-class AppContentModel: ObservableObject {
-    @Published var presetConfig: Config = .none
-    @Published var appInfo = Config.none
-    @Published var payload: String = ""
-    @Published var showFileImporter: Bool = false
+@Observable
+final class AppContentModel {
+    var presetConfig: Config = .none
+    var appInfo = Config.none
+    var payload: String = ""
+    var showFileImporter: Bool = false
 
-    @Published var isInTestMode: Bool = false
+    var isInTestMode: Bool = false
 }
 
 extension AppContentModel {

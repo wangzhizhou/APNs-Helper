@@ -11,6 +11,7 @@ A Tool run on MacOS/iOS that can send APNs Notifications for Test
 ## Development
 
 Requirements: Xcode 16 or newer (iOS 17 / macOS 14 deployment targets).
+代码使用 Swift 6 语言模式与 Observation（`@Observable`），UI 状态模型统一 `@MainActor`。
 
 ```bash
 # 依赖（SwiftPM，含 APNSwift）

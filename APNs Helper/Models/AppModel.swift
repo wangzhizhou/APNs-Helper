@@ -8,32 +8,35 @@
 import Foundation
 import SwiftUI
 import Combine
+import Observation
 
-class AppModel: ObservableObject {
+@Observable
+@MainActor
+final class AppModel {
 
     // MARK: Log
-    @Published var appLog: String
+    var appLog: String
 
-    @MainActor
     func resetLog() {
         appLog = .empty
     }
 
     // MARK: Toast
-    @Published var showToast: Bool
+    var showToast: Bool
     var toastModel: ToastModel {
         didSet {
-            Task {
-                await MainActor.run {
-                    showToast = toastModel.shouldShow
-                }
-            }
+            showToast = toastModel.shouldShow
         }
     }
 
     // MARK: Preset Persistence
-    @AppStorage("presets")
-    private var presetData: Data = Data()
+
+    private static let presetsStoreKey = "presets"
+
+    private var presetData: Data {
+        get { UserDefaults.standard.data(forKey: Self.presetsStoreKey) ?? Data() }
+        set { UserDefaults.standard.set(newValue, forKey: Self.presetsStoreKey) }
+    }
 
     var presets: [Config] {
         get { presetData.toPresetConfigs.sorted(by: <) }
@@ -92,9 +95,8 @@ class AppModel: ObservableObject {
     }
 
     // MARK: Test Mode Config
-    @Published var thisAppConfig: Config
+    var thisAppConfig: Config
 
-    @MainActor
     var isSendingPush: Bool
 
     init(
@@ -108,12 +110,14 @@ class AppModel: ObservableObject {
             self.appLog = appLog
             self.showToast = showToast
             self.toastModel = toastModel
-            self.presetData = presetData
             self.thisAppConfig = thisAppConfig
+            if !presetData.isEmpty {
+                UserDefaults.standard.set(presetData, forKey: Self.presetsStoreKey)
+            }
             self.isSendingPush = isSendingPush
 
 #if ENABLE_PUSHKIT
-            let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitTokenInfo in
+            let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sinkOnMain { pushKitTokenInfo in
                 let (pushKitVoIPToken, type) = pushKitTokenInfo
                 switch type {
                 case .voip:
@@ -127,17 +131,19 @@ class AppModel: ObservableObject {
             cancellables.append(pushkitCancellable)
 #endif
 
-            let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
+            let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sinkOnMain { deviceToken in
                 self.thisAppConfig.deviceToken = deviceToken
             }
             cancellables.append(deviceTokenCancellable)
 
-            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
+            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sinkOnMain { message in
                 self.toastModel = ToastModel.info().title(message)
             }
             cancellables.append(backgroundNotificationCancellable)
 
-            let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
+            let copyToPasteboardCancellable = NotificationCenter.default
+                .publisher(for: .APNSHelperStringCopyedToPastedboard)
+                .sinkOnMain { _ in
                 self.toastModel = ToastModel.info().title("Copyed to Pasteboard!")
             }
             cancellables.append(copyToPasteboardCancellable)

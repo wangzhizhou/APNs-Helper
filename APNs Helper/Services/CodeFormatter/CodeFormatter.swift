@@ -24,9 +24,9 @@ import PrettierBabel
 
 struct CodeFomater {
 
-    static var lightColorSheme: String = "github"
+    static let lightColorSheme: String = "github"
 
-    static var darkColorSheme: String = "vs2015"
+    static let darkColorSheme: String = "vs2015"
 
     enum Language: String {
         case json
@@ -45,7 +45,9 @@ struct CodeFomater {
         return textContainer
     }
 
-    static let highlighter: Highlightr = {
+    /// Highlightr 内部持有可变状态，且只在主线程（编辑器）使用，
+    /// Swift 6 下用 `nonisolated(unsafe)` 显式声明这条既有约定。
+    nonisolated(unsafe) static let highlighter: Highlightr = {
         let highlighter = Highlightr()!
         highlighter.ignoreIllegals = true
         return highlighter
@@ -56,7 +58,8 @@ struct CodeFomater {
         highlighter.setTheme(to: themeName)
     }
 
-    static let jsonFormatter: PrettierFormatter = {
+    /// 同上：Prettier 的 formatter 非线程安全，只在格式化时串行使用。
+    nonisolated(unsafe) static let jsonFormatter: PrettierFormatter = {
         let formatter = PrettierFormatter(plugins: [BabelPlugin()], parser: JSONParser())
         formatter.prepare()
         return formatter

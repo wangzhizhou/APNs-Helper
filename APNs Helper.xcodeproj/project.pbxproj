@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3A1B0222C1A000100ABCDEF /* Publisher+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */; };
+		F3A1B0232C1A000100ABCDEF /* Publisher+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */; };
 		2B0031662A0DEAFF009BEACD /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0031652A0DEAFF009BEACD /* Highlightr */; };
 		2B0031682A0DEBEB009BEACD /* PayloadEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */; };
 		2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */ = {isa = PBXBuildFile; productRef = 2B00316A2A0DFF6F009BEACD /* PrettierBabel */; };
@@ -204,6 +206,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Main.swift"; sourceTree = "<group>"; };
 		2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadEditor.swift; sourceTree = "<group>"; };
 		2B00316E2A0E0221009BEACD /* CodeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFormatter.swift; sourceTree = "<group>"; };
 		2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSCodeEditor.swift; sourceTree = "<group>"; };
@@ -827,6 +830,7 @@
 				2BA110D22AF8F53F00E62255 /* Dictionary+JSON.swift */,
 				F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */,
 				F3A1B0012C1A000100ABCDEF /* JSONValue.swift */,
+				F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1266,6 +1270,7 @@
 				2B64E97529E6BAC80007B1D0 /* AppDelegate.swift in Sources */,
 				F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */,
 				F3A1B0022C1A000100ABCDEF /* JSONValue.swift in Sources */,
+				F3A1B0222C1A000100ABCDEF /* Publisher+Main.swift in Sources */,
 				F3A1B0042C1A000100ABCDEF /* PushType.swift in Sources */,
 				F3A1B0062C1A000100ABCDEF /* PushType+APNS.swift in Sources */,
 				F3A1B0082C1A000100ABCDEF /* APNServerEnv.swift in Sources */,
@@ -1288,6 +1293,7 @@
 				F355EB072AFAA3FA00C9DA83 /* Color+Utils.swift in Sources */,
 				2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */,
 				2B64E96529E6B36A0007B1D0 /* TesterAppModel.swift in Sources */,
+				F3A1B0232C1A000100ABCDEF /* Publisher+Main.swift in Sources */,
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,
 				2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */,
 				2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
@@ -1458,7 +1464,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1497,7 +1503,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1527,7 +1533,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1556,7 +1562,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1725,7 +1731,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1769,7 +1775,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1820,7 +1826,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1871,7 +1877,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1897,7 +1903,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1923,7 +1929,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1949,7 +1955,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1974,7 +1980,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2000,7 +2006,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2025,7 +2031,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2054,7 +2060,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2082,7 +2088,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2111,7 +2117,7 @@
 				PRODUCT_NAME = "APNs Helper Doc";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -2138,7 +2144,7 @@
 				PRODUCT_NAME = "APNs Helper Doc";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -2158,7 +2164,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -2178,7 +2184,7 @@
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};

@@ -42,6 +42,7 @@ struct APNsService {
         }
     }
 
+    @MainActor
     func send() async throws -> Bool {
 
         guard config.apnsServerEnv.reachable
@@ -90,19 +91,18 @@ struct APNsService {
             }
             
             logger.critical("Send Push Success!\napnsID: \(response?.apnsID?.uuidString ?? "None")")
-            await shutdownClient(client, appModel: appModel)
+            await shutdownClient(client)
             return true
         } catch {
             logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
-            await shutdownClient(client, appModel: appModel)
+            await shutdownClient(client)
             return false
         }
     }
 
-    func shutdownClient(_ client: APNSClient<JSONDecoder, JSONEncoder>?, appModel: AppModel) async {
-        _ = await MainActor.run {
-            appModel.isSendingPush = false
-        }
+    @MainActor
+    func shutdownClient(_ client: APNSClient<JSONDecoder, JSONEncoder>?) async {
+        appModel.isSendingPush = false
         do {
             try await client?.shutdown()
         } catch {

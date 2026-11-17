@@ -12,7 +12,7 @@ import Combine
 class UNUserNotificationManager: NSObject {
 
     // 单例实现
-    static let shared = UNUserNotificationManager()
+    nonisolated(unsafe) static let shared = UNUserNotificationManager()
     private override init() {}
 
     // 功能实现

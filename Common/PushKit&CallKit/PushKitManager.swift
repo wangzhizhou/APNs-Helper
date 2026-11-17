@@ -18,7 +18,7 @@ typealias PushKitTokenInfo = (token: String, type: PushKitTokenType)
 class PushKitManager: NSObject {
 
     // MARK: 单例实现
-    static let shared = PushKitManager()
+    nonisolated(unsafe) static let shared = PushKitManager()
     private override init() {}
 
     // MARK: 功能

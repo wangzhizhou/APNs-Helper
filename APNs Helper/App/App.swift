@@ -16,14 +16,14 @@ struct APNsHelperApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
 
-    @StateObject var model = AppModel()
+    @State private var model = AppModel()
     var body: some Scene {
         WindowGroup {
             AppContent()
 #if os(macOS)
                 .frame(maxWidth: 632, minHeight: 828, maxHeight: 828)
 #endif
-                .environmentObject(model)
+                .environment(model)
         }
 #if os(macOS)
         .windowResizability(.contentSize)

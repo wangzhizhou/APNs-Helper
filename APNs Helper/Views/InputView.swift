@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InputView: View {
 
-    @EnvironmentObject var appModel: AppModel
+    @Environment(AppModel.self) private var appModel
 
     let title: String
 

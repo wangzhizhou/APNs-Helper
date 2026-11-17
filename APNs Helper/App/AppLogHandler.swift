@@ -60,11 +60,9 @@ struct AppLogHandler: LogHandler {
         [\(logDate.ISO8601Format(.iso8601))] \(logContent))
         """
 
-            Task {
-                await MainActor.run {
-                    // 输出到UI界面
-                    appModel.appLog.append(output)
-                }
+            Task { @MainActor in
+                // 输出到UI界面
+                appModel.appLog.append(output)
             }
         }
     // swiftlint: enable function_parameter_count

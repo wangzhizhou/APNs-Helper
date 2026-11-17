@@ -13,12 +13,15 @@ import AppKit
 #endif
 
 #if canImport(ActivityKit) && os(iOS)
-import ActivityKit
+@preconcurrency import ActivityKit
 #endif
 
 import Combine
+import Observation
 
-class TesterAppModel: ObservableObject {
+@Observable
+@MainActor
+final class TesterAppModel {
     
 #if canImport(ActivityKit) && os(iOS)
     var liveActivity: Activity<LiveActivityAttributes>? {
@@ -54,7 +57,7 @@ class TesterAppModel: ObservableObject {
         case dismiss
     }
     
-    @Published var stage: LiveActivityStage = .start
+    var stage: LiveActivityStage = .start
     
     func resetLiveActivity() {
         appInfo.liveActivityPushToken = .empty
@@ -92,7 +95,7 @@ class TesterAppModel: ObservableObject {
     
 #endif
     
-    @Published var appInfo = AppInfo(
+    var appInfo = AppInfo(
         keyID: "7S6SUT5L43",
         teamID: "2N62934Y28",
         bundleID: Bundle.main.bundleIdentifier!,
@@ -105,7 +108,6 @@ class TesterAppModel: ObservableObject {
         """
     )
     
-    @Published
     var showAlert: Bool
     
     var alertMessage: String {
@@ -114,14 +116,10 @@ class TesterAppModel: ObservableObject {
         }
     }
     
-    @Published var showToast: Bool
+    var showToast: Bool
     var toastModel: ToastModel {
         didSet {
-            Task {
-                await MainActor.run {
-                    showToast = toastModel.shouldShow
-                }
-            }
+            showToast = toastModel.shouldShow
         }
     }
     
@@ -149,17 +147,17 @@ class TesterAppModel: ObservableObject {
             self.showToast = showToast
             self.toastModel = toastModel
             
-            let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sink { deviceToken in
+            let deviceTokenCancellable = UNUserNotificationManager.shared.deviceTokenSubject.sinkOnMain { deviceToken in
                 self.appInfo.deviceToken = deviceToken
             }
             cancellables.append(deviceTokenCancellable)
             
-            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sink { message in
+            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sinkOnMain { message in
                 self.alertMessage = message
             }
             cancellables.append(backgroundNotificationCancellable)
             
-            let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sink { pushKitTokenInfo in
+            let pushkitCancellable = PushKitManager.shared.pushKitTokenSubject.sinkOnMain { pushKitTokenInfo in
                 let (pushKitToken, type) = pushKitTokenInfo
                 switch type {
                 case .voip:
@@ -173,12 +171,14 @@ class TesterAppModel: ObservableObject {
             }
             cancellables.append(pushkitCancellable)
             
-            let locationPushTokenCancellable = LocationManager.shared.locationPushTokenSubject.sink { locationPushToken in
+            let locationPushTokenCancellable = LocationManager.shared.locationPushTokenSubject.sinkOnMain { locationPushToken in
                 self.appInfo.locationPushToken = locationPushToken
             }
             cancellables.append(locationPushTokenCancellable)
             
-            let copyToPasteboardCancellable = NotificationCenter.default.publisher(for: .APNSHelperStringCopyedToPastedboard).sink { _ in
+            let copyToPasteboardCancellable = NotificationCenter.default
+                .publisher(for: .APNSHelperStringCopyedToPastedboard)
+                .sinkOnMain { _ in
                 self.toastModel = ToastModel.success().title("Copyed to Pasteboard!")
             }
             cancellables.append(copyToPasteboardCancellable)

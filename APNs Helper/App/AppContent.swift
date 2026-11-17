@@ -12,12 +12,14 @@ struct AppContent: View {
 
     @Environment(\.scenePhase) var scenePhase
 
-    @EnvironmentObject var appModel: AppModel
+    @Environment(AppModel.self) private var appModel
 
-    @StateObject
+    @State
     private var contentModel = AppContentModel()
 
     var body: some View {
+        @Bindable var appModel = appModel
+
         VStack {
 #if os(iOS)
             AppContentIOS()
@@ -26,7 +28,7 @@ struct AppContent: View {
 #endif
         }
         .background(.background)
-        .environmentObject(contentModel)
+        .environment(contentModel)
         .environment(\.appActions, actions)
         .onAppear {
             actions.loadPayloadTemplate()
@@ -127,6 +129,6 @@ struct AppContent_Previews: PreviewProvider {
                 .previewDevice("iPhone 14 Pro Max")
                 .previewDisplayName("iOS")
         }
-        .environmentObject(AppModel())
+        .environment(AppModel())
     }
 }
