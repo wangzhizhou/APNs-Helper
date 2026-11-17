@@ -12,12 +12,7 @@ struct AppContentIOS: View {
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var contentModel: AppContentModel
 
-    let loadPayloadTemplate: () -> Void
-    let saveAsPreset: () -> Void
-    let clearAllPreset: () -> Void
-    let clearCurrentConfigPresetIfExist: () -> Void
-    let importAppInfoOnPasteboard: () -> Void
-    let refreshTestMode: () -> Void
+    @Environment(\.appActions) private var actions
 
     var body: some View {
         VStack {
@@ -28,7 +23,7 @@ struct AppContentIOS: View {
                         PresetPicker(presets: appModel.presets, selectedPreset: $contentModel.presetConfig) { preset in
                             contentModel.appInfo = preset
                         }
-                        Button(Constants.clearallpreset.value, action: clearAllPreset)
+                        Button(Constants.clearallpreset.value, action: { actions.clearAllPreset() })
                     }
 
                     // Push Type & APN Server
@@ -40,7 +35,7 @@ struct AppContentIOS: View {
                                 Text($0.rawValue).tag($0)
                             }
                         }
-                        .onChange(of: contentModel.appInfo.pushType, loadPayloadTemplate)
+                        .onChange(of: contentModel.appInfo.pushType, { actions.loadPayloadTemplate() })
 
                         Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
                             ForEach(APNServerEnv.allCases, id: \.self) {
@@ -59,25 +54,25 @@ struct AppContentIOS: View {
                             title: Constants.keyid.value,
                             titleWidth: titleWidth,
                             inputValue: $contentModel.appInfo.keyIdentifier)
-                        .onChange(of: contentModel.appInfo.keyIdentifier, refreshTestMode)
+                        .onChange(of: contentModel.appInfo.keyIdentifier, { actions.refreshTestMode() })
 
                         InputView(
                             title: Constants.teamid.value,
                             titleWidth: titleWidth,
                             inputValue: $contentModel.appInfo.teamIdentifier)
-                        .onChange(of: contentModel.appInfo.teamIdentifier, refreshTestMode)
+                        .onChange(of: contentModel.appInfo.teamIdentifier, { actions.refreshTestMode() })
 
                         InputView(
                             title: Constants.bundleid.value,
                             titleWidth: titleWidth,
                             inputValue: $contentModel.appInfo.appBundleID)
-                        .onChange(of: contentModel.appInfo.appBundleID, refreshTestMode)
+                        .onChange(of: contentModel.appInfo.appBundleID, { actions.refreshTestMode() })
                         
                         P8KeyView(
                             showFileImporter: $contentModel.showFileImporter,
                             privateKey: $contentModel.appInfo.privateKey,
                             editorHeight: 120) { _ in
-                                refreshTestMode()
+                                actions.refreshTestMode()
                             } onFileImporterError: { error in
                                 appModel.appLog.append(error.localizedDescription)
                             }
@@ -109,7 +104,7 @@ struct AppContentIOS: View {
                             }
                             contentModel.appInfo = appModel.thisAppConfig
                         }
-                        Button(Constants.importAppInfoOnPasteboard.value, action: importAppInfoOnPasteboard)
+                        Button(Constants.importAppInfoOnPasteboard.value, action: { actions.importAppInfoOnPasteboard() })
 #endif
                     }
                     .listRowSeparator(.hidden)
@@ -121,12 +116,12 @@ struct AppContentIOS: View {
                     }
                     if !contentModel.appInfo.appBundleID.isEmpty {
                         Button(Constants.removeAppInfoFromPreset.value) {
-                            clearCurrentConfigPresetIfExist()
+                            actions.clearCurrentConfigPresetIfExist()
                         }
                     }
                     if contentModel.config.isValid.valid {
                         Button(Constants.saveAppInfoAsPreset.value) {
-                            saveAsPreset()
+                            actions.saveAsPreset()
                         }
                     }
 
@@ -140,7 +135,7 @@ struct AppContentIOS: View {
 
                     Group {
                         Button( Constants.loadTemplatePayload.value) {
-                            loadPayloadTemplate()
+                            actions.loadPayloadTemplate()
                         }
 
                         Button(Constants.clearPayload.value) {
@@ -167,7 +162,7 @@ struct AppContentIOS: View {
             }
 
             // Send Button Area
-            SendButtonArea(loadPayloadTemplate: loadPayloadTemplate)
+            SendButtonArea(loadPayloadTemplate: actions.loadPayloadTemplate)
                 .padding(.horizontal)
                 .padding(.bottom, 8)
         }

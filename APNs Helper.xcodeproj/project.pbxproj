@@ -121,6 +121,7 @@
 		F3A1B0062C1A000100ABCDEF /* PushType+APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0052C1A000100ABCDEF /* PushType+APNS.swift */; };
 		F3A1B0082C1A000100ABCDEF /* APNServerEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0072C1A000100ABCDEF /* APNServerEnv.swift */; };
 		F3A1B0092C1A000100ABCDEF /* APNServerEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0072C1A000100ABCDEF /* APNServerEnv.swift */; };
+		F3A1B0122C1A000100ABCDEF /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0112C1A000100ABCDEF /* AppActions.swift */; };
 		F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
 		F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */; };
 		F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */; };
@@ -314,6 +315,7 @@
 		F3A1B0032C1A000100ABCDEF /* PushType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushType.swift; sourceTree = "<group>"; };
 		F3A1B0052C1A000100ABCDEF /* PushType+APNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushType+APNS.swift"; sourceTree = "<group>"; };
 		F3A1B0072C1A000100ABCDEF /* APNServerEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNServerEnv.swift; sourceTree = "<group>"; };
+		F3A1B0112C1A000100ABCDEF /* AppActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActions.swift; sourceTree = "<group>"; };
 		F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Utils.swift"; sourceTree = "<group>"; };
 		F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Utils.swift"; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 			children = (
 				2B35F72C28DEAB17009EF9C9 /* App.swift */,
 				2BBDDE7628E494440052DC28 /* AppContent.swift */,
+				F3A1B0112C1A000100ABCDEF /* AppActions.swift */,
 				2B505E2729DD25B50010F62D /* AppContentIOS.swift */,
 				2B505E2929DD26230010F62D /* AppContentMacOS.swift */,
 				2BA3E0B628E57D5A006DBCCC /* AppLogHandler.swift */,
@@ -1224,6 +1227,7 @@
 				2B64E97829E6BAC80007B1D0 /* CallKitManager.swift in Sources */,
 				2BBDDE7B28E4B0FF0052DC28 /* APNsService.swift in Sources */,
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
+				F3A1B0122C1A000100ABCDEF /* AppActions.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
 				2B0031742A0E0306009BEACD /* IOSCodeEditor.swift in Sources */,
 				2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,

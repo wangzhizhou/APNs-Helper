@@ -20,29 +20,16 @@ struct AppContent: View {
     var body: some View {
         VStack {
 #if os(iOS)
-            AppContentIOS(
-                loadPayloadTemplate: loadPayloadTemplate,
-                saveAsPreset: saveAsPreset,
-                clearAllPreset: clearAllPreset,
-                clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist,
-                importAppInfoOnPasteboard: fillAppInfoFromPasteboard,
-                refreshTestMode: refreshTestMode
-            )
+            AppContentIOS()
 #elseif os(macOS)
-            AppContentMacOS(
-                loadPayloadTemplate: loadPayloadTemplate,
-                saveAsPreset: saveAsPreset,
-                clearAllPreset: clearAllPreset,
-                clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist,
-                importAppInfoOnPasteboard: fillAppInfoFromPasteboard,
-                refreshTestMode: refreshTestMode
-            )
+            AppContentMacOS()
 #endif
         }
         .background(.background)
         .environmentObject(contentModel)
+        .environment(\.appActions, actions)
         .onAppear {
-            loadPayloadTemplate()
+            actions.loadPayloadTemplate()
         }
         .toast(isPresenting: $appModel.showToast) {
             AlertToast(
@@ -68,6 +55,17 @@ struct AppContent: View {
 }
 
 extension AppContent {
+
+    var actions: AppActions {
+        AppActions(
+            loadPayloadTemplate: loadPayloadTemplate,
+            saveAsPreset: saveAsPreset,
+            clearAllPreset: clearAllPreset,
+            clearCurrentConfigPresetIfExist: clearCurrentConfigPresetIfExist,
+            importAppInfoOnPasteboard: fillAppInfoFromPasteboard,
+            refreshTestMode: refreshTestMode
+        )
+    }
 
     func fillAppInfoFromPasteboard() {
 

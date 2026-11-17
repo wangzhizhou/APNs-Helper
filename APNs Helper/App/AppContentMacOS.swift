@@ -12,12 +12,7 @@ struct AppContentMacOS: View {
     @EnvironmentObject var appModel: AppModel
     @EnvironmentObject var contentModel: AppContentModel
 
-    let loadPayloadTemplate: () -> Void
-    let saveAsPreset: () -> Void
-    let clearAllPreset: () -> Void
-    let clearCurrentConfigPresetIfExist: () -> Void
-    let importAppInfoOnPasteboard: () -> Void
-    let refreshTestMode: () -> Void
+    @Environment(\.appActions) private var actions
 
     var body: some View {
 
@@ -30,7 +25,7 @@ struct AppContentMacOS: View {
                         selectedPreset: $contentModel.presetConfig) { preset in
                             contentModel.appInfo = preset
                         }
-                    Button(Constants.clearallpreset.value, action: clearAllPreset).buttonStyle(BorderedButtonStyle())
+                    Button(Constants.clearallpreset.value, action: { actions.clearAllPreset() }).buttonStyle(BorderedButtonStyle())
                 }
             }
 
@@ -44,7 +39,7 @@ struct AppContentMacOS: View {
                             .tag($0)
                     }
                 }
-                .onChange(of: contentModel.appInfo.pushType, loadPayloadTemplate)
+                .onChange(of: contentModel.appInfo.pushType, { actions.loadPayloadTemplate() })
                 
                 Spacer(minLength: 50)
                 Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
@@ -66,25 +61,25 @@ struct AppContentMacOS: View {
                     title: Constants.keyid.value,
                     titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.keyIdentifier)
-                .onChange(of: contentModel.appInfo.keyIdentifier, refreshTestMode)
+                .onChange(of: contentModel.appInfo.keyIdentifier, { actions.refreshTestMode() })
 
                 InputView(
                     title: Constants.teamid.value,
                     titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.teamIdentifier)
-                .onChange(of: contentModel.appInfo.teamIdentifier, refreshTestMode)
+                .onChange(of: contentModel.appInfo.teamIdentifier, { actions.refreshTestMode() })
 
                 InputView(
                     title: Constants.bundleid.value,
                     titleWidth: titleWidth,
                     inputValue: $contentModel.appInfo.appBundleID)
-                .onChange(of: contentModel.appInfo.appBundleID, refreshTestMode)
+                .onChange(of: contentModel.appInfo.appBundleID, { actions.refreshTestMode() })
 
                 P8KeyView(
                     showFileImporter: $contentModel.showFileImporter,
                     privateKey: $contentModel.appInfo.privateKey,
                     onPrivateKeyChange: { _ in
-                        refreshTestMode()
+                        actions.refreshTestMode()
                     },
                     onFileImporterError: { error in
                         appModel.appLog.append(error.localizedDescription)
@@ -103,11 +98,11 @@ struct AppContentMacOS: View {
 
                 HStack {
                     Button(Constants.clearIfExist.value) {
-                        clearCurrentConfigPresetIfExist()
+                        actions.clearCurrentConfigPresetIfExist()
                     }
                     Spacer()
 #if DEBUG
-                    Button(Constants.importAppInfoOnPasteboard.value, action: importAppInfoOnPasteboard)
+                    Button(Constants.importAppInfoOnPasteboard.value, action: { actions.importAppInfoOnPasteboard() })
                     Toggle(isOn: $contentModel.isInTestMode) {
                         Text(Constants.fillInAppInfo.value)
                     }
@@ -126,7 +121,7 @@ struct AppContentMacOS: View {
                     }
 #endif
                     Button(Constants.saveAsPreset.value) {
-                        saveAsPreset()
+                        actions.saveAsPreset()
                     }
                 }
                 .padding(.bottom, 10)
@@ -140,7 +135,7 @@ struct AppContentMacOS: View {
             .frame(height: 200)
 
             // Send Button Area
-            SendButtonArea(loadPayloadTemplate: loadPayloadTemplate)
+            SendButtonArea(loadPayloadTemplate: actions.loadPayloadTemplate)
 
             // Log
             LogView()
