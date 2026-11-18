@@ -15,13 +15,23 @@ struct PayloadEditor: View {
 
     @Binding var payload: String
 
-    @State var hasError: Bool = false
+    @State private var hasError: Bool = false
 
     var body: some View {
-        VStack(alignment: .leading) {
-            if let title = title {
-                Text(title)
+        VStack(alignment: .leading, spacing: Design.Spacing.compact) {
+            HStack(spacing: Design.Spacing.compact) {
+                if let title = title {
+                    Text(title)
+                }
+                Spacer()
+                if hasError {
+                    Label(Constants.invalidPayload.value, systemImage: "exclamationmark.triangle.fill")
+                        .font(Design.Typography.hint)
+                        .foregroundStyle(.red)
+                        .accessibilityLabel(Text(Constants.invalidPayload.value))
+                }
             }
+
             CodeEditor(content: $payload) { error in
                 DispatchQueue.main.async {
                     if let error = error {
@@ -33,7 +43,7 @@ struct PayloadEditor: View {
                     }
                 }
             }
-            .editorBorder()
+            .textContainer()
         }
     }
 }

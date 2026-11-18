@@ -30,6 +30,14 @@ final class AppContentModel {
     }
 
     var isInTestMode: Bool = false
+
+    /// 测试模式下不提供 VoIP / File Provider 推送类型（Tester 本身不支持）
+    var availablePushTypes: [PushType] {
+        PushType.allCases.filter { pushType in
+            guard isInTestMode else { return true }
+            return pushType != .voip && pushType != .fileprovider
+        }
+    }
 }
 
 extension AppContentModel {

@@ -14,7 +14,6 @@ struct LiveActivityNotificationView: View {
     /// 传入时在底部显示「Use This Payload」，把结构化结果交回调用方（写入 Payload 编辑器）
     var onApply: ((String) -> Void)?
 
-    private let titleWidth: CGFloat = 120
     
     var body: some View {
         
@@ -25,7 +24,6 @@ struct LiveActivityNotificationView: View {
                 InputView(
                     title: "timestamp",
                     placeholder: "timestamp",
-                    titleWidth: titleWidth,
                     inputValue: $model.timestamp
                 )
                 
@@ -43,7 +41,6 @@ struct LiveActivityNotificationView: View {
             InputView(
                 title: "dismissal",
                 placeholder: "dismissal",
-                titleWidth: titleWidth,
                 inputValue: $model.dismissal
             )
             

@@ -21,20 +21,24 @@ struct P8KeyView: View {
     var onFileImporterError: ((Error) -> Void)?
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: Design.Spacing.compact) {
             HStack {
                 Text(Constants.p8key.value)
                 Spacer()
                 Button {
                     showFileImporter = true
                 } label: {
-                    Text(Constants.importP8File.value)
+                    Label(Constants.importP8File.value, systemImage: "doc.badge.plus")
                 }
+                .buttonStyle(.borderless)
+                .help("Choose a .p8 key file from disk")
             }
 
             InputTextEditor(content: $privateKey)
                 .scrollIndicators(.hidden)
                 .frame(height: editorHeight)
+                // .p8 是签名凭据：截图与录屏时由系统打码
+                .privacySensitive()
                 .onChange(of: privateKey) { _, newValue in
                     if let onPrivateKeyChange = onPrivateKeyChange {
                         onPrivateKeyChange(newValue)

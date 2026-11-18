@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+/// iOS 主界面：分组 `Form` + 固定在底部的发送按钮。
+///
+/// 这次按 HIG 收拢了几处：
+/// - 危险操作（清空全部预设）用 `role: .destructive` 并二次确认
+/// - 零散按钮归入所在 Section，不再是「悬空」的列表行
+/// - 日志区只读、可选中复制
 struct AppContentIOS: View {
 
     @Environment(AppModel.self) private var appModel
@@ -14,60 +20,65 @@ struct AppContentIOS: View {
 
     @Environment(\.appActions) private var actions
 
+    @State private var showClearAllPresetConfirm = false
+
     var body: some View {
         @Bindable var contentModel = contentModel
 
-        VStack {
+        VStack(spacing: 0) {
             ScrollViewReader { scrollView in
                 Form {
-                    // Preset
                     if !appModel.presets.isEmpty {
-                        PresetPicker(presets: appModel.presets, selectedPreset: $contentModel.presetConfig) { preset in
-                            contentModel.appInfo = preset
+                        Section {
+                            PresetPicker(
+                                presets: appModel.presets,
+                                selectedPreset: $contentModel.presetConfig
+                            ) { preset in
+                                contentModel.appInfo = preset
+                            }
+
+                            Button(Constants.clearallpreset.value, role: .destructive) {
+                                showClearAllPresetConfirm = true
+                            }
+                        } header: {
+                            Text(Constants.preset.value)
                         }
-                        Button(Constants.clearallpreset.value, action: { actions.clearAllPreset() })
                     }
 
-                    // Push Type & APN Server
-                    Section(Constants.apnserver.value) {
+                    Section {
                         Picker(Constants.pushtype.value, selection: $contentModel.appInfo.pushType) {
-                            ForEach(PushType.allCases.filter {
-                                !contentModel.isInTestMode || $0 != .fileprovider
-                            }, id: \.self) {
-                                Text($0.rawValue).tag($0)
+                            ForEach(contentModel.availablePushTypes, id: \.self) { pushType in
+                                Text(pushType.rawValue).tag(pushType)
                             }
                         }
-                        .onChange(of: contentModel.appInfo.pushType, { actions.loadPayloadTemplate() })
+                        .onChange(of: contentModel.appInfo.pushType) { actions.loadPayloadTemplate() }
 
                         Picker(Constants.apnserver.value, selection: $contentModel.appInfo.apnsServerEnv) {
-                            ForEach(APNServerEnv.allCases, id: \.self) {
-                                Text($0.rawValue).tag($0)
+                            ForEach(APNServerEnv.allCases, id: \.self) { env in
+                                Text(env.rawValue).tag(env)
                             }
                         }
+                    } header: {
+                        Text(Constants.pushSettings.value)
                     }
-                    .listRowSeparator(.hidden)
 
-                    // App Info
-                    Section(Constants.appInfo.value) {
-
+                    Section {
                         appInfoFields(
                             appInfo: $contentModel.appInfo,
                             showFileImporter: $contentModel.showFileImporter,
-                            titleWidth: 70,
                             p8EditorHeight: 120,
                             onRefreshTestMode: { actions.refreshTestMode() },
                             onFileImporterError: { appModel.appLog.append($0.localizedDescription) }
                         )
 
-                        Toggle(isOn: $contentModel.isInTestMode) {
-                            Text(Constants.fillInAppInfo.value)
-                        }
-                        .onChange(of: contentModel.isInTestMode) { _, mode in
-                            contentModel.applyTestMode(mode, thisAppConfig: appModel.thisAppConfig)
-                        }
-                        .onChange(of: appModel.thisAppConfig) {
-                            contentModel.syncWithTestConfig(appModel.thisAppConfig)
-                        }
+                        Toggle(Constants.fillInAppInfo.value, isOn: $contentModel.isInTestMode)
+                            .onChange(of: contentModel.isInTestMode) { _, mode in
+                                contentModel.applyTestMode(mode, thisAppConfig: appModel.thisAppConfig)
+                            }
+                            .onChange(of: appModel.thisAppConfig) {
+                                contentModel.syncWithTestConfig(appModel.thisAppConfig)
+                            }
+
                         Button(Constants.importAppInfoOnPasteboard.value) {
                             contentModel.showPasteboardImportConfirm = true
                         }
@@ -81,71 +92,81 @@ struct AppContentIOS: View {
                         } message: {
                             Text("The clipboard may contain credentials such as your .p8 key. Import P8 from a file instead when possible.")
                         }
-                    }
-                    .listRowSeparator(.hidden)
 
-                    if !contentModel.config.isEmpty {
-                        Button(Constants.clearCurrentAppInfo.value) {
-                            contentModel.clearAppInfo()
+                        if contentModel.config.isValid.valid {
+                            Button(Constants.saveAppInfoAsPreset.value) {
+                                actions.saveAsPreset()
+                            }
                         }
-                    }
-                    if !contentModel.appInfo.appBundleID.isEmpty {
-                        Button(Constants.removeAppInfoFromPreset.value) {
-                            actions.clearCurrentConfigPresetIfExist()
+
+                        if !contentModel.appInfo.appBundleID.isEmpty {
+                            Button(Constants.removeAppInfoFromPreset.value) {
+                                actions.clearCurrentConfigPresetIfExist()
+                            }
                         }
-                    }
-                    if contentModel.config.isValid.valid {
-                        Button(Constants.saveAppInfoAsPreset.value) {
-                            actions.saveAsPreset()
+
+                        if !contentModel.config.isEmpty {
+                            Button(Constants.clearCurrentAppInfo.value, role: .destructive) {
+                                contentModel.clearAppInfo()
+                            }
                         }
+                    } header: {
+                        Text(Constants.appInfo.value)
                     }
 
-                    // Payload
-                    Section(Constants.payload.value) {
+                    Section {
                         PayloadEditor(payload: $contentModel.payload)
-                            .frame(minHeight: 200)
-                            .padding(.vertical, 12)
-                    }
-                    .listRowSeparator(.hidden)
+                            .frame(height: Design.Metrics.payloadHeight)
 
-                    if contentModel.supportsStructuredEditor {
-                        Button("Structured Editor…") {
-                            contentModel.showStructuredEditor = true
-                        }
-                    }
-
-                    Group {
-                        Button( Constants.loadTemplatePayload.value) {
+                        Button(Constants.loadTemplatePayload.value) {
                             actions.loadPayloadTemplate()
                         }
 
-                        Button(Constants.clearPayload.value) {
-                            contentModel.payload = .empty
+                        if contentModel.supportsStructuredEditor {
+                            Button(Constants.structuredEditor.value) {
+                                contentModel.showStructuredEditor = true
+                            }
                         }
+
+                        if !contentModel.payload.isEmpty {
+                            Button(Constants.clearPayload.value, role: .destructive) {
+                                contentModel.payload = .empty
+                            }
+                        }
+                    } header: {
+                        Text(Constants.payload.value)
                     }
-                    .listRowSeparator(.hidden)
 
                     Section(Constants.log.value) {
-                        // Log
                         LogView()
                     }
                     .id(Constants.log.value)
-                    .listRowSeparator(.hidden)
                 }
-                .scrollDismissesKeyboard(.immediately)
+                .scrollDismissesKeyboard(.interactively)
                 .onChange(of: appModel.isSendingPush) { _, isSendingPush in
-                    guard !isSendingPush
-                    else {
-                        return
+                    guard !isSendingPush else { return }
+                    withAnimation {
+                        scrollView.scrollTo(Constants.log.value, anchor: .bottom)
                     }
-                    scrollView.scrollTo(Constants.log.value)
                 }
             }
 
-            // Send Button Area
+            Divider()
+
             SendButtonArea(loadPayloadTemplate: actions.loadPayloadTemplate)
-                .padding(.horizontal)
-                .padding(.bottom, 8)
+                .padding(.horizontal, Design.Spacing.section)
+                .padding(.vertical, Design.Spacing.regular)
+                .background(.bar)
+        }
+        .confirmationDialog(
+            Constants.clearAllPresetConfirm.value,
+            isPresented: $showClearAllPresetConfirm,
+            titleVisibility: .visible
+        ) {
+            Button(Constants.clearallpreset.value, role: .destructive) {
+                actions.clearAllPreset()
+            }
+            Button("Cancel", role: .cancel) {}
         }
     }
 }

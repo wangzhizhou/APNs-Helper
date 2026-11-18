@@ -7,27 +7,30 @@
 
 import SwiftUI
 
+/// 多行文本编辑器（P8 Key 等）。
+///
+/// 字号改用语义文本样式 + 等宽设计，跟随 Dynamic Type；
+/// 容器统一由 `textContainer()` 提供语义背景与描边。
 struct InputTextEditor: View {
 
     var title: String?
 
     @Binding var content: String
 
-    var textEditorFont: Font?
-
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: Design.Spacing.compact) {
             if let title = title {
                 Text(title)
             }
             TextEditor(text: $content)
                 .scrollContentBackground(.hidden)
-                .font(textEditorFont ?? .system(size: 8))
-                .autocorrectionDisabled(true)
-                .editorBorder()
+                .font(Design.Typography.code)
+                .autocorrectionDisabled()
 #if os(iOS)
                 .keyboardType(.asciiCapable)
+                .textInputAutocapitalization(.never)
 #endif
+                .textContainer()
         }
     }
 }

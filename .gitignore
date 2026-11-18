@@ -92,3 +92,6 @@ iOSInjectionProject/
 
 # DocC 静态站产物（Scripts/build-docs.sh）
 dist/
+
+# Xcode Cloud 自动生成的清单（项目用 GitHub Actions）
+xcshareddata/xcodecloud/
