@@ -46,7 +46,8 @@ debugging" is one tap.
 
 ## Development
 
-Requirements: Xcode 16 or newer, iOS 17 / macOS 14 deployment targets.
+Requirements: Xcode 26 or newer (Swift 6.1+ is required by the current dependency set),
+iOS 17 / macOS 14 deployment targets.
 Code is written in Swift 6 language mode with Observation (`@Observable`); UI state models are `@MainActor`.
 
 ```bash
@@ -100,6 +101,10 @@ Design file: [Figma](https://www.figma.com/file/sLVIKqiYfxHNb7gUnOUZ9x/APNs-Help
 `Package.resolved` is committed in **v3** format (with `originHash`). Do not downgrade it to v2:
 newer Xcode treats a v2 file as stale and silently re-resolves to the latest transitive
 dependencies, which can require a newer Swift toolchain than CI provides.
+
+`swift-collections` is pinned to an exact version in the project: 1.7.3+ requires **Swift 6.4**
+(Xcode 27), while CI and the oldest supported toolchain are on Swift 6.3. Bump the pin together
+with the toolchain, not on its own.
 
 ## Isolation & data integrity
 

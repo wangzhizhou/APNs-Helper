@@ -25,7 +25,19 @@ struct AppLogHandler: LogHandler {
 
     var logLevel: Logging.Logger.Level = .trace
 
+    func log(event: LogEvent) {
+        log(
+            level: event.level,
+            message: event.message,
+            metadata: event.metadata,
+            source: event.source,
+            file: event.file,
+            function: event.function,
+            line: event.line)
+    }
+
     // swiftlint: disable function_parameter_count
+    // 仍保留旧签名实现：swift-log 的协议里它仍是历史要求（标记 deprecated）
     func log(
         level: Logger.Level,
         message: Logger.Message,
