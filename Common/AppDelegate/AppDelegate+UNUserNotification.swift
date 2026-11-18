@@ -53,6 +53,15 @@ extension AppDelegate {
             UNUserNotificationManager.shared.backgroundNotificationSubject.send(userInfo.jsonString ?? "🔊 Background Notification Received")
         }
 
+        // FileProvider 类型推送：把收到的原始内容也记进 FileProvider 事件日志，便于对照
+        let isFileProviderPush = userInfo.keys.contains { key in
+            let name = "\(key)"
+            return name.contains("fileprovider") || name == "container-identifier"
+        }
+        if isFileProviderPush {
+            FileProviderEventLog.record("app received FileProvider push", detail: userInfo.jsonString)
+        }
+
         completionHandler(.newData)
     }
 #endif

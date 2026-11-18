@@ -19,6 +19,7 @@ struct AppContent: View {
 
     var body: some View {
         @Bindable var appModel = appModel
+        @Bindable var contentModel = contentModel
 
         VStack {
 #if os(iOS)
@@ -30,6 +31,11 @@ struct AppContent: View {
         .background(.background)
         .environment(contentModel)
         .environment(\.appActions, actions)
+        .sheet(isPresented: $contentModel.showStructuredEditor) {
+            StructuredPayloadEditor(pushType: contentModel.appInfo.pushType) { payload in
+                contentModel.payload = payload
+            }
+        }
         .onAppear {
             actions.loadPayloadTemplate()
         }

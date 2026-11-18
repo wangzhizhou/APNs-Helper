@@ -18,6 +18,17 @@ final class AppContentModel {
     /// 从剪贴板导入前的确认（剪贴板可能含 .p8 等凭据）
     var showPasteboardImportConfirm: Bool = false
 
+    /// 结构化 Payload 编辑器（alert / live activity）
+    var showStructuredEditor: Bool = false
+
+    /// 当前 push type 是否支持结构化编辑
+    var supportsStructuredEditor: Bool {
+        switch appInfo.pushType {
+        case .alert, .liveactivity: return true
+        default: return false
+        }
+    }
+
     var isInTestMode: Bool = false
 }
 

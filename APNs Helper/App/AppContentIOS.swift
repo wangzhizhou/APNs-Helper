@@ -108,6 +108,12 @@ struct AppContentIOS: View {
                     }
                     .listRowSeparator(.hidden)
 
+                    if contentModel.supportsStructuredEditor {
+                        Button("Structured Editor…") {
+                            contentModel.showStructuredEditor = true
+                        }
+                    }
+
                     Group {
                         Button( Constants.loadTemplatePayload.value) {
                             actions.loadPayloadTemplate()

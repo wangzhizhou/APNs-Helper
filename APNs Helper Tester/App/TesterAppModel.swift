@@ -185,6 +185,12 @@ final class TesterAppModel {
         appInfo.formattedText(with: content.map { $0.content })?.copyToPasteboard()
     }
     
+    /// 展示 File Provider 侧记录的事件（域注册、扩展回调等）。
+    func checkFileProviderEvents() {
+        let json = FileProviderEventLog.jsonString() ?? "[]"
+        self.alertMessage = "FileProvider events:\n\(json)"
+    }
+
     /// 读取 NotificationServiceExtension 存下的「原始 payload」（未经展示层处理）。
     func checkReceivedNotificationPayload() {
         let groupUserDefaults = UserDefaults(suiteName: "group.com.joker.APNsHelper.tester")

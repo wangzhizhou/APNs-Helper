@@ -107,6 +107,15 @@ struct AppContentMacOS: View {
             )
             .frame(height: 200)
 
+            if contentModel.supportsStructuredEditor {
+                HStack {
+                    Button("Structured Editor…") {
+                        contentModel.showStructuredEditor = true
+                    }
+                    Spacer()
+                }
+            }
+
             // Send Button Area
             SendButtonArea(loadPayloadTemplate: actions.loadPayloadTemplate)
 

@@ -61,6 +61,13 @@ struct ContentView: View {
                     Text("Show Received Payload")
                 }
                 .buttonStyle(.bordered)
+
+                Button {
+                    model.checkFileProviderEvents()
+                } label: {
+                    Text("Show FileProvider Events")
+                }
+                .buttonStyle(.bordered)
             })
             .navigationTitle("APNs Tester App")
         }

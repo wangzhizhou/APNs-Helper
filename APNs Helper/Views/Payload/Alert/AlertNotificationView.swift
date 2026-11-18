@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct AlertNotificationView: View {
-    
+
     @State var model = AlertModel()
-    
+
+    /// 传入时在底部显示「Use This Payload」，把结构化结果交回调用方（写入 Payload 编辑器）
+    var onApply: ((String) -> Void)?
+
     private let titleWidth: CGFloat = 120
     
     var body: some View {
@@ -116,6 +119,14 @@ struct AlertNotificationView: View {
                     .padding([.top], 10)
                     .frame(height: 200)
                     .disabled(true)
+
+                if let onApply {
+                    Button("Use This Payload") {
+                        onApply(payloadEditorContent)
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .padding([.top], 8)
+                }
             }
         }
         .padding()
