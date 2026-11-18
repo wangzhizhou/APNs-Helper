@@ -18,8 +18,9 @@ included:
   - Widgets
 
 excluded:
-  - website
   - ci_scripts
+  - Scripts
+  - dist
 
 indentation_width:
   indentation_width: 4

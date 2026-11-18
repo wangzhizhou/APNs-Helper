@@ -89,3 +89,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 .DS_Store
+
+# DocC 静态站产物（Scripts/build-docs.sh）
+dist/

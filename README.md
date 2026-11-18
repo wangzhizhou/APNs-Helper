@@ -4,7 +4,7 @@
 
 A Tool run on MacOS/iOS that can send APNs Notifications for Test
 
-[APNs Helper Doc Site](https://wangzhizhou.github.io/APNs-Helper-Doc/documentation/apns_helper_doc/)
+[APNs Helper Doc Site](https://wangzhizhou.github.io/APNs-Helper/documentation/apns_helper_doc/)
 
 [The Figma Design](https://www.figma.com/file/sLVIKqiYfxHNb7gUnOUZ9x/APNs-Helper-And-Tester?type=design&mode=design&t=Zw15LS2GJSaFmGbL-1F)
 
@@ -40,6 +40,23 @@ brew install swiftlint && ./Scripts/lint.sh
 `Package.resolved` 已入库（v3 格式，含 `originHash`），请勿手工修改版本；升级统一通过 Xcode 的
 *Package Dependencies* 面板完成。注意：缺 `originHash` 的旧格式（v2）会被新版 Xcode 判定为过期并
 重新解析到最新传递依赖，因此不要把它降级回 v2。
+## 文档
+
+文档用 DocC 维护，源文件在同仓库的 `APNs Helper Doc/docs.docc/`，由 `.github/workflows/docs.yml`
+构建并部署到 GitHub Pages 的项目站点：
+
+- 线上地址：https://wangzhizhou.github.io/APNs-Helper/documentation/apns_helper_doc/
+- 本地构建预览：
+
+```bash
+./Scripts/build-docs.sh            # 产物在 dist/docs
+# 站点按 /APNs-Helper/ 子路径组织，本地预览需放在同名目录下
+rm -rf /tmp/apns-doc-preview && mkdir -p /tmp/apns-doc-preview
+cp -R dist/docs /tmp/apns-doc-preview/APNs-Helper
+python3 -m http.server 8000 --directory /tmp/apns-doc-preview
+# 打开 http://localhost:8000/APNs-Helper/
+```
+
 ## 常用脚本
 
 ```bash

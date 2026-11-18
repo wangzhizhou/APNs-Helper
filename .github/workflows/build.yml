@@ -78,3 +78,14 @@ jobs:
             -destination 'platform=macOS' \
             CODE_SIGNING_ALLOWED=NO \
             -quiet
+
+  docs:
+    name: Docs (build only)
+    if: github.event_name == 'pull_request'
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build documentation site
+        run: ./Scripts/build-docs.sh /APNs-Helper dist/docs
+      - name: Check output
+        run: test -f dist/docs/index.html
