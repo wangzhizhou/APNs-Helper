@@ -37,4 +37,6 @@ brew install swiftlint && swiftlint lint --config .swiftlint.yml --quiet
 | [Highlightr](https://github.com/raspu/Highlightr) | Payload 编辑器 JSON 高亮 |
 | [Prettier](https://github.com/simonbs/Prettier) | Payload 编辑器 JSON 格式化 |
 
-`Package.resolved` 已入库，请勿手工修改版本；升级统一通过 Xcode 的 *Package Dependencies* 面板完成。
+`Package.resolved` 已入库（v3 格式，含 `originHash`），请勿手工修改版本；升级统一通过 Xcode 的
+*Package Dependencies* 面板完成。注意：缺 `originHash` 的旧格式（v2）会被新版 Xcode 判定为过期并
+重新解析到最新传递依赖，因此不要把它降级回 v2。
