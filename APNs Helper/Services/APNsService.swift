@@ -74,16 +74,7 @@ struct APNsService {
                 requestEncoder: JSONEncoder()
             )
 
-            let request = APNSRequest(
-                message: RawPayloadNotification(payload: payload),
-                deviceToken: config.pushType.deviceToken(in: config),
-                pushType: config.pushType.type,
-                expiration: config.pushType.expiration,
-                priority: config.pushType.priority,
-                apnsID: nil,
-                topic: config.pushType.topic(forBundleID: config.appBundleID),
-                collapseID: nil
-            )
+            let request = PushRequest.make(config: config, payload: payload)
             let response: APNSResponse? = try await client?.send(request)
 
             if let apnsID = response?.apnsID {

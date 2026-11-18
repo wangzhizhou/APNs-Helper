@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3A1B0522C1A000100ABCDEF /* AppInfoFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */; };
+		F3A1B0422C1A000100ABCDEF /* PushRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */; };
+		F3B0000B2C1A000100ABCDEF /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F3B0000A2C1A000100ABCDEF /* APNS */; };
+		F3A1B0342C1A000100ABCDEF /* PushType+APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0052C1A000100ABCDEF /* PushType+APNS.swift */; };
+		F3A1B0322C1A000100ABCDEF /* PushRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0312C1A000100ABCDEF /* PushRequest.swift */; };
+		F3A1B0332C1A000100ABCDEF /* PushRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0312C1A000100ABCDEF /* PushRequest.swift */; };
 		F3A1B0222C1A000100ABCDEF /* Publisher+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */; };
 		F3A1B0232C1A000100ABCDEF /* Publisher+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */; };
 		2B0031662A0DEAFF009BEACD /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0031652A0DEAFF009BEACD /* Highlightr */; };
@@ -206,6 +212,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoFields.swift; sourceTree = "<group>"; };
+		F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequestTests.swift; sourceTree = "<group>"; };
+		F3A1B0312C1A000100ABCDEF /* PushRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequest.swift; sourceTree = "<group>"; };
 		F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Main.swift"; sourceTree = "<group>"; };
 		2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadEditor.swift; sourceTree = "<group>"; };
 		2B00316E2A0E0221009BEACD /* CodeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFormatter.swift; sourceTree = "<group>"; };
@@ -407,7 +416,8 @@
 		F3B000052C1A000100ABCDEF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
-			files = (
+			files = (				F3B0000B2C1A000100ABCDEF /* APNS in Frameworks */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +602,7 @@
 				F33327C22AECFDD900EB6C49 /* Payload */,
 				2BD846502A165B8B008D2A86 /* Modifiers */,
 				2BBDDE7828E49A770052DC28 /* InputView.swift */,
+				F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */,
 				2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */,
 				2BD801862A09EDBD00DDD17E /* PresetPicker.swift */,
 				2BD801882A0A0F3900DDD17E /* P8KeyView.swift */,
@@ -611,6 +622,7 @@
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
 				F3A1B0032C1A000100ABCDEF /* PushType.swift */,
 				F3A1B0052C1A000100ABCDEF /* PushType+APNS.swift */,
+				F3A1B0312C1A000100ABCDEF /* PushRequest.swift */,
 				2BD3323E28E7221200E27D2D /* APNsService+Template.swift */,
 				2B0031702A0E02B2009BEACD /* CodeFormatter */,
 			);
@@ -841,6 +853,7 @@
 				F3B000112C1A000100ABCDEF /* JSONValueTests.swift */,
 				F3B000122C1A000100ABCDEF /* ConfigTests.swift */,
 				F3B000132C1A000100ABCDEF /* PushTypeTests.swift */,
+				F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */,
 			);
 			path = "APNs Helper Tests";
 			sourceTree = "<group>";
@@ -1250,6 +1263,7 @@
 				2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */,
 				F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
+				F3A1B0522C1A000100ABCDEF /* AppInfoFields.swift in Sources */,
 				2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */,
 				F315F0BA2AF56AE80012B376 /* LocationManager.swift in Sources */,
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
@@ -1273,6 +1287,7 @@
 				F3A1B0222C1A000100ABCDEF /* Publisher+Main.swift in Sources */,
 				F3A1B0042C1A000100ABCDEF /* PushType.swift in Sources */,
 				F3A1B0062C1A000100ABCDEF /* PushType+APNS.swift in Sources */,
+				F3A1B0322C1A000100ABCDEF /* PushRequest.swift in Sources */,
 				F3A1B0082C1A000100ABCDEF /* APNServerEnv.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1358,6 +1373,7 @@
 				F3B000212C1A000100ABCDEF /* JSONValueTests.swift in Sources */,
 				F3B000222C1A000100ABCDEF /* ConfigTests.swift in Sources */,
 				F3B000232C1A000100ABCDEF /* PushTypeTests.swift in Sources */,
+				F3A1B0422C1A000100ABCDEF /* PushRequestTests.swift in Sources */,
 				F3B000312C1A000100ABCDEF /* Config.swift in Sources */,
 				F3B000322C1A000100ABCDEF /* Config+Utils.swift in Sources */,
 				F3A1B0092C1A000100ABCDEF /* APNServerEnv.swift in Sources */,
@@ -1366,6 +1382,8 @@
 				F3B000352C1A000100ABCDEF /* Data+Utils.swift in Sources */,
 				F3B000362C1A000100ABCDEF /* JSONValue.swift in Sources */,
 				F3B000372C1A000100ABCDEF /* PushType.swift in Sources */,
+				F3A1B0342C1A000100ABCDEF /* PushType+APNS.swift in Sources */,
+				F3A1B0332C1A000100ABCDEF /* PushRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2328,6 +2346,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F3B0000A2C1A000100ABCDEF /* APNS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9772B2AD715920020B200 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNS;
+		};
 		2B0031652A0DEAFF009BEACD /* Highlightr */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */;

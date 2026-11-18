@@ -24,4 +24,15 @@ extension AppContentModel {
 
     func clearAppInfo() { appInfo = .none }
 
+    /// 「Fill this App's Info」开关切换：打开时填入本 App 的配置，关闭时清空。
+    func applyTestMode(_ enabled: Bool, thisAppConfig: Config) {
+        appInfo = enabled ? thisAppConfig : .none
+    }
+
+    /// 本 App 的配置变化（如收到新的 device token）时，若处于测试模式则同步过来。
+    func syncWithTestConfig(_ thisAppConfig: Config) {
+        guard isInTestMode else { return }
+        appInfo = thisAppConfig
+    }
+
 }

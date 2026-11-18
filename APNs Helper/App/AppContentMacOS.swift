@@ -57,44 +57,12 @@ struct AppContentMacOS: View {
             // App Info
             VStack {
 
-                let titleWidth: CGFloat = 60
-
-                InputView(
-                    title: Constants.keyid.value,
-                    titleWidth: titleWidth,
-                    inputValue: $contentModel.appInfo.keyIdentifier)
-                .onChange(of: contentModel.appInfo.keyIdentifier, { actions.refreshTestMode() })
-
-                InputView(
-                    title: Constants.teamid.value,
-                    titleWidth: titleWidth,
-                    inputValue: $contentModel.appInfo.teamIdentifier)
-                .onChange(of: contentModel.appInfo.teamIdentifier, { actions.refreshTestMode() })
-
-                InputView(
-                    title: Constants.bundleid.value,
-                    titleWidth: titleWidth,
-                    inputValue: $contentModel.appInfo.appBundleID)
-                .onChange(of: contentModel.appInfo.appBundleID, { actions.refreshTestMode() })
-
-                P8KeyView(
+                appInfoFields(
+                    appInfo: $contentModel.appInfo,
                     showFileImporter: $contentModel.showFileImporter,
-                    privateKey: $contentModel.appInfo.privateKey,
-                    onPrivateKeyChange: { _ in
-                        actions.refreshTestMode()
-                    },
-                    onFileImporterError: { error in
-                        appModel.appLog.append(error.localizedDescription)
-                    })
-
-                // Token
-                TokenView(
-                    pushType: contentModel.appInfo.pushType,
-                    deviceToken: $contentModel.appInfo.deviceToken,
-                    pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
-                    fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken,
-                    locationPushServiceToken: $contentModel.appInfo.locationPushServiceToken,
-                    liveActivityPushToken: $contentModel.appInfo.liveActivityPushToken
+                    titleWidth: 60,
+                    onRefreshTestMode: { actions.refreshTestMode() },
+                    onFileImporterError: { appModel.appLog.append($0.localizedDescription) }
                 )
                 .padding(.vertical, 10)
 
@@ -108,18 +76,11 @@ struct AppContentMacOS: View {
                     Toggle(isOn: $contentModel.isInTestMode) {
                         Text(Constants.fillInAppInfo.value)
                     }
-                    .onChange(of: contentModel.isInTestMode) { _, newValue in
-                        if newValue {
-                            contentModel.appInfo = appModel.thisAppConfig
-                        } else {
-                            contentModel.clearAppInfo()
-                        }
+                    .onChange(of: contentModel.isInTestMode) { _, isInTestMode in
+                        contentModel.applyTestMode(isInTestMode, thisAppConfig: appModel.thisAppConfig)
                     }
                     .onChange(of: appModel.thisAppConfig) {
-                        guard contentModel.isInTestMode else {
-                            return
-                        }
-                        contentModel.appInfo = appModel.thisAppConfig
+                        contentModel.syncWithTestConfig(appModel.thisAppConfig)
                     }
 #endif
                     Button(Constants.saveAsPreset.value) {

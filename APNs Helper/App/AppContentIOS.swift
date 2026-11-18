@@ -50,43 +50,13 @@ struct AppContentIOS: View {
                     // App Info
                     Section(Constants.appInfo.value) {
 
-                        let titleWidth: CGFloat = 70
-
-                        InputView(
-                            title: Constants.keyid.value,
-                            titleWidth: titleWidth,
-                            inputValue: $contentModel.appInfo.keyIdentifier)
-                        .onChange(of: contentModel.appInfo.keyIdentifier, { actions.refreshTestMode() })
-
-                        InputView(
-                            title: Constants.teamid.value,
-                            titleWidth: titleWidth,
-                            inputValue: $contentModel.appInfo.teamIdentifier)
-                        .onChange(of: contentModel.appInfo.teamIdentifier, { actions.refreshTestMode() })
-
-                        InputView(
-                            title: Constants.bundleid.value,
-                            titleWidth: titleWidth,
-                            inputValue: $contentModel.appInfo.appBundleID)
-                        .onChange(of: contentModel.appInfo.appBundleID, { actions.refreshTestMode() })
-                        
-                        P8KeyView(
+                        appInfoFields(
+                            appInfo: $contentModel.appInfo,
                             showFileImporter: $contentModel.showFileImporter,
-                            privateKey: $contentModel.appInfo.privateKey,
-                            editorHeight: 120) { _ in
-                                actions.refreshTestMode()
-                            } onFileImporterError: { error in
-                                appModel.appLog.append(error.localizedDescription)
-                            }
-
-                        // Token
-                        TokenView(
-                            pushType: contentModel.appInfo.pushType,
-                            deviceToken: $contentModel.appInfo.deviceToken,
-                            pushKitDeviceToken: $contentModel.appInfo.pushKitVoIPToken,
-                            fileProviderDeviceToken: $contentModel.appInfo.pushKitFileProviderToken,
-                            locationPushServiceToken: $contentModel.appInfo.locationPushServiceToken,
-                            liveActivityPushToken: $contentModel.appInfo.liveActivityPushToken
+                            titleWidth: 70,
+                            p8EditorHeight: 120,
+                            onRefreshTestMode: { actions.refreshTestMode() },
+                            onFileImporterError: { appModel.appLog.append($0.localizedDescription) }
                         )
 
 #if DEBUG
@@ -94,17 +64,10 @@ struct AppContentIOS: View {
                             Text(Constants.fillInAppInfo.value)
                         }
                         .onChange(of: contentModel.isInTestMode) { _, mode in
-                            if mode {
-                                contentModel.appInfo = appModel.thisAppConfig
-                            } else {
-                                contentModel.clearAppInfo()
-                            }
+                            contentModel.applyTestMode(mode, thisAppConfig: appModel.thisAppConfig)
                         }
                         .onChange(of: appModel.thisAppConfig) {
-                            guard contentModel.isInTestMode else {
-                                return
-                            }
-                            contentModel.appInfo = appModel.thisAppConfig
+                            contentModel.syncWithTestConfig(appModel.thisAppConfig)
                         }
                         Button(Constants.importAppInfoOnPasteboard.value, action: { actions.importAppInfoOnPasteboard() })
 #endif
