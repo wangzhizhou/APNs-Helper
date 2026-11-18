@@ -11,6 +11,11 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  PROJECT: APNs Helper.xcodeproj
+  SCHEME: APNs Helper
+  TEST_SCHEME: APNs Helper Tests
+
 jobs:
   lint:
     name: SwiftLint
@@ -20,7 +25,7 @@ jobs:
       - name: Install SwiftLint
         run: brew install swiftlint
       - name: Lint
-        run: swiftlint lint --config .swiftlint.yml --quiet --force-exclude
+        run: ./Scripts/lint.sh
 
   build:
     name: Build (${{ matrix.name }})
@@ -36,16 +41,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Show toolchain
-        run: xcodebuild -version
+        run: |
+          xcodebuild -version
+          swift --version
       - name: Resolve packages
-        run: xcodebuild -resolvePackageDependencies -project "APNs Helper.xcodeproj" -scheme "APNs Helper"
+        run: xcodebuild -resolvePackageDependencies -project "$PROJECT" -scheme "$SCHEME"
+      - name: Show resolved packages
+        run: |
+          python3 -c "
+          import json
+          d = json.load(open('APNs Helper.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved'))
+          print('locked packages:', len(d['pins']))
+          [print('  ', p['identity'], p['state'].get('version')) for p in sorted(d['pins'], key=lambda p: p['identity'])]
+          "
       - name: Build
         run: |
           xcodebuild build \
-            -project "APNs Helper.xcodeproj" \
-            -scheme "APNs Helper" \
+            -project "$PROJECT" \
+            -scheme "$SCHEME" \
             -destination '${{ matrix.destination }}' \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            -quiet
 
   test:
     name: Unit Tests
@@ -57,7 +73,8 @@ jobs:
       - name: Run tests
         run: |
           xcodebuild test \
-            -project "APNs Helper.xcodeproj" \
-            -scheme "APNs Helper Tests" \
+            -project "$PROJECT" \
+            -scheme "$TEST_SCHEME" \
             -destination 'platform=macOS' \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGNING_ALLOWED=NO \
+            -quiet

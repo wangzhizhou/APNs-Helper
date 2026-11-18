@@ -24,8 +24,8 @@ xcodebuild build -project "APNs Helper.xcodeproj" -scheme "APNs Helper" -destina
 # 单元测试（Swift Testing）
 xcodebuild test -project "APNs Helper.xcodeproj" -scheme "APNs Helper Tests" -destination 'platform=macOS'
 
-# 代码规范（规则见 .swiftlint.yml）
-brew install swiftlint && swiftlint lint --config .swiftlint.yml --quiet
+# 代码规范（规则见 .swiftlint.yml，与 CI 同一份脚本）
+brew install swiftlint && ./Scripts/lint.sh
 ```
 
 ## Dependencies
@@ -40,3 +40,10 @@ brew install swiftlint && swiftlint lint --config .swiftlint.yml --quiet
 `Package.resolved` 已入库（v3 格式，含 `originHash`），请勿手工修改版本；升级统一通过 Xcode 的
 *Package Dependencies* 面板完成。注意：缺 `originHash` 的旧格式（v2）会被新版 Xcode 判定为过期并
 重新解析到最新传递依赖，因此不要把它降级回 v2。
+## 常用脚本
+
+```bash
+# 代码规范（与 CI 完全一致）
+./Scripts/lint.sh
+```
+
