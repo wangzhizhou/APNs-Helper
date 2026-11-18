@@ -1,75 +1,116 @@
-[![App Icon](https://github.com/wangzhizhou/APNs-Helper/blob/main/APNs%20Helper/Resources/Assets.xcassets/AppIcon.appiconset/mac256.png)](https://apps.apple.com/cn/app/apns-helper/id6443608175)
-
 # APNs-Helper
 
-A Tool run on MacOS/iOS that can send APNs Notifications for Test
+[![App Store](https://img.shields.io/badge/App%20Store-APNs%20Helper-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/cn/app/apns-helper/id6443608175)
+[![App Store](https://img.shields.io/badge/App%20Store-APNs%20Helper%20Tester-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/cn/app/apns-helper-tester/id6444835507)
+[![Documentation](https://img.shields.io/badge/Documentation-DocC-informational)](https://wangzhizhou.github.io/APNs-Helper/documentation/apns_helper_doc/)
+[![Build & Test](https://github.com/wangzhizhou/APNs-Helper/actions/workflows/build.yml/badge.svg)](https://github.com/wangzhizhou/APNs-Helper/actions/workflows/build.yml)
+[![License](https://img.shields.io/badge/License-Apache--2.0-blue)](LICENSE)
 
-[APNs Helper Doc Site](https://wangzhizhou.github.io/APNs-Helper/documentation/apns_helper_doc/)
+A macOS / iOS tool for developing and testing Apple Push Notification service (APNs) integrations.
 
-[The Figma Design](https://www.figma.com/file/sLVIKqiYfxHNb7gUnOUZ9x/APNs-Helper-And-Tester?type=design&mode=design&t=Zw15LS2GJSaFmGbL-1F)
+It sends real APNs requests, shows the exact payload exchanged, and helps you diagnose why a
+notification is not delivered or not decoded by the target app.
+
+## Two ways to use it
+
+| Scenario | What it is for |
+| --- | --- |
+| **Self-send** | The app itself registers for remote notifications, so you can push to your own device/mac and inspect the whole round trip (request headers, payload, response, received notification). |
+| **Send to another app** | With that app's Key ID, Team ID, Bundle ID, `.p8` key and a device token, you can verify **reachability** and whether a specific payload is delivered and decoded as expected. |
+
+Multiple apps can be stored as **presets**, so switching between "my app" and "the app I'm
+debugging" is one tap.
+
+## Features
+
+- **All APNs push types**
+
+  | Push type | Topic | Notes |
+  | --- | --- | --- |
+  | `alert` | `<bundleID>` | notification / badge / sound |
+  | `background` | `<bundleID>` | silent push, priority must be 5 |
+  | `voip` | `<bundleID>.voip` | PushKit token required |
+  | `fileprovider` | `<bundleID>.pushkit.fileprovider` | File Provider extension |
+  | `location` | `<bundleID>.location-query` | Location Push Service extension |
+  | `liveactivity` | `<bundleID>.push-type.liveactivity` | ActivityKit |
+
+- **Payload workbench** — a JSON editor with syntax highlighting, formatting and
+  per-push-type templates. The text you write is sent verbatim as the HTTP body, so you can
+  reproduce exactly what your server sends.
+- **Credentials** — JWT (`.p8`) authentication, `.p8` import from file, presets persisted locally.
+- **Diagnostics** — request/response headers and the APNs error are written to an in-app log;
+  server reachability is checked before sending.
+- **Receiving side** — [APNs Helper Tester](https://apps.apple.com/cn/app/apns-helper-tester/id6444835507)
+  and the bundled extensions (Notification Service / Content, Widgets / Live Activity, File Provider,
+  Location Push) demonstrate and verify each delivery path.
 
 ## Development
 
-Requirements: Xcode 16 or newer (iOS 17 / macOS 14 deployment targets).
-代码使用 Swift 6 语言模式与 Observation（`@Observable`），UI 状态模型统一 `@MainActor`。
+Requirements: Xcode 16 or newer, iOS 17 / macOS 14 deployment targets.
+Code is written in Swift 6 language mode with Observation (`@Observable`); UI state models are `@MainActor`.
 
 ```bash
-# 依赖（SwiftPM，含 APNSwift）
+# Dependencies (SwiftPM, including APNSwift)
 xcodebuild -resolvePackageDependencies -project "APNs Helper.xcodeproj" -scheme "APNs Helper"
 
-# 构建（macOS / iOS 模拟器）
+# Build (macOS / iOS Simulator)
 xcodebuild build -project "APNs Helper.xcodeproj" -scheme "APNs Helper" -destination 'platform=macOS'
 xcodebuild build -project "APNs Helper.xcodeproj" -scheme "APNs Helper" -destination 'generic/platform=iOS Simulator'
 
-# 单元测试（Swift Testing）
+# Unit tests (Swift Testing)
 xcodebuild test -project "APNs Helper.xcodeproj" -scheme "APNs Helper Tests" -destination 'platform=macOS'
 
-# 代码规范（规则见 .swiftlint.yml，与 CI 同一份脚本）
+# Lint (same script and config as CI)
 brew install swiftlint && ./Scripts/lint.sh
 ```
 
+### Project layout
+
+| Path | Contents |
+| --- | --- |
+| `APNs Helper/` | the app: SwiftUI views, `AppModel`/`AppContentModel`, `APNsService` + `PushRequest`, payload editors |
+| `Common/` | shared code: AppDelegate, UNUserNotification / PushKit / CallKit / CoreLocation managers, utilities |
+| `APNs Helper Tester/` | the receiving demo app |
+| `Widgets/`, `FileProviderExtension/`, `FileProviderExtensionUI/`, `NotificationContentExtension/`, `NotificationServiceExtension/`, `LocationPushServiceExtension/` | delivery-path demo extensions |
+| `APNs Helper Doc/` | DocC catalog for the documentation site |
+| `APNs Helper Tests/` | Swift Testing suites |
+| `Scripts/` | `lint.sh`, `build-docs.sh` |
+
+## Documentation
+
+The docs are written with DocC in `APNs Helper Doc/docs.docc/` and published from this repository:
+
+- Online: <https://wangzhizhou.github.io/APNs-Helper/documentation/apns_helper_doc/>
+- Locally: `./Scripts/build-docs.sh`, then serve the generated `dist/docs` at the `/APNs-Helper/` sub-path
+  (the script prints the exact commands)
+
+Deployment is handled by `.github/workflows/docs.yml` (GitHub Pages, `GITHUB_TOKEN`, no PAT).
+
+Design file: [Figma](https://www.figma.com/file/sLVIKqiYfxHNb7gUnOUZ9x/APNs-Helper-And-Tester)
+
 ## Dependencies
 
-| 依赖 | 用途 |
+| Package | Why |
 | --- | --- |
-| [APNSwift](https://github.com/kylebrowning/APNSwift) | 与 APNs 通信（JWT 鉴权、HTTP/2 请求） |
-| [AlertToast](https://github.com/elai950/AlertToast) | Toast 提示 |
-| [Highlightr](https://github.com/raspu/Highlightr) | Payload 编辑器 JSON 高亮 |
-| [Prettier](https://github.com/simonbs/Prettier) | Payload 编辑器 JSON 格式化 |
+| [APNSwift](https://github.com/kylebrowning/APNSwift) | APNs transport (JWT auth, HTTP/2) |
+| [AlertToast](https://github.com/elai950/AlertToast) | toasts |
+| [Highlightr](https://github.com/raspu/Highlightr) | JSON syntax highlighting |
+| [Prettier](https://github.com/simonbs/Prettier) | JSON formatting |
 
-`Package.resolved` 已入库（v3 格式，含 `originHash`），请勿手工修改版本；升级统一通过 Xcode 的
-*Package Dependencies* 面板完成。注意：缺 `originHash` 的旧格式（v2）会被新版 Xcode 判定为过期并
-重新解析到最新传递依赖，因此不要把它降级回 v2。
-## 文档
+`Package.resolved` is committed in **v3** format (with `originHash`). Do not downgrade it to v2:
+newer Xcode treats a v2 file as stale and silently re-resolves to the latest transitive
+dependencies, which can require a newer Swift toolchain than CI provides.
 
-文档用 DocC 维护，源文件在同仓库的 `APNs Helper Doc/docs.docc/`，由 `.github/workflows/docs.yml`
-构建并部署到 GitHub Pages 的项目站点：
+## Sensitive information
 
-- 线上地址：https://wangzhizhou.github.io/APNs-Helper/documentation/apns_helper_doc/
-- 本地构建预览：
-
-```bash
-./Scripts/build-docs.sh            # 产物在 dist/docs
-# 站点按 /APNs-Helper/ 子路径组织，本地预览需放在同名目录下
-rm -rf /tmp/apns-doc-preview && mkdir -p /tmp/apns-doc-preview
-cp -R dist/docs /tmp/apns-doc-preview/APNs-Helper
-python3 -m http.server 8000 --directory /tmp/apns-doc-preview
-# 打开 http://localhost:8000/APNs-Helper/
-```
-
-## 敏感信息
-
-本仓库为公开仓库，**不包含任何 APNs 授权私钥**（`.p8`）。「Fill this App's Info」需要的私钥
-请用 App 内的「Import P8」导入，或仅在本地写入 UserDefaults：
+This is a public repository and **contains no APNs auth key (`.p8`)**. For the
+"Fill this App's Info" convenience you can either import your key with **Import P8** inside the
+app, or write it to `UserDefaults` locally (never committed):
 
 ```bash
 defaults write com.joker.APNsHelper APNsHelperDevPrivateKey "$(cat AuthKey_XXXX.p8)"
 ```
 
-## 常用脚本
+## License
 
-```bash
-# 代码规范（与 CI 完全一致）
-./Scripts/lint.sh
-```
-
+[Apache License 2.0](LICENSE)

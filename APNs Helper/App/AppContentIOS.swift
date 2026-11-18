@@ -59,7 +59,6 @@ struct AppContentIOS: View {
                             onFileImporterError: { appModel.appLog.append($0.localizedDescription) }
                         )
 
-#if DEBUG
                         Toggle(isOn: $contentModel.isInTestMode) {
                             Text(Constants.fillInAppInfo.value)
                         }
@@ -70,7 +69,6 @@ struct AppContentIOS: View {
                             contentModel.syncWithTestConfig(appModel.thisAppConfig)
                         }
                         Button(Constants.importAppInfoOnPasteboard.value, action: { actions.importAppInfoOnPasteboard() })
-#endif
                     }
                     .listRowSeparator(.hidden)
 

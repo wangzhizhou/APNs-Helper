@@ -46,7 +46,7 @@ struct AppLogHandler: LogHandler {
                 if let metadata = metadata {
                     logContent = "\(metadata)"
                 }
-            case .critical:
+            case .critical, .notice, .info:
                 logContent = message.description
             default:
                 break

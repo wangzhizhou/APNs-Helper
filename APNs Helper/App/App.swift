@@ -9,10 +9,11 @@ import SwiftUI
 
 @main
 struct APNsHelperApp: App {
-#if os(macOS) && DEBUG
+    // 自收发（发给自己并验证接收）是本工具的核心用途，Release 构建同样需要注册远程通知
+#if os(macOS)
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
-#if os(iOS) && DEBUG
+#if os(iOS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #endif
 

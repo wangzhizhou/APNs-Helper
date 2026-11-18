@@ -39,6 +39,9 @@ jobs:
         run: ./Scripts/build-docs.sh /APNs-Helper dist/docs
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          # 仓库已公开；首次运行时自动启用 Pages（等价于 Settings → Pages → Source: GitHub Actions）
+          enablement: true
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

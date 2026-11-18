@@ -75,6 +75,7 @@ struct APNsService {
             )
 
             let request = PushRequest.make(config: config, payload: payload)
+            logRequest(request)
             let response: APNSResponse? = try await client?.send(request)
 
             if let apnsID = response?.apnsID {
@@ -88,6 +89,19 @@ struct APNsService {
             logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
             await shutdownClient(client)
             return false
+        }
+    }
+
+    /// 把实际发出的头信息与 Body 记到界面日志，便于和接收到的 Payload 对照。
+    @MainActor
+    func logRequest(_ request: APNSRequest<RawPayloadNotification>) {
+        let headers = request.headers
+        let summary = ["apns-topic", "apns-push-type", "apns-priority", "apns-expiration"]
+            .compactMap { key in headers[key].map { "\(key)=\($0)" } }
+            .joined(separator: " ")
+        logger.notice("APNs request: \(summary)")
+        if let body = String(data: payloadData, encoding: .utf8) {
+            logger.notice("Payload:\n\(body)")
         }
     }
 

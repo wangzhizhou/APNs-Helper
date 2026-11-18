@@ -136,10 +136,18 @@ final class AppModel {
             }
             cancellables.append(deviceTokenCancellable)
 
-            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sinkOnMain { message in
-                self.toastModel = ToastModel.info().title(message)
+            let backgroundNotificationCancellable = UNUserNotificationManager.shared.backgroundNotificationSubject.sinkOnMain { payload in
+                self.appLog.append("\n[Received Notification]\n\(payload)\n")
+                self.toastModel = ToastModel.info().title("Notification Received")
             }
             cancellables.append(backgroundNotificationCancellable)
+
+            let notificationErrorCancellable = UNUserNotificationManager.shared.errorSubject
+                .sinkOnMain { message in
+                    self.appLog.append("\n[Notification] \(message)\n")
+                    self.toastModel = ToastModel.info().title("Notification Error")
+                }
+            cancellables.append(notificationErrorCancellable)
 
             let copyToPasteboardCancellable = NotificationCenter.default
                 .publisher(for: .APNSHelperStringCopyedToPastedboard)

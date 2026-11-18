@@ -71,7 +71,6 @@ struct AppContentMacOS: View {
                         actions.clearCurrentConfigPresetIfExist()
                     }
                     Spacer()
-#if DEBUG
                     Button(Constants.importAppInfoOnPasteboard.value, action: { actions.importAppInfoOnPasteboard() })
                     Toggle(isOn: $contentModel.isInTestMode) {
                         Text(Constants.fillInAppInfo.value)
@@ -82,7 +81,6 @@ struct AppContentMacOS: View {
                     .onChange(of: appModel.thisAppConfig) {
                         contentModel.syncWithTestConfig(appModel.thisAppConfig)
                     }
-#endif
                     Button(Constants.saveAsPreset.value) {
                         actions.saveAsPreset()
                     }

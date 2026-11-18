@@ -41,14 +41,16 @@ extension AppDelegate {
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        "register device token failed. \(error.localizedDescription)".printDebugInfo()
+        let message = "register device token failed: \(error.localizedDescription)"
+        message.printDebugInfo()
+        UNUserNotificationManager.shared.errorSubject.send(message)
     }
 
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
 
         if userInfo.keys.contains("aps"), let aps = userInfo["aps"] as? [AnyHashable: Any], aps.keys.count == 1,
             aps.keys.contains("content-available"), let contentAvailable = aps["content-available"] as? Bool, contentAvailable {
-            UNUserNotificationManager.shared.backgroundNotificationSubject.send("🔊 Background Notification Received")
+            UNUserNotificationManager.shared.backgroundNotificationSubject.send(userInfo.jsonString ?? "🔊 Background Notification Received")
         }
 
         completionHandler(.newData)
@@ -65,14 +67,16 @@ extension AppDelegate {
     }
 
     func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        "register device token failed. \(error.localizedDescription)".printDebugInfo()
+        let message = "register device token failed: \(error.localizedDescription)"
+        message.printDebugInfo()
+        UNUserNotificationManager.shared.errorSubject.send(message)
     }
 
     func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String: Any]) {
         if userInfo.keys.contains("aps"), let aps = userInfo["aps"] as? [AnyHashable: Any], aps.keys.count == 1,
             aps.keys.contains("content-available"),
             let contentAvailable = aps["content-available"] as? Bool, contentAvailable {
-            UNUserNotificationManager.shared.backgroundNotificationSubject.send("🔊 Background Notification Received")
+            UNUserNotificationManager.shared.backgroundNotificationSubject.send(userInfo.jsonString ?? "🔊 Background Notification Received")
         }
     }
 #endif

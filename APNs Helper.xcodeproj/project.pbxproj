@@ -1749,7 +1749,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MARKETING_VERSION = 2.2;
-				OTHER_SWIFT_FLAGS = "-DENABLE_PUSHKIT";
+				OTHER_SWIFT_FLAGS = "-DENABLE_PUSHKIT -DAPNS_HELPER_SENDER";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1794,6 +1794,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MARKETING_VERSION = 2.2;
+				OTHER_SWIFT_FLAGS = "-DAPNS_HELPER_SENDER";
 				PRODUCT_BUNDLE_IDENTIFIER = com.joker.APNsHelper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
