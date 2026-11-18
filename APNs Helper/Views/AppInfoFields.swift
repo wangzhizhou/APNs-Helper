@@ -17,28 +17,24 @@ import SwiftUI
 func appInfoFields(
     appInfo: Binding<Config>,
     showFileImporter: Binding<Bool>,
-    titleWidth: CGFloat,
     p8EditorHeight: CGFloat = 80,
     onRefreshTestMode: @escaping () -> Void,
     onFileImporterError: @escaping (Error) -> Void
 ) -> some View {
     InputView(
         title: Constants.keyid.value,
-        titleWidth: titleWidth,
         inputValue: appInfo.keyIdentifier
     )
     .onChange(of: appInfo.wrappedValue.keyIdentifier) { onRefreshTestMode() }
 
     InputView(
         title: Constants.teamid.value,
-        titleWidth: titleWidth,
         inputValue: appInfo.teamIdentifier
     )
     .onChange(of: appInfo.wrappedValue.teamIdentifier) { onRefreshTestMode() }
 
     InputView(
         title: Constants.bundleid.value,
-        titleWidth: titleWidth,
         inputValue: appInfo.appBundleID
     )
     .onChange(of: appInfo.wrappedValue.appBundleID) { onRefreshTestMode() }

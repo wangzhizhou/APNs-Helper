@@ -19,16 +19,17 @@ struct APNsHelperApp: App {
 
     @State private var model = AppModel()
     var body: some Scene {
-        WindowGroup {
+        WindowGroup("APNs Helper") {
             AppContent()
 #if os(macOS)
-                .frame(maxWidth: 632, minHeight: 828, maxHeight: 828)
+                .frame(minWidth: 620, minHeight: 600)
 #endif
                 .environment(model)
         }
 #if os(macOS)
-        .windowResizability(.contentSize)
-        .windowStyle(.hiddenTitleBar)
+        // 不再锁死 632×828：内容可滚动、窗口可放大到全屏，避免小屏或大字号下被裁切
+        .defaultSize(width: 760, height: 880)
+        .windowResizability(.contentMinSize)
 #endif
     }
 }

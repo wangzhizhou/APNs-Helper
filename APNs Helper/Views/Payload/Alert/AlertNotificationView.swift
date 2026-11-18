@@ -14,7 +14,6 @@ struct AlertNotificationView: View {
     /// 传入时在底部显示「Use This Payload」，把结构化结果交回调用方（写入 Payload 编辑器）
     var onApply: ((String) -> Void)?
 
-    private let titleWidth: CGFloat = 120
     
     var body: some View {
         
@@ -29,28 +28,24 @@ struct AlertNotificationView: View {
                     InputView(
                         title: "Title",
                         placeholder: "Alert Title",
-                        titleWidth: titleWidth,
                         inputValue: $model.alertTitle
                     )
                     
                     InputView(
                         title: "Subtitle",
                         placeholder: "Alert Subtitle",
-                        titleWidth: titleWidth,
                         inputValue: $model.alertSubtitle
                     )
                     
                     InputView(
                         title: "Body",
                         placeholder: "Alert Body",
-                        titleWidth: titleWidth,
                         inputValue: $model.alertBody
                     )
                     
                     InputView(
                         title: "Launch Image",
                         placeholder: "Alert Launch Image",
-                        titleWidth: titleWidth,
                         inputValue: $model.alertLaunchImage
                     )
                 }
@@ -58,56 +53,48 @@ struct AlertNotificationView: View {
                 // badge
                 InputView(
                     title: "Badge Number",
-                    titleWidth: titleWidth,
                     inputValue: $model.badge
                 )
                 
                 // sound
                 InputView(
                     title: "Sound",
-                    titleWidth: titleWidth,
                     inputValue: $model.sound
                 )
                 
                 // threadID
                 InputView(
                     title: "Thread ID",
-                    titleWidth: titleWidth,
                     inputValue: $model.threadID
                 )
                 
                 // category
                 InputView(
                     title: "Category",
-                    titleWidth: titleWidth,
                     inputValue: $model.category
                 )
                 
                 // mutable content
                 InputView(
                     title: "Mutable Content",
-                    titleWidth: titleWidth,
                     inputValue: $model.mutableContent
                 )
                 
                 // target content ID
                 InputView(
                     title: "Target ContentID",
-                    titleWidth: titleWidth,
                     inputValue: $model.targetContentID
                 )
                 
                 // interruption level
                 InputView(
                     title: "InterruptionLevel",
-                    titleWidth: titleWidth,
                     inputValue: $model.interruptionLevel
                 )
                 
                 // relevance score
                 InputView(
                     title: "Relevance Score",
-                    titleWidth: titleWidth,
                     inputValue: $model.relevanceScore
                 )
                 

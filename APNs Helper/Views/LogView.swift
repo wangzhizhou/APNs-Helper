@@ -7,33 +7,53 @@
 
 import SwiftUI
 
+/// 发送结果日志：只读输出。
+///
+/// 之前是可编辑的 `TextEditor`（用户能改日志、光标还会抢焦点），
+/// 改为只读 `Text` + 可选中复制，并提供空状态提示与复制按钮。
 struct LogView: View {
 
     @Environment(AppModel.self) private var appModel
 
-    @FocusState
-    private var logTextEditorFocusState: Bool
+    private var isEmpty: Bool { appModel.appLog.isEmpty }
 
     var body: some View {
-        @Bindable var appModel = appModel
-
-        VStack {
-#if os(macOS)
-            InputTextEditor(title: Constants.log.value, content: $appModel.appLog)
-                .frame(minHeight: 100)
-#elseif os(iOS)
-            InputTextEditor(content: $appModel.appLog, textEditorFont: .system(size: 9))
-                .frame(height: 100)
-                .padding(.vertical, 5)
-#endif
-        }
-        .focused($logTextEditorFocusState)
-        .onChange(of: logTextEditorFocusState) { _, newValue in
-            guard newValue == false
-            else {
-                logTextEditorFocusState = false
-                return
+        VStack(alignment: .leading, spacing: Design.Spacing.compact) {
+            HStack {
+                Text(Constants.log.value)
+                Spacer()
+                Button {
+                    appModel.appLog.copyToPasteboard()
+                } label: {
+                    Label(Constants.copyLog.value, systemImage: "doc.on.doc")
+                        .labelStyle(.iconOnly)
+                }
+                .buttonStyle(.borderless)
+                .disabled(isEmpty)
+                .accessibilityLabel(Text(Constants.copyLog.value))
+                .help(Constants.copyLog.value)
             }
+
+            ScrollView {
+                Text(isEmpty ? Constants.logEmptyHint.value : appModel.appLog)
+                    .font(Design.Typography.log)
+                    .foregroundStyle(isEmpty ? AnyShapeStyle(.secondary) : AnyShapeStyle(.primary))
+                    .textSelection(.enabled)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(Design.Spacing.compact)
+            }
+            .frame(minHeight: Design.Metrics.logMinHeight)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(
+                Color.appEditorBackground,
+                in: RoundedRectangle(cornerRadius: Design.Radius.editor, style: .continuous)
+            )
+            .overlay {
+                RoundedRectangle(cornerRadius: Design.Radius.editor, style: .continuous)
+                    .strokeBorder(Color.appSeparator, lineWidth: 1)
+            }
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel(Text(Constants.log.value))
         }
     }
 }

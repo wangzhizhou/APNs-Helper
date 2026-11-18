@@ -7,27 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F3A1B0D22C1A000100ABCDEF /* FileProviderEventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0D12C1A000100ABCDEF /* FileProviderEventLog.swift */; };
-		F3A1B0D32C1A000100ABCDEF /* FileProviderEventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0D12C1A000100ABCDEF /* FileProviderEventLog.swift */; };
-		F3A1B0D42C1A000100ABCDEF /* FileProviderEventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0D12C1A000100ABCDEF /* FileProviderEventLog.swift */; };
-		F3A1B0C22C1A000100ABCDEF /* StructuredPayloadEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0C12C1A000100ABCDEF /* StructuredPayloadEditor.swift */; };
-		F3A1B0B22C1A000100ABCDEF /* LogMaskingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0B12C1A000100ABCDEF /* LogMaskingTests.swift */; };
-		F3A1B0A22C1A000100ABCDEF /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */; };
-		F3A1B0A32C1A000100ABCDEF /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */; };
-		F3A1B0822C1A000100ABCDEF /* APNSClientPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0812C1A000100ABCDEF /* APNSClientPool.swift */; };
-		F3A1B0722C1A000100ABCDEF /* RawBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0712C1A000100ABCDEF /* RawBody.swift */; };
-		F3A1B0732C1A000100ABCDEF /* RawBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0712C1A000100ABCDEF /* RawBody.swift */; };
-		F3A1B0642C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
-		F3A1B0622C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
-		F3A1B0632C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
-		F3A1B0522C1A000100ABCDEF /* AppInfoFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */; };
-		F3A1B0422C1A000100ABCDEF /* PushRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */; };
-		F3B0000B2C1A000100ABCDEF /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F3B0000A2C1A000100ABCDEF /* APNS */; };
-		F3A1B0342C1A000100ABCDEF /* PushType+APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0052C1A000100ABCDEF /* PushType+APNS.swift */; };
-		F3A1B0322C1A000100ABCDEF /* PushRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0312C1A000100ABCDEF /* PushRequest.swift */; };
-		F3A1B0332C1A000100ABCDEF /* PushRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0312C1A000100ABCDEF /* PushRequest.swift */; };
-		F3A1B0222C1A000100ABCDEF /* Publisher+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */; };
-		F3A1B0232C1A000100ABCDEF /* Publisher+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */; };
 		2B0031662A0DEAFF009BEACD /* Highlightr in Frameworks */ = {isa = PBXBuildFile; productRef = 2B0031652A0DEAFF009BEACD /* Highlightr */; };
 		2B0031682A0DEBEB009BEACD /* PayloadEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */; };
 		2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */ = {isa = PBXBuildFile; productRef = 2B00316A2A0DFF6F009BEACD /* PrettierBabel */; };
@@ -109,9 +88,6 @@
 		2BD8464B2A16188B008D2A86 /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846492A16142D008D2A86 /* AppInfo.swift */; };
 		2BD8464D2A163F81008D2A86 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8464C2A163F81008D2A86 /* ToastModel.swift */; };
 		2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8464C2A163F81008D2A86 /* ToastModel.swift */; };
-		2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846512A165BA0008D2A86 /* BorderModifier.swift */; };
-		2BD846542A165BBC008D2A86 /* UnderLineModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846532A165BBC008D2A86 /* UnderLineModifier.swift */; };
-		2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD846552A165BDE008D2A86 /* View+Modifiers.swift */; };
 		2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465B2A173ACF008D2A86 /* AppDelegate+FileProvider.swift */; };
 		2BD8465D2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465B2A173ACF008D2A86 /* AppDelegate+FileProvider.swift */; };
 		2BD8465F2A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */; };
@@ -143,9 +119,30 @@
 		F3A1B0082C1A000100ABCDEF /* APNServerEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0072C1A000100ABCDEF /* APNServerEnv.swift */; };
 		F3A1B0092C1A000100ABCDEF /* APNServerEnv.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0072C1A000100ABCDEF /* APNServerEnv.swift */; };
 		F3A1B0122C1A000100ABCDEF /* AppActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0112C1A000100ABCDEF /* AppActions.swift */; };
+		F3A1B0222C1A000100ABCDEF /* Publisher+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */; };
+		F3A1B0232C1A000100ABCDEF /* Publisher+Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */; };
+		F3A1B0322C1A000100ABCDEF /* PushRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0312C1A000100ABCDEF /* PushRequest.swift */; };
+		F3A1B0332C1A000100ABCDEF /* PushRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0312C1A000100ABCDEF /* PushRequest.swift */; };
+		F3A1B0342C1A000100ABCDEF /* PushType+APNS.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0052C1A000100ABCDEF /* PushType+APNS.swift */; };
+		F3A1B0422C1A000100ABCDEF /* PushRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */; };
+		F3A1B0522C1A000100ABCDEF /* AppInfoFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */; };
+		F3A1B0622C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
+		F3A1B0632C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
+		F3A1B0642C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
+		F3A1B0722C1A000100ABCDEF /* RawBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0712C1A000100ABCDEF /* RawBody.swift */; };
+		F3A1B0732C1A000100ABCDEF /* RawBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0712C1A000100ABCDEF /* RawBody.swift */; };
+		F3A1B0822C1A000100ABCDEF /* APNSClientPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0812C1A000100ABCDEF /* APNSClientPool.swift */; };
+		F3A1B0A22C1A000100ABCDEF /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */; };
+		F3A1B0A32C1A000100ABCDEF /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */; };
+		F3A1B0B22C1A000100ABCDEF /* LogMaskingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0B12C1A000100ABCDEF /* LogMaskingTests.swift */; };
+		F3A1B0C22C1A000100ABCDEF /* StructuredPayloadEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0C12C1A000100ABCDEF /* StructuredPayloadEditor.swift */; };
+		F3A1B0D22C1A000100ABCDEF /* FileProviderEventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0D12C1A000100ABCDEF /* FileProviderEventLog.swift */; };
+		F3A1B0D32C1A000100ABCDEF /* FileProviderEventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0D12C1A000100ABCDEF /* FileProviderEventLog.swift */; };
+		F3A1B0D42C1A000100ABCDEF /* FileProviderEventLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0D12C1A000100ABCDEF /* FileProviderEventLog.swift */; };
 		F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */; };
 		F3A46DEE29DDAA4E004D4AD1 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */; };
 		F3A46DF029DDAA87004D4AD1 /* URL+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */; };
+		F3B0000B2C1A000100ABCDEF /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F3B0000A2C1A000100ABCDEF /* APNS */; };
 		F3B000212C1A000100ABCDEF /* JSONValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B000112C1A000100ABCDEF /* JSONValueTests.swift */; };
 		F3B000222C1A000100ABCDEF /* ConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B000122C1A000100ABCDEF /* ConfigTests.swift */; };
 		F3B000232C1A000100ABCDEF /* PushTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3B000132C1A000100ABCDEF /* PushTypeTests.swift */; };
@@ -158,6 +155,7 @@
 		F3B000372C1A000100ABCDEF /* PushType.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0032C1A000100ABCDEF /* PushType.swift */; };
 		F3C9772D2AD715920020B200 /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9772C2AD715920020B200 /* APNS */; };
 		F3C9772F2AD715920020B200 /* APNSCore in Frameworks */ = {isa = PBXBuildFile; productRef = F3C9772E2AD715920020B200 /* APNSCore */; };
+		F3C0001B2C1A000100ABCDEF /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C0001C2C1A000100ABCDEF /* DesignSystem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -225,18 +223,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		F3A1B0D12C1A000100ABCDEF /* FileProviderEventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderEventLog.swift; sourceTree = "<group>"; };
-		F3A1B0C12C1A000100ABCDEF /* StructuredPayloadEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredPayloadEditor.swift; sourceTree = "<group>"; };
-		F3A1B0B12C1A000100ABCDEF /* LogMaskingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMaskingTests.swift; sourceTree = "<group>"; };
-		F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
-		F3A1B0912C1A000100ABCDEF /* NotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationServiceExtension.entitlements; sourceTree = "<group>"; };
-		F3A1B0812C1A000100ABCDEF /* APNSClientPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSClientPool.swift; sourceTree = "<group>"; };
-		F3A1B0712C1A000100ABCDEF /* RawBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawBody.swift; sourceTree = "<group>"; };
-		F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevSecrets.swift; sourceTree = "<group>"; };
-		F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoFields.swift; sourceTree = "<group>"; };
-		F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequestTests.swift; sourceTree = "<group>"; };
-		F3A1B0312C1A000100ABCDEF /* PushRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequest.swift; sourceTree = "<group>"; };
-		F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Main.swift"; sourceTree = "<group>"; };
 		2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadEditor.swift; sourceTree = "<group>"; };
 		2B00316E2A0E0221009BEACD /* CodeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFormatter.swift; sourceTree = "<group>"; };
 		2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSCodeEditor.swift; sourceTree = "<group>"; };
@@ -319,9 +305,6 @@
 		2BD8423B2A14ED47008D2A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BD846492A16142D008D2A86 /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		2BD8464C2A163F81008D2A86 /* ToastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModel.swift; sourceTree = "<group>"; };
-		2BD846512A165BA0008D2A86 /* BorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderModifier.swift; sourceTree = "<group>"; };
-		2BD846532A165BBC008D2A86 /* UnderLineModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineModifier.swift; sourceTree = "<group>"; };
-		2BD846552A165BDE008D2A86 /* View+Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Modifiers.swift"; sourceTree = "<group>"; };
 		2BD8465B2A173ACF008D2A86 /* AppDelegate+FileProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+FileProvider.swift"; sourceTree = "<group>"; };
 		2BD8465E2A173B2A008D2A86 /* FileProvider+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileProvider+Setup.swift"; sourceTree = "<group>"; };
 		2BD846622A1742A1008D2A86 /* FileProviderPushPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderPushPayload.swift; sourceTree = "<group>"; };
@@ -349,6 +332,18 @@
 		F3A1B0052C1A000100ABCDEF /* PushType+APNS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PushType+APNS.swift"; sourceTree = "<group>"; };
 		F3A1B0072C1A000100ABCDEF /* APNServerEnv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNServerEnv.swift; sourceTree = "<group>"; };
 		F3A1B0112C1A000100ABCDEF /* AppActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActions.swift; sourceTree = "<group>"; };
+		F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Main.swift"; sourceTree = "<group>"; };
+		F3A1B0312C1A000100ABCDEF /* PushRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequest.swift; sourceTree = "<group>"; };
+		F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequestTests.swift; sourceTree = "<group>"; };
+		F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoFields.swift; sourceTree = "<group>"; };
+		F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevSecrets.swift; sourceTree = "<group>"; };
+		F3A1B0712C1A000100ABCDEF /* RawBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawBody.swift; sourceTree = "<group>"; };
+		F3A1B0812C1A000100ABCDEF /* APNSClientPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSClientPool.swift; sourceTree = "<group>"; };
+		F3A1B0912C1A000100ABCDEF /* NotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		F3A1B0B12C1A000100ABCDEF /* LogMaskingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMaskingTests.swift; sourceTree = "<group>"; };
+		F3A1B0C12C1A000100ABCDEF /* StructuredPayloadEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StructuredPayloadEditor.swift; sourceTree = "<group>"; };
+		F3A1B0D12C1A000100ABCDEF /* FileProviderEventLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderEventLog.swift; sourceTree = "<group>"; };
 		F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Utils.swift"; sourceTree = "<group>"; };
 		F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Utils.swift"; sourceTree = "<group>"; };
@@ -357,6 +352,7 @@
 		F3B000122C1A000100ABCDEF /* ConfigTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigTests.swift; sourceTree = "<group>"; };
 		F3B000132C1A000100ABCDEF /* PushTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushTypeTests.swift; sourceTree = "<group>"; };
 		F3CEE6432A1687F300459F71 /* APNs Helper Tester(MacOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "APNs Helper Tester(MacOS).entitlements"; sourceTree = "<group>"; };
+		F3C0001C2C1A000100ABCDEF /* DesignSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -437,8 +433,8 @@
 		F3B000052C1A000100ABCDEF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
-			files = (				F3B0000B2C1A000100ABCDEF /* APNS in Frameworks */,
-
+			files = (
+				F3B0000B2C1A000100ABCDEF /* APNS in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,7 +597,6 @@
 				F3A46DEB29DDAA41004D4AD1 /* Data+Utils.swift */,
 				F3A46DED29DDAA4E004D4AD1 /* Array+Utils.swift */,
 				F3A46DEF29DDAA87004D4AD1 /* URL+Utils.swift */,
-				2BD846552A165BDE008D2A86 /* View+Modifiers.swift */,
 			);
 			path = Uitls;
 			sourceTree = "<group>";
@@ -621,8 +616,8 @@
 			isa = PBXGroup;
 			children = (
 				F33327C22AECFDD900EB6C49 /* Payload */,
-				2BD846502A165B8B008D2A86 /* Modifiers */,
 				2BBDDE7828E49A770052DC28 /* InputView.swift */,
+				F3C0001C2C1A000100ABCDEF /* DesignSystem.swift */,
 				F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */,
 				2BA3E0B228E56040006DBCCC /* InputTextEditor.swift */,
 				2BD801862A09EDBD00DDD17E /* PresetPicker.swift */,
@@ -738,15 +733,6 @@
 				2BD8464C2A163F81008D2A86 /* ToastModel.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		2BD846502A165B8B008D2A86 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				2BD846512A165BA0008D2A86 /* BorderModifier.swift */,
-				2BD846532A165BBC008D2A86 /* UnderLineModifier.swift */,
-			);
-			path = Modifiers;
 			sourceTree = "<group>";
 		};
 		2BD8465A2A173AB4008D2A86 /* FileProvider */ = {
@@ -1259,6 +1245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3C0001B2C1A000100ABCDEF /* DesignSystem.swift in Sources */,
 				2B35F72D28DEAB17009EF9C9 /* App.swift in Sources */,
 				2B35F76D28DEAFCD009EF9C9 /* AppModel.swift in Sources */,
 				2B64E97C29E6BBA70007B1D0 /* Data+Hex.swift in Sources */,
@@ -1279,12 +1266,9 @@
 				2B0031742A0E0306009BEACD /* iOSCodeEditor.swift in Sources */,
 				2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,
 				F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */,
-				2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */,
 				2B64E97429E6BAC80007B1D0 /* PushKitManager.swift in Sources */,
-				2BD846522A165BA0008D2A86 /* BorderModifier.swift in Sources */,
 				2BA3E0B728E57D5A006DBCCC /* AppLogHandler.swift in Sources */,
 				F315F0BE2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */,
-				2BD846542A165BBC008D2A86 /* UnderLineModifier.swift in Sources */,
 				2BD8018F2A0A5CD000DDD17E /* TokenView.swift in Sources */,
 				2BA110D32AF8F53F00E62255 /* Dictionary+JSON.swift in Sources */,
 				2B40F8A629DEE00E00E484FB /* Config+Utils.swift in Sources */,
@@ -1331,8 +1315,8 @@
 		2B64E94429E6B3160007B1D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = (				F3A1B0D32C1A000100ABCDEF /* FileProviderEventLog.swift in Sources */,
-
+			files = (
+				F3A1B0D32C1A000100ABCDEF /* FileProviderEventLog.swift in Sources */,
 				2BD801852A092E4300DDD17E /* String+Utils.swift in Sources */,
 				F315F0BF2AF56BE30012B376 /* AppDelegate+Location.swift in Sources */,
 				2B64E98129E6C8180007B1D0 /* UNUserNotificationManager.swift in Sources */,
@@ -1858,6 +1842,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "APNs Helper Tester/APNs-Helper-Tester-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Tester App";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "test location push notification";
@@ -1909,6 +1894,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "APNs Helper Tester/APNs-Helper-Tester-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Tester App";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "test location push notification";
@@ -2102,10 +2088,10 @@
 		2BD842402A14ED48008D2A86 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2131,10 +2117,10 @@
 		2BD842412A14ED48008D2A86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2357,14 +2343,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F3C0001A2C1A000100ABCDEF /* XCRemoteSwiftPackageReference "swift-collections" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apple/swift-collections.git";
-			requirement = {
-				kind = exactVersion;
-				version = 1.7.1;
-			};
-		};
 		2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raspu/Highlightr.git";
@@ -2389,6 +2367,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		F3C0001A2C1A000100ABCDEF /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.7.1;
+			};
+		};
 		F3C9772B2AD715920020B200 /* XCRemoteSwiftPackageReference "APNSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kylebrowning/APNSwift.git";
@@ -2400,11 +2386,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F3B0000A2C1A000100ABCDEF /* APNS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F3C9772B2AD715920020B200 /* XCRemoteSwiftPackageReference "APNSwift" */;
-			productName = APNS;
-		};
 		2B0031652A0DEAFF009BEACD /* Highlightr */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */;
@@ -2424,6 +2405,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2B40F8B329DEEC1000E484FB /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		F3B0000A2C1A000100ABCDEF /* APNS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C9772B2AD715920020B200 /* XCRemoteSwiftPackageReference "APNSwift" */;
+			productName = APNS;
 		};
 		F3C9772C2AD715920020B200 /* APNS */ = {
 			isa = XCSwiftPackageProductDependency;

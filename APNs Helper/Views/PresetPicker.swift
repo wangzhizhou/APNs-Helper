@@ -27,16 +27,13 @@ struct PresetPicker: View {
                 }
             }
         }
-#if os(iOS)
-        .pickerStyle(.inline)
-#elseif os(macOS)
-        .padding(.vertical)
-#endif
+        .pickerStyle(.menu)
         .onChange(of: selectedPreset) { _, newValue in
             onPresetChange(newValue)
         }
     }
 }
+
 struct PresetView_Previews: PreviewProvider {
     static let presets: [Config] = [
         .none,
