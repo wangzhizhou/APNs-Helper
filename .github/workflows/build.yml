@@ -19,7 +19,7 @@ env:
 jobs:
   lint:
     name: SwiftLint
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
       - name: Install SwiftLint
@@ -29,7 +29,7 @@ jobs:
 
   build:
     name: Build (${{ matrix.name }})
-    runs-on: macos-15
+    runs-on: macos-26
     strategy:
       fail-fast: false
       matrix:
@@ -65,7 +65,7 @@ jobs:
 
   test:
     name: Unit Tests
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
       - name: Show toolchain
@@ -82,7 +82,7 @@ jobs:
   docs:
     name: Docs (build only)
     if: github.event_name == 'pull_request'
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
       - name: Build documentation site

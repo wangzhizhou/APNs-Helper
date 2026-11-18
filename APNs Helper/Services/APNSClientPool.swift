@@ -8,6 +8,7 @@
 import Foundation
 import APNS
 import APNSCore
+import NIOPosix
 
 /// 按凭据复用 `APNSClient`。
 ///
@@ -60,7 +61,9 @@ final class APNSClientPool {
                 ),
                 environment: config.apnsServerEnv.env
             ),
-            eventLoopGroupProvider: .createNew,
+            // APNSwift 新版弃用了 .createNew：统一用一个共享的 EventLoopGroup，
+            // 避免每次切换凭据都新建一组线程
+            eventLoopGroupProvider: .shared(MultiThreadedEventLoopGroup.singleton),
             responseDecoder: JSONDecoder(),
             requestEncoder: RawBodyEncoder()
         )

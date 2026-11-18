@@ -1133,6 +1133,7 @@
 				2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */,
 				2B0031692A0DFF6F009BEACD /* XCRemoteSwiftPackageReference "Prettier" */,
 				F3C9772B2AD715920020B200 /* XCRemoteSwiftPackageReference "APNSwift" */,
+				F3C0001A2C1A000100ABCDEF /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 2B35F72A28DEAB17009EF9C9 /* Products */;
 			projectDirPath = "";
@@ -2356,6 +2357,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F3C0001A2C1A000100ABCDEF /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.7.1;
+			};
+		};
 		2B0031642A0DEAFF009BEACD /* XCRemoteSwiftPackageReference "Highlightr" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/raspu/Highlightr.git";
