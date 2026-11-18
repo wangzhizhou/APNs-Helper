@@ -29,7 +29,7 @@
 		2B00316B2A0DFF6F009BEACD /* PrettierBabel in Frameworks */ = {isa = PBXBuildFile; productRef = 2B00316A2A0DFF6F009BEACD /* PrettierBabel */; };
 		2B00316F2A0E0221009BEACD /* CodeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B00316E2A0E0221009BEACD /* CodeFormatter.swift */; };
 		2B0031722A0E02DC009BEACD /* MacOSCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */; platformFilters = (macos, ); };
-		2B0031742A0E0306009BEACD /* IOSCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031732A0E0306009BEACD /* IOSCodeEditor.swift */; platformFilter = ios; };
+		2B0031742A0E0306009BEACD /* iOSCodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */; platformFilter = ios; };
 		2B0031762A0E0369009BEACD /* CodeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B0031752A0E0369009BEACD /* CodeEditor.swift */; };
 		2B0839332AEF75EE00488752 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0839322AEF75EE00488752 /* WidgetKit.framework */; };
 		2B0839352AEF75EE00488752 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B0839342AEF75EE00488752 /* SwiftUI.framework */; };
@@ -234,7 +234,7 @@
 		2B0031672A0DEBEB009BEACD /* PayloadEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayloadEditor.swift; sourceTree = "<group>"; };
 		2B00316E2A0E0221009BEACD /* CodeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeFormatter.swift; sourceTree = "<group>"; };
 		2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacOSCodeEditor.swift; sourceTree = "<group>"; };
-		2B0031732A0E0306009BEACD /* IOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOSCodeEditor.swift; sourceTree = "<group>"; };
+		2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCodeEditor.swift; sourceTree = "<group>"; };
 		2B0031752A0E0369009BEACD /* CodeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeEditor.swift; sourceTree = "<group>"; };
 		2B0839312AEF75EE00488752 /* WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetsExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B0839322AEF75EE00488752 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = /System/Library/Frameworks/WidgetKit.framework; sourceTree = "<absolute>"; };
@@ -444,7 +444,7 @@
 			children = (
 				2B00316E2A0E0221009BEACD /* CodeFormatter.swift */,
 				2B0031712A0E02DC009BEACD /* MacOSCodeEditor.swift */,
-				2B0031732A0E0306009BEACD /* IOSCodeEditor.swift */,
+				2B0031732A0E0306009BEACD /* iOSCodeEditor.swift */,
 				2B0031752A0E0369009BEACD /* CodeEditor.swift */,
 			);
 			path = CodeFormatter;
@@ -1267,7 +1267,7 @@
 				2BBDDE7728E494440052DC28 /* AppContent.swift in Sources */,
 				F3A1B0122C1A000100ABCDEF /* AppActions.swift in Sources */,
 				2BA3E0B328E56040006DBCCC /* InputTextEditor.swift in Sources */,
-				2B0031742A0E0306009BEACD /* IOSCodeEditor.swift in Sources */,
+				2B0031742A0E0306009BEACD /* iOSCodeEditor.swift in Sources */,
 				2BD8465C2A173ACF008D2A86 /* AppDelegate+FileProvider.swift in Sources */,
 				F33327D12AED00D200EB6C49 /* AlertNotificationView.swift in Sources */,
 				2BD846562A165BDE008D2A86 /* View+Modifiers.swift in Sources */,
