@@ -27,24 +27,66 @@ enum PushRequest {
     static func make(
         config: Config,
         payload: JSONValue
-    ) -> APNSRequest<RawPayloadNotification> {
+    ) throws -> APNSRequest<RawPayloadNotification> {
         let rawBody = payload.encodedData() ?? Data("{}".utf8)
-        return make(config: config, message: RawPayloadNotification(rawBody: rawBody, payload: payload))
+        return try make(config: config, message: RawPayloadNotification(rawBody: rawBody, payload: payload))
     }
 
     private static func make(
         config: Config,
         message: RawPayloadNotification
-    ) -> APNSRequest<RawPayloadNotification> {
-        APNSRequest(
+    ) throws -> APNSRequest<RawPayloadNotification> {
+        // topic / device token 都会进入 HTTP 头或 URL 路径，必须是 APNs 规范内的字符
+        // （参考 swift-nio-http2 GHSA-q3g2-m552-3r9c：头值缺少 CR/LF 校验）
+        let topic = config.pushType.topic(forBundleID: config.appBundleID)
+        let deviceToken = config.pushType.deviceToken(in: config)
+        try validatedHeaderValue(topic, name: "apns-topic")
+        try validatedDeviceToken(deviceToken)
+
+        return APNSRequest(
             message: message,
-            deviceToken: config.pushType.deviceToken(in: config),
+            deviceToken: deviceToken,
             pushType: config.pushType.type,
             expiration: config.pushType.expiration,
             priority: config.pushType.priority,
             apnsID: nil,
-            topic: config.pushType.topic(forBundleID: config.appBundleID),
+            topic: topic,
             collapseID: nil
         )
+    }
+
+    // MARK: - 输入校验
+
+    /// topic 只允许域名/包名常用字符，禁止空格、CR、LF 等
+    @discardableResult
+    private static func validatedHeaderValue(_ value: String, name: String) throws -> String {
+        let allowed = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-_")
+        guard !value.isEmpty, value.unicodeScalars.allSatisfy(allowed.contains)
+        else {
+            throw PushRequestError.unsafeHeaderValue(name: name, value: value)
+        }
+        return value
+    }
+
+    /// device token 必须是十六进制串
+    @discardableResult
+    private static func validatedDeviceToken(_ token: String) throws -> String {
+        let hex = CharacterSet(charactersIn: "0123456789abcdefABCDEF")
+        guard !token.isEmpty, token.unicodeScalars.allSatisfy(hex.contains)
+        else {
+            throw PushRequestError.unsafeHeaderValue(name: "device-token", value: token)
+        }
+        return token
+    }
+}
+
+enum PushRequestError: LocalizedError, Equatable {
+    case unsafeHeaderValue(name: String, value: String)
+
+    var errorDescription: String? {
+        switch self {
+        case .unsafeHeaderValue(let name, let value):
+            return "\(name) 含有非法字符：\(value.maskedForLog)"
+        }
     }
 }
