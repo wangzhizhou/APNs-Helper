@@ -72,14 +72,14 @@ struct AppContentIOS: View {
                             contentModel.showPasteboardImportConfirm = true
                         }
                         .confirmationDialog(
-                            "从剪贴板导入 App 信息？",
+                            "Import app info from the clipboard?",
                             isPresented: $contentModel.showPasteboardImportConfirm,
                             titleVisibility: .visible
                         ) {
                             Button("Import") { actions.importAppInfoOnPasteboard() }
                             Button("Cancel", role: .cancel) {}
                         } message: {
-                            Text("剪贴板内容可能包含 .p8 私钥等凭据；更安全的方式是使用「Import P8」从文件导入。")
+                            Text("The clipboard may contain credentials such as your .p8 key. Import P8 from a file instead when possible.")
                         }
                     }
                     .listRowSeparator(.hidden)

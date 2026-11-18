@@ -68,6 +68,11 @@ final class APNSClientPool {
         return client
     }
 
+    /// 连接或 JWT 可能已失效（网络切换、长时间空闲、服务端拒绝）时丢弃当前 client。
+    func invalidate() {
+        shutdown()
+    }
+
     func shutdown() {
         guard let current else { return }
         self.current = nil

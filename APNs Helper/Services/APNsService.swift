@@ -42,6 +42,9 @@ struct APNsService {
         }
     }
 
+    /// 发送超时：避免网络黑洞时界面一直停在「Sending...」而无法继续操作（issue #9）
+    static let sendTimeout: Duration = .seconds(30)
+
     @MainActor
     func send() async throws -> Bool {
         defer { appModel.isSendingPush = false }
@@ -58,13 +61,35 @@ struct APNsService {
             logRequest(request)
 
             let client = try APNSClientPool.shared.client(for: config)
-            let response = try await client.send(request)
+            let apnsID = try await sendWithTimeout(request, client: client)
 
-            logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
+            logger.critical("Send Push Success!\napnsID: \(apnsID?.uuidString ?? "None")")
             return true
         } catch {
+            // 复用的连接可能已经失效（网络切换、token 过期等）：
+            // 丢弃它，保证下一次发送是全新的连接与 JWT，而不是一直失败
+            APNSClientPool.shared.invalidate()
             logger.error("Send Push Failed!", metadata: ["error": "\(message(for: error))"])
             return false
+        }
+    }
+
+    @MainActor
+    private func sendWithTimeout(
+        _ request: APNSRequest<RawPayloadNotification>,
+        client: APNSClient<JSONDecoder, RawBodyEncoder>
+    ) async throws -> UUID? {
+        let sendTask = Task { try await client.send(request).apnsID }
+        let timeoutTask = Task {
+            try? await Task.sleep(for: Self.sendTimeout)
+            sendTask.cancel()
+        }
+        defer { timeoutTask.cancel() }
+
+        do {
+            return try await sendTask.value
+        } catch is CancellationError {
+            throw APNsSendError.timedOut(Self.sendTimeout)
         }
     }
 
@@ -87,5 +112,16 @@ struct APNsService {
             return payloadError.localizedDescription
         }
         return "\(error)"
+    }
+}
+
+enum APNsSendError: LocalizedError {
+    case timedOut(Duration)
+
+    var errorDescription: String? {
+        switch self {
+        case .timedOut(let duration):
+            return "Send Push Timeout after \(duration)"
+        }
     }
 }

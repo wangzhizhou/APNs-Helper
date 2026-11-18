@@ -51,11 +51,12 @@ struct SendButtonArea: View {
                         return
                     }
                     appModel.isSendingPush = true
+                    // 无论成功、失败还是任务被取消，都必须复位，否则按钮会一直处于禁用状态
+                    defer { appModel.isSendingPush = false }
                     appModel.resetLog()
-                    if let payloadData = contentModel.payload.data(using: .utf8) {
-                        _ = try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
-                    }
-                    appModel.isSendingPush = false
+                    guard let payloadData = contentModel.payload.data(using: .utf8)
+                    else { return }
+                    _ = try? await APNsService(config: config, payloadData: payloadData, appModel: appModel).send()
                 }
             } label: {
 #if os(iOS)
