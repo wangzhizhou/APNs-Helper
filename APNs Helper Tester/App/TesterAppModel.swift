@@ -99,13 +99,7 @@ final class TesterAppModel {
         keyID: "7S6SUT5L43",
         teamID: "2N62934Y28",
         bundleID: Bundle.main.bundleIdentifier!,
-        p8Key: """
-        -----BEGIN PRIVATE KEY-----
-        MIGHAgEAMBMGByqGSM49AgEGCCqGSM49AwEHBG0wawIBAQQgViPOgSdnJxJ2gXfH
-        iFJM4tkQhhakxYWGek6Ozwm2wkWhRANCAATiYzEZHM2oniKXJHZK123blIlSQUTp
-        n2c05lXz66Ifu6eCVNoXignIS5SmDYS29CchZHQzXrinraNSTTNKgMo+
-        -----END PRIVATE KEY-----
-        """
+        p8Key: DevSecrets.privateKey
     )
     
     var showAlert: Bool

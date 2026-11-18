@@ -57,6 +57,15 @@ python3 -m http.server 8000 --directory /tmp/apns-doc-preview
 # 打开 http://localhost:8000/APNs-Helper/
 ```
 
+## 敏感信息
+
+本仓库为公开仓库，**不包含任何 APNs 授权私钥**（`.p8`）。「Fill this App's Info」需要的私钥
+请用 App 内的「Import P8」导入，或仅在本地写入 UserDefaults：
+
+```bash
+defaults write com.joker.APNsHelper APNsHelperDevPrivateKey "$(cat AuthKey_XXXX.p8)"
+```
+
 ## 常用脚本
 
 ```bash

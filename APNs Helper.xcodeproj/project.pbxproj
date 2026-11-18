@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3A1B0642C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
+		F3A1B0622C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
+		F3A1B0632C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
 		F3A1B0522C1A000100ABCDEF /* AppInfoFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */; };
 		F3A1B0422C1A000100ABCDEF /* PushRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */; };
 		F3B0000B2C1A000100ABCDEF /* APNS in Frameworks */ = {isa = PBXBuildFile; productRef = F3B0000A2C1A000100ABCDEF /* APNS */; };
@@ -212,6 +215,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevSecrets.swift; sourceTree = "<group>"; };
 		F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoFields.swift; sourceTree = "<group>"; };
 		F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequestTests.swift; sourceTree = "<group>"; };
 		F3A1B0312C1A000100ABCDEF /* PushRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequest.swift; sourceTree = "<group>"; };
@@ -843,6 +847,7 @@
 				F355EB052AFAA3FA00C9DA83 /* Color+Utils.swift */,
 				F3A1B0012C1A000100ABCDEF /* JSONValue.swift */,
 				F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */,
+				F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1285,6 +1290,7 @@
 				F360B9732A0FAB4400CDD8BD /* Reachability.swift in Sources */,
 				F3A1B0022C1A000100ABCDEF /* JSONValue.swift in Sources */,
 				F3A1B0222C1A000100ABCDEF /* Publisher+Main.swift in Sources */,
+				F3A1B0622C1A000100ABCDEF /* DevSecrets.swift in Sources */,
 				F3A1B0042C1A000100ABCDEF /* PushType.swift in Sources */,
 				F3A1B0062C1A000100ABCDEF /* PushType+APNS.swift in Sources */,
 				F3A1B0322C1A000100ABCDEF /* PushRequest.swift in Sources */,
@@ -1309,6 +1315,7 @@
 				2B64E96C29E6BA5E0007B1D0 /* PushKitManager.swift in Sources */,
 				2B64E96529E6B36A0007B1D0 /* TesterAppModel.swift in Sources */,
 				F3A1B0232C1A000100ABCDEF /* Publisher+Main.swift in Sources */,
+				F3A1B0632C1A000100ABCDEF /* DevSecrets.swift in Sources */,
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,
 				2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */,
 				2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
@@ -1377,6 +1384,7 @@
 				F3B000312C1A000100ABCDEF /* Config.swift in Sources */,
 				F3B000322C1A000100ABCDEF /* Config+Utils.swift in Sources */,
 				F3A1B0092C1A000100ABCDEF /* APNServerEnv.swift in Sources */,
+				F3A1B0642C1A000100ABCDEF /* DevSecrets.swift in Sources */,
 				F3B000332C1A000100ABCDEF /* Constants.swift in Sources */,
 				F3B000342C1A000100ABCDEF /* String+Utils.swift in Sources */,
 				F3B000352C1A000100ABCDEF /* Data+Utils.swift in Sources */,
