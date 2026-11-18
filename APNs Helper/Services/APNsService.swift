@@ -44,6 +44,7 @@ struct APNsService {
 
     @MainActor
     func send() async throws -> Bool {
+        defer { appModel.isSendingPush = false }
 
         guard config.apnsServerEnv.reachable
         else {
@@ -51,43 +52,18 @@ struct APNsService {
             return false
         }
 
-        guard let payload = JSONValue(jsonData: payloadData)
-        else {
-            logger.error("Invalid Payload, please check the JSON format")
-            return false
-        }
-
-        var client: APNSClient<JSONDecoder, JSONEncoder>?
-
         do {
-            client = APNSClient(
-                configuration: .init(
-                    authenticationMethod: .jwt(
-                        privateKey: try .init(pemRepresentation: config.privateKey),
-                        keyIdentifier: config.keyIdentifier,
-                        teamIdentifier: config.teamIdentifier
-                    ),
-                    environment: config.apnsServerEnv.env
-                ),
-                eventLoopGroupProvider: .createNew,
-                responseDecoder: JSONDecoder(),
-                requestEncoder: JSONEncoder()
-            )
-
-            let request = PushRequest.make(config: config, payload: payload)
+            // 逐字节透传用户的 JSON；非法 JSON 会在这里抛错
+            let request = try PushRequest.make(config: config, payloadData: payloadData)
             logRequest(request)
-            let response: APNSResponse? = try await client?.send(request)
 
-            if let apnsID = response?.apnsID {
-                logger.notice("\(apnsID)")
-            }
-            
-            logger.critical("Send Push Success!\napnsID: \(response?.apnsID?.uuidString ?? "None")")
-            await shutdownClient(client)
+            let client = try APNSClientPool.shared.client(for: config)
+            let response = try await client.send(request)
+
+            logger.critical("Send Push Success!\napnsID: \(response.apnsID?.uuidString ?? "None")")
             return true
         } catch {
-            logger.error("Send Push Failed!", metadata: ["error": "\(error)"])
-            await shutdownClient(client)
+            logger.error("Send Push Failed!", metadata: ["error": "\(message(for: error))"])
             return false
         }
     }
@@ -100,18 +76,16 @@ struct APNsService {
             .compactMap { key in headers[key].map { "\(key)=\($0)" } }
             .joined(separator: " ")
         logger.notice("APNs request: \(summary)")
-        if let body = String(data: payloadData, encoding: .utf8) {
-            logger.notice("Payload:\n\(body)")
-        }
+
+        guard let body = String(data: payloadData, encoding: .utf8)
+        else { return }
+        logger.notice("Payload:\n\(body)")
     }
 
-    @MainActor
-    func shutdownClient(_ client: APNSClient<JSONDecoder, JSONEncoder>?) async {
-        appModel.isSendingPush = false
-        do {
-            try await client?.shutdown()
-        } catch {
-            "shutdown client: \(error.localizedDescription)".printDebugInfo()
+    private func message(for error: Error) -> String {
+        if let payloadError = error as? APNsPayloadError {
+            return payloadError.localizedDescription
         }
+        return "\(error)"
     }
 }

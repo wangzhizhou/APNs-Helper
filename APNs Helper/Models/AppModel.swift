@@ -31,11 +31,30 @@ final class AppModel {
 
     // MARK: Preset Persistence
 
-    private static let presetsStoreKey = "presets"
+    /// 预设里含 `.p8` 与 device token，属于凭据 → 存 Keychain。
+    /// 旧版本存在 UserDefaults，首次访问时迁移并清理。
+    private static let presetsAccount = "presets"
+    private static let legacyPresetsKey = "presets"
 
     private var presetData: Data {
-        get { UserDefaults.standard.data(forKey: Self.presetsStoreKey) ?? Data() }
-        set { UserDefaults.standard.set(newValue, forKey: Self.presetsStoreKey) }
+        get {
+            if let data = KeychainStore.data(for: Self.presetsAccount) {
+                return data
+            }
+            guard let legacy = UserDefaults.standard.data(forKey: Self.legacyPresetsKey) else {
+                return Data()
+            }
+            try? KeychainStore.set(legacy, for: Self.presetsAccount)
+            UserDefaults.standard.removeObject(forKey: Self.legacyPresetsKey)
+            return legacy
+        }
+        set {
+            do {
+                try KeychainStore.set(newValue, for: Self.presetsAccount)
+            } catch {
+                appLog.append("\n[save preset failed] \(error.localizedDescription)\n")
+            }
+        }
     }
 
     var presets: [Config] {
@@ -112,7 +131,7 @@ final class AppModel {
             self.toastModel = toastModel
             self.thisAppConfig = thisAppConfig
             if !presetData.isEmpty {
-                UserDefaults.standard.set(presetData, forKey: Self.presetsStoreKey)
+                try? KeychainStore.set(presetData, for: Self.presetsAccount)
             }
             self.isSendingPush = isSendingPush
 

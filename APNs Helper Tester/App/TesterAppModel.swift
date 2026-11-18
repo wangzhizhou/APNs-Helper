@@ -185,6 +185,16 @@ final class TesterAppModel {
         appInfo.formattedText(with: content.map { $0.content })?.copyToPasteboard()
     }
     
+    /// 读取 NotificationServiceExtension 存下的「原始 payload」（未经展示层处理）。
+    func checkReceivedNotificationPayload() {
+        let groupUserDefaults = UserDefaults(suiteName: "group.com.joker.APNsHelper.tester")
+        guard let jsonString = groupUserDefaults?.string(forKey: "received_notification_payload")
+        else { return }
+
+        groupUserDefaults?.removeObject(forKey: "received_notification_payload")
+        self.alertMessage = "received payload (raw):\n\(jsonString)"
+    }
+
     func checkReceiveLocationNotification() {
         
         if  let groupUserDefaults = UserDefaults(suiteName: "group.com.joker.APNsHelper.tester"),

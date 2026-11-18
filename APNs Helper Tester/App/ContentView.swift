@@ -54,6 +54,13 @@ struct ContentView: View {
                     Text("Copy All as JSON")
                 }
                 .buttonStyle(.bordered)
+
+                Button {
+                    model.checkReceivedNotificationPayload()
+                } label: {
+                    Text("Show Received Payload")
+                }
+                .buttonStyle(.bordered)
             })
             .navigationTitle("APNs Tester App")
         }

@@ -101,6 +101,24 @@ Design file: [Figma](https://www.figma.com/file/sLVIKqiYfxHNb7gUnOUZ9x/APNs-Help
 newer Xcode treats a v2 file as stale and silently re-resolves to the latest transitive
 dependencies, which can require a newer Swift toolchain than CI provides.
 
+## Isolation & data integrity
+
+The app has no backend: credentials, device tokens and payloads never leave the device, and every
+request goes straight to Apple's APNs endpoints. Two properties are enforced by design and covered
+by tests:
+
+- **Byte-exact payloads** — the JSON you write is sent *verbatim* as the HTTP body
+  (`RawBodyEncoder` + `APNSRawPayloadTests`); nothing is re-serialized, so key order, whitespace and
+  number formatting survive.
+- **No credential sharing** — nothing ships with an APNs key, so users cannot interfere with each
+  other: APNs scopes a `.p8` to one developer team, and device tokens are per device/app/environment.
+  Presets (which contain the `.p8` and tokens) are stored in the **Keychain**, not `UserDefaults`.
+- **Receiving side is untouched** — the Notification Service Extension only records the payload it
+  received (into an App Group) and passes the notification through unmodified, so what you inspect is
+  what APNs delivered.
+- Importing app info from the clipboard asks for confirmation first; use **Import P8** to load a key
+  from a file instead. Log output redacts PEM blocks and token-like strings.
+
 ## Sensitive information
 
 This is a public repository and **contains no APNs auth key (`.p8`)**. For the

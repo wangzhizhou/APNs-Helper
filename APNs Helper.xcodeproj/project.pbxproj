@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3A1B0B22C1A000100ABCDEF /* LogMaskingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0B12C1A000100ABCDEF /* LogMaskingTests.swift */; };
+		F3A1B0A22C1A000100ABCDEF /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */; };
+		F3A1B0A32C1A000100ABCDEF /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */; };
+		F3A1B0822C1A000100ABCDEF /* APNSClientPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0812C1A000100ABCDEF /* APNSClientPool.swift */; };
+		F3A1B0722C1A000100ABCDEF /* RawBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0712C1A000100ABCDEF /* RawBody.swift */; };
+		F3A1B0732C1A000100ABCDEF /* RawBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0712C1A000100ABCDEF /* RawBody.swift */; };
 		F3A1B0642C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
 		F3A1B0622C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
 		F3A1B0632C1A000100ABCDEF /* DevSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */; };
@@ -215,6 +221,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F3A1B0B12C1A000100ABCDEF /* LogMaskingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogMaskingTests.swift; sourceTree = "<group>"; };
+		F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
+		F3A1B0912C1A000100ABCDEF /* NotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotificationServiceExtension.entitlements; sourceTree = "<group>"; };
+		F3A1B0812C1A000100ABCDEF /* APNSClientPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APNSClientPool.swift; sourceTree = "<group>"; };
+		F3A1B0712C1A000100ABCDEF /* RawBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawBody.swift; sourceTree = "<group>"; };
 		F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevSecrets.swift; sourceTree = "<group>"; };
 		F3A1B0512C1A000100ABCDEF /* AppInfoFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoFields.swift; sourceTree = "<group>"; };
 		F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequestTests.swift; sourceTree = "<group>"; };
@@ -621,6 +632,8 @@
 		2BA3E0AE28E54E4A006DBCCC /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F3A1B0712C1A000100ABCDEF /* RawBody.swift */,
+				F3A1B0812C1A000100ABCDEF /* APNSClientPool.swift */,
 				2BD846612A174291008D2A86 /* Payload */,
 				F360B9722A0FAB4400CDD8BD /* Reachability.swift */,
 				2BBDDE7A28E4B0FF0052DC28 /* APNsService.swift */,
@@ -693,6 +706,7 @@
 			children = (
 				2BD842392A14ED47008D2A86 /* NotificationService.swift */,
 				2BD8423B2A14ED47008D2A86 /* Info.plist */,
+				F3A1B0912C1A000100ABCDEF /* NotificationServiceExtension.entitlements */,
 			);
 			path = NotificationServiceExtension;
 			sourceTree = "<group>";
@@ -848,6 +862,7 @@
 				F3A1B0012C1A000100ABCDEF /* JSONValue.swift */,
 				F3A1B0212C1A000100ABCDEF /* Publisher+Main.swift */,
 				F3A1B0612C1A000100ABCDEF /* DevSecrets.swift */,
+				F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -859,6 +874,7 @@
 				F3B000122C1A000100ABCDEF /* ConfigTests.swift */,
 				F3B000132C1A000100ABCDEF /* PushTypeTests.swift */,
 				F3A1B0412C1A000100ABCDEF /* PushRequestTests.swift */,
+				F3A1B0B12C1A000100ABCDEF /* LogMaskingTests.swift */,
 			);
 			path = "APNs Helper Tests";
 			sourceTree = "<group>";
@@ -1269,6 +1285,8 @@
 				F3A46DEC29DDAA41004D4AD1 /* Data+Utils.swift in Sources */,
 				2BBDDE7928E49A770052DC28 /* InputView.swift in Sources */,
 				F3A1B0522C1A000100ABCDEF /* AppInfoFields.swift in Sources */,
+				F3A1B0822C1A000100ABCDEF /* APNSClientPool.swift in Sources */,
+				F3A1B0722C1A000100ABCDEF /* RawBody.swift in Sources */,
 				2BD846632A1742A1008D2A86 /* FileProviderPushPayload.swift in Sources */,
 				F315F0BA2AF56AE80012B376 /* LocationManager.swift in Sources */,
 				2BD801892A0A0F3900DDD17E /* P8KeyView.swift in Sources */,
@@ -1291,6 +1309,7 @@
 				F3A1B0022C1A000100ABCDEF /* JSONValue.swift in Sources */,
 				F3A1B0222C1A000100ABCDEF /* Publisher+Main.swift in Sources */,
 				F3A1B0622C1A000100ABCDEF /* DevSecrets.swift in Sources */,
+				F3A1B0A22C1A000100ABCDEF /* KeychainStore.swift in Sources */,
 				F3A1B0042C1A000100ABCDEF /* PushType.swift in Sources */,
 				F3A1B0062C1A000100ABCDEF /* PushType+APNS.swift in Sources */,
 				F3A1B0322C1A000100ABCDEF /* PushRequest.swift in Sources */,
@@ -1381,10 +1400,12 @@
 				F3B000222C1A000100ABCDEF /* ConfigTests.swift in Sources */,
 				F3B000232C1A000100ABCDEF /* PushTypeTests.swift in Sources */,
 				F3A1B0422C1A000100ABCDEF /* PushRequestTests.swift in Sources */,
+				F3A1B0B22C1A000100ABCDEF /* LogMaskingTests.swift in Sources */,
 				F3B000312C1A000100ABCDEF /* Config.swift in Sources */,
 				F3B000322C1A000100ABCDEF /* Config+Utils.swift in Sources */,
 				F3A1B0092C1A000100ABCDEF /* APNServerEnv.swift in Sources */,
 				F3A1B0642C1A000100ABCDEF /* DevSecrets.swift in Sources */,
+				F3A1B0A32C1A000100ABCDEF /* KeychainStore.swift in Sources */,
 				F3B000332C1A000100ABCDEF /* Constants.swift in Sources */,
 				F3B000342C1A000100ABCDEF /* String+Utils.swift in Sources */,
 				F3B000352C1A000100ABCDEF /* Data+Utils.swift in Sources */,
@@ -1392,6 +1413,7 @@
 				F3B000372C1A000100ABCDEF /* PushType.swift in Sources */,
 				F3A1B0342C1A000100ABCDEF /* PushType+APNS.swift in Sources */,
 				F3A1B0332C1A000100ABCDEF /* PushRequest.swift in Sources */,
+				F3A1B0732C1A000100ABCDEF /* RawBody.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2070,6 +2092,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -2098,6 +2121,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = NotificationServiceExtension/NotificationServiceExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 15;
 				GENERATE_INFOPLIST_FILE = YES;

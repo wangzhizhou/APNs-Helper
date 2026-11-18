@@ -15,6 +15,9 @@ final class AppContentModel {
     var payload: String = ""
     var showFileImporter: Bool = false
 
+    /// 从剪贴板导入前的确认（剪贴板可能含 .p8 等凭据）
+    var showPasteboardImportConfirm: Bool = false
+
     var isInTestMode: Bool = false
 }
 

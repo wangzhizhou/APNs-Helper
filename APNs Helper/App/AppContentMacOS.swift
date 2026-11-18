@@ -71,7 +71,19 @@ struct AppContentMacOS: View {
                         actions.clearCurrentConfigPresetIfExist()
                     }
                     Spacer()
-                    Button(Constants.importAppInfoOnPasteboard.value, action: { actions.importAppInfoOnPasteboard() })
+                    Button(Constants.importAppInfoOnPasteboard.value) {
+                        contentModel.showPasteboardImportConfirm = true
+                    }
+                    .confirmationDialog(
+                        "从剪贴板导入 App 信息？",
+                        isPresented: $contentModel.showPasteboardImportConfirm,
+                        titleVisibility: .visible
+                    ) {
+                        Button("Import") { actions.importAppInfoOnPasteboard() }
+                        Button("Cancel", role: .cancel) {}
+                    } message: {
+                        Text("剪贴板内容可能包含 .p8 私钥等凭据；更安全的方式是使用「Import P8」从文件导入。")
+                    }
                     Toggle(isOn: $contentModel.isInTestMode) {
                         Text(Constants.fillInAppInfo.value)
                     }

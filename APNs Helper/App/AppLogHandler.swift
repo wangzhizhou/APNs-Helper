@@ -44,10 +44,12 @@ struct AppLogHandler: LogHandler {
             switch level {
             case .error:
                 if let metadata = metadata {
-                    logContent = "\(metadata)"
+                    // 错误信息可能夹带凭据（PEM / device token），统一脱敏
+                    logContent = "\(metadata)".maskedForLog
                 }
             case .critical, .notice, .info:
-                logContent = message.description
+                // Payload 日志保持原样（诊断需要逐字节对照），仅隐去 PEM 内容
+                logContent = message.description.maskedPEM
             default:
                 break
             }

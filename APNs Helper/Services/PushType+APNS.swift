@@ -56,15 +56,3 @@ extension APNServerEnv {
         }
     }
 }
-
-/// 把用户在编辑器里写的 JSON 原样作为 Body 发送。
-///
-/// 上游 APNSwift 只提供强类型的 `APNSXxxNotification`，本 App 需要透传任意 Payload，
-/// 因此这里用一个薄封装把任意 JSON 作为 `APNSMessage` 交给 `APNSClient.send(_:)`。
-struct RawPayloadNotification: APNSMessage {
-    let payload: JSONValue
-
-    func encode(to encoder: Encoder) throws {
-        try payload.encode(to: encoder)
-    }
-}

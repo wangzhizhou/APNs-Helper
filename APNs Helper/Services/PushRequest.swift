@@ -15,10 +15,29 @@ import APNSCore
 /// 协议细节，而 `APNsService` 里混着网络与 UI 状态，无法直接单测。
 enum PushRequest {
 
-    /// APNs 的 `apns-topic`、`apns-push-type` 等头信息全部由 `Config` 推导。
-    static func make(config: Config, payload: JSONValue) -> APNSRequest<RawPayloadNotification> {
+    /// - Parameter payloadData: **逐字节**作为请求体发出（见 `RawBodyEncoder`）
+    static func make(
+        config: Config,
+        payloadData: Data
+    ) throws -> APNSRequest<RawPayloadNotification> {
+        try make(config: config, message: RawPayloadNotification(payloadData: payloadData))
+    }
+
+    /// 由已解析的 JSON 构造（测试与预览使用）。
+    static func make(
+        config: Config,
+        payload: JSONValue
+    ) -> APNSRequest<RawPayloadNotification> {
+        let rawBody = payload.encodedData() ?? Data("{}".utf8)
+        return make(config: config, message: RawPayloadNotification(rawBody: rawBody, payload: payload))
+    }
+
+    private static func make(
+        config: Config,
+        message: RawPayloadNotification
+    ) -> APNSRequest<RawPayloadNotification> {
         APNSRequest(
-            message: RawPayloadNotification(payload: payload),
+            message: message,
             deviceToken: config.pushType.deviceToken(in: config),
             pushType: config.pushType.type,
             expiration: config.pushType.expiration,

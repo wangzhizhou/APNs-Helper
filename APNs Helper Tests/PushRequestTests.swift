@@ -1,6 +1,8 @@
 import Foundation
 import Testing
 import APNSCore
+import NIOCore
+import APNS
 
 @Suite("PushRequest")
 struct PushRequestTests {
@@ -76,3 +78,57 @@ struct PushRequestTests {
     }
 }
 
+
+@Suite("Raw payload 透传")
+struct RawPayloadTests {
+
+    private func config() -> Config {
+        Config(
+            deviceToken: "token",
+            pushKitVoIPToken: "voip",
+            pushKitFileProviderToken: "fp",
+            locationPushServiceToken: "loc",
+            liveActivityPushToken: "live",
+            appBundleID: "com.example.app",
+            privateKey: "key",
+            keyIdentifier: "KEYID",
+            teamIdentifier: "TEAMID"
+        )
+    }
+
+    /// 编辑器里的 JSON 必须逐字节成为 HTTP Body：键序、空白、`2.0` 都不能变。
+    @Test("请求体与输入逐字节一致")
+    func bodyIsByteIdentical() throws {
+        let raw = """
+        {
+          "z": 1,
+          "a": 2.0,
+          "nested": { "b": 1, "a": 2 },
+          "big": 9223372036854775807,
+          "unicode": "中文 🚀",
+          "nil": null
+        }
+        """
+        let data = Data(raw.utf8)
+        let message = try RawPayloadNotification(payloadData: data)
+
+        var buffer = ByteBufferAllocator().buffer(capacity: 0)
+        try RawBodyEncoder().encode(message, into: &buffer)
+
+        #expect(buffer.readBytes(length: buffer.readableBytes) == [UInt8](data))
+    }
+
+    @Test("非法 JSON 被拦下")
+    func rejectsInvalidJSON() {
+        #expect(throws: APNsPayloadError.self) {
+            _ = try RawPayloadNotification(payloadData: Data("{not json".utf8))
+        }
+    }
+
+    @Test("非法 JSON 不会构造出请求")
+    func requestRejectsInvalidJSON() {
+        #expect(throws: APNsPayloadError.self) {
+            _ = try PushRequest.make(config: config(), payloadData: Data("nope".utf8))
+        }
+    }
+}
