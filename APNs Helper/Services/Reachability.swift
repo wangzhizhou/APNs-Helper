@@ -46,7 +46,7 @@ public extension Notification.Name {
     static let reachabilityChanged = Notification.Name("reachabilityChanged")
 }
 
-public class Reachability {
+public class Reachability: @unchecked Sendable {
 
     public typealias NetworkReachable = (Reachability) -> Void
     public typealias NetworkUnreachable = (Reachability) -> Void
@@ -273,7 +273,7 @@ fileprivate extension Reachability {
     }
 
     func notifyReachabilityChanged() {
-        let notify = { [weak self] in
+        let notify: @Sendable () -> Void = { [weak self] in
             guard let self = self else { return }
             // swiftlint: disable void_function_in_ternary
             self.connection != .unavailable ? self.whenReachable?(self) : self.whenUnreachable?(self)

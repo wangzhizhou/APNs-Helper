@@ -7,6 +7,7 @@
 
 #if os(iOS)
 import UIKit
+@MainActor
 class AppDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -19,6 +20,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 #elseif os(macOS)
 import AppKit
+@MainActor
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         setupUNUserNotification()

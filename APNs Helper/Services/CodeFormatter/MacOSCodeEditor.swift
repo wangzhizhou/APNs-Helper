@@ -108,6 +108,7 @@ struct MacOSCodeEditor: NSViewRepresentable {
         return Coordinator(parent: self)
     }
 
+    @MainActor
     final class Coordinator: NSObject, NSTextViewDelegate {
 
         let parent: MacOSCodeEditor
@@ -122,8 +123,11 @@ struct MacOSCodeEditor: NSViewRepresentable {
             self.parent = parent
             super.init()
             let cancellable = textDidChangeSubject.debounce(for: 0.3, scheduler: RunLoop.main).sink {[weak self] _ in
-                if let scrollView = self?.scrollView {
-                    parent.format(scrollView, force: true)
+                // 已经在 RunLoop.main 上，显式声明主线程隔离即可
+                MainActor.assumeIsolated {
+                    if let scrollView = self?.scrollView {
+                        parent.format(scrollView, force: true)
+                    }
                 }
             }
             cancellables.append(cancellable)

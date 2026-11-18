@@ -9,10 +9,14 @@ import Foundation
 import CoreLocation
 import Combine
 
-class LocationManager: NSObject {
-    
+/// 定位/定位推送的管理器。
+///
+/// 跨线程的共享状态只有 `locationPushTokenSubject`（Combine Subject 本身线程安全），
+/// 其余状态只在主线程的 CLLocationManager 回调里访问，因此显式声明 @unchecked Sendable。
+class LocationManager: NSObject, @unchecked Sendable {
+
     // MARK: 单例实现
-    nonisolated(unsafe) static let shared = LocationManager()
+    static let shared = LocationManager()
     private override init() {}
     private let locationManager = CLLocationManager()
     
