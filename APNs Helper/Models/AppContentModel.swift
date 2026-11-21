@@ -21,6 +21,9 @@ final class AppContentModel {
     /// 结构化 Payload 编辑器（alert / live activity）
     var showStructuredEditor: Bool = false
 
+    /// 自测凭据录入（Key ID / Team ID / .p8，存 Keychain）
+    var showDeveloperKeyEditor: Bool = false
+
     /// 当前 push type 是否支持结构化编辑
     var supportsStructuredEditor: Bool {
         switch appInfo.pushType {

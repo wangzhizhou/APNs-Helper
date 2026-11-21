@@ -31,6 +31,14 @@ struct AppContent: View {
         .background(.background)
         .environment(contentModel)
         .environment(\.appActions, actions)
+        .sheet(isPresented: $contentModel.showDeveloperKeyEditor) {
+            DeveloperKeyView {
+                appModel.reloadDeveloperCredentials()
+                if contentModel.isInTestMode {
+                    contentModel.appInfo = appModel.thisAppConfig
+                }
+            }
+        }
         .sheet(isPresented: $contentModel.showStructuredEditor) {
             StructuredPayloadEditor(pushType: contentModel.appInfo.pushType) { payload in
                 contentModel.payload = payload

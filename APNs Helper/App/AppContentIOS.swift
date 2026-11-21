@@ -93,6 +93,8 @@ struct AppContentIOS: View {
                             Text("The clipboard may contain credentials such as your .p8 key. Import P8 from a file instead when possible.")
                         }
 
+                        SelfTestCredentialsButton()
+
                         if contentModel.config.isValid.valid {
                             Button(Constants.saveAppInfoAsPreset.value) {
                                 actions.saveAsPreset()
