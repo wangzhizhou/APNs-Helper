@@ -78,15 +78,18 @@ extension Config {
         keyIdentifier: .empty,
         teamIdentifier: .empty)
 
-    static let thisApp = Config(
-        deviceToken: .empty,
-        pushKitVoIPToken: .empty,
-        pushKitFileProviderToken: .empty,
-        locationPushServiceToken: .empty,
-        liveActivityPushToken: .empty,
-        appBundleID: Bundle.main.bundleIdentifier ?? .empty,
-        // 仓库为公开仓库，私钥不入库；见 DevSecrets 的说明
-        privateKey: DevSecrets.privateKey,
-        keyIdentifier: "7S6SUT5L43",
-        teamIdentifier: "2N62934Y28")
+    /// 本 App 的自测配置。凭据不入库，来自用户在本机录入的 Keychain 条目（见 `DevSecrets`），
+    /// 因此这里是计算属性：录入/清除后重新读取即可生效。
+    static var thisApp: Config {
+        Config(
+            deviceToken: .empty,
+            pushKitVoIPToken: .empty,
+            pushKitFileProviderToken: .empty,
+            locationPushServiceToken: .empty,
+            liveActivityPushToken: .empty,
+            appBundleID: Bundle.main.bundleIdentifier ?? .empty,
+            privateKey: DevSecrets.privateKey,
+            keyIdentifier: DevSecrets.keyIdentifier,
+            teamIdentifier: DevSecrets.teamIdentifier)
+    }
 }

@@ -52,6 +52,9 @@ enum Constants: String {
     case logEmptyHint = "No log yet. Send a push to see the result."
     case clearAllPresetConfirm = "Delete all saved presets? This cannot be undone."
     case actions = "Actions"
+    case selfTestCredentials = "Self-Test Credentials…"
+    case selfTestKeySet = "Key saved on this device"
+    case selfTestKeyMissing = "No .p8 key on this device"
 
     var value: String {
         self.rawValue

@@ -21,6 +21,13 @@ final class AppModel {
         appLog = .empty
     }
 
+    /// 用户录入/清除自测凭据后，重新读取 Keychain 并刷新「本 App 配置」
+    func reloadDeveloperCredentials() {
+        thisAppConfig.privateKey = DevSecrets.privateKey
+        thisAppConfig.keyIdentifier = DevSecrets.keyIdentifier
+        thisAppConfig.teamIdentifier = DevSecrets.teamIdentifier
+    }
+
     // MARK: Toast
     var showToast: Bool
     var toastModel: ToastModel {

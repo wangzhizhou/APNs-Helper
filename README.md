@@ -126,13 +126,20 @@ by tests:
 
 ## Sensitive information
 
-This is a public repository and **contains no APNs auth key (`.p8`)**. For the
-"Fill this App's Info" convenience you can either import your key with **Import P8** inside the
-app, or write it to `UserDefaults` locally (never committed):
+This is a public repository and **contains no APNs auth key (`.p8`)** — neither does any build
+product. The self-send test (**Fill this App's Info**) needs your own key, so the app asks for it
+once, on the device:
 
-```bash
-defaults write com.joker.APNsHelper APNsHelperDevPrivateKey "$(cat AuthKey_XXXX.p8)"
-```
+1. Open **App Info → Self-Test Credentials…**
+2. Fill in Key ID / Team ID and import (or paste) your `AuthKey_XXXX.p8`
+3. Save — it is stored in the **Keychain** of that device only
+
+The form validates before saving (10-character Key ID / Team ID, PKCS#8 `BEGIN/END PRIVATE KEY`
+block), and **Forget Saved Credentials** removes it again. The key never leaves the device; it is
+only used to sign your own JWT.
+
+Older builds read the key from `UserDefaults` (`APNsHelperDevPrivateKey`). That legacy value is
+still honoured, and is migrated into the Keychain the first time you save from the app.
 
 ## License
 

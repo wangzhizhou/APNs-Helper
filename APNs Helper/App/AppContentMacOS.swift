@@ -110,6 +110,7 @@ struct AppContentMacOS: View {
                                 actions.saveAsPreset()
                             }
                             Spacer()
+                            SelfTestCredentialsButton()
                         }
                     }
 
