@@ -126,9 +126,25 @@ by tests:
 
 ## Sensitive information
 
-This is a public repository and **contains no APNs auth key (`.p8`)** — neither does any build
-product. The self-send test (**Fill this App's Info**) needs your own key, so the app asks for it
-once, on the device:
+This is a public repository and **contains no APNs auth key (`.p8`)**. The self-send test
+(**Fill this App's Info**) needs your own key — there are two ways to supply it.
+
+### A. Build it into your own build (recommended for development / acceptance)
+
+The key is injected into the **app bundle at build time** from a file that is never committed:
+
+```bash
+Scripts/setup-dev-secrets.sh AuthKey_XXXXXXXXXX.p8 7S6SUT5L43 2N62934Y28
+```
+
+This writes `Configs/DevSecrets.plist` (already in `.gitignore`, contains the `.p8`), and the
+`Inject Self-Test Credentials` build phase copies it into the app bundle on every build. Rebuild and
+**Fill this App's Info** works immediately — no setup inside the app.
+
+Anyone cloning the repository has no such file, so their build contains no key and the phase is a
+no-op. Run `Scripts/setup-dev-secrets.sh` again (or delete the file) to rotate/remove the key.
+
+### B. Enter it in the app (release installs)
 
 1. Open **App Info → Self-Test Credentials…**
 2. Fill in Key ID / Team ID and import (or paste) your `AuthKey_XXXX.p8`

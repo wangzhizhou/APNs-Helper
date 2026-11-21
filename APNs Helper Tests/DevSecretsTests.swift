@@ -75,6 +75,34 @@ struct DevSecretsTests {
         #expect(normalized.hasSuffix("-----END PRIVATE KEY-----"))
     }
 
+    @Test("构建注入的 DevSecrets.plist 能被解析")
+    func parsesInjectedPropertyList() throws {
+        let data = try PropertyListSerialization.data(
+            fromPropertyList: [
+                "KeyID": "7S6SUT5L43",
+                "TeamID": "2N62934Y28",
+                "PrivateKey": validKey + "\r\n"
+            ],
+            format: .xml,
+            options: 0
+        )
+        let payload = try #require(DevSecrets.payload(fromPropertyList: data))
+        #expect(payload.keyIdentifier == "7S6SUT5L43")
+        #expect(payload.teamIdentifier == "2N62934Y28")
+        #expect(!payload.privateKey.contains("\r"))
+        #expect(payload.privateKey.hasSuffix("-----END PRIVATE KEY-----"))
+    }
+
+    @Test("缺少字段的 plist 解析失败")
+    func rejectsIncompletePropertyList() throws {
+        let data = try PropertyListSerialization.data(
+            fromPropertyList: ["KeyID": "7S6SUT5L43"],
+            format: .xml,
+            options: 0
+        )
+        #expect(DevSecrets.payload(fromPropertyList: data) == nil)
+    }
+
     @Test("Payload 编解码往返一致")
     func payloadRoundTrip() throws {
         let payload = DevSecrets.Payload(
