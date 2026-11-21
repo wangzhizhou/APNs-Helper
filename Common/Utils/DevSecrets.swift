@@ -13,8 +13,11 @@ import Foundation
 /// 凭据由用户在本机的 App 内录入一次（App Info → Self-Test Credentials…），
 /// 存进 **Keychain**：不随 `UserDefaults` 备份同步，也不会被 `defaults read` 直接读出。
 ///
-/// 兼容早期的 `defaults write com.joker.APNsHelper APNsHelperDevPrivateKey ...`：
-/// 读不到 Keychain 记录时会回退到该键（老用户无需重新录入）。
+/// 读取顺序：
+/// 1. Keychain（App 内录入 / 覆盖）
+/// 2. **构建时注入的 bundle 资源** `DevSecrets.plist`（`Scripts/setup-dev-secrets.sh`
+///    生成，`Scripts/inject-dev-secrets.sh` 在构建阶段拷进 App；仓库里没有该文件）
+/// 3. 早期 `defaults write com.joker.APNsHelper APNsHelperDevPrivateKey ...`（兼容旧版）
 enum DevSecrets {
 
     /// 自测配置：Key ID、Team ID、.p8 私钥
@@ -29,6 +32,7 @@ enum DevSecrets {
     static let defaultTeamIdentifier = "2N62934Y28"
 
     private static let account = "dev-self-test"
+    private static let resourceName = "DevSecrets"
     private static let legacyDefaultsKey = "APNsHelperDevPrivateKey"
     private static let pemBegin = "-----BEGIN PRIVATE KEY-----"
     private static let pemEnd = "-----END PRIVATE KEY-----"
@@ -46,15 +50,29 @@ enum DevSecrets {
         if let stored = current, !stored.privateKey.isEmpty {
             return stored.privateKey
         }
+        if let bundled = bundled, !bundled.privateKey.isEmpty {
+            return bundled.privateKey
+        }
         return UserDefaults.standard.string(forKey: legacyDefaultsKey) ?? .empty
     }
 
+    /// 构建时注入到 bundle 的自测凭据（本机专用，CI 与他人克隆时不存在）
+    static var bundled: Payload? {
+        guard let data = bundledData else { return nil }
+        return payload(fromPropertyList: data)
+    }
+
+    private static var bundledData: Data? {
+        guard let url = Bundle.main.url(forResource: resourceName, withExtension: "plist") else { return nil }
+        return try? Data(contentsOf: url)
+    }
+
     static var keyIdentifier: String {
-        nonEmpty(current?.keyIdentifier) ?? defaultKeyIdentifier
+        nonEmpty(current?.keyIdentifier) ?? nonEmpty(bundled?.keyIdentifier) ?? defaultKeyIdentifier
     }
 
     static var teamIdentifier: String {
-        nonEmpty(current?.teamIdentifier) ?? defaultTeamIdentifier
+        nonEmpty(current?.teamIdentifier) ?? nonEmpty(bundled?.teamIdentifier) ?? defaultTeamIdentifier
     }
 
     /// 是否已经录入过私钥（决定自测模式是否可用）
@@ -118,6 +136,25 @@ enum DevSecrets {
 
     static func decode(_ data: Data) -> Payload? {
         try? JSONDecoder().decode(Payload.self, from: data)
+    }
+
+    /// 解析构建注入的 `DevSecrets.plist`（KeyID / TeamID / PrivateKey 三个字符串）
+    static func payload(fromPropertyList data: Data) -> Payload? {
+        guard let plist = try? PropertyListSerialization.propertyList(
+            from: data,
+            options: [],
+            format: nil
+        ) as? [String: Any],
+            let keyIdentifier = plist["KeyID"] as? String,
+            let teamIdentifier = plist["TeamID"] as? String,
+            let privateKey = plist["PrivateKey"] as? String
+        else { return nil }
+
+        return Payload(
+            keyIdentifier: keyIdentifier.trimmed,
+            teamIdentifier: teamIdentifier.trimmed,
+            privateKey: normalize(privateKey)
+        )
     }
 
     // MARK: 私有

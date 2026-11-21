@@ -95,3 +95,6 @@ dist/
 
 # Xcode Cloud 自动生成的清单（项目用 GitHub Actions）
 xcshareddata/xcodecloud/
+
+# 本机自测凭据（.p8），绝不入库
+Configs/DevSecrets.plist

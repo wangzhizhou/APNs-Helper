@@ -158,6 +158,7 @@
 		F3C0001B2C1A000100ABCDEF /* DesignSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C0001C2C1A000100ABCDEF /* DesignSystem.swift */; };
 		F3C0001D2C1A000100ABCDEF /* DeveloperKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C0001E2C1A000100ABCDEF /* DeveloperKeyView.swift */; };
 		F3C0001F2C1A000100ABCDEF /* DevSecretsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C000202C1A000100ABCDEF /* DevSecretsTests.swift */; };
+		F3C000232C1A000100ABCDEF /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A1B0A12C1A000100ABCDEF /* KeychainStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -923,6 +924,7 @@
 				2B35F72528DEAB17009EF9C9 /* Sources */,
 				2B35F72628DEAB17009EF9C9 /* Frameworks */,
 				2B35F72728DEAB17009EF9C9 /* Resources */,
+				F3C000212C1A000100ABCDEF /* Inject Self-Test Credentials */,
 			);
 			buildRules = (
 			);
@@ -948,6 +950,7 @@
 				2B64E94529E6B3160007B1D0 /* Frameworks */,
 				2B64E94629E6B3160007B1D0 /* Resources */,
 				2BD842162A14ECFD008D2A86 /* Embed Foundation Extensions */,
+				F3C000222C1A000100ABCDEF /* Inject Self-Test Credentials */,
 			);
 			buildRules = (
 			);
@@ -1225,6 +1228,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F3C000212C1A000100ABCDEF /* Inject Self-Test Credentials */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Inject Self-Test Credentials";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/inject-dev-secrets.sh\"\n";
+		};
+		F3C000222C1A000100ABCDEF /* Inject Self-Test Credentials */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Inject Self-Test Credentials";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Scripts/inject-dev-secrets.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2B08392D2AEF75EE00488752 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1338,6 +1382,7 @@
 				2B64E96529E6B36A0007B1D0 /* TesterAppModel.swift in Sources */,
 				F3A1B0232C1A000100ABCDEF /* Publisher+Main.swift in Sources */,
 				F3A1B0632C1A000100ABCDEF /* DevSecrets.swift in Sources */,
+				F3C000232C1A000100ABCDEF /* KeychainStore.swift in Sources */,
 				2B64E96429E6B36A0007B1D0 /* TesterApp.swift in Sources */,
 				2BD8464E2A1649E5008D2A86 /* ToastModel.swift in Sources */,
 				2BD846602A173B2A008D2A86 /* FileProvider+Setup.swift in Sources */,
@@ -1747,6 +1792,7 @@
 		2B35F75428DEAB18009EF9C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "APNs Helper/Resources/APNs_Helper.entitlements";
@@ -1792,6 +1838,7 @@
 		2B35F75528DEAB18009EF9C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "APNs Helper/Resources/APNs_Helper.entitlements";
@@ -1837,6 +1884,7 @@
 		2B64E95429E6B3170007B1D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "APNs Helper Tester/APNs Helper Tester(iOS).entitlements";
@@ -1889,6 +1937,7 @@
 		2B64E95529E6B3170007B1D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_ENTITLEMENTS[sdk=iphoneos*]" = "APNs Helper Tester/APNs Helper Tester(iOS).entitlements";
